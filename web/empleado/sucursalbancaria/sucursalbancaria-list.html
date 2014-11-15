@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<section id="tablaListado" ng-init="list()">
+
+    <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaId-Codigo">Id sucursal</div>
+        <div class="celdaCabecera columnaNombre">Nombre</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Dirección</div>
+        <div class="celdaCabecera columnaId-Codigo">Id entidad</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="sucursalBancaria in sucursalesBancarias">
+        
+        <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idSucursalBancaria}}</div>
+        <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
+        <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
+        <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idEntidadBancaria}}</div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/sucursalbancaria/update/{{sucursalBancaria.idSucursalBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/sucursalbancaria/delete/{{sucursalBancaria.idSucursalBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+    
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/sucursalbancaria/new">Nueva sucursal</a></span>
+        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    </section>
+
+</section>

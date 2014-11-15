@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/ProyectoBanco">
+  <Resource
+      auth="Container"
+      
+      driverClassName="com.mysql.jdbc.Driver"
+      name="jdbc/baseDeDatos"
+      url="jdbc:mysql://localhost:3306/banco"
+      username="root"
+      password="root"
+      
+      type="javax.sql.DataSource"
+      maxActive="100"
+      maxIdle="30"
+      maxWait="10000"
+      validationQuery="SELECT 1 FROM dual"
+  />
+</Context>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<section id="contenedorDetail">
+
+    <div id="tituloDetail">Detalle Cuenta Bancaria</div>
+
+    <section id="contenedorFormularioDetail">
+        <div class="labelDetail">Id Cuenta</div>
+        <input class="inputDetail" type="text" ng-model="cuentaBancaria.idCuentaBancaria" ng-disabled="deshabilitado.estadoId"/>
+        <div class="labelDetail">Número</div>
+        <input class="inputDetail" type="text" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="deshabilitado.estado"/>
+        <div class="labelDetail">Id Entidad Bancaria</div>
+        <input class="inputDetail" type="text" ng-model="cuentaBancaria.idEntidadBancaria" ng-disabled="deshabilitado.estado"/>
+        <div class="labelDetail">Id Cliente</div>
+        <input class="inputDetail" type="text" ng-model="cuentaBancaria.idCliente" ng-disabled="deshabilitado.estado"/>
+    </section>
+
+    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="visible.insert">Insertar cuenta</span>
+    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="visible.update">Guardar cambios</span>
+    <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="visible.delete">Eliminar cuenta</span>
+    
+    <span id="botonVolverLista" class="botonBackEnd"><a href="#/cuentabancaria/list">Ir a listado</a></span>
+    <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+</section>
