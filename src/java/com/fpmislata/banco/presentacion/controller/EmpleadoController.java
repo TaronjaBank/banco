@@ -14,6 +14,4 @@ public class EmpleadoController {
     EmpleadoDAO empleadoDAO;
     @Autowired
     JsonTransformer jsonTransformer;
-    @Autowired
-    ConnectionFactory connectionFactory;
 }

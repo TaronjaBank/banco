@@ -8,8 +8,11 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$routePar
 
         $scope.deshabilitado = {
             estadoId: true,
-            estado: false
+            estado: false,
+            estadoFecha: true
         };
+
+        $scope.entidadBancaria = {};
 
         $scope.insert = function () {
             $http({
@@ -17,7 +20,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$routePar
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/EntidadBancaria/"
             }).success(function (data) {
-                alert("Se ha Insertado la Entidad");
+                alert("La nueva entidad bancaria ha sido insertada correctamente...");
                 $scope.entidadBancaria = data;
             }).error(function () {
                 alert("No se ha Borrado la Entidad");
@@ -36,7 +39,8 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
 
         $scope.deshabilitado = {
             estadoId: true,
-            estado: false
+            estado: false,
+            estadoFecha: true
         };
 
         $scope.entidadBancaria = {};
@@ -61,8 +65,8 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/EntidadBancaria/" + $routeParams.idEntidadBancaria,
                 data: $scope.entidadBancaria
             }).success(function (data, status, headers, config) {
-                $scope.entidadBancaria = data;
                 alert("Los datos de la entidad nº " + $routeParams.idEntidadBancaria + " se han actualizado correctamente...");
+                $scope.entidadBancaria = data;
             }).error(function (data, status, headers, config) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
@@ -80,8 +84,11 @@ app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routePar
 
         $scope.deshabilitado = {
             estadoId: true,
-            estado: true
+            estado: true,
+            estadoFecha: true
         };
+
+        $scope.entidadBancaria = {};
 
         $scope.get = function () {
             $http({
@@ -103,7 +110,7 @@ app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routePar
                 method: "DELETE",
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function (data) {
-                alert("Se ha borrado la Entidad: " + $routeParams.idEntidadBancaria);
+                alert("La entidad bancaria nº " + $routeParams.idEntidadBancaria + " ha sido borrada correctamente...");
                 $scope.entidadBancaria = {};
             }).error(function () {
                 alert("No se ha Borrado la Entidad");

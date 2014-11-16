@@ -8,6 +8,10 @@ public class Empleado {
     String apellido2Empleado;
     int idSucursalBancaria;
 
+    public Empleado() {
+    }
+    
+    
     public int getIdEmpleado() {
         return idEmpleado;
     }

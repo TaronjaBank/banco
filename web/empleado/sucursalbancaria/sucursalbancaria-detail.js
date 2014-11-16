@@ -1,5 +1,4 @@
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", function($scope, $http) {
-        //$routeParams: inyección de los parámetros variables de la ruta
 
         $scope.visible = {
             insert: true,
@@ -20,8 +19,8 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", function(
                 url: contextPath + "/api/SucursalBancaria/",
                 data: $scope.sucursalBancaria
             }).success(function(data) {
+                alert("La nueva sucursal bancaria ha sido insertada correctamente...");
                 $scope.sucursalBancaria = data;
-                alert("La sucursal nº " + $scope.sucursalBancaria.idSucursalBancaria + " ha sido insertada correctamente...");
             }).error(function(status) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
@@ -67,8 +66,8 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 url: contextPath + "/api/SucursalBancaria/" + $routeParams.idSucursalBancaria,
                 data: $scope.sucursalBancaria
             }).success(function(data, status, headers, config) {
-                $scope.sucursalBancaria = data;
                 alert("Los datos de la sucursal nº " + $routeParams.idSucursalBancaria + " se han actualizado correctamente...");
+                $scope.sucursalBancaria = data;
             }).error(function(data, status, headers, config) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
@@ -113,7 +112,7 @@ app.controller("SucursalBancariaDeleteController", ["$scope", "$http", "$routePa
                 method: "DELETE",
                 url: contextPath + "/api/SucursalBancaria/" + $routeParams.idSucursalBancaria
             }).success(function(data, status, headers, config) {
-                alert("La sucursal bancaria nº " + $routeParams.idSucursalBancaria + " ha sido borrada correctamente de la BD...");
+                alert("La sucursal bancaria nº " + $routeParams.idSucursalBancaria + " ha sido borrada correctamente...");
                 $scope.sucursalBancaria = {};
             }).error(function(data, status, headers, config) {
                 alert("Error en la peticiión al servidor; error:" + status);

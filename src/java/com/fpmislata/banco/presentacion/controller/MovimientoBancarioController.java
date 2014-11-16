@@ -26,9 +26,6 @@ public class MovimientoBancarioController {
     @Autowired
     JsonTransformer jsonTransformer;
 
-    @Autowired
-    ConnectionFactory connectionFactory;
-
     @RequestMapping(
             value = {"/{idMovimientoBancario}"},
             method = RequestMethod.GET)

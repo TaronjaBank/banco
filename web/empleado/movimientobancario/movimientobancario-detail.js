@@ -11,13 +11,15 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", functio
             estado: false
         };
 
+        $scope.movimientoBancario = {};
+
         $scope.insert = function () {
             $http({
                 method: "POST",
                 url: contextPath + "/api/MovimientoBancario/",
                 data: $scope.movimientoBancario
             }).success(function (data) {
-                alert("Se ha insertado el Movimiento: ");
+                alert("El nuevo movimiento bancario ha sido insertado correctamente...");
                 $scope.movimientoBancario = data;
             }).error(function () {
                 alert("No se ha insertado el Movimiento");
@@ -37,6 +39,8 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             estadoId: true,
             estado: false
         };
+
+        $scope.movimientoBancario = {};
 
         $scope.get = function () {
             $http({
@@ -62,7 +66,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
                 data: $scope.movimientoBancario
             }).success(function (data) {
-                alert("Se ha editado el Movimiento: " + $routeParams.idMovimientoBancario);
+                alert("Los datos del movimiento nº " + $routeParams.idMovimientoBancario + " se han actualizado correctamente...");
                 $scope.movimientoBancario = data;
             }).error(function () {
                 alert("No se ha editado el Movimiento");
@@ -85,6 +89,8 @@ app.controller("MovimientoBancarioDeleteController", ["$scope", "$http", "$route
             estado: true
         };
 
+        $scope.movimientoBancario = {};
+
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -106,7 +112,7 @@ app.controller("MovimientoBancarioDeleteController", ["$scope", "$http", "$route
                 method: "DELETE",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function (data) {
-                alert("Se ha borrado el Movimiento: " + $routeParams.idMovimientoBancario);
+                alert("El movimiento nº " + $routeParams.idMovimientoBancario + " ha sido borrado correctamente...");
                 $scope.movimientoBancario = {};
             }).error(function () {
                 alert("No se ha Borrado el Movimiento");

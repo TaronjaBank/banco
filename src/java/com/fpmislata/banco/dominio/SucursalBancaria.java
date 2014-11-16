@@ -6,6 +6,10 @@ public class SucursalBancaria {
     String direccionSucursalBancaria;
     int idEntidadBancaria;
 
+    public SucursalBancaria() {
+    }
+
+    
     public int getIdSucursalBancaria() {
         return idSucursalBancaria;
     }

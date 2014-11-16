@@ -14,6 +14,4 @@ public class ClienteController {
     ClienteDAO clienteDAO;
     @Autowired
     JsonTransformer jsonTransformer;
-    @Autowired
-    ConnectionFactory connectionFactory;
 }

@@ -8,6 +8,10 @@ public class EntidadBancaria {
     String nombreEntidadBancaria;
     Date fechaCreacionEntidadBancaria;
 
+    public EntidadBancaria() {
+    }
+
+    
     public int getIdEntidadBancaria() {
         return idEntidadBancaria;
     }

@@ -24,9 +24,6 @@ public class EntidadBancariaController {
     EntidadBancariaDAO entidadBancariaDAO;
 
     @Autowired
-    ConnectionFactory connectionFactory;
-
-    @Autowired
     JsonTransformer jsonTransformer;
 
     @RequestMapping(

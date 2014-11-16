@@ -7,6 +7,10 @@ public class MovimientoBancario {
     double cantidadMovimientoBancario;
     String conceptoMovimientoBancario;
 
+    public MovimientoBancario() {
+    }
+
+    
     public int getIdMovimientoBancario() {
         return idMovimientoBancario;
     }

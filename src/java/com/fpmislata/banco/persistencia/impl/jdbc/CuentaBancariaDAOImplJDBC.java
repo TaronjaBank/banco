@@ -50,9 +50,9 @@ public class CuentaBancariaDAOImplJDBC implements CuentaBancariaDAO {
             preparedStatement.setInt(3, cuentaBancaria.getIdEntidadBancaria());
             preparedStatement.setInt(4, cuentaBancaria.getIdCliente());
             preparedStatement.executeUpdate();
-            ResultSet keys = preparedStatement.getGeneratedKeys();
-            keys.next();
-            int idCuentaBancaria = keys.getInt(1);
+            ResultSet resultSetKeys = preparedStatement.getGeneratedKeys();
+            resultSetKeys.next();
+            int idCuentaBancaria = resultSetKeys.getInt(1);
             connection.close();
             return get(idCuentaBancaria);
         } catch (SQLException ex) {

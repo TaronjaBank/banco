@@ -7,6 +7,10 @@ public class Cliente {
     String apellido1Cliente;
     String apellido2Cliente;
 
+    public Cliente() {
+    }
+    
+    
     public int getIdCliente() {
         return idCliente;
     }

@@ -19,7 +19,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", function ($
                 data: $scope.cuentaBancaria,
                 url: contextPath + "/api/CuentaBancaria/"
             }).success(function (data) {
-                alert("Se ha insertado la cuenta: ");
+                alert("La nueva cuenta bancaria ha sido insertada correctamente...");
                 $scope.cuentaBancaria = data;
             }).error(function (data, status) {
                 alert("No se ha Insertado la Cuenta");
@@ -63,7 +63,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/CuentaBancaria/" + $routeParams.idCuentaBancaria,
                 data: $scope.cuentaBancaria
             }).success(function (data) {
-                alert("Se ha modificado la cuenta: " + $routeParams.idCuentaBancaria);
+                alert("Los datos de la cuenta nº " + $routeParams.idCuentaBancaria + " se han actualizado correctamente...");
                 $scope.cuentaBancaria = {};
             }).error(function () {
                 alert("No ha producido un Error");
@@ -104,7 +104,7 @@ app.controller("CuentaBancariaDeleteController", ["$scope", "$http", "$routePara
                 method: "DELETE",
                 url: contextPath + "/api/CuentaBancaria/" + $routeParams.idCuentaBancaria
             }).success(function (data) {
-                alert("Se ha borrado la cuenta: " + $routeParams.idCuentaBancaria);
+                alert("La cuenta bancaria nº " + $routeParams.idCuentaBancaria + " ha sido borrada correctamente...");
                 $scope.cuentaBancaria = {};
             }).error(function () {
                 alert("No se ha Borrado la Cuenta");

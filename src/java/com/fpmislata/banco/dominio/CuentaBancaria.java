@@ -6,6 +6,10 @@ public class CuentaBancaria {
     int idEntidadBancaria;
     int idCliente;
 
+    public CuentaBancaria() {
+    }
+    
+    
     public int getIdCuentaBancaria() {
         return idCuentaBancaria;
     }
