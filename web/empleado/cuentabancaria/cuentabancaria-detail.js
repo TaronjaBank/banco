@@ -11,7 +11,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", function ($
             estado: false
         };
 
-        $scope.cuentaBancaria = {};
+        
 
         $scope.insert = function () {
             $http({
@@ -42,12 +42,14 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             estado: false
         };
         
-        $scope.cuentaBancaria = {};
+        $scope.cuentaBancaria = {
+            idCuentaBancaria:$routeParams.idCuentaBancaria
+        };
 
         $scope.get = function () {
             $http({
                 method: "GET",
-                url: contextPath + "/api/CuentaBancaria/" + $routeParams.idCuentaBancaria
+                url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria
             }).success(function (data) {
                 $scope.cuentaBancaria = data;
             }).error(function () {
@@ -60,10 +62,10 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         $scope.update = function () {
             $http({
                 method: "PUT",
-                url: contextPath + "/api/CuentaBancaria/" + $routeParams.idCuentaBancaria,
+                url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
                 data: $scope.cuentaBancaria
-            }).success(function (data) {
-                alert("Los datos de la cuenta nº " + $routeParams.idCuentaBancaria + " se han actualizado correctamente...");
+            }).success(function () {
+                alert("Los datos de la cuenta nº " + $scope.cuentaBancaria.idCuentaBancaria + " se han actualizado correctamente...");
                 $scope.cuentaBancaria = {};
             }).error(function () {
                 alert("No ha producido un Error");
@@ -84,12 +86,14 @@ app.controller("CuentaBancariaDeleteController", ["$scope", "$http", "$routePara
             estado: true
         };
         
-        $scope.cuentaBancaria = {};
+        $scope.cuentaBancaria = {
+            idCuentaBancaria:$routeParams.idCuentaBancaria
+        };
 
         $scope.get = function () {
             $http({
                 method: "GET",
-                url: contextPath + "/api/CuentaBancaria/" + $routeParams.idCuentaBancaria
+                url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria
             }).success(function (data) {
                 $scope.cuentaBancaria = data;
             }).error(function () {
@@ -102,9 +106,9 @@ app.controller("CuentaBancariaDeleteController", ["$scope", "$http", "$routePara
         $scope.deleteData = function () {
             $http({
                 method: "DELETE",
-                url: contextPath + "/api/CuentaBancaria/" + $routeParams.idCuentaBancaria
-            }).success(function (data) {
-                alert("La cuenta bancaria nº " + $routeParams.idCuentaBancaria + " ha sido borrada correctamente...");
+                url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria
+            }).success(function () {
+                alert("La cuenta bancaria nº " + $scope.cuentaBancaria.idCuentaBancaria + " ha sido borrada correctamente...");
                 $scope.cuentaBancaria = {};
             }).error(function () {
                 alert("No se ha Borrado la Cuenta");

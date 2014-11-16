@@ -11,8 +11,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", functio
             estado: false
         };
 
-        $scope.movimientoBancario = {};
-
+        
         $scope.insert = function () {
             $http({
                 method: "POST",
@@ -40,7 +39,9 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             estado: false
         };
 
-        $scope.movimientoBancario = {};
+        $scope.movimientoBancario = {
+            idMovimientoBancario:$routeParams.idMovimientoBancario
+        };
 
         $scope.get = function () {
             $http({
@@ -53,11 +54,9 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             });
         };
         
-        if ($routeParams !== undefined) {
-            $scope.movimientoBancario = {};
-            $scope.movimientoBancario.idMovimientoBancario = $routeParams.idMovimientoBancario;
+        
             $scope.get();
-        }
+        
         
         $scope.update=function(){
             
@@ -66,7 +65,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
                 data: $scope.movimientoBancario
             }).success(function (data) {
-                alert("Los datos del movimiento nº " + $routeParams.idMovimientoBancario + " se han actualizado correctamente...");
+                alert("Los datos del movimiento nº " + $scope.movimientoBancario.idMovimientoBancario + " se han actualizado correctamente...");
                 $scope.movimientoBancario = data;
             }).error(function () {
                 alert("No se ha editado el Movimiento");
@@ -89,7 +88,9 @@ app.controller("MovimientoBancarioDeleteController", ["$scope", "$http", "$route
             estado: true
         };
 
-        $scope.movimientoBancario = {};
+        $scope.movimientoBancario = {
+            idMovimientoBancario:$routeParams.idMovimientoBancario
+        };
 
         $scope.get = function () {
             $http({
@@ -101,18 +102,16 @@ app.controller("MovimientoBancarioDeleteController", ["$scope", "$http", "$route
                 alert("No existe el movimiento");
             });//success.Error
         };//Consultar
-        if ($routeParams !== undefined) {
-            $scope.movimientoBancario = {};
-            $scope.movimientoBancario.idMovimientoBancario = $routeParams.idMovimientoBancario;
+        
             $scope.get();
-        }
+        
 
         $scope.deleteData = function () {
             $http({
                 method: "DELETE",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
-            }).success(function (data) {
-                alert("El movimiento nº " + $routeParams.idMovimientoBancario + " ha sido borrado correctamente...");
+            }).success(function () {
+                alert("El movimiento nº " + $scope.movimientoBancario.idMovimientoBancario + " ha sido borrado correctamente...");
                 $scope.movimientoBancario = {};
             }).error(function () {
                 alert("No se ha Borrado el Movimiento");

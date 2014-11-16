@@ -11,7 +11,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", function(
             estado: false
         };
 
-        $scope.sucursalBancaria = {};
+        
 
         $scope.insert = function() {
             $http({
@@ -44,12 +44,14 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             estado: false
         };
 
-        $scope.sucursalBancaria = {};
+        $scope.sucursalBancaria = {
+            idSucursalBancaria:$routeParams.idSucursalBancaria
+        };
 
         $scope.get = function() {
             $http({
                 method: "GET",
-                url: contextPath + "/api/SucursalBancaria/" + $routeParams.idSucursalBancaria
+                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
             }).success(function(data) {
                 $scope.sucursalBancaria = data;
             }).error(function(status) {
@@ -63,12 +65,12 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.update = function() {
             $http({
                 method: "PUT",
-                url: contextPath + "/api/SucursalBancaria/" + $routeParams.idSucursalBancaria,
+                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
                 data: $scope.sucursalBancaria
-            }).success(function(data, status, headers, config) {
-                alert("Los datos de la sucursal nº " + $routeParams.idSucursalBancaria + " se han actualizado correctamente...");
+            }).success(function(data) {
+                alert("Los datos de la sucursal nº " + $scope.sucursalBancaria.idSucursalBancaria + " se han actualizado correctamente...");
                 $scope.sucursalBancaria = data;
-            }).error(function(data, status, headers, config) {
+            }).error(function(status) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
         };
@@ -91,15 +93,17 @@ app.controller("SucursalBancariaDeleteController", ["$scope", "$http", "$routePa
             estado: true
         };
 
-        $scope.sucursalBancaria = {};
+        $scope.sucursalBancaria = {
+            idSucursalBancaria:$routeParams.idSucursalBancaria
+        };
 
         $scope.get = function() {
             $http({
                 method: "GET",
-                url: contextPath + "/api/SucursalBancaria/" + $routeParams.idSucursalBancaria
-            }).success(function(data, status, headers, config) {
+                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
+            }).success(function(data) {
                 $scope.sucursalBancaria = data;
-            }).error(function(data, status, headers, config) {
+            }).error(function(status) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
         };
@@ -110,11 +114,11 @@ app.controller("SucursalBancariaDeleteController", ["$scope", "$http", "$routePa
         $scope.deleteData = function() {
             $http({
                 method: "DELETE",
-                url: contextPath + "/api/SucursalBancaria/" + $routeParams.idSucursalBancaria
-            }).success(function(data, status, headers, config) {
+                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
+            }).success(function() {
                 alert("La sucursal bancaria nº " + $routeParams.idSucursalBancaria + " ha sido borrada correctamente...");
                 $scope.sucursalBancaria = {};
-            }).error(function(data, status, headers, config) {
+            }).error(function(status) {
                 alert("Error en la peticiión al servidor; error:" + status);
             });
         };

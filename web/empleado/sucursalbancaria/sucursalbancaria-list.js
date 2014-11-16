@@ -7,9 +7,9 @@ app.controller("SucursalBancariaListController", ["$scope", "$http", function ($
         $http({
             method: "GET",
             url: contextPath + "/api/SucursalBancaria"
-        }).success(function (data, status, headers, config) {
+        }).success(function (data) {
             $scope.sucursalesBancarias = data;
-        }).error(function (data, status, headers, config) {
+        }).error(function (status) {
             alert("Ha ocurrido un error en la peticion al servidor: error " + status);
         });
     };

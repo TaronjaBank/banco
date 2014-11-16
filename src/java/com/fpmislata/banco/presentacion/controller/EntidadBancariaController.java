@@ -3,7 +3,6 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JsonTransformer;
 import com.fpmislata.banco.dominio.EntidadBancaria;
 import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
-import com.fpmislata.banco.persistencia.impl.jdbc.connectionFactory.ConnectionFactory;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
