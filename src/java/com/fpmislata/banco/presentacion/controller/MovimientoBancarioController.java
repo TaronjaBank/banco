@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/MovimientoBancario")
 public class MovimientoBancarioController {
 
-    MovimientoBancario movimientoBancario;
-
     @Autowired
     MovimientoBancarioDAO movimientoBancarioDAO;
 
@@ -33,13 +31,13 @@ public class MovimientoBancarioController {
             HttpServletResponse httpServletResponse,
             @PathVariable("idMovimientoBancario") int idMovimientoBancario) {
         try {
-            movimientoBancario = movimientoBancarioDAO.get(idMovimientoBancario);
+            MovimientoBancario movimientoBancario = movimientoBancarioDAO.get(idMovimientoBancario);
             String jsonSalida = jsonTransformer.toJson(movimientoBancario);
             httpServletResponse.getWriter().println(jsonSalida);
-
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -51,14 +49,13 @@ public class MovimientoBancarioController {
             HttpServletResponse httpServletResponse,
             @RequestBody String jsonEntrada) {
         try {
-            movimientoBancario = (MovimientoBancario) jsonTransformer.fromJson(jsonEntrada, MovimientoBancario.class);
-            MovimientoBancario movimientoBancarioSalida = movimientoBancarioDAO.insert(movimientoBancario);
+            MovimientoBancario movimientoBancarioEntrada = (MovimientoBancario) jsonTransformer.fromJson(jsonEntrada, MovimientoBancario.class);
+            MovimientoBancario movimientoBancarioSalida = movimientoBancarioDAO.insert(movimientoBancarioEntrada);
             String jsonSalida = jsonTransformer.toJson(movimientoBancarioSalida);
             httpServletResponse.getWriter().println(jsonSalida);
-
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -74,15 +71,14 @@ public class MovimientoBancarioController {
             @PathVariable("idMovimientoBancario") int idMovimientoBancario,
             @RequestBody String jsonEntrada) {
         try {
-            movimientoBancario = (MovimientoBancario) jsonTransformer.fromJson(jsonEntrada, MovimientoBancario.class);
+            MovimientoBancario movimientoBancario = (MovimientoBancario) jsonTransformer.fromJson(jsonEntrada, MovimientoBancario.class);
             movimientoBancario = movimientoBancarioDAO.update(movimientoBancario);
             String jsonSalida = jsonTransformer.toJson(movimientoBancario);
             httpServletResponse.getWriter().println(jsonSalida);
-
-            httpServletResponse.setContentType("application/json; char=UTF-8");
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -106,10 +102,10 @@ public class MovimientoBancarioController {
         try {
             String jsonSalida = jsonTransformer.toJson(movimientoBancarioDAO.findAll());
             httpServletResponse.getWriter().println(jsonSalida);
-
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

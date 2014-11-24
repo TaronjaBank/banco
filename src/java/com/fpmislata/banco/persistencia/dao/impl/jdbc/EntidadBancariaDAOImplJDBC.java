@@ -1,8 +1,8 @@
-package com.fpmislata.banco.persistencia.impl.jdbc;
+package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
 import com.fpmislata.banco.dominio.EntidadBancaria;
 import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
-import com.fpmislata.banco.persistencia.impl.jdbc.connectionFactory.ConnectionFactory;
+import com.fpmislata.banco.persistencia.dao.impl.jdbc.connectionFactory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,75 +16,82 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
 
     @Autowired
     ConnectionFactory connectionFactory;
-    Connection connection;
-    PreparedStatement preparedStatement;
 
     @Override
     public EntidadBancaria get(int idEntidadBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "SELECT codigoEntidadBancaria,nombreEntidadBancaria,fechaCreacionEntidadBancaria FROM entidadBancaria WHERE identidadBancaria=?";
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         EntidadBancaria entidadBancaria = new EntidadBancaria();
         try {
-            preparedStatement = connection.prepareStatement("SELECT codigoEntidadBancaria,nombreEntidadBancaria,fechaCreacionEntidadBancaria FROM entidadBancaria WHERE identidadBancaria=?");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idEntidadBancaria);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             entidadBancaria.setIdEntidadBancaria(idEntidadBancaria);
-            resultSet.next();
-            entidadBancaria.setCodigoEntidadBancaria(resultSet.getString("codigoEntidadBancaria"));
-            entidadBancaria.setNombreEntidadBancaria(resultSet.getString("nombreEntidadBancaria"));
-            entidadBancaria.setFechaCreacionEntidadBancaria(resultSet.getDate("fechaCreacionEntidadBancaria"));
+            if (resultSet.next()) {
+                entidadBancaria.setCodigoEntidadBancaria(resultSet.getString("codigoEntidadBancaria"));
+                entidadBancaria.setNombreEntidadBancaria(resultSet.getString("nombreEntidadBancaria"));
+                entidadBancaria.setFechaCreacionEntidadBancaria(resultSet.getDate("fechaCreacionEntidadBancaria"));
+            }
             connection.close();
+            return entidadBancaria;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return entidadBancaria;
     }
 
     @Override
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "INSERT INTO entidadBancaria VALUES (null,?,?,now())";
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSetKeys;
         int idEntidadBancaria;
         try {
-            preparedStatement = connection.prepareStatement(
-                    "INSERT INTO entidadBancaria VALUES (null,?,?,now())",
-                    Statement.RETURN_GENERATED_KEYS);
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, entidadBancaria.getCodigoEntidadBancaria());
             preparedStatement.setString(2, entidadBancaria.getNombreEntidadBancaria());
-
             preparedStatement.executeUpdate();
-
-            ResultSet resultSetKeys = preparedStatement.getGeneratedKeys();
+            resultSetKeys = preparedStatement.getGeneratedKeys();
             resultSetKeys.next();
             idEntidadBancaria = resultSetKeys.getInt(1);
-
             connection.close();
+            return get(idEntidadBancaria);
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return get(idEntidadBancaria);
     }
 
     @Override
     public EntidadBancaria update(EntidadBancaria entidadBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "UPDATE entidadBancaria SET codigoEntidadBancaria=?,nombreEntidadBancaria=? WHERE idEntidadBancaria=?";
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("UPDATE entidadBancaria SET codigoEntidadBancaria=?,nombreEntidadBancaria=? WHERE idEntidadBancaria=?");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, entidadBancaria.getCodigoEntidadBancaria());
             preparedStatement.setString(2, entidadBancaria.getNombreEntidadBancaria());
-
             preparedStatement.setInt(3, entidadBancaria.getIdEntidadBancaria());
             preparedStatement.executeUpdate();
             connection.close();
+            return get(entidadBancaria.getIdEntidadBancaria());
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return get(entidadBancaria.getIdEntidadBancaria());
     }
 
     @Override
     public void delete(int idEntidadBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "DELETE FROM entidadBancaria WHERE idEntidadBancaria=?";
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM entidadBancaria WHERE idEntidadBancaria=?");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idEntidadBancaria);
             preparedStatement.executeUpdate();
             connection.close();
@@ -95,24 +102,29 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
 
     @Override
     public List<EntidadBancaria> findAll() {
-        connection = connectionFactory.getConnection();
+        String sql = "SELECT * FROM entidadBancaria";
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         EntidadBancaria entidadBancaria;
-        List<EntidadBancaria> listaentidadesBancarias = new ArrayList();
+        List<EntidadBancaria> entidadesBancarias = new ArrayList();
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM entidadBancaria");
-            ResultSet resultSet = preparedStatement.executeQuery();
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 entidadBancaria = new EntidadBancaria();
                 entidadBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 entidadBancaria.setCodigoEntidadBancaria(resultSet.getString("codigoEntidadBancaria"));
                 entidadBancaria.setNombreEntidadBancaria(resultSet.getString("nombreEntidadBancaria"));
                 entidadBancaria.setFechaCreacionEntidadBancaria(resultSet.getDate("fechaCreacionEntidadBancaria"));
-                listaentidadesBancarias.add(entidadBancaria);
+                entidadesBancarias.add(entidadBancaria);
             }
+            connection.close();
+            return entidadesBancarias;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return listaentidadesBancarias;
     }
 
 }

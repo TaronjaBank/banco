@@ -1,8 +1,8 @@
-package com.fpmislata.banco.persistencia.impl.jdbc;
+package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
 import com.fpmislata.banco.dominio.CuentaBancaria;
 import com.fpmislata.banco.persistencia.dao.CuentaBancariaDAO;
-import com.fpmislata.banco.persistencia.impl.jdbc.connectionFactory.ConnectionFactory;
+import com.fpmislata.banco.persistencia.dao.impl.jdbc.connectionFactory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,72 +17,84 @@ public class CuentaBancariaDAOImplJDBC implements CuentaBancariaDAO {
     @Autowired
     ConnectionFactory connectionFactory;
 
-    Connection connection;
-    PreparedStatement preparedStatement;
-
     @Override
     public CuentaBancaria get(int idCuentaBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "SELECT numeroCuentaBancaria,idEntidadBancaria,idCliente FROM cuentaBancaria WHERE idcuentaBancaria=?";
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         CuentaBancaria cuentaBancaria = new CuentaBancaria();
         try {
-            preparedStatement = connection.prepareStatement("SELECT numeroCuentaBancaria,idEntidadBancaria,idCliente FROM cuentaBancaria WHERE idcuentaBancaria=?");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idCuentaBancaria);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             cuentaBancaria.setIdCuentaBancaria(idCuentaBancaria);
-            resultSet.next();
-            cuentaBancaria.setNumeroCuentaBancaria(resultSet.getInt("numeroCuentaBancaria"));
-            cuentaBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
-            cuentaBancaria.setIdCliente(resultSet.getInt("idCliente"));
+            if (resultSet.next()) {
+                cuentaBancaria.setNumeroCuentaBancaria(resultSet.getInt("numeroCuentaBancaria"));
+                cuentaBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
+                cuentaBancaria.setIdCliente(resultSet.getInt("idCliente"));
+            }
             connection.close();
+            return cuentaBancaria;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return cuentaBancaria;
     }
 
     @Override
     public CuentaBancaria insert(CuentaBancaria cuentaBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "INSERT INTO cuentaBancaria VALUES (?,?,?,?)";
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSetKeys;
+        int idCuentaBancaria;
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO cuentaBancaria VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, cuentaBancaria.getIdCuentaBancaria());
             preparedStatement.setInt(2, cuentaBancaria.getNumeroCuentaBancaria());
             preparedStatement.setInt(3, cuentaBancaria.getIdEntidadBancaria());
             preparedStatement.setInt(4, cuentaBancaria.getIdCliente());
             preparedStatement.executeUpdate();
-            ResultSet resultSetKeys = preparedStatement.getGeneratedKeys();
+            resultSetKeys = preparedStatement.getGeneratedKeys();
             resultSetKeys.next();
-            int idCuentaBancaria = resultSetKeys.getInt(1);
+            idCuentaBancaria = resultSetKeys.getInt(1);
             connection.close();
             return get(idCuentaBancaria);
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-
     }
 
     @Override
     public CuentaBancaria update(CuentaBancaria cuentaBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "UPDATE cuentaBancaria SET numeroCuentaBancaria=?,idEntidadBancaria=?,idCliente=? WHERE idCuentaBancaria=?";
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("UPDATE cuentaBancaria SET numeroCuentaBancaria=?,idEntidadBancaria=?,idCliente=? WHERE idCuentaBancaria=?");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, cuentaBancaria.getNumeroCuentaBancaria());
             preparedStatement.setInt(2, cuentaBancaria.getIdEntidadBancaria());
             preparedStatement.setInt(3, cuentaBancaria.getIdCliente());
             preparedStatement.setInt(4, cuentaBancaria.getIdCuentaBancaria());
             preparedStatement.executeUpdate();
             connection.close();
+            return get(cuentaBancaria.getIdCuentaBancaria());
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return get(cuentaBancaria.getIdCuentaBancaria());
     }
 
     @Override
     public void delete(int idCuentaBancaria) {
-        connection = connectionFactory.getConnection();
+        String sql = "DELETE FROM cuentaBancaria WHERE idCuentaBancaria=?";
+        Connection connection;
+        PreparedStatement preparedStatement;
         try {
-            preparedStatement = connection.prepareStatement("DELETE FROM cuentaBancaria WHERE idCuentaBancaria=?");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idCuentaBancaria);
             preparedStatement.executeUpdate();
             connection.close();
@@ -93,11 +105,14 @@ public class CuentaBancariaDAOImplJDBC implements CuentaBancariaDAO {
 
     @Override
     public List<CuentaBancaria> findAll() {
-        connection = connectionFactory.getConnection();
+        String sql = "SELECT * FROM cuentaBancaria";
+        Connection connection;
+        PreparedStatement preparedStatement;
         CuentaBancaria cuentaBancaria;
-        List<CuentaBancaria> listacuentasBancarias = new ArrayList();
+        List<CuentaBancaria> cuentasBancarias = new ArrayList();
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM cuentaBancaria");
+            connection = connectionFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 cuentaBancaria = new CuentaBancaria();
@@ -105,13 +120,13 @@ public class CuentaBancariaDAOImplJDBC implements CuentaBancariaDAO {
                 cuentaBancaria.setNumeroCuentaBancaria(resultSet.getInt("numeroCuentaBancaria"));
                 cuentaBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 cuentaBancaria.setIdCliente(resultSet.getInt("idCliente"));
-                listacuentasBancarias.add(cuentaBancaria);
+                cuentasBancarias.add(cuentaBancaria);
             }
             connection.close();
+            return cuentasBancarias;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        return listacuentasBancarias;
     }
 
 }

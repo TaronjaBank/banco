@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.fpmislata.banco.persistencia.impl.jdbc.connectionFactory;
+package com.fpmislata.banco.persistencia.dao.impl.jdbc.connectionFactory;
 
 import java.sql.Connection;
 

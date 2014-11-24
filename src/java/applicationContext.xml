@@ -7,13 +7,13 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 ">
     <context:annotation-config/>
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.connectionFactory.impl.ConnectionFactoryImplDataSource" />
     <bean class="com.fpmislata.banco.common.json.impl.JsonTransformerImplJackson" />
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.EntidadBancariaDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.CuentaBancariaDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.MovimientoBancarioDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.SucursalBancariaDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.ClienteDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.impl.jdbc.EmpleadoDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.connectionFactory.impl.ConnectionFactoryImplDataSource" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ClienteDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.CuentaBancariaDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EmpleadoDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EntidadBancariaDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.MovimientoBancarioDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.SucursalBancariaDAOImplJDBC" />
 </beans>
 

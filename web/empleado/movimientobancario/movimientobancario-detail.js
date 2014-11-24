@@ -71,7 +71,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 alert("No se ha editado el Movimiento");
             });
             
-        }
+        };
 
     }]);
 

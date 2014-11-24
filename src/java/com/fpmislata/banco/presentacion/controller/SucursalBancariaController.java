@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/SucursalBancaria")
 public class SucursalBancariaController {
 
-    SucursalBancaria sucursalBancaria;
-
     @Autowired
     SucursalBancariaDAO sucursalBancariaDAO;
     
@@ -32,15 +30,14 @@ public class SucursalBancariaController {
     public void get(HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @PathVariable("idSucursalBancaria") int idSucursalBancaria) {
-        
         try {
-            sucursalBancaria = sucursalBancariaDAO.get(idSucursalBancaria);
+            SucursalBancaria sucursalBancaria = sucursalBancariaDAO.get(idSucursalBancaria);
             String jsonSalida = jsonTransformer.toJson(sucursalBancaria);
             httpServletResponse.getWriter().println(jsonSalida);
-            
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -51,16 +48,14 @@ public class SucursalBancariaController {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @RequestBody String jsonEntrada){
-        
         try {
-            sucursalBancaria = (SucursalBancaria) jsonTransformer.fromJson(jsonEntrada, SucursalBancaria.class);
-            SucursalBancaria sucursalBancariaSalida = sucursalBancariaDAO.insert(sucursalBancaria);
+            SucursalBancaria sucursalBancariaEntrada = (SucursalBancaria) jsonTransformer.fromJson(jsonEntrada, SucursalBancaria.class);
+            SucursalBancaria sucursalBancariaSalida = sucursalBancariaDAO.insert(sucursalBancariaEntrada);
             String jsonSalida = jsonTransformer.toJson(sucursalBancariaSalida);
             httpServletResponse.getWriter().println(jsonSalida);
-            
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -74,17 +69,15 @@ public class SucursalBancariaController {
             HttpServletResponse httpServletResponse,
             @PathVariable("idSucursalBancaria") int idSucursalBancaria,
             @RequestBody String jsonEntrada) {
-
         try {
-            sucursalBancaria = (SucursalBancaria) jsonTransformer.fromJson(jsonEntrada, SucursalBancaria.class);
+            SucursalBancaria sucursalBancaria = (SucursalBancaria) jsonTransformer.fromJson(jsonEntrada, SucursalBancaria.class);
             sucursalBancaria = sucursalBancariaDAO.update(sucursalBancaria);
             String jsonSalida = jsonTransformer.toJson(sucursalBancaria);
             httpServletResponse.getWriter().println(jsonSalida);
-            
-            httpServletResponse.setContentType("application/json; char=UTF-8");
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex){
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -95,7 +88,6 @@ public class SucursalBancariaController {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @PathVariable("idSucursalBancaria") int idSucursalBancaria) {
-        
         sucursalBancariaDAO.delete(idSucursalBancaria);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
@@ -108,8 +100,9 @@ public class SucursalBancariaController {
         try {
             httpServletResponse.getWriter().println(jsonTransformer.toJson(sucursalBancariaDAO.findAll()));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

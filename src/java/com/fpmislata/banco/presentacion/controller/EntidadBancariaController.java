@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/EntidadBancaria")
 public class EntidadBancariaController {
 
-    EntidadBancaria entidadBancaria;
-
     @Autowired
     EntidadBancariaDAO entidadBancariaDAO;
 
@@ -33,13 +31,13 @@ public class EntidadBancariaController {
             HttpServletResponse httpServletResponse,
             @PathVariable("idEntidadBancaria") int idEntidadBancaria) {
         try {
-            entidadBancaria = entidadBancariaDAO.get(idEntidadBancaria);
+            EntidadBancaria entidadBancaria = entidadBancariaDAO.get(idEntidadBancaria);
             String jsonSalida = jsonTransformer.toJson(entidadBancaria);
             httpServletResponse.getWriter().println(jsonSalida);
-
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -50,14 +48,13 @@ public class EntidadBancariaController {
             HttpServletResponse httpServletResponse,
             @RequestBody String jsonEntrada) {
         try {
-            entidadBancaria = (EntidadBancaria) jsonTransformer.fromJson(jsonEntrada, EntidadBancaria.class);
-            EntidadBancaria entidadBancariaSalida = entidadBancariaDAO.insert(entidadBancaria);
+            EntidadBancaria entidadBancariaEntrada = (EntidadBancaria) jsonTransformer.fromJson(jsonEntrada, EntidadBancaria.class);
+            EntidadBancaria entidadBancariaSalida = entidadBancariaDAO.insert(entidadBancariaEntrada);
             String jsonSalida = jsonTransformer.toJson(entidadBancariaSalida);
             httpServletResponse.getWriter().println(jsonSalida);
-
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -73,15 +70,14 @@ public class EntidadBancariaController {
             @PathVariable("idEntidadBancaria") int idEntidadBancaria,
             @RequestBody String jsonEntrada) {
         try {
-            entidadBancaria = (EntidadBancaria) jsonTransformer.fromJson(jsonEntrada, EntidadBancaria.class);
+            EntidadBancaria entidadBancaria = (EntidadBancaria) jsonTransformer.fromJson(jsonEntrada, EntidadBancaria.class);
             entidadBancaria = entidadBancariaDAO.update(entidadBancaria);
             String jsonSalida = jsonTransformer.toJson(entidadBancaria);
             httpServletResponse.getWriter().println(jsonSalida);
-
-            httpServletResponse.setContentType("application/json; char=UTF-8");
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -105,10 +101,10 @@ public class EntidadBancariaController {
         try {
             String jsonSalida = jsonTransformer.toJson(entidadBancariaDAO.findAll());
             httpServletResponse.getWriter().println(jsonSalida);
-
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -1,5 +1,5 @@
 
-CREATE TABLE IF NOT EXISTS `cliente` (
+CREATE TABLE `cliente` (
   `idCliente` int(11) NOT NULL AUTO_INCREMENT,
   `dniCliente` varchar(50) NOT NULL,
   `nombreCliente` varchar(50) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `cuentabancaria` (
+CREATE TABLE `cuentabancaria` (
   `idCuentaBancaria` int(11) NOT NULL AUTO_INCREMENT,
   `numeroCuentaBancaria` int(11) NOT NULL DEFAULT '0',
   `idEntidadBancaria` int(11) NOT NULL DEFAULT '0',
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `cuentabancaria` (
 
 
 
-CREATE TABLE IF NOT EXISTS `empleado` (
+CREATE TABLE `empleado` (
   `idEmpleado` int(11) NOT NULL AUTO_INCREMENT,
   `dniEmpleado` varchar(50) DEFAULT '0',
   `nombreEmpleado` varchar(50) DEFAULT '0',
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `empleado` (
 
 
 
-CREATE TABLE IF NOT EXISTS `entidadbancaria` (
+CREATE TABLE `entidadbancaria` (
   `idEntidadBancaria` int(11) NOT NULL AUTO_INCREMENT,
   `codigoEntidadBancaria` varchar(50) DEFAULT NULL,
   `nombreEntidadBancaria` varchar(50) DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `entidadbancaria` (
 
 
 
-CREATE TABLE IF NOT EXISTS `movimientobancario` (
+CREATE TABLE `movimientobancario` (
   `idMovimientoBancario` int(11) NOT NULL AUTO_INCREMENT,
   `idCuentaBancariaOrigen` int(11) NOT NULL,
   `idCuentaBancariaDestino` int(11) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `movimientobancario` (
 
 
 
-CREATE TABLE IF NOT EXISTS `sucursalbancaria` (
+CREATE TABLE `sucursalbancaria` (
   `idSucursalBancaria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreSucursalBancaria` varchar(50) DEFAULT NULL,
   `direccionSucursalBancaria` varchar(50) DEFAULT NULL,
