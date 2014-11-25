@@ -1,6 +1,6 @@
-package com.fpmislata.banco.persistencia.datasourcefactory.impl;
+package com.fpmislata.banco.persistencia.common.datasourcefactory.impl;
 
-import com.fpmislata.banco.persistencia.datasourcefactory.DataSourceFactory;
+import com.fpmislata.banco.persistencia.common.datasourcefactory.DataSourceFactory;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

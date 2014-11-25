@@ -13,7 +13,7 @@ public class ServletContextListenerImplHibernate implements ServletContextListen
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        HibernateUtil.buildSessionFactory();
+        HibernateUtil.closeSessionFactory();
     }
     
 }

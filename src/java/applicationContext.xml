@@ -8,7 +8,7 @@
 ">
     <context:annotation-config/>
     <bean class="com.fpmislata.banco.common.json.impl.JsonTransformerImplJackson" />
-    <bean class="com.fpmislata.banco.persistencia.datasourcefactory.impl.DataSourceFactoryImpl" />
+    <bean class="com.fpmislata.banco.persistencia.common.datasourcefactory.impl.DataSourceFactoryImpl" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.connectionFactory.impl.ConnectionFactoryImplDataSource" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ClienteDAOImplJDBC" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.CuentaBancariaDAOImplJDBC" />

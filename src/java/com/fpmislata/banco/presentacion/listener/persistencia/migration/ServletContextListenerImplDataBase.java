@@ -15,42 +15,37 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class ServletContextListenerImplDataBase implements ServletContextListener {
 
-        
     @Autowired
     EntidadBancariaDAO entidadBancariaDAO;
-    
+
     @Autowired
     JsonTransformer jsonTransformer;
-    
-   
+
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            
             WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContextEvent.getServletContext());
-            AutowireCapableBeanFactory autowireCapableBeanFactory=webApplicationContext.getAutowireCapableBeanFactory();
+            AutowireCapableBeanFactory autowireCapableBeanFactory = webApplicationContext.getAutowireCapableBeanFactory();
             autowireCapableBeanFactory.autowireBean(this);
-            
+
             InitialContext initCtx = new InitialContext();
             DataSource dataSource = (DataSource) initCtx.lookup("java:comp/env/jdbc/baseDeDatos");
             initCtx.close();
-            
-            Flyway flyway=new Flyway();
+
+            Flyway flyway = new Flyway();
             flyway.setDataSource(dataSource);
             flyway.setLocations("com.fpmislata.banco.persistencia.migration");
             flyway.setEncoding("utf-8");
             flyway.migrate();
-            
+
         } catch (NamingException ex) {
             throw new RuntimeException(ex);
         }
         System.out.println("Base de Datos Actualizada");
     }
-    
+
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         System.out.println("");
-
     }
-    
 }

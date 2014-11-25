@@ -1,5 +1,5 @@
 
-package com.fpmislata.banco.persistencia.datasourcefactory;
+package com.fpmislata.banco.persistencia.common.datasourcefactory;
 
 import javax.sql.DataSource;
 
