@@ -8,6 +8,9 @@ CREATE TABLE `cliente` (
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+
+
+
 CREATE TABLE `cuentabancaria` (
   `idCuentaBancaria` int(11) NOT NULL AUTO_INCREMENT,
   `numeroCuentaBancaria` int(11) NOT NULL DEFAULT '0',
@@ -21,7 +24,6 @@ CREATE TABLE `cuentabancaria` (
 
 
 
-
 CREATE TABLE `empleado` (
   `idEmpleado` int(11) NOT NULL AUTO_INCREMENT,
   `dniEmpleado` varchar(50) DEFAULT '0',
@@ -29,11 +31,11 @@ CREATE TABLE `empleado` (
   `apellido1Empleado` varchar(50) DEFAULT '0',
   `apellido2Empleado` varchar(50) DEFAULT '0',
   `idSucursalBancaria` int(11) NOT NULL DEFAULT '0',
+  `loginEmpleado` varchar(50) DEFAULT '0',
+  `passwordEmpleado` varchar(50) DEFAULT '0',
   PRIMARY KEY (`idEmpleado`),
   KEY `FKSucursalBancariaEmpleado` (`idSucursalBancaria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
-
 
 
 
@@ -49,9 +51,6 @@ CREATE TABLE `entidadbancaria` (
 
 
 
-
-
-
 CREATE TABLE `movimientobancario` (
   `idMovimientoBancario` int(11) NOT NULL AUTO_INCREMENT,
   `idCuentaBancariaOrigen` int(11) NOT NULL,
@@ -62,9 +61,6 @@ CREATE TABLE `movimientobancario` (
   KEY `FKCuentaBancariaMovimiento` (`idCuentaBancariaOrigen`),
   KEY `FKCuentaBancariaMovimiento2` (`idCuentaBancariaDestino`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
-
-
 
 
 

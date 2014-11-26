@@ -16,5 +16,6 @@
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EntidadBancariaDAOImplJDBC" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.MovimientoBancarioDAOImplJDBC" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.SucursalBancariaDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.servicio.seguridad.impl.EmpleadoAuthenticationImplDataBase" />
 </beans>
 
