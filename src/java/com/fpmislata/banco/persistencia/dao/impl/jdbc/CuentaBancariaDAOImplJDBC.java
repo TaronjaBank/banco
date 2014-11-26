@@ -34,6 +34,8 @@ public class CuentaBancariaDAOImplJDBC implements CuentaBancariaDAO {
                 cuentaBancaria.setNumeroCuentaBancaria(resultSet.getInt("numeroCuentaBancaria"));
                 cuentaBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 cuentaBancaria.setIdCliente(resultSet.getInt("idCliente"));
+            } else {
+                cuentaBancaria = null;
             }
             connection.close();
             return cuentaBancaria;
