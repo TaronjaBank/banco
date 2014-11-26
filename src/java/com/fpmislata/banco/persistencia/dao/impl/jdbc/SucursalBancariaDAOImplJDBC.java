@@ -34,6 +34,8 @@ public class SucursalBancariaDAOImplJDBC implements SucursalBancariaDAO {
                 sucursalBancaria.setNombreSucursalBancaria(resultSet.getString("nombreSucursalBancaria"));
                 sucursalBancaria.setDireccionSucursalBancaria(resultSet.getString("direccionSucursalBancaria"));
                 sucursalBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
+            } else {
+                sucursalBancaria = null;
             }
             connection.close();
             return sucursalBancaria;

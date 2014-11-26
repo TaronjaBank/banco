@@ -35,6 +35,8 @@ public class MovimientoBancarioDAOImplJDBC implements MovimientoBancarioDAO {
                 movimientoBancario.setIdCuentaBancariaDestino(resultSet.getInt("idCuentaBancariaDestino"));
                 movimientoBancario.setCantidadMovimientoBancario(resultSet.getDouble("cantidadMovimientoBancario"));
                 movimientoBancario.setConceptoMovimientoBancario(resultSet.getString("conceptoMovimientoBancario"));
+            } else {
+                movimientoBancario = null;
             }
             connection.close();
             return movimientoBancario;
