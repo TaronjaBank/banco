@@ -3,8 +3,6 @@ package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 import com.fpmislata.banco.dominio.Cliente;
 import com.fpmislata.banco.persistencia.dao.ClienteDAO;
 import com.fpmislata.banco.persistencia.dao.impl.jdbc.connectionFactory.ConnectionFactory;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,9 +10,6 @@ public class ClienteDAOImplJDBC implements ClienteDAO {
 
     @Autowired
     ConnectionFactory connectionFactory;
-
-    Connection connection;
-    PreparedStatement preparedStatement;
 
     @Override
     public Cliente get(int id) {
