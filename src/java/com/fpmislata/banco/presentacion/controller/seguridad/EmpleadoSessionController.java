@@ -26,33 +26,33 @@ public class EmpleadoSessionController {
     @Autowired
     EmpleadoAuthentication empleadoAuthentication;
 
-//    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-//    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-//        try {
-//            Integer idEmpleado;
-//            String jsonSalida;
-//            Empleado empleado;
-//
-//            HttpSession httpSession = httpServletRequest.getSession(true);
-//
-//            if (httpSession != null) {
-//
-//                idEmpleado = (Integer) httpSession.getAttribute("idEmpleado");
-//
-//                empleado = empleadoDAO.get(idEmpleado);
-//
-//                jsonSalida = jsonTransformer.toJson(empleado);
-//                httpServletResponse.getWriter().println(jsonSalida);
-//                httpServletResponse.setContentType("application/json; char=UTF-8");
-//                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-//            } else {
-//                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
-//            }
-//
-//        } catch (IOException ex) {
-//            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+        try {
+            Integer idEmpleado;
+            String jsonSalida;
+            Empleado empleado;
+
+            HttpSession httpSession = httpServletRequest.getSession(true);
+
+            if (httpSession != null) {
+
+                idEmpleado = (Integer) httpSession.getAttribute("idEmpleado");
+
+                empleado = empleadoDAO.get(idEmpleado);
+
+                jsonSalida = jsonTransformer.toJson(empleado);
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setContentType("application/json; char=UTF-8");
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }
+
+        } catch (IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @RequestMapping(value = {"/"}, method = RequestMethod.POST)
     public void logIn(
