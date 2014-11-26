@@ -15,8 +15,13 @@ public class EmpleadoAuthenticationImplDataBase implements EmpleadoAuthenticatio
     public Empleado authenticate(Credencial credencial) {
 
         Empleado empleado = empleadoDAO.getFromLogin(credencial.getLogin());
+        if (empleado != null) {
+            if (!credencial.getPassword().equals(empleado.getPassword())) {
+                empleado = null;
+            }
+        }
         return empleado;
-        
+
     }
 
 }
