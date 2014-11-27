@@ -318,11 +318,23 @@ body {
           width: 680px;
           height: 745px;
           float: left; }
-          body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal #imgContenidos {
-            margin: 15px;
-            width: 650px;
-            height: 680px;
-            background-repeat: no-repeat; }
+          body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal .articulo {
+            /* Informaci├│n del contenedor principal de la p├ígina Home */
+            display: inline-block;
+            vertical-align: top;
+            width: 310px;
+            margin-left: 15px;
+            font-size: 13px;
+            text-align: left; }
+            body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal .articulo .imgContenidos {
+              width: 95%;
+              max-width: 310px;
+              height: auto;
+              margin-top: 20px;
+              background-repeat: no-repeat; }
+            body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal .articulo p {
+              margin: 0 0 5px 0;
+              padding: 0; }
         body #capaSuperior #seccionCentral #contenidos #panelInfo {
           /* Panel reservado para informacion adicional o publicidad */
           width: 170px;

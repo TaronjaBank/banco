@@ -1,17 +1,8 @@
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", function($scope, $http) {
 
-        $scope.visible = {
-            insert: true,
-            update: false,
-            delete: false
+        $scope.estado = {
+            accion: 'insertar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: false
-        };
-
-        
 
         $scope.insert = function() {
             $http({
@@ -32,16 +23,9 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", function(
 
 
 app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
-
-        $scope.visible = {
-            insert: false,
-            update: true,
-            delete: false
-        };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: false
+        
+        $scope.estado = {
+            accion: 'actualizar'
         };
 
         $scope.sucursalBancaria = {
@@ -81,16 +65,9 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
 
 
 app.controller("SucursalBancariaDeleteController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
-
-        $scope.visible = {
-            insert: false,
-            update: false,
-            delete: true
-        };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: true
+        
+        $scope.estado = {
+            accion: 'borrar'
         };
 
         $scope.sucursalBancaria = {

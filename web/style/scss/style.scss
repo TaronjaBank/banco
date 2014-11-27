@@ -208,7 +208,7 @@ body{
                         background-color: rgba($colorFondoTituloMenuV,.2);
                         box-shadow: 2px 1px #adadad;
                         border-radius: 4px;
-                        
+
                         & a{
                             @include estiloEnlace(inherit);
                         }
@@ -256,7 +256,7 @@ body{
                             size: 18px;
                         }
                     }
-                    
+
                     @include reglasColumnasTabla();//Mixin para las anchuras de columna segun clases de datos
 
                     .filaContenido:hover{
@@ -352,11 +352,26 @@ body{
                     width: 680px;
                     @include reglasComunesZonaCentro();
 
-                    #imgContenidos{
-                        margin: 15px;
-                        width: 650px;
-                        height: 680px;
-                        background-repeat: no-repeat;
+                    .articulo{/* Información del contenedor principal de la página Home */
+                        display: inline-block;
+                        vertical-align: top;
+                        width: 310px;
+                        margin-left: 15px;
+                        font-size: 13px;
+                        text-align: left;
+
+                        .imgContenidos{
+                            width: 95%;
+                            max-width: 310px;
+                            height: auto;
+                            margin-top: 20px;
+                            background-repeat: no-repeat;
+                        }
+
+                        p{
+                            margin: 0 0 5px 0;
+                            padding: 0;
+                        }
                     }
 
                 }
