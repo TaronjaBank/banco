@@ -1,3 +1,3 @@
-app.controller("MainController", [function(){}]);
+app.controller("LoginController", [function(){}]);
 
 
