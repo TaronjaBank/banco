@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+    <head>
+        <title>TaronjaBank/Empleados</title>
+        <meta charset="UTF-8">
+        
+        <!-- CSS -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../style/css/style.css" rel="stylesheet" type="text/css"/>
+
+        <script src="../common/util/contextpath.js.jsp" type="text/javascript"></script>
+
+        <!-- Configuración general Angular -->
+        <script src="../lib/angular/js/angular.js" type="text/javascript"></script>
+        <script src="../lib/angular/js/angular-route.js" type="text/javascript"></script>
+
+        <!-- Configuración Angular empleado -->
+        <script src="app.js" type="text/javascript"></script>
+        <script src="app-route.js" type="text/javascript"></script>
+        <script src="main/main.js" type="text/javascript"></script>
+        <script src="main/main-route.js" type="text/javascript"></script>
+        
+        <!-- Configuración Angular sucursalbancaria -->
+        <script src="sucursalbancaria/sucursalbancaria-route.js" type="text/javascript"></script>
+        <script src="sucursalbancaria/sucursalbancaria-main.js" type="text/javascript"></script>
+        <script src="sucursalbancaria/sucursalbancaria-list.js" type="text/javascript"></script>
+        <script src="sucursalbancaria/sucursalbancaria-detail.js" type="text/javascript"></script>
+        
+        <!-- Configuración Angular cuentabancaria -->
+        <script src="cuentabancaria/cuentabancaria-route.js" type="text/javascript"></script>
+        <script src="cuentabancaria/cuentabancaria-main.js" type="text/javascript"></script>
+        <script src="cuentabancaria/cuentabancaria-list.js" type="text/javascript"></script>
+        <script src="cuentabancaria/cuentabancaria-detail.js" type="text/javascript"></script>
+        
+        <!-- Configuración Angular movimientobancario -->
+        <script src="movimientobancario/movimientobancario-route.js" type="text/javascript"></script>
+        <script src="movimientobancario/movimientobancario-main.js" type="text/javascript"></script>
+        <script src="movimientobancario/movimientobancario-list.js" type="text/javascript"></script>
+        <script src="movimientobancario/movimientobancario-detail.js" type="text/javascript"></script>
+        
+        <!-- Configuración Angular entidadbancaria -->
+        <script src="entidadbancaria/entidadbancaria-route.js" type="text/javascript"></script>
+        <script src="entidadbancaria/entidadbancaria-main.js" type="text/javascript"></script>
+        <script src="entidadbancaria/entidadbancaria-list.js" type="text/javascript"></script>
+        <script src="entidadbancaria/entidadbancaria-detail.js" type="text/javascript"></script>
+        
+    </head>
+
+    <body>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <section id="capaSuperior">
+            <header id="header">
+                <section id="cabecera-Logo"><img id="logo" src="../style/img/logoBanco.png" alt="logotipo" onclick="document.location.href = '../index.html'"/></section>
+                <section id="cabecera-Centro"></section>
+                <section id="cabecera-Login">
+                    <section id="seccionUsuario">
+                        <label for="campoUsuario">Usuario</label><br/>
+                        <input id="campoUsuario" type="text" name="campoUsuario" size="13"/><br/>
+                    </section>
+                    <section id="seccionPassword">
+                        <label for="campoPassword">Password</label><br/>
+                        <input id="campoPassword" type="text" name="campoPassword" size="13"/>
+                    </section>
+                    <div id="botonLoguear" class="botonHeader"><a href="#">LOGUEAR</a></div>
+                </section>
+            </header>
+
+            <nav id="menuPrincipal"><!-- Menú de navegación horizontal -->
+
+                <section id="seccionesPrincipales">
+                    <div id="bloqueAhorro" class="bloqueEnlaceMenuH">
+                        <p id="textoAhorro" class="enlaceMenuH">Ahorro</p>
+                    </div>
+                    <div id="bloqueInversion" class="bloqueEnlaceMenuH">
+                        <p id="textoInversion" class="enlaceMenuH">Inversión</p>
+                    </div>
+                    <div id="bloqueTarjetas" class="bloqueEnlaceMenuH">
+                        <p id="textoTarjetas" class="enlaceMenuH">Tarjetas</p>
+                    </div>
+                    <div id="bloqueFinanciacion" class="bloqueEnlaceMenuH">
+                        <p id="textoFinanciacion" class="enlaceMenuH">Hipotecas y Préstamos</p>
+                    </div>
+                    <div id="bloqueSeguros" class="bloqueEnlaceMenuH">
+                        <p id="textoSeguros" class="enlaceMenuH">Seguros</p>
+                    </div>
+                    <div id="bloqueIconoHome">
+                        <img id="iconoHome" src="../style/img/icon/iconoHome.png" alt="iconoHome" onclick="document.location.href = '../index.html'"/>
+                    </div>
+                </section>
+
+                <section id="bloqueBuscar">
+                    <img id="botonBuscar" src="../style/img/icon/lupa.png" alt="botonBuscar"/>
+                    <input id="campoBuscar" type="text" name="campoBuscar" size="15"/>
+                </section>
+
+            </nav>
+
+
+            <section id="seccionCentral">
+
+                <nav id="menuVertical">
+                    <section id="listaGestionEmpleado" class="listaMenu">
+                        <div class="celdaTituloMenuV"><a href="#/main">Gestión empleado</a></div>
+                        <div class="itemMenuV"><a href="#">Clientes</a></div>
+                        <div class="itemMenuV"><a href="#/cuentabancaria/main">Cuentas</a></div>
+                        <div class="itemMenuV"><a href="#/movimientoBancario/main">Movimientos</a></div>
+                        <div class="itemMenuV"><a href="#">Empleados</a></div>
+                        <div class="itemMenuV"><a href="#/entidadbancaria/main">Entidades</a></div>
+                        <div class="itemMenuV"><a href="#/sucursalbancaria/main">Sucursales</a></div>
+                    </section>
+                </nav>
+
+                <section id="contenidos" ng-view></section>
+
+            </section>
+
+            <footer id="footer">
+                <section id="footerContenidos"><!-- Caja de información del pie -->
+
+                    <section id="footerEnlaces"><!-- Condiciones legales, enlaces a noticias, etc -->
+                        <section id="listaFooterIzquierda" class="listaMenuFooter">
+                            <div class="footerTituloMenu">INFORMACIÓN AL CLIENTE</div>
+                            <a class="footerItemMenu" href="#">Condiciones legales</a><br/>
+                            <a class="footerItemMenu" href="#">Seguridad y privacidad</a><br/>
+                            <a class="footerItemMenu" href="#">Tarifas y Comisiones</a>
+                        </section>
+                        <section id="listaFooterDerecha" class="listaMenuFooter">
+                            <div class="footerTituloMenu">INFORMACIÓN CORPORATIVA</div>
+                            <a class="footerItemMenu" href="#">Información para accionistas</a><br/>
+                            <a class="footerItemMenu" href="#">Empleo</a><br/>
+                            <a class="footerItemMenu" href="#">Gestión responsable</a>
+                        </section>
+                    </section>
+
+                    <section id="redesSociales">
+                        <img id="iconoFacebook" class="iconoRedSocial" src="../style/img/icon/iconoFacebook.png" alt="Icono de Facebook"/>
+                        <img id="iconoTwitter" class="iconoRedSocial" src="../style/img/icon/iconoTwitter.png" alt="Icono de Twitter"/>
+                        <img id="iconoRSS" class="iconoRedSocial" src="../style/img/icon/iconoRSS.png" alt="Icono de News RSS"/>
+                    </section>
+                    <section id="infoContacto">
+                        <span id="infoContactoPie">TARONJA BANK SL, CIF B00000000. AVDA 13 Rue del Percebe, 13. 46920, Mislata (Valencia)</span>
+                    </section><!-- Banda inferior del pie -->
+
+                </section>
+
+                <section id="margenInferior"></section>
+            </footer>
+        </section>
+
+
+        <!-- CAPA DE FONDO -->
+        <div id="capaFondo">
+            <div id="fondoBandaSup"></div>
+            <div id="fondoBandaBajoMenuH"></div>
+            <div id="fondoCentro"></div>
+            <div id="fondoBandaInf"></div>
+        </div>
+
+    </body>
+
+</html>

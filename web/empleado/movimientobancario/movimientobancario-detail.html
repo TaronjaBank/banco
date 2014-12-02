@@ -1,0 +1,24 @@
+<section id="contenedorDetail">
+
+    <div id="tituloDetail">Detalle Movimiento Bancario</div>
+
+    <section id="contenedorFormularioDetail">
+        <div class="labelDetail">Id movimiento</div>
+        <input class="inputDetail" type="text" ng-model="movimientoBancario.idMovimientoBancario" ng-disabled="deshabilitado.estadoId"/>
+        <div class="labelDetail">Id cuenta origen</div>
+        <input class="inputDetail" type="text" ng-model="movimientoBancario.idCuentaBancariaOrigen" ng-disabled="deshabilitado.estado"/>
+        <div class="labelDetail">Id cuenta destino</div>
+        <input class="inputDetail" type="text" ng-model="movimientoBancario.idCuentaBancariaDestino" ng-disabled="deshabilitado.estado"/>
+        <div class="labelDetail">Cantidad</div>
+        <input class="inputDetail" type="text" ng-model="movimientoBancario.cantidadMovimientoBancario" ng-disabled="deshabilitado.estado"/>
+        <div class="labelDetail">Concepto</div>
+        <input class="inputDetail" type="text" ng-model="movimientoBancario.conceptoMovimientoBancario" ng-disabled="deshabilitado.estado"/>
+    </section>
+    
+    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="visible.insert">Insertar movimiento</span>
+    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="visible.update">Guardar cambios</span>
+    <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="visible.delete">Eliminar movimiento</span>
+    
+    <span id="botonVolverLista" class="botonBackEnd"><a href="#/movimientobancario/list">Ir a listado</a></span>
+    <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+</section>

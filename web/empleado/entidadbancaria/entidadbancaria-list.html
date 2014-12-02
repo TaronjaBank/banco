@@ -1,0 +1,36 @@
+<section id="tablaListado" ng-init="list()">
+
+    <p id="tituloTabla">Listado Entidades Bancarias</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaId-Codigo">Id entidad</div>
+        <div class="celdaCabecera columnaId-Codigo">Código</div>
+        <div class="celdaCabecera columnaNombre">Nombre</div>
+        <div class="celdaCabecera columnaFecha">Fecha creación</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="entidadBancaria in entidadesBancarias">
+        
+        <div class="celdaContenido columnaId-Codigo">{{entidadBancaria.idEntidadBancaria}}</div>
+        <div class="celdaContenido columnaId-Codigo">{{entidadBancaria.codigoEntidadBancaria}}</div>
+        <div class="celdaContenido columnaNombre">{{entidadBancaria.nombreEntidadBancaria}}</div>
+        <div class="celdaContenido columnaFecha">{{entidadBancaria.fechaCreacionEntidadBancaria}}</div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/entidadbancaria/update/{{entidadBancaria.idEntidadBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/entidadbancaria/delete/{{entidadBancaria.idEntidadBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+    
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/entidadbancaria/new">Nueva entidad</a></span>
+        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    </section>
+
+</section>
