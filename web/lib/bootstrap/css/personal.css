@@ -1,9 +1,0 @@
-body {padding-top: 50px;}
-
-.show-grid [class^="col-"] {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border: 1px solid #AAA;
-  background-color: #EEE;
-  background-color: rgba(200, 200, 200, 0.3);
-}
