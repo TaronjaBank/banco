@@ -82,7 +82,7 @@ public class EmpleadoDAOImplJDBC implements EmpleadoDAO {
 
     @Override
     public Empleado insert(Empleado empleado) {
-        String sql = "INSERT INTO empleado VALUES(null,?,?,?,?,?)";
+        String sql = "INSERT INTO empleado VALUES(null,?,?,?,?,?,?,?)";
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSetKeys;
@@ -95,6 +95,9 @@ public class EmpleadoDAOImplJDBC implements EmpleadoDAO {
             preparedStatement.setString(3, empleado.getApellido1Empleado());
             preparedStatement.setString(4, empleado.getApellido2Empleado());
             preparedStatement.setInt(5, empleado.getIdSucursalBancaria());
+            preparedStatement.setString(6, empleado.getLoginEmpleado());
+            preparedStatement.setString(7, empleado.getPasswordEmpleado());
+            
             preparedStatement.executeUpdate();
             resultSetKeys = preparedStatement.getGeneratedKeys();
             resultSetKeys.next();
@@ -108,7 +111,7 @@ public class EmpleadoDAOImplJDBC implements EmpleadoDAO {
 
     @Override
     public Empleado update(Empleado empleado) {
-        String sql = "UPDATE empleado SET dniEmpleado=?,nombreEmpleado=?,apellido1Empleado=?,apellido2Empleado=?,idSucursalBancaria=? WHERE idEmpleado=?";
+        String sql = "UPDATE empleado SET dniEmpleado=?,nombreEmpleado=?,apellido1Empleado=?,apellido2Empleado=?,idSucursalBancaria=?,loginEmpleado=?,passwordEmpleado=? WHERE idEmpleado=?";
         Connection connection;
         PreparedStatement preparedStatement;
         try {
@@ -119,7 +122,9 @@ public class EmpleadoDAOImplJDBC implements EmpleadoDAO {
             preparedStatement.setString(3, empleado.getApellido1Empleado());
             preparedStatement.setString(4, empleado.getApellido2Empleado());
             preparedStatement.setInt(5, empleado.getIdSucursalBancaria());
-            preparedStatement.setInt(6, empleado.getIdEmpleado());
+            preparedStatement.setString(6, empleado.getLoginEmpleado());
+            preparedStatement.setString(7, empleado.getPasswordEmpleado());
+            preparedStatement.setInt(8, empleado.getIdEmpleado());
             preparedStatement.executeUpdate();
             connection.close();
             return get(empleado.getIdEmpleado());
@@ -164,6 +169,7 @@ public class EmpleadoDAOImplJDBC implements EmpleadoDAO {
                 empleado.setApellido1Empleado(resultSet.getString("apellido1Empleado"));
                 empleado.setApellido2Empleado(resultSet.getString("apellido2Empleado"));
                 empleado.setIdSucursalBancaria(resultSet.getInt("idSucursalBancaria"));
+                //No sacamos el login y password porque para que saber el login y password de todos los empleados.
                 empleados.add(empleado);
             }
             connection.close();

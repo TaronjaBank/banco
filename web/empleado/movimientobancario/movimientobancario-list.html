@@ -3,19 +3,21 @@
     <p id="tituloTabla">Listado Movimientos Bancarios</p><br/>
     <section id="filaCabecera">
         <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
-        <div class="celdaCabecera columnaId-Codigo">Id cuenta origen</div>
-        <div class="celdaCabecera columnaId-Codigo">Id cuenta destino</div>
+        <div class="celdaCabecera columnaId-Codigo">Cuenta origen</div>
+        <div class="celdaCabecera columnaId-Codigo">Cuenta destino</div>
         <div class="celdaCabecera columnaCantidad">Cantidad</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Concepto</div>
     </section>
 
     <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
-        
-        <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
-        <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaOrigen}}</div>
-        <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaDestino}}</div>
-        <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
-        <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.conceptoMovimientoBancario}}</div>
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaOrigen}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaDestino}}</div>
+            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.conceptoMovimientoBancario}}</div>
+        </div>
 
         <div class="celdaIconoTabla">
             <a href="#/movimientobancario/update/{{movimientoBancario.idMovimientoBancario}}">
@@ -29,7 +31,7 @@
         </div>
 
     </section>
-    
+
     <section id="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/movimientobancario/new">Nuevo movimiento</a></span>
         <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>

@@ -9,11 +9,13 @@
     </section>
 
     <section class="filaContenido" ng-repeat="sucursalBancaria in sucursalesBancarias">
-        
-        <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idSucursalBancaria}}</div>
-        <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
-        <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
-        <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idEntidadBancaria}}</div>
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idSucursalBancaria}}</div>
+            <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idEntidadBancaria}}</div>
+        </div>
 
         <div class="celdaIconoTabla">
             <a href="#/sucursalbancaria/update/{{sucursalBancaria.idSucursalBancaria}}">
@@ -27,7 +29,7 @@
         </div>
 
     </section>
-    
+
     <section id="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/sucursalbancaria/new">Nueva sucursal</a></span>
         <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>

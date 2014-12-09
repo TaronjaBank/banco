@@ -1,15 +1,13 @@
-app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
 
-        $scope.visible = {
-            insert: true,
-            update: false,
-            delete: false
+        $scope.estado = {
+            accion: 'insertar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: false,
-            estadoFecha: true
+        
+        $scope.estilo = "";
+        
+        $scope.irLista = function() {
+            $location.path("/entidadbancaria/list");
         };
         
         hoy=new Date();
@@ -23,31 +21,30 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$routePar
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/EntidadBancaria"
             }).success(function (data) {
-                alert("La nueva entidad bancaria ha sido insertada correctamente...");
+                //alert("La nueva entidad bancaria ha sido insertada correctamente...");
                 $scope.entidadBancaria = data;
+                $scope.entidadBancaria = null;
             }).error(function () {
-                alert("No se ha Borrado la Entidad");
+                alert("Error: no se ha podido realizar la operación");
             });//success.Error
         };//Consultar
     }]);
 
 
-app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
 
-        $scope.visible = {
-            insert: false,
-            update: true,
-            delete: false
+        $scope.estado = {
+            accion: 'actualizar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: false,
-            estadoFecha: true
-        };
+        
+        $scope.estilo = "";
 
         $scope.entidadBancaria = {
             idEntidadBancaria:$routeParams.idEntidadBancaria
+        };
+        
+        $scope.irLista = function() {
+            $location.path("/entidadbancaria/list");
         };
 
         $scope.get = function () {
@@ -56,8 +53,8 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function (data) {
                 $scope.entidadBancaria = data;
-            }).error(function (status) {
-                alert("Error en la peticiión al servidor; error: " + status);
+            }).error(function () {
+                alert("Error: no existe coincidencia en la base de datos");
             });
         };
 
@@ -69,32 +66,31 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 method: "PUT",
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria,
                 data: $scope.entidadBancaria
-            }).success(function (data) {
-                alert("Los datos de la entidad nº " + $scope.entidadBancaria.idEntidadBancaria + " se han actualizado correctamente...");
-                $scope.entidadBancaria = data;
-            }).error(function (status) {
-                alert("Error en la peticiión al servidor; error: " + status);
+            }).success(function () {
+                //alert("Los datos de la entidad nº " + $scope.entidadBancaria.idEntidadBancaria + " se han actualizado correctamente...");
+                $scope.entidadBancaria = {};
+                $scope.irLista();
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
             });
         };
 
     }]);
 
-app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+app.controller("EntidadBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
 
-        $scope.visible = {
-            insert: false,
-            update: false,
-            delete: true
+        $scope.estado = {
+            accion: 'borrar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: true,
-            estadoFecha: true
-        };
+        
+        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
 
         $scope.entidadBancaria = {
             idEntidadBancaria:$routeParams.idEntidadBancaria
+        };
+        
+        $scope.irLista = function() {
+            $location.path("/entidadbancaria/list");
         };
 
         $scope.get = function () {
@@ -104,7 +100,7 @@ app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routePar
             }).success(function (data) {
                 $scope.entidadBancaria = data;
             }).error(function () {
-                alert("No existe la Entidad");
+                alert("Error: no existe coincidencia en la base de datos");
             });//success.Error
         };//Consultar
         
@@ -115,10 +111,11 @@ app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routePar
                 method: "DELETE",
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function () {
-                alert("La entidad bancaria nº " + $scope.entidadBancaria.idEntidadBancaria + " ha sido borrada correctamente...");
+                //alert("La entidad bancaria nº " + $scope.entidadBancaria.idEntidadBancaria + " ha sido borrada correctamente...");
                 $scope.entidadBancaria = {};
+                $scope.irLista();
             }).error(function () {
-                alert("No se ha Borrado la Entidad");
+                alert("Error: no se ha podido realizar la operación");
             });//success.Error
         };//Consultar
     }]);

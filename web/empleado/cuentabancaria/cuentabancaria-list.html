@@ -9,12 +9,14 @@
     </section>
 
     <section class="filaContenido" ng-repeat="cuentaBancaria in cuentasBancarias">
-        
-        <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCuentaBancaria}}</div>
-        <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
-        <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idEntidadBancaria}}</div>
-        <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCliente}}</div>
-        
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCuentaBancaria}}</div>
+            <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idEntidadBancaria}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCliente}}</div>
+        </div>
+
         <div class="celdaIconoTabla">
             <a href="#/cuentabancaria/update/{{cuentaBancaria.idCuentaBancaria}}">
                 <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
@@ -27,7 +29,7 @@
         </div>
 
     </section>
-    
+
     <section id="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new">Nueva cuenta</a></span>
         <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>

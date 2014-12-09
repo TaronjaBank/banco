@@ -1,0 +1,6 @@
+@font-face {
+  /* Adjunta en el proyecto la fuente de la pagina web */
+  font-family: "Century Gothic";
+  src: url("../font/gothic.ttf") format("truetype"); }
+
+/*# sourceMappingURL=commonStyle.css.map */

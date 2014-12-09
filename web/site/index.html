@@ -9,15 +9,16 @@
     </head>
 
     <body>
-    <!-- CONTENIDO PRINCIPAL -->
+        <!-- CONTENIDO PRINCIPAL -->
         <section id="capaSuperior">
             <header id="header">
-                    <section id="cabecera-Logo"><img id="logo" src="../style/img/logoBanco.png" alt="logotipo" onclick="document.location.href='index.html'"/></section>
-                    <section id="cabecera-Centro"></section>
-                    <section id="cabecera-Login">
-                        <div id="botonClientes" class="botonHeader"><a href="#">CLIENTES</a></div>
-                        <div id="botonEmpleados" class="botonHeader"><a href="../empleado/index.html">EMPLEADOS</a></div>
-                    </section>
+                <section id="cabecera-Logo"><img id="logo" src="../style/img/logoBanco.png" alt="logotipo" onclick="document.location.href = 'index.html'"/></section>
+                <section id="cabecera-Centro"></section>
+                <section id="cabecera-Login">
+                    <div class="tituloLogin">Registro/Inicio sesión</div>
+                    <div id="botonClientes" class="botonHeader"><a href="#">CLIENTES</a></div>
+                    <div id="botonEmpleados" class="botonHeader"><a href="../empleado/index.html">EMPLEADOS</a></div>
+                </section>
             </header>
 
             <nav id="menuPrincipal"><!-- Menú de navegación horizontal -->
@@ -38,12 +39,12 @@
                         <p id="textoSeguros" class="enlaceMenuH">Seguros</p>
                     </div>
                     <div id="bloqueIconoHome">
-                        <img id="iconoHome" src="../style/img/icon/iconoHome.png" alt="iconoHome" onclick="document.location.href='index.html'"/>
+                        <img id="iconoHome" src="../style/img/icon/iconoHome.png" alt="iconoHome" onclick="document.location.href = 'index.html'"/>
                     </div>
                 </section><!-- Secciones principales de la web -->
                 <section id="bloqueBuscar">
                     <img id="botonBuscar" src="../style/img/icon/lupa.png" alt="botonBuscar"/>
-                    <input id="campoBuscar" type="text" name="campoBuscar" size="15"/>
+                    <input id="campoBuscar" type="search" name="campoBuscar" size="15"/>
                 </section>
             </nav>
 
@@ -80,7 +81,7 @@
                         <div class="itemMenuV">Vehículos</div>
                     </section>
                 </nav>
-                
+
                 <section id="contenidos">
                     <section id="contenidoPrincipal"><!-- Sección de información principal -->
                         <!-- <img id="imgContenidos" src="../style/img/contenido.jpg" alt="Imagen de Contenidos"/> -->
@@ -159,19 +160,19 @@
                             </p>
                         </article>
                     </section>
-                    
+
                     <aside id="panelInfo"><!-- Sección de información complementaria -->
                         <article id="info1">
                             <p>Panel reservado para contenido adicional (publicidad, etc.)</p>
                         </article>
                     </aside>
                 </section>
-                
+
             </section>
-            
+
             <footer id="footer">
                 <section id="footerContenidos"><!-- Caja de información del pie -->
-                    
+
                     <section id="footerEnlaces"><!-- Condiciones legales, enlaces a noticias, etc -->
                         <section id="listaFooterIzquierda" class="listaMenuFooter">
                             <div class="footerTituloMenu">INFORMACIÓN AL CLIENTE</div>
@@ -186,16 +187,21 @@
                             <a class="footerItemMenu" href="#">Gestión responsable</a>
                         </section>
                     </section>
-                    
+
                     <section id="redesSociales">
                         <img id="iconoFacebook" class="iconoRedSocial" src="../style/img/icon/iconoFacebook.png" alt="Icono de Facebook"/>
                         <img id="iconoTwitter" class="iconoRedSocial" src="../style/img/icon/iconoTwitter.png" alt="Icono de Twitter"/>
                         <img id="iconoRSS" class="iconoRedSocial" src="../style/img/icon/iconoRSS.png" alt="Icono de News RSS"/>
+                        <a href="mailto:taronjabank@gmail.com">
+                            <img id="iconoMail" class="iconoRedSocial" src="../style/img/icon/iconoMail.png" alt="Icono de correo"/>
+                        </a>
                     </section>
                     <section id="infoContacto">
-                        <span id="infoContactoPie">TARONJA BANK SL, CIF B00000000. AVDA 13 Rue del Percebe, 13. 46920, Mislata (Valencia)</span>
+                        <span id="infoContactoPie1">TARONJA BANK SL, TEL </span>
+                        <a href="tel:963000000">963000000</a>
+                        <span id="infoContactoPie2">. AVDA 13, nº 13. 46920, Mislata (Valencia)</span>
                     </section><!-- Banda inferior del pie -->
-                    
+
                 </section>
 
                 <section id="margenInferior"></section>

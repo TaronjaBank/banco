@@ -22,8 +22,4 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "MovimientoBancarioListController"
         });
 
-        
-
-        
-
     }]);

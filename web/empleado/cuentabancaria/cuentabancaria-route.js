@@ -21,9 +21,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "CuentaBancariaListController"
         });
         
-        
-        
-        $routeProvider.otherwise({redirectTo: '/'});
     }]);
 
 

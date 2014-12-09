@@ -1,17 +1,14 @@
-app.controller("CuentaBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
+app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
 
-        $scope.visible = {
-            insert: true,
-            update: false,
-            delete: false
+        $scope.estado = {
+            accion: 'insertar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: false
-        };
-
         
+        $scope.estilo = "";
+        
+        $scope.irLista = function() {
+            $location.path("/cuentabancaria/list");
+        };
 
         $scope.insert = function () {
             $http({
@@ -19,31 +16,31 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", function ($
                 data: $scope.cuentaBancaria,
                 url: contextPath + "/api/CuentaBancaria"
             }).success(function (data) {
-                alert("La nueva cuenta bancaria ha sido insertada correctamente...");
+                //alert("La nueva cuenta bancaria ha sido insertada correctamente...");
                 $scope.cuentaBancaria = data;
+                $scope.cuentaBancaria = null;
             }).error(function (data, status) {
-                alert("No se ha Insertado la Cuenta");
-                console.log(data + "    " + status);
+                alert("Error: no se ha podido realizar la operación");
+                //console.log(data + "    " + status);
             });
         };
 
     }]);
 
-app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
         
-        $scope.visible = {
-            insert: false,
-            update: true,
-            delete: false
+        $scope.estado = {
+            accion: 'actualizar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: false
-        };
+        
+        $scope.estilo = "";
         
         $scope.cuentaBancaria = {
             idCuentaBancaria:$routeParams.idCuentaBancaria
+        };
+        
+        $scope.irLista = function() {
+            $location.path("/cuentabancaria/list");
         };
 
         $scope.get = function () {
@@ -53,7 +50,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             }).success(function (data) {
                 $scope.cuentaBancaria = data;
             }).error(function () {
-                alert("No existe la cuenta");
+                alert("Error: no existe coincidencia en la base de datos");
             });
         };
 
@@ -65,29 +62,29 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
                 data: $scope.cuentaBancaria
             }).success(function () {
-                alert("Los datos de la cuenta nº " + $scope.cuentaBancaria.idCuentaBancaria + " se han actualizado correctamente...");
+                //alert("Los datos de la cuenta nº " + $scope.cuentaBancaria.idCuentaBancaria + " se han actualizado correctamente...");
                 $scope.cuentaBancaria = {};
+                $scope.irLista();
             }).error(function () {
-                alert("No ha producido un Error");
+                alert("Error: no se ha podido realizar la operación");
             });
         };
     }]);
 
-app.controller("CuentaBancariaDeleteController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
         
-        $scope.visible = {
-            insert: false,
-            update: false,
-            delete: true
+        $scope.estado = {
+            accion: 'borrar'
         };
-
-        $scope.deshabilitado = {
-            estadoId: true,
-            estado: true
-        };
+        
+        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
         
         $scope.cuentaBancaria = {
             idCuentaBancaria:$routeParams.idCuentaBancaria
+        };
+        
+        $scope.irLista = function() {
+            $location.path("/cuentabancaria/list");
         };
 
         $scope.get = function () {
@@ -97,7 +94,7 @@ app.controller("CuentaBancariaDeleteController", ["$scope", "$http", "$routePara
             }).success(function (data) {
                 $scope.cuentaBancaria = data;
             }).error(function () {
-                alert("No existe la cuenta");
+                alert("Error: no existe coincidencia en la base de datos");
             });
         };
 
@@ -108,10 +105,11 @@ app.controller("CuentaBancariaDeleteController", ["$scope", "$http", "$routePara
                 method: "DELETE",
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria
             }).success(function () {
-                alert("La cuenta bancaria nº " + $scope.cuentaBancaria.idCuentaBancaria + " ha sido borrada correctamente...");
+                //alert("La cuenta bancaria nº " + $scope.cuentaBancaria.idCuentaBancaria + " ha sido borrada correctamente...");
                 $scope.cuentaBancaria = {};
+                $scope.irLista();
             }).error(function () {
-                alert("No se ha Borrado la Cuenta");
+                alert("Error: no se ha podido realizar la operación");
             });
         };
     }]);

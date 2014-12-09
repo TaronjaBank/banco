@@ -1,0 +1,42 @@
+<section id="tablaListado" ng-init="list()">
+
+    <p id="tituloTabla">Listado Empleados</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaId-Codigo">Id empleado</div>
+        <div class="celdaCabecera columnaId-Codigo">DNI</div>
+        <div class="celdaCabecera columnaNombre">Nombre</div>
+        <div class="celdaCabecera columnaApellido">Apellido1</div>
+        <div class="celdaCabecera columnaApellido">Apellido2</div>
+        <div class="celdaCabecera columnaId-Codigo">Id Sucursal</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="empleado in empleados">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{empleado.idEmpleado}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{empleado.dniEmpleado}}</div>
+            <div class="celdaContenido columnaNombre">{{empleado.nombreEmpleado}}</div>
+            <div class="celdaContenido columnaApellido">{{empleado.apellido1Empleado}}</div>
+            <div class="celdaContenido columnaApellido">{{empleado.apellido2Empleado}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{empleado.idSucursalBancaria}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/empleado/update/{{empleado.idEmpleado}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/empleado/delete/{{empleado.idEmpleado}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/empleado/new">Nuevo Empleado</a></span>
+        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    </section>
+
+</section>

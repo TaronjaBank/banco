@@ -1,0 +1,37 @@
+@import "mixins.scss";
+
+//Variables tamaño total de la página
+$anchoPagina: 100%;//1280px
+$altoPagina: 100%;//1024px
+
+//Variables de color
+$colorFondo: white;
+$colorCorporativo: rgb(255,102,0);
+$colorGrisBase: rgb(150,150,150);
+$colorTransparencia: rgb(0,0,0);
+$colorFilaHover: #ffe6d2;
+
+$colorFondoTituloMenuV: rgb(190,190,190);
+$colorFondoLogin: rgb(255,255,255);
+$colorCampoBuscar: #ffe6d2;
+
+//Variables de texto
+$sizeFuenteBase: 15px;
+
+//Variables dimensiones bloques
+$anchoContenidos: 1000px;//Anchura del bloque de los contenidos propiamente dichos
+
+$altoHeader: 130px;
+$altoMenuHorizontal: 30px;
+$altoZonaCentro: 745px;
+$altoFooter: 120px;
+
+//otras variables
+$cursorActivo: pointer;
+
+
+@font-face{/* Adjunta en el proyecto la fuente de la pagina web */
+    font-family: "Century Gothic";
+    src: url("../font/gothic.ttf")  format('truetype');
+}
+

@@ -4,13 +4,13 @@
 
     <section id="contenedorFormularioDetail">
         <div class="labelDetail">Id Sucursal</div>
-        <input class="inputDetail" type="text" ng-model="sucursalBancaria.idSucursalBancaria" ng-disabled="true"/>
+        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="sucursalBancaria.idSucursalBancaria" ng-disabled="true"/>
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-model="sucursalBancaria.nombreSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.nombreSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Dirección</div>
-        <input class="inputDetail" type="text" ng-model="sucursalBancaria.direccionSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.direccionSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Id Entidad Bancaria</div>
-        <input class="inputDetail" type="text" ng-model="sucursalBancaria.idEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.idEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar sucursal</span>

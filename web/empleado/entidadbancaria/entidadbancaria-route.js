@@ -22,9 +22,5 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "EntidadBancariaListController"
         });
 
-        
-
-        
-
     }]);
 

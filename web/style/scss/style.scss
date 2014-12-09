@@ -1,44 +1,7 @@
-@import "mixins.scss";
 
-//Variables tamaño total de la página
-$anchoPagina: 100%;//1280px
-$altoPagina: 100%;//1024px
-
-//Variables de color
-$colorFondo: white;
-$colorCorporativo: rgb(255,102,0);
-$colorGrisBase: rgb(150,150,150);
-$colorTransparencia: rgb(0,0,0);
-$colorFilaHover: #ffe6d2;
-
-$colorFondoTituloMenuV: rgb(190,190,190);
-$colorFondoLogin: rgb(255,255,255);
-$colorCampoBuscar: #ffe6d2;
-
-//Variables de texto
-$sizeFuenteBase: 15px;
-
-//Variables dimensiones bloques
-$anchoContenidos: 1000px;//Anchura del bloque de los contenidos propiamente dichos
-
-$altoHeader: 130px;
-$altoMenuHorizontal: 30px;
-$altoZonaCentro: 745px;
-$altoFooter: 120px;
-
-//otras variables
-$cursorActivo: pointer;
-
-
-
-
-@font-face{/* Adjunta en el proyecto la fuente de la pagina web */
-    font-family: "Century Gothic";
-    src: url("../font/gothic.ttf")  format('truetype');
-}
+@import "commonStyle.scss";
 
 body{
-    /* Hemos elegido una resolucion tipo para el disenio inicial */
     width: $anchoPagina;
     height: $altoPagina;
 
@@ -86,14 +49,23 @@ body{
             }
 
             #cabecera-Login{/* Seccion contenedora del formulario de login de la pagina */
-                margin: 10px 15px;
-                width: 140px;
+                margin: 15px 10px;
+                width: 150px;
                 height: 110px;
-
                 display: inline-block;
-
+                text-align: center;
                 background-color: rgba($colorFondoLogin,.2);
                 border-radius: 7px;
+
+                .tituloLogin{
+                    margin-top: 12px;
+                    font-size: 11px;
+                    color: white;
+                }
+                #cerrarSesion{
+                    cursor: pointer;
+                    margin: 10px 5px 0;
+                }
 
                 #seccionUsuario, #seccionPassword{
                     margin: 5px 7px;
@@ -129,11 +101,13 @@ body{
                     @include reglasComunesMenuH();
 
                     &:hover{
+                        border:{
+                            top-right-radius: 6px;
+                            top-left-radius: 6px;
+                        }
                         background-color: white;
-
                         color: black;
                         font-style: italic;
-
                         cursor: $cursorActivo;
                         transition-duration: .3s;
                     }
@@ -187,7 +161,6 @@ body{
             height: $altoZonaCentro;
 
             #menuVertical{
-                /*width: 150px;*/
                 width: 15%;
                 font-size: 12px;
 
@@ -210,7 +183,16 @@ body{
                         border-radius: 4px;
 
                         & a{
-                            @include estiloEnlace(inherit);
+                            @include estiloEnlace(block,inherit);
+                        }
+                        &:hover{
+                            cursor: $cursorActivo;
+                            font:{
+                                size: 1.03em;
+                                style: italic;
+                            }
+                            color: black;
+                            transition-duration: .2s;
                         }
                     }
 
@@ -221,7 +203,7 @@ body{
                         color: black;
 
                         & a{
-                            @include estiloEnlace(inherit);
+                            @include estiloEnlace(block,inherit);
                         }
 
                         &:hover{
@@ -244,10 +226,70 @@ body{
                 width: 85%;
                 @include reglasComunesZonaCentro();
 
-                #tablaListado{/* Tabla de gestion de clientes */
-                    width: 800px;
+                #imgPortadaEmpleado{
+                    z-index: -1;
+                    position: absolute;
+                    margin: 10px 0 0 10px;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    border-bottom-right-radius: 60px;
+                    border-top-left-radius: 60px;
+                    box-shadow: 15px 15px 15px silver;
+                }
+                #textoPortada{
+                    text-align: right;
+                    font-size: 20px;
+                    color: white;
+                    padding-top: 30px;
+                    padding-right: 30px;
+
+                    & a{
+                        font-family: inherit;
+                        text-decoration-line: underline;
+                        color: white;
+                        font: 25px bold;
+                        &:hover{
+                            color: $colorCorporativo;
+                            transition-duration: .5s;
+                        }
+                    }
+                }
+
+                #cajaLogin{/* Caja contenedora del formulario de logueo*/
+                    margin: 150px 0 0 200px;
+                    padding: 25px;
+                    width: 250px;
+                    color: white;
+                    background-color: $colorCorporativo;
+                    border-radius: 15px;
+                    box-shadow: 5px 5px 5px silver;
+
+                    .labelLogin, .campoLogin{
+                        display: inline-block;
+                        width: 35%;
+                        margin-top: 5px;
+                    }
+                    .campoLogin{
+                        width: 60%;
+
+                        &:focus{
+                            background-color: cornsilk;
+                        }
+                    }
+
+                    #botonLoguear{
+                        @include estiloBotonBackEnd();
+                        @include botonOut(lightgrey,rgba(rgb(0,0,0),.6),white,$colorCorporativo,rgba(rgb(0,0,0),.6));
+                        &:hover{
+                            @include botonIn(black,lightgrey,rgb(230,230,230),$colorCorporativo);
+                        }
+                        float: none;
+                        margin-top: 15px;
+                    }
+                }
+
+                #tablaListado{/* Tabla de listado consulta findAll */
                     margin-left: 40px;
-                    //overflow-y: scroll;
 
                     #tituloTabla{
                         margin: 80px 30px 15px;
@@ -259,9 +301,12 @@ body{
 
                     @include reglasColumnasTabla();//Mixin para las anchuras de columna segun clases de datos
 
-                    .filaContenido:hover{
-                        cursor: $cursorActivo;
-                        background-color: $colorFilaHover;
+                    .bloqueDatos{
+                        float: left;
+                        &:hover{
+                            cursor: $cursorActivo;
+                            background-color: $colorFilaHover;
+                        }
                     }
 
                     .celdaCabecera{
@@ -449,6 +494,10 @@ body{
                     height: $altoFooter*0.15;
                     color: white;
                     font-size: 10px;
+
+                    a{
+                        color: inherit;
+                    }
                 }
             }
         }
@@ -474,12 +523,6 @@ body{
         #fondoBandaInf{
             @include reglasCapaFondo($altoFooter, transparent);
         }
-    }
-
-    #botonHome{
-        float: right;
-        clear: left;
-        margin: 50px 120px 0 0;
     }
 
 }

@@ -4,18 +4,18 @@
 
     <section id="contenedorFormularioDetail">
         <div class="labelDetail">Id Entidad</div>
-        <input class="inputDetail" type="text" ng-model="entidadBancaria.idEntidadBancaria" ng-disabled="deshabilitado.estadoId"/>
+        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="entidadBancaria.idEntidadBancaria" ng-disabled="true"/>
         <div class="labelDetail">Código</div>
-        <input class="inputDetail" type="text" ng-model="entidadBancaria.codigoEntidadBancaria" ng-disabled="deshabilitado.estado"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.codigoEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="deshabilitado.estado"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Fecha creación</div>
-        <input class="inputDetail" type="text" ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="deshabilitado.estadoFecha"/>
+        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="true"/>
     </section>
 
-    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="visible.insert">Insertar entidad</span>
-    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="visible.update">Guardar cambios</span>
-    <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="visible.delete">Eliminar entidad</span>
+    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar entidad</span>
+    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
+    <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar entidad</span>
     
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/entidadbancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>

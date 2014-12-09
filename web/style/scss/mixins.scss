@@ -1,4 +1,5 @@
-@mixin estiloEnlace($color){
+@mixin estiloEnlace($display,$color){
+    display: $display;
     text-decoration: none;
     color: $color;
 }
@@ -20,25 +21,29 @@
     float: left;
 }
 @mixin reglasColumnasTabla(){
-    .columnaId-Codigo{// Columnas tipo id
-        width: 115px;
+    .columnaId-Codigo{// Columnas tipo id o código o DNI
+        width: 100px;
         text-align: center;
     }
-    .columnaNombre{// Columnas tipo nombre o apellidos
-        width: 150px;
+    .columnaNombre{// Columnas tipo nombre
+        width: 100px;
+    }
+    .columnaApellido{// Columnas tipo apellido
+        width: 90px;
     }
     .columnaNumCuenta{// Columnas de numero de cuenta
         width: 130px;
     }
     .columnaCantidad{// Columnas de cantidades monetarias
-        width: 70px;
+        width: 60px;
         text-align: right;
     }
     .columnaConcepto-Direccion{// Columnas de concepto de movimiento y direcciones postales
-        width: 200px;
+        width: 180px;
     }
     .columnaFecha{// Columnas de fecha
-        width: 120px;
+        width: 110px;
+        text-align: center;
     }
 }
 @mixin reglasComunesFooter(){
@@ -89,7 +94,7 @@
 }
 @mixin estiloBotonHeader(){
     & a{
-        @include estiloEnlace(white);
+        @include estiloEnlace(block,white);
     }
 
     text-align: center;
@@ -105,7 +110,7 @@
 }
 @mixin estiloBotonBackEnd(){
     & a{
-        @include estiloEnlace(white);
+        @include estiloEnlace(block,white);
     }
 
     display: inline-block;
