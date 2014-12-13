@@ -10,6 +10,13 @@ body {
   background-color: white;
   font-family: "Century Gothic" !important;
   font-size: 15px; }
+  body ::-webkit-scrollbar-thumb {
+    background-color: #ff6600; }
+  body ::-webkit-scrollbar-track {
+    background-color: rgba(255, 102, 0, 0.4); }
+  body ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; }
   body #capaSuperior {
     /* Capa que engloba todos los contenidos de la web; se situa por encima de la capa de fondo */
     width: 1000px;
