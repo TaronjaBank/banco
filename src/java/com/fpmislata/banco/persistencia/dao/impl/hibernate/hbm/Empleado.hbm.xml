@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpmislata.banco.dominio.Empleado" table="empleado" >
+        <id column="idEmpleado" name="idEmpleado" type="integer">
+            <generator class="identity"/>
+        </id>
+        <property name="dniEmpleado" column="dniEmpleado" />
+        <property name="nombreEmpleado" column="nombreEmpleado" />
+        <property name="apellido1Empleado" column="apellido1Empleado" />
+        <property name="apellido2Empleado" column="apellido2Empleado" />
+        <property name="idSucursalBancaria" column="idSucursalBancaria" />
+        <property name="loginEmpleado" column="loginEmpleado" />
+        <property name="passwordEmpleado" column="passwordEmpleado" />
+    </class>
+</hibernate-mapping>
