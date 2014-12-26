@@ -2,12 +2,12 @@
  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.banco.dominio.MovimientoBancario" table="movimientoBancario" >
-        <id column="idMovimientoBancario" name="idMovimientoBancario" type="integer">
+        <id column="idMovimientoBancario" name="idMovimientoBancario" type="integer" access="field" >
             <generator class="identity"/>
         </id>
-        <property name="idCuentaBancariaOrigen" column="idCuentaBancariaOrigen" />
-        <property name="idCuentaBancariaDestino" column="idCuentaBancariaDestino" />
-        <property name="cantidadMovimientoBancario" column="cantidadMovimientoBancario" />
-        <property name="conceptoMovimientoBancario" column="conceptoMovimientoBancario" />
+        <property name="idCuentaBancariaOrigen" column="idCuentaBancariaOrigen" access="field" />
+        <property name="idCuentaBancariaDestino" column="idCuentaBancariaDestino" access="field" />
+        <property name="cantidadMovimientoBancario" column="cantidadMovimientoBancario" access="field" />
+        <property name="conceptoMovimientoBancario" column="conceptoMovimientoBancario" access="field" />
     </class>
 </hibernate-mapping>

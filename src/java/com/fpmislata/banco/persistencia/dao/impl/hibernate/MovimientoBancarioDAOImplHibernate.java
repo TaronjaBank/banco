@@ -1,91 +1,78 @@
 package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 
 import org.hibernate.Session;
-import com.fpmislata.banco.dominio.Empleado;
-import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
+import com.fpmislata.banco.dominio.MovimientoBancario;
+import com.fpmislata.banco.persistencia.dao.MovimientoBancarioDAO;
 import java.util.List;
 import org.hibernate.Query;
 
-public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
+public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO {
 
     @Override
-    public Empleado insert(Empleado empleado) {
+    public MovimientoBancario insert(MovimientoBancario movimientoBancario) {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        session.save(empleado);
+        session.save(movimientoBancario);
 
         session.getTransaction().commit();
         session.close();
 
-        return empleado;
+        return movimientoBancario;
     }
 
     @Override
-    public Empleado update(Empleado empleado) {
+    public MovimientoBancario update(MovimientoBancario movimientoBancario) {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        session.update(empleado);
+        session.update(movimientoBancario);
 
         session.getTransaction().commit();
         session.close();
 
-        return empleado;
+        return movimientoBancario;
     }
 
     @Override
-    public void delete(int idEmpleado) {
+    public void delete(int idMovimientoBancario) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        session.delete(idEmpleado);
+        session.delete(idMovimientoBancario);
 
         session.getTransaction().commit();
         session.close();
     }
 
     @Override
-    public Empleado get(int idEmpleado) {
+    public MovimientoBancario get(int idMovimientoBancario) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        Empleado empleado = (Empleado) session.get(Empleado.class, idEmpleado);
+        MovimientoBancario movimientoBancario = (MovimientoBancario) session.get(MovimientoBancario.class, idMovimientoBancario);
 
         session.getTransaction().commit();
         session.close();
 
-        return empleado;
+        return movimientoBancario;
     }
 
     @Override
-    public Empleado getFromLogin(String loginEmpleado) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-
-        Empleado empleado = (Empleado) session.get(Empleado.class, loginEmpleado);
-
-        session.getTransaction().commit();
-        session.close();
-        
-        return empleado;
-    }
-
-    @Override
-    public List<Empleado> findAll() {
+    public List<MovimientoBancario> findAll() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         
         session.beginTransaction();
 
-        Query query = session.createQuery("SELECT e FROM empleado e");
-        List<Empleado> empleados = query.list();
+        Query query = session.createQuery("SELECT mb FROM movimientobancario mb");
+        List<MovimientoBancario> movimientosBancarios = query.list();
 
         session.getTransaction().commit();
         session.close();
 
-        return empleados;
+        return movimientosBancarios;
     }
     
 }

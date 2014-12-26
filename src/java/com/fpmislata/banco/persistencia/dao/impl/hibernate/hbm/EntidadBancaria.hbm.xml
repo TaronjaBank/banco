@@ -2,11 +2,11 @@
  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.banco.dominio.EntidadBancaria" table="entidadBancaria" >
-        <id column="idEntidadBancaria" name="idEntidadBancaria" type="integer">
+        <id column="idEntidadBancaria" name="idEntidadBancaria" type="integer" access="field" >
             <generator class="identity"/>
         </id>
-        <property name="codigoEntidadBancaria" column="codigoEntidadBancaria" />
-        <property name="nombreEntidadBancaria" column="nombreEntidadBancaria" />
-        <property name="fechaCreacionEntidadBancaria" column="fechaCreacionEntidadBancaria" />
+        <property name="codigoEntidadBancaria" column="codigoEntidadBancaria" access="field" />
+        <property name="nombreEntidadBancaria" column="nombreEntidadBancaria" access="field" />
+        <property name="fechaCreacionEntidadBancaria" column="fechaCreacionEntidadBancaria" access="field" />
     </class>
 </hibernate-mapping>

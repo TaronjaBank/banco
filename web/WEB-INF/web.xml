@@ -32,8 +32,6 @@
         <param-value>
             classpath:com/fpmislata/banco/common/json/ImplCommons.xml
             classpath:com/fpmislata/banco/persistencia/dao/ImplDAO.xml
-            classpath:com/fpmislata/banco/persistencia/dao/impl/jdbc/connectionFactory/ImplConnectionFactory.xml
-            classpath:com/fpmislata/banco/persistencia/common/datasourcefactory/ImplDataSourceFactory.xml
             classpath:com/fpmislata/banco/servicio/seguridad/ImplSeguridad.xml
         </param-value>
     </context-param>

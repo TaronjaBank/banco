@@ -2,12 +2,12 @@
  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.banco.dominio.Cliente" table="cliente" >
-        <id column="idCliente" name="idCliente" type="integer">
+        <id column="idCliente" name="idCliente" type="integer" access="field" >
             <generator class="identity"/>
         </id>
-        <property name="dniCliente" column="dniCliente" />
-        <property name="nombreCliente" column="nombreCliente" />
-        <property name="apellido1Cliente" column="apellido1Cliente" />
-        <property name="apellido2Cliente" column="apellido2Cliente" />
+        <property name="dniCliente" column="dniCliente" access="field" />
+        <property name="nombreCliente" column="nombreCliente" access="field" />
+        <property name="apellido1Cliente" column="apellido1Cliente" access="field" />
+        <property name="apellido2Cliente" column="apellido2Cliente" access="field" />
     </class>
 </hibernate-mapping>

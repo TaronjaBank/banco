@@ -11,11 +11,11 @@
     
 <context:annotation-config/>
 
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ClienteDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.CuentaBancariaDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EmpleadoDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EntidadBancariaDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.MovimientoBancarioDAOImplJDBC" />
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.SucursalBancariaDAOImplJDBC" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.ClienteDAOImplHibernate" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.CuentaBancariaDAOImplHibernate" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.EmpleadoDAOImplHibernate" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.EntidadBancariaDAOImplHibernate" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.MovimientoBancarioDAOImplHibernate" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.SucursalBancariaDAOImplHibernate" />
     
 </beans>
