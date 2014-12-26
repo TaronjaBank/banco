@@ -11,13 +11,14 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
     @Override
     public SucursalBancaria insert(SucursalBancaria sucursalBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.save(sucursalBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return sucursalBancaria;
     }
@@ -25,13 +26,14 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
     @Override
     public SucursalBancaria update(SucursalBancaria sucursalBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.update(sucursalBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return sucursalBancaria;
     }
@@ -39,25 +41,27 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
     @Override
     public void delete(int idSucursalBancaria) {
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.delete(idSucursalBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
     }
 
     @Override
     public SucursalBancaria get(int idSucursalBancaria) {
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         SucursalBancaria sucursalBancaria = (SucursalBancaria) session.get(SucursalBancaria.class, idSucursalBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return sucursalBancaria;
     }
@@ -65,14 +69,15 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
     @Override
     public List<SucursalBancaria> findAll() {
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        HibernateUtil.openSessionAndBindToThread();
 
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
         Query query = session.createQuery("SELECT sb FROM sucursalbancaria sb");
         List<SucursalBancaria> sucursalesBancarias = query.list();
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return sucursalesBancarias;
     }

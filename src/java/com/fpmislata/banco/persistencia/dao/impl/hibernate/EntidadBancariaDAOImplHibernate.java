@@ -11,13 +11,14 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
     @Override
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.save(entidadBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return entidadBancaria;
     }
@@ -25,13 +26,14 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
     @Override
     public EntidadBancaria update(EntidadBancaria entidadBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.update(entidadBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return entidadBancaria;
     }
@@ -39,25 +41,27 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
     @Override
     public void delete(int idEntidadBancaria) {
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.delete(idEntidadBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
     }
 
     @Override
     public EntidadBancaria get(int idEntidadBancaria) {
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         EntidadBancaria entidadBancaria = (EntidadBancaria) session.get(EntidadBancaria.class, idEntidadBancaria);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return entidadBancaria;
     }
@@ -65,14 +69,15 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
     @Override
     public List<EntidadBancaria> findAll() {
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        HibernateUtil.openSessionAndBindToThread();
 
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
         Query query = session.createQuery("SELECT eb FROM entidadbancaria eb");
         List<EntidadBancaria> entidadesBancarias = query.list();
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return entidadesBancarias;
     }

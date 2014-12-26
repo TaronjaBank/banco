@@ -11,13 +11,14 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
     @Override
     public Empleado insert(Empleado empleado) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.save(empleado);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return empleado;
     }
@@ -25,70 +26,75 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
     @Override
     public Empleado update(Empleado empleado) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.update(empleado);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return empleado;
     }
 
     @Override
     public void delete(int idEmpleado) {
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         session.delete(idEmpleado);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
     }
 
     @Override
     public Empleado get(int idEmpleado) {
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         Empleado empleado = (Empleado) session.get(Empleado.class, idEmpleado);
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return empleado;
     }
 
     @Override
     public Empleado getFromLogin(String loginEmpleado) {
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
         Empleado empleado = (Empleado) session.get(Empleado.class, loginEmpleado);
-
         session.getTransaction().commit();
-        session.close();
-        
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
+
         return empleado;
     }
 
     @Override
     public List<Empleado> findAll() {
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
 
+        HibernateUtil.openSessionAndBindToThread();
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
         Query query = session.createQuery("SELECT e FROM empleado e");
         List<Empleado> empleados = query.list();
-
         session.getTransaction().commit();
-        session.close();
+
+        HibernateUtil.closeSessionAndUnbindFromThread();
 
         return empleados;
     }
-    
+
 }
