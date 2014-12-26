@@ -11,7 +11,7 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
     @Override
     public Empleado insert(Empleado empleado) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.save(empleado);
@@ -25,7 +25,7 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
     @Override
     public Empleado update(Empleado empleado) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.update(empleado);
@@ -38,7 +38,8 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
 
     @Override
     public void delete(int idEmpleado) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.delete(idEmpleado);
@@ -49,7 +50,8 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
 
     @Override
     public Empleado get(int idEmpleado) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Empleado empleado = (Empleado) session.get(Empleado.class, idEmpleado);
@@ -62,7 +64,8 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
 
     @Override
     public Empleado getFromLogin(String loginEmpleado) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Empleado empleado = (Empleado) session.get(Empleado.class, loginEmpleado);
@@ -75,8 +78,8 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
 
     @Override
     public List<Empleado> findAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Query query = session.createQuery("SELECT e FROM empleado e");

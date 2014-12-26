@@ -11,7 +11,7 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
     @Override
     public Cliente insert(Cliente cliente) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.save(cliente);
@@ -25,7 +25,7 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
     @Override
     public Cliente update(Cliente cliente) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.update(cliente);
@@ -38,7 +38,8 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
     @Override
     public void delete(int idCliente) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.delete(idCliente);
@@ -49,7 +50,8 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
     @Override
     public Cliente get(int idCliente) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Cliente cliente = (Cliente) session.get(Cliente.class, idCliente);
@@ -62,8 +64,8 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
     @Override
     public List<Cliente> findAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Query query = session.createQuery("SELECT c FROM cliente c");

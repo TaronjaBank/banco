@@ -11,7 +11,7 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
     @Override
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.save(entidadBancaria);
@@ -25,7 +25,7 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
     @Override
     public EntidadBancaria update(EntidadBancaria entidadBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.update(entidadBancaria);
@@ -38,7 +38,8 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
     @Override
     public void delete(int idEntidadBancaria) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.delete(idEntidadBancaria);
@@ -49,7 +50,8 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
     @Override
     public EntidadBancaria get(int idEntidadBancaria) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         EntidadBancaria entidadBancaria = (EntidadBancaria) session.get(EntidadBancaria.class, idEntidadBancaria);
@@ -62,8 +64,8 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
     @Override
     public List<EntidadBancaria> findAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Query query = session.createQuery("SELECT eb FROM entidadbancaria eb");

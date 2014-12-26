@@ -11,7 +11,7 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
     @Override
     public SucursalBancaria insert(SucursalBancaria sucursalBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.save(sucursalBancaria);
@@ -25,7 +25,7 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
     @Override
     public SucursalBancaria update(SucursalBancaria sucursalBancaria) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.update(sucursalBancaria);
@@ -38,7 +38,8 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
 
     @Override
     public void delete(int idSucursalBancaria) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.delete(idSucursalBancaria);
@@ -49,7 +50,8 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
 
     @Override
     public SucursalBancaria get(int idSucursalBancaria) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         SucursalBancaria sucursalBancaria = (SucursalBancaria) session.get(SucursalBancaria.class, idSucursalBancaria);
@@ -62,8 +64,8 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
 
     @Override
     public List<SucursalBancaria> findAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Query query = session.createQuery("SELECT sb FROM sucursalbancaria sb");

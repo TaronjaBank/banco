@@ -11,7 +11,7 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
     @Override
     public MovimientoBancario insert(MovimientoBancario movimientoBancario) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.save(movimientoBancario);
@@ -25,7 +25,7 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
     @Override
     public MovimientoBancario update(MovimientoBancario movimientoBancario) {
 
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.update(movimientoBancario);
@@ -38,7 +38,8 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
 
     @Override
     public void delete(int idMovimientoBancario) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         session.delete(idMovimientoBancario);
@@ -49,7 +50,8 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
 
     @Override
     public MovimientoBancario get(int idMovimientoBancario) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         MovimientoBancario movimientoBancario = (MovimientoBancario) session.get(MovimientoBancario.class, idMovimientoBancario);
@@ -62,8 +64,8 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
 
     @Override
     public List<MovimientoBancario> findAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
         Query query = session.createQuery("SELECT mb FROM movimientobancario mb");
