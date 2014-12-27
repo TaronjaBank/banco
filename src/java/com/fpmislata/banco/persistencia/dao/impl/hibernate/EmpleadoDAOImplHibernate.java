@@ -45,7 +45,8 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(idEmpleado);
+        Empleado empleado = (Empleado) session.get(Empleado.class, idEmpleado);
+        session.delete(empleado);
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();

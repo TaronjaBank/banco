@@ -45,7 +45,8 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(idMovimientoBancario);
+        MovimientoBancario movimientoBancario = (MovimientoBancario) session.get(MovimientoBancario.class, idMovimientoBancario);
+        session.delete(movimientoBancario);
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();

@@ -45,7 +45,8 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(idSucursalBancaria);
+        SucursalBancaria sucursalBancaria = (SucursalBancaria) session.get(SucursalBancaria.class, idSucursalBancaria);
+        session.delete(sucursalBancaria);
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();

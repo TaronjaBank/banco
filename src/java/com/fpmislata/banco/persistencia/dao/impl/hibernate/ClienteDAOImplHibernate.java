@@ -45,7 +45,8 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(idCliente);
+        Cliente cliente = (Cliente) session.get(Cliente.class, idCliente);
+        session.delete(cliente);
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();

@@ -45,7 +45,8 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(idEntidadBancaria);
+        EntidadBancaria entidadBancaria = (EntidadBancaria) session.get(EntidadBancaria.class, idEntidadBancaria);
+        session.delete(entidadBancaria);
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();

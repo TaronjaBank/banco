@@ -45,7 +45,8 @@ public class CuentaBancariaDAOImplHibernate implements CuentaBancariaDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(idCuentaBancaria);
+        CuentaBancaria cuentaBancaria = (CuentaBancaria) session.get(CuentaBancaria.class, idCuentaBancaria);
+        session.delete(cuentaBancaria);
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();
