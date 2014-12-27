@@ -3,16 +3,16 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location
         $scope.estado = {
             accion: 'insertar'
         };
-        
+
         $scope.estilo = "";
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/entidadbancaria/list");
         };
-        
-        hoy=new Date();
-        $scope.entidadBancaria={
-            fechaCreacionEntidadBancaria:hoy.getFullYear()+"-"+hoy.getMonth()+"-"+hoy.getDate()
+
+        hoy = new Date();
+        $scope.entidadBancaria = {
+            fechaCreacionEntidadBancaria: hoy.getFullYear() + "-" + hoy.getMonth() + "-" + hoy.getDate()
         };
 
         $scope.insert = function () {
@@ -26,8 +26,8 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location
                 $scope.entidadBancaria = null;
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);
 
 
@@ -36,14 +36,14 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
         $scope.estado = {
             accion: 'actualizar'
         };
-        
+
         $scope.estilo = "";
 
         $scope.entidadBancaria = {
-            idEntidadBancaria:$routeParams.idEntidadBancaria
+            idEntidadBancaria: $routeParams.idEntidadBancaria
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/entidadbancaria/list");
         };
 
@@ -77,19 +77,19 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
 
     }]);
 
-app.controller("EntidadBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
+app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
 
         $scope.estado = {
             accion: 'borrar'
         };
-        
+
         $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
 
         $scope.entidadBancaria = {
-            idEntidadBancaria:$routeParams.idEntidadBancaria
+            idEntidadBancaria: $routeParams.idEntidadBancaria
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/entidadbancaria/list");
         };
 
@@ -103,9 +103,9 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope","$scope", "$http
                 alert("Error: no existe coincidencia en la base de datos");
             });//success.Error
         };//Consultar
-        
-            $scope.get();
-        
+
+        $scope.get();
+
         $scope.deleteData = function () {
             $http({
                 method: "DELETE",
