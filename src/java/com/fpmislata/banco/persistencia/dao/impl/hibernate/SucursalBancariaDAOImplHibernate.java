@@ -73,7 +73,7 @@ public class SucursalBancariaDAOImplHibernate implements SucursalBancariaDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT sb FROM sucursalbancaria sb");
+        Query query = session.createQuery("SELECT sb FROM SucursalBancaria sb");
         List<SucursalBancaria> sucursalesBancarias = query.list();
         session.getTransaction().commit();
 

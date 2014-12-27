@@ -11,15 +11,15 @@ CREATE TABLE `cliente` (
 
 
 CREATE TABLE `empleado` (
-  `idEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+  `idEmpleado` int(11) NOT NULL DEFAULT '0',
   `dniEmpleado` varchar(50) DEFAULT '0',
   `nombreEmpleado` varchar(50) DEFAULT '0',
   `apellido1Empleado` varchar(50) DEFAULT '0',
   `apellido2Empleado` varchar(50) DEFAULT '0',
   `idSucursalBancaria` int(11) NOT NULL DEFAULT '0',
-  `loginEmpleado` varchar(50) DEFAULT '0',
+  `loginEmpleado` varchar(50) NOT NULL DEFAULT '0',
   `passwordEmpleado` varchar(50) DEFAULT '0',
-  PRIMARY KEY (`idEmpleado`),
+  PRIMARY KEY (`loginEmpleado`),
   KEY `FKSucursalBancariaEmpleado` (`idSucursalBancaria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 

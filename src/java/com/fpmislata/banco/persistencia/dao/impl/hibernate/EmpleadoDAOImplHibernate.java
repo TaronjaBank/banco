@@ -89,7 +89,7 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT e FROM empleado e");
+        Query query = session.createQuery("SELECT e FROM Empleado e");
         List<Empleado> empleados = query.list();
         session.getTransaction().commit();
 

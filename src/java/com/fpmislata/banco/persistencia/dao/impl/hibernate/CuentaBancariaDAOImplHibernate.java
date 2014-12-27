@@ -73,7 +73,7 @@ public class CuentaBancariaDAOImplHibernate implements CuentaBancariaDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT cb FROM cuentabancaria cb");
+        Query query = session.createQuery("SELECT cb FROM CuentaBancaria cb");
         List<CuentaBancaria> cuentasBancarias = query.list();
         session.getTransaction().commit();
 

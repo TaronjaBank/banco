@@ -73,7 +73,7 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT c FROM cliente c");
+        Query query = session.createQuery("SELECT c FROM Cliente c");
         List<Cliente> clientes = query.list();
         session.getTransaction().commit();
 

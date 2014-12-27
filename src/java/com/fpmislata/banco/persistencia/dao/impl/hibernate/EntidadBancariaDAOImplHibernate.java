@@ -73,7 +73,7 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT eb FROM entidadbancaria eb");
+        Query query = session.createQuery("SELECT eb FROM EntidadBancaria eb");
         List<EntidadBancaria> entidadesBancarias = query.list();
         session.getTransaction().commit();
 

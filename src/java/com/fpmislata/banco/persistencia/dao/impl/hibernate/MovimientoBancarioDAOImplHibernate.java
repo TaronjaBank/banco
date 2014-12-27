@@ -73,7 +73,7 @@ public class MovimientoBancarioDAOImplHibernate implements MovimientoBancarioDAO
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT mb FROM movimientobancario mb");
+        Query query = session.createQuery("SELECT mb FROM MovimientoBancario mb");
         List<MovimientoBancario> movimientosBancarios = query.list();
         session.getTransaction().commit();
 
