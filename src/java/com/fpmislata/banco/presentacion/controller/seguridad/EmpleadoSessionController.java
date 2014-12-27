@@ -66,6 +66,7 @@ public class EmpleadoSessionController {
         HttpSession httpSession;
         try {
             credencial = (Credencial) jsonTransformer.fromJson(jsonEntrada, Credencial.class);
+            System.out.println("password: " + credencial.getPassword());
             empleado = empleadoAuthentication.authenticate(credencial);
 
             if (empleado != null) {

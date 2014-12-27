@@ -74,6 +74,7 @@ public class EmpleadoDAOImplHibernate implements EmpleadoDAO {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Empleado empleado = (Empleado) session.get(Empleado.class, loginEmpleado);
+        //El problema es que busca en base a la PK y loginEmpleado no es PK de la tabla empleado
         session.getTransaction().commit();
 
         HibernateUtil.closeSessionAndUnbindFromThread();
