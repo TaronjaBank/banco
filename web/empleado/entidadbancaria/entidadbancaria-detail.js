@@ -53,6 +53,8 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function (data) {
                 $scope.entidadBancaria = data;
+                var fecha = new Date($scope.entidadBancaria.fechaCreacionEntidadBancaria);
+                $scope.entidadBancaria.fechaCreacionEntidadBancaria = fecha.getFullYear() + "-" + (fecha.getMonth()+1) + "-" + fecha.getDate();
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -99,6 +101,8 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function (data) {
                 $scope.entidadBancaria = data;
+                var fecha = new Date($scope.entidadBancaria.fechaCreacionEntidadBancaria);
+                $scope.entidadBancaria.fechaCreacionEntidadBancaria = fecha.getFullYear() + "-" + (fecha.getMonth()+1) + "-" + fecha.getDate();
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });//success.Error
