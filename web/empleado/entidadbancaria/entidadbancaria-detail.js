@@ -12,7 +12,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location
 
         hoy = new Date();
         $scope.entidadBancaria = {
-            fechaCreacionEntidadBancaria: hoy.getFullYear() + "-" + hoy.getMonth() + "-" + hoy.getDate()
+            fechaCreacionEntidadBancaria: hoy.getFullYear() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getDate()
         };
 
         $scope.insert = function () {
