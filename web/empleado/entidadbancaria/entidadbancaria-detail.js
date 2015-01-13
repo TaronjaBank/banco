@@ -1,4 +1,4 @@
-app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
+app.controller("EntidadBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
 
         $scope.estado = {
             accion: 'insertar'
@@ -6,13 +6,8 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location
 
         $scope.estilo = "";
 
-        $scope.irLista = function () {
-            $location.path("/entidadbancaria/list");
-        };
-
-        hoy = new Date();
         $scope.entidadBancaria = {
-            fechaCreacionEntidadBancaria: hoy.getFullYear() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getDate()
+            fechaCreacionEntidadBancaria: new Date()
         };
 
         $scope.insert = function () {
@@ -21,9 +16,11 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$location
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/EntidadBancaria"
             }).success(function (data) {
-                //alert("La nueva entidad bancaria ha sido insertada correctamente...");
                 $scope.entidadBancaria = data;
                 $scope.entidadBancaria = null;
+                $scope.entidadBancaria = {
+                    fechaCreacionEntidadBancaria: new Date()
+                };
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });
@@ -53,8 +50,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function (data) {
                 $scope.entidadBancaria = data;
-                var fecha = new Date($scope.entidadBancaria.fechaCreacionEntidadBancaria);
-                $scope.entidadBancaria.fechaCreacionEntidadBancaria = fecha.getFullYear() + "-" + (fecha.getMonth()+1) + "-" + fecha.getDate();
+                $scope.entidadBancaria.fechaCreacionEntidadBancaria = new Date($scope.entidadBancaria.fechaCreacionEntidadBancaria);
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -69,7 +65,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria,
                 data: $scope.entidadBancaria
             }).success(function () {
-                //alert("Los datos de la entidad nº " + $scope.entidadBancaria.idEntidadBancaria + " se han actualizado correctamente...");
                 $scope.entidadBancaria = {};
                 $scope.irLista();
             }).error(function () {
@@ -101,12 +96,11 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function (data) {
                 $scope.entidadBancaria = data;
-                var fecha = new Date($scope.entidadBancaria.fechaCreacionEntidadBancaria);
-                $scope.entidadBancaria.fechaCreacionEntidadBancaria = fecha.getFullYear() + "-" + (fecha.getMonth()+1) + "-" + fecha.getDate();
+                $scope.entidadBancaria.fechaCreacionEntidadBancaria = new Date($scope.entidadBancaria.fechaCreacionEntidadBancaria);
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
-            });//success.Error
-        };//Consultar
+            });
+        };
 
         $scope.get();
 
@@ -115,11 +109,10 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
                 method: "DELETE",
                 url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria
             }).success(function () {
-                //alert("La entidad bancaria nº " + $scope.entidadBancaria.idEntidadBancaria + " ha sido borrada correctamente...");
                 $scope.entidadBancaria = {};
                 $scope.irLista();
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);

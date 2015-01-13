@@ -10,7 +10,8 @@
         <div class="labelDetail">Nombre</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Fecha creación</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="true"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ui-date ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <!-- ui-date-format="dd-mm-yy"  -->
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar entidad</span>

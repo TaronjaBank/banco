@@ -1,6 +1,6 @@
 package com.fpmislata.banco.presentacion.listener.persistencia.hibernate;
 
-import com.fpmislata.banco.persistencia.dao.impl.hibernate.HibernateUtil;
+import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 

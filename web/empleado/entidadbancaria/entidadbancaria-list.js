@@ -5,15 +5,15 @@ app.controller("EntidadBancariaListController", ["$scope", "$http", function($sc
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
             }).success(function(data) {
-                for (var i = 0; i < data.length; i++) {
-                    var fecha = new Date(data[i].fechaCreacionEntidadBancaria);
-                    data[i].fechaCreacionEntidadBancaria = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-                }
                 $scope.entidadesBancarias = data;
+                for (var i = 0; i < $scope.entidadesBancarias.length; i++){
+                    var fecha = $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria;
+                    $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria = new Date(fecha);
+                }
             }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar 
+            });
+        };
         $scope.findAll();
     }]);
 

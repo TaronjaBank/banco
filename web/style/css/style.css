@@ -335,7 +335,8 @@ body {
           /* Tabla de listado consulta findAll */
           margin-left: 40px; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado #tituloTabla {
-            margin: 80px 30px 15px;
+            color: grey;
+            margin: 80px 0 15px;
             font-weight: bold;
             font-size: 18px; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaId-Codigo {
@@ -414,6 +415,11 @@ body {
               background-color: cornsilk; }
         body #capaSuperior #seccionCentral #contenidos .botoneraMain {
           margin: 5% auto; }
+          body #capaSuperior #seccionCentral #contenidos .botoneraMain .titulo-apartado {
+            color: grey;
+            margin: 40px 30px;
+            font-weight: bold;
+            font-size: 18px; }
           body #capaSuperior #seccionCentral #contenidos .botoneraMain .filaIconosBackEnd {
             width: 100%;
             text-align: center; }

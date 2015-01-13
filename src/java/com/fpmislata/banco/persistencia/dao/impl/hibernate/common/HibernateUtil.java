@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistencia.dao.impl.hibernate;
+package com.fpmislata.banco.persistencia.dao.impl.hibernate.common;
 
 
 import org.hibernate.Session;

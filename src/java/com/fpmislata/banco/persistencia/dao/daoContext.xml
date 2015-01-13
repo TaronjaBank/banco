@@ -10,7 +10,9 @@
 ">
     
 <context:annotation-config/>
-
+    
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil" />
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.common.GenericDAOImplHibernate" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.ClienteDAOImplHibernate" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.CuentaBancariaDAOImplHibernate" />
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.EmpleadoDAOImplHibernate" />

@@ -29,7 +29,7 @@ public class ServletContextListenerImplDataBase implements ServletContextListene
             autowireCapableBeanFactory.autowireBean(this);
 
             InitialContext initCtx = new InitialContext();
-            DataSource dataSource = (DataSource) initCtx.lookup("java:comp/env/jdbc/baseDeDatos");
+            DataSource dataSource = (DataSource) initCtx.lookup("java:comp/env/jdbc/MySQLDS");
             initCtx.close();
 
             Flyway flyway = new Flyway();

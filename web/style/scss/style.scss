@@ -293,7 +293,8 @@ body{
                     margin-left: 40px;
 
                     #tituloTabla{
-                        margin: 80px 30px 15px;
+                        color: grey;
+                        margin: 80px 0 15px;
                         font:{
                             weight: bold;
                             size: 18px;
@@ -381,7 +382,16 @@ body{
 
                 .botoneraMain{
                     margin: 5% auto;
-
+                    
+                    .titulo-apartado{
+                        color: grey;
+                        margin: 40px 30px;
+                        font:{
+                            weight: bold;
+                            size: 18px;
+                        }
+                    }
+                    
                     .filaIconosBackEnd{
                         width: 100%;
                         text-align: center;

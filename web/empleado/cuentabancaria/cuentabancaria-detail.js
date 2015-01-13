@@ -16,7 +16,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location"
                 data: $scope.cuentaBancaria,
                 url: contextPath + "/api/CuentaBancaria"
             }).success(function (data) {
-                //alert("La nueva cuenta bancaria ha sido insertada correctamente...");
                 $scope.cuentaBancaria = data;
                 $scope.cuentaBancaria = null;
             }).error(function (data, status) {
@@ -62,7 +61,6 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
                 data: $scope.cuentaBancaria
             }).success(function () {
-                //alert("Los datos de la cuenta nº " + $scope.cuentaBancaria.idCuentaBancaria + " se han actualizado correctamente...");
                 $scope.cuentaBancaria = {};
                 $scope.irLista();
             }).error(function () {
@@ -105,7 +103,6 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http"
                 method: "DELETE",
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria
             }).success(function () {
-                //alert("La cuenta bancaria nº " + $scope.cuentaBancaria.idCuentaBancaria + " ha sido borrada correctamente...");
                 $scope.cuentaBancaria = {};
                 $scope.irLista();
             }).error(function () {
