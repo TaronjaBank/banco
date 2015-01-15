@@ -70,7 +70,20 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });
+            
+            };
+             $scope.findAll = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria
+            }).success(function(data) {
+                $scope.sucursalesBancarias = data;
+                
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
         };
+        $scope.findAll();
 
     }]);
 

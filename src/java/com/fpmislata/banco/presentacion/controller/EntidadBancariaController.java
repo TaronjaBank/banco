@@ -105,4 +105,23 @@ public class EntidadBancariaController {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
+    
+     @RequestMapping(
+            value = "/{idEntidadBancaria}/SucursalBancaria",
+            method = RequestMethod.GET)
+    public void finAllScucursalesbyEntidades(
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse,
+            @PathVariable("idEntidadBancaria") int idEntidadBancaria) {
+           {
+        try {
+            String jsonSalida = jsonTransformer.toJson(entidadBancariaDAO.findAllSucursalesbyEntidadBancaria(idEntidadBancaria));
+            httpServletResponse.getWriter().println(jsonSalida);
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
+        } catch (IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
+    }
 }
