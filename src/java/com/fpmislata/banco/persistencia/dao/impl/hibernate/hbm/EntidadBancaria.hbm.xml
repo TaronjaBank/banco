@@ -7,6 +7,6 @@
         </id>
         <property name="codigoEntidadBancaria" column="codigoEntidadBancaria" access="field" />
         <property name="nombreEntidadBancaria" column="nombreEntidadBancaria" access="field" />
-        <property name="fechaCreacionEntidadBancaria" column="fechaCreacionEntidadBancaria" access="field" />
+        <property name="fechaCreacionEntidadBancaria" type="date" column="fechaCreacionEntidadBancaria" access="field" />
     </class>
 </hibernate-mapping>
