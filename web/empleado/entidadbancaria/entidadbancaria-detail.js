@@ -75,7 +75,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
              $scope.findAll = function() {
             $http({
                 method: "GET",
-                url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria
+                url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria+"/SucursalBancaria"
             }).success(function(data) {
                 $scope.sucursalesBancarias = data;
                 
