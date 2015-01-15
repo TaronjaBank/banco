@@ -1,16 +1,36 @@
 package com.fpmislata.banco.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-public class EntidadBancaria {
+public class EntidadBancaria implements Serializable{
 
     int idEntidadBancaria;
     String codigoEntidadBancaria;
     String nombreEntidadBancaria;
     Date fechaCreacionEntidadBancaria;
+    private List<SucursalBancaria> sucursalesBancarias;
+
+    public List<SucursalBancaria> getSucursalesBancarias() {
+        return sucursalesBancarias;
+    }
+
+    public void setSucursalesBancarias(List<SucursalBancaria> SucursalesBancarias) {
+        this.sucursalesBancarias = SucursalesBancarias;
+    }
 
     public EntidadBancaria() {
     }
+
+    public EntidadBancaria(int idEntidadBancaria, String codigoEntidadBancaria, String nombreEntidadBancaria, Date fechaCreacionEntidadBancaria) {
+        this.idEntidadBancaria = idEntidadBancaria;
+        this.codigoEntidadBancaria = codigoEntidadBancaria;
+        this.nombreEntidadBancaria = nombreEntidadBancaria;
+        this.fechaCreacionEntidadBancaria = fechaCreacionEntidadBancaria;
+    }
+    
 
     public int getIdEntidadBancaria() {
         return idEntidadBancaria;

@@ -1,13 +1,31 @@
 package com.fpmislata.banco.dominio;
 
-public class SucursalBancaria {
+import java.io.Serializable;
+
+public class SucursalBancaria implements Serializable{
 
     int idSucursalBancaria;
     String nombreSucursalBancaria;
     String direccionSucursalBancaria;
-    int idEntidadBancaria;
-
+    EntidadBancaria entidadBancaria;
+    
     public SucursalBancaria() {
+    }
+
+    public SucursalBancaria(int idSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria EntidadBancaria) {
+        this.idSucursalBancaria = idSucursalBancaria;
+        this.nombreSucursalBancaria = nombreSucursalBancaria;
+        this.direccionSucursalBancaria = direccionSucursalBancaria;
+        this.entidadBancaria = EntidadBancaria;
+    }
+    
+
+    public EntidadBancaria getEntidadBancaria() {
+        return entidadBancaria;
+    }
+
+    public void setEntidadBancaria(EntidadBancaria EntidadBancaria) {
+        this.entidadBancaria = EntidadBancaria;
     }
 
     public int getIdSucursalBancaria() {
@@ -34,12 +52,5 @@ public class SucursalBancaria {
         this.direccionSucursalBancaria = direccionSucursalBancaria;
     }
 
-    public int getIdEntidadBancaria() {
-        return idEntidadBancaria;
-    }
-
-    public void setIdEntidadBancaria(int idEntidadBancaria) {
-        this.idEntidadBancaria = idEntidadBancaria;
-    }
 
 }

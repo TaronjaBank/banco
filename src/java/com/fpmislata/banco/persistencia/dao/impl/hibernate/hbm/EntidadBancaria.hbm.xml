@@ -8,5 +8,24 @@
         <property name="codigoEntidadBancaria" column="codigoEntidadBancaria" access="field" />
         <property name="nombreEntidadBancaria" column="nombreEntidadBancaria" access="field" />
         <property name="fechaCreacionEntidadBancaria" type="date" column="fechaCreacionEntidadBancaria" access="field" />
+    
+        
+        <list name="sucursalesBancarias"  cascade="all" inverse="true"  >
+        <key>
+            <column name="idEntidadBancaria"  />
+         </key>
+          <list-index>
+            <column name="idx"  />
+         </list-index>
+         <one-to-many class="com.fpmislata.banco.dominio.SucursalBancaria" />
+    </list>
+    
+    
+    
+    
+    
+    
     </class>
+    
+     
 </hibernate-mapping>

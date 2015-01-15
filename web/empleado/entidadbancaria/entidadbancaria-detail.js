@@ -72,7 +72,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             });
             
             };
-             $scope.findAll = function() {
+             $scope.findAllSucursales = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria+"/SucursalBancaria"
@@ -83,7 +83,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAll();
+        $scope.findAllSucursales();
 
     }]);
 
