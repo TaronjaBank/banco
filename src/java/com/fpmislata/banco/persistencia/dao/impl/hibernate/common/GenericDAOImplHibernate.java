@@ -14,7 +14,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     
     SessionFactory sessionFactory;
 
-    private final static Logger LOGGER = Logger.getLogger(GenericDAOImplHibernate.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(GenericDAOImplHibernate.class.getName());
 
     public GenericDAOImplHibernate() {
         sessionFactory = HibernateUtil.getSessionFactory();
