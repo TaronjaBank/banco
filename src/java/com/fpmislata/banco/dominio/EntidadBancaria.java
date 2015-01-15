@@ -1,5 +1,6 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ public class EntidadBancaria implements Serializable{
     String codigoEntidadBancaria;
     String nombreEntidadBancaria;
     Date fechaCreacionEntidadBancaria;
+    @JsonIgnore
     private List<SucursalBancaria> sucursalesBancarias;
 
     public List<SucursalBancaria> getSucursalesBancarias() {

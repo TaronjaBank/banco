@@ -1,5 +1,6 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
 public class SucursalBancaria implements Serializable{
@@ -7,6 +8,7 @@ public class SucursalBancaria implements Serializable{
     int idSucursalBancaria;
     String nombreSucursalBancaria;
     String direccionSucursalBancaria;
+    @JsonIgnore
     EntidadBancaria entidadBancaria;
     
     public SucursalBancaria() {
