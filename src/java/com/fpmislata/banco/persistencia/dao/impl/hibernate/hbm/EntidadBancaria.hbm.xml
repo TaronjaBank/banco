@@ -11,13 +11,13 @@
     
         
         <set name="sucursalesBancarias"  cascade="all" inverse="true"  >
-        <key>
-            <column name="idEntidadBancaria"  />
-         </key>
+            <key>
+                <column name="idEntidadBancaria"  />
+            </key>
            
-         <one-to-many class="com.fpmislata.banco.dominio.SucursalBancaria" />
+            <one-to-many class="com.fpmislata.banco.dominio.SucursalBancaria" />
          
         </set>
         
     </class>
- </hibernate-mapping>
+</hibernate-mapping>

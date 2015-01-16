@@ -1,24 +1,17 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SucursalBancaria implements Serializable {
 
     int idSucursalBancaria;
     String nombreSucursalBancaria;
     String direccionSucursalBancaria;
     EntidadBancaria entidadBancaria;
-    int idx;
+    
 
     public SucursalBancaria() {
-    }
-
-    public int getIdx() {
-        return idx;
-    }
-
-    public void setIdx(int idx) {
-        this.idx = idx;
     }
 
     public SucursalBancaria(int idSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria EntidadBancaria) {

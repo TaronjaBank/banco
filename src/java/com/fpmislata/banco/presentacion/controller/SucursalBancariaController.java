@@ -23,7 +23,7 @@ public class SucursalBancariaController {
     @Autowired
     JsonTransformer jsonTransformer;
     
-    
+     
     @RequestMapping(
             value = {"/{idSucursalBancaria}"},
             method = RequestMethod.GET)
@@ -32,7 +32,10 @@ public class SucursalBancariaController {
             @PathVariable("idSucursalBancaria") int idSucursalBancaria) {
         try {
             SucursalBancaria sucursalBancaria = sucursalBancariaDAO.get(idSucursalBancaria);
+            sucursalBancaria.getEntidadBancaria().getIdEntidadBancaria();
+            System.out.println(sucursalBancaria.getEntidadBancaria().getIdEntidadBancaria());
             String jsonSalida = jsonTransformer.toJson(sucursalBancaria);
+            
             httpServletResponse.getWriter().println(jsonSalida);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; char=UTF-8");

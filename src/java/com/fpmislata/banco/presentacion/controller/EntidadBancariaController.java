@@ -2,8 +2,10 @@ package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JsonTransformer;
 import com.fpmislata.banco.dominio.EntidadBancaria;
+import com.fpmislata.banco.dominio.SucursalBancaria;
 import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,7 +117,12 @@ public class EntidadBancariaController {
             @PathVariable("idEntidadBancaria") int idEntidadBancaria) {
            {
         try {
-            String jsonSalida = jsonTransformer.toJson(entidadBancariaDAO.findAllSucursalesbyEntidadBancaria(idEntidadBancaria));
+           
+            EntidadBancaria entidadBancaria=entidadBancariaDAO.get(idEntidadBancaria);
+            Set<SucursalBancaria> sucursalesBancarias=entidadBancaria.getSucursalesBancarias();
+            
+            
+            String jsonSalida = jsonTransformer.toJson(sucursalesBancarias);
             httpServletResponse.getWriter().println(jsonSalida);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; char=UTF-8");

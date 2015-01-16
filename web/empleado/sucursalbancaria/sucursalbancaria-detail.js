@@ -47,7 +47,8 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
-            }).error(function () {
+                alert($scope.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+        }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };

@@ -1,11 +1,12 @@
 package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EntidadBancaria implements Serializable{
 
     int idEntidadBancaria;
@@ -19,8 +20,8 @@ public class EntidadBancaria implements Serializable{
         return sucursalesBancarias;
     }
 
-    public void setSucursalesBancarias(Set<SucursalBancaria> SucursalesBancarias) {
-        this.sucursalesBancarias = SucursalesBancarias;
+    public void setSucursalesBancarias(Set<SucursalBancaria> sucursalesBancarias) {
+        this.sucursalesBancarias = sucursalesBancarias;
     }
 
     public EntidadBancaria() {
