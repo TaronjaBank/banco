@@ -20,3 +20,40 @@
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/sucursalbancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
 </section>
+
+<section id="tablaListado">
+
+    <p id="tituloTabla">Listado Cuentas Bancarias</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaId-Codigo">Id cuenta</div>
+        <div class="celdaCabecera columnaNumCuenta">Numero</div>
+        <div class="celdaCabecera columnaId-Codigo">Id cliente</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="cuentaBancaria in cuentasBancarias">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCuentaBancaria}}</div>
+            <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCliente}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/cuentabancaria/update/{{cuentaBancaria.idCuentaBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/cuentabancaria/delete/{{cuentaBancaria.idCuentaBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new">Nueva cuenta</a></span>
+        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    </section>
+
+</section>

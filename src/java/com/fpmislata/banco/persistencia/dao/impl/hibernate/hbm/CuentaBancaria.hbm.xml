@@ -6,7 +6,11 @@
             <generator class="identity"/>
         </id>
         <property name="numeroCuentaBancaria" column="numeroCuentaBancaria" access="field" />
-        <property name="idEntidadBancaria" column="idEntidadBancaria" access="field" />
         <property name="idCliente" column="idCliente" access="field" />
+        
+        <many-to-one name="sucursalBancaria">
+            <column name="idSucursalBancaria" not-null="true"/>
+        </many-to-one>
+        
     </class>
 </hibernate-mapping>

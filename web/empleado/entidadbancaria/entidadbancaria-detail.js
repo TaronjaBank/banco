@@ -127,4 +127,17 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
+         $scope.findAllSucursalesByEntidad = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria+"/SucursalBancaria"
+            }).success(function(data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllSucursalesByEntidad();
     }]);

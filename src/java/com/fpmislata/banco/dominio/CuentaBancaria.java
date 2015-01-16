@@ -1,15 +1,26 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CuentaBancaria {
 
     int idCuentaBancaria;
     int numeroCuentaBancaria;
-    int idEntidadBancaria;
     int idCliente;
+    private SucursalBancaria sucursalBancaria;
 
     public CuentaBancaria() {
     }
-
+    
+    public CuentaBancaria(int idCuentaBancaria, int numeroCuentaBancaria, int idEntidadBancaria, int idCliente, SucursalBancaria sucursalBancaria) {
+        this.idCuentaBancaria = idCuentaBancaria;
+        this.numeroCuentaBancaria = numeroCuentaBancaria;
+        
+        this.idCliente = idCliente;
+        this.sucursalBancaria = sucursalBancaria;
+    }
+    
     public int getIdCuentaBancaria() {
         return idCuentaBancaria;
     }
@@ -26,13 +37,6 @@ public class CuentaBancaria {
         this.numeroCuentaBancaria = numeroCuentaBancaria;
     }
 
-    public int getIdEntidadBancaria() {
-        return idEntidadBancaria;
-    }
-
-    public void setIdEntidadBancaria(int idEntidadBancaria) {
-        this.idEntidadBancaria = idEntidadBancaria;
-    }
 
     public int getIdCliente() {
         return idCliente;
@@ -40,6 +44,14 @@ public class CuentaBancaria {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public SucursalBancaria getSucursalBancaria() {
+        return sucursalBancaria;
+    }
+
+    public void setSucursalBancaria(SucursalBancaria sucursalBancaria) {
+        this.sucursalBancaria = sucursalBancaria;
     }
 
 }

@@ -11,5 +11,12 @@
         <many-to-one name="entidadBancaria">
             <column name="idEntidadBancaria" not-null="true"/>
         </many-to-one>
+        
+        <set name="cuentasBancarias"  cascade="all" inverse="true"  >
+            <key>
+                <column name="idSucursalBancaria"/>
+            </key>
+            <one-to-many class="com.fpmislata.banco.dominio.CuentaBancaria" />
+        </set>
     </class>
 </hibernate-mapping>

@@ -3,7 +3,9 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.dominio.SucursalBancaria;
 import com.fpmislata.banco.persistencia.dao.SucursalBancariaDAO;
 import com.fpmislata.banco.common.json.JsonTransformer;
+import com.fpmislata.banco.dominio.CuentaBancaria;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +107,26 @@ public class SucursalBancariaController {
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+    }
+    
+     @RequestMapping(
+            value = "/{idSucursalBancaria}/CuentaBancaria",
+            method = RequestMethod.GET)
+    public void finAllCuentasBancariasBySucursal(
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse,
+            @PathVariable("idSucursalBancaria") int idSucursalBancaria) {
+           {
+        try {
+            SucursalBancaria sucursalBancaria=sucursalBancariaDAO.get(idSucursalBancaria);
+            Set<CuentaBancaria> cuentasBancarias=sucursalBancaria.getCuentasBancarias();
+            String jsonSalida = jsonTransformer.toJson(cuentasBancarias);
+            httpServletResponse.getWriter().println(jsonSalida);
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; char=UTF-8");
+        } catch (IOException ex) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
     }
 }

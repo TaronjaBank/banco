@@ -63,8 +63,23 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
+        $scope.findAllCuentasBySucursal = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria/"+ $scope.sucursalBancaria.idSucursalBancaria+"/CuentaBancaria"
+            }).success(function(data) {
+                $scope.cuentasBancarias = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllCuentasBySucursal();
 
     }]);
+
+    
 
 
 
@@ -110,5 +125,18 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$htt
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
+        $scope.findAllCuentasBySucursal = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria/"+ $scope.sucursalBancaria.idSucursalBancaria+"/CuentaBancaria"
+            }).success(function(data) {
+                $scope.cuentasBancarias = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllCuentasBySucursal();
 
     }]);
