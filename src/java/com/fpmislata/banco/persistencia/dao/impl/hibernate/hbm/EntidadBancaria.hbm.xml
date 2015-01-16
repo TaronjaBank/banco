@@ -14,9 +14,7 @@
             <key>
                 <column name="idEntidadBancaria"  />
             </key>
-           
             <one-to-many class="com.fpmislata.banco.dominio.SucursalBancaria" />
-         
         </set>
         
     </class>

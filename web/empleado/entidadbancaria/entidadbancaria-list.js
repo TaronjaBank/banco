@@ -14,7 +14,9 @@ app.controller("EntidadBancariaListController", ["$scope", "$http", function($sc
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
         $scope.findAll();
+        
     }]);
 
 

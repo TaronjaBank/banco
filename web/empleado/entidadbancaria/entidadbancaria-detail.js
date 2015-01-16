@@ -58,7 +58,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
 
         $scope.get();
 
-
         $scope.update = function () {
             $http({
                 method: "PUT",
@@ -70,20 +69,20 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });
-            
             };
-             $scope.findAllSucursales = function() {
+            
+             $scope.findAllSucursalesByEntidad = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria+"/SucursalBancaria"
             }).success(function(data) {
                 $scope.sucursalesBancarias = data;
-                
             }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAllSucursales();
+        
+        $scope.findAllSucursalesByEntidad();
 
     }]);
 
@@ -93,7 +92,7 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
             accion: 'borrar'
         };
 
-        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.entidadBancaria = {
             idEntidadBancaria: $routeParams.idEntidadBancaria

@@ -10,18 +10,19 @@
         <div class="labelDetail">Nombre</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Fecha creación</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ui-date ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <!-- ui-date-format="dd-mm-yy"  -->
+        <input ui-date class="inputDetail" type="text" ng-style="estilo"  ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar entidad</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar entidad</span>
-    
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/entidadbancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+
 </section>
 
+                <!-- Tabla de Sucursales Bancarias.  -->
 <section id="tablaListado">
 
     <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
@@ -29,18 +30,14 @@
         <div class="celdaCabecera columnaId-Codigo">Id sucursal</div>
         <div class="celdaCabecera columnaNombre">Nombre</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Dirección</div>
-       
     </section>
 
     <section class="filaContenido" ng-repeat="sucursalBancaria in sucursalesBancarias">
-
         <div class="bloqueDatos">
             <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idSucursalBancaria}}</div>
             <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
-           
         </div>
-
         <div class="celdaIconoTabla">
             <a href="#/sucursalbancaria/update/{{sucursalBancaria.idSucursalBancaria}}">
                 <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
@@ -51,7 +48,6 @@
                 <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
             </a>
         </div>
-
     </section>
 
     <section id="botoneraList">

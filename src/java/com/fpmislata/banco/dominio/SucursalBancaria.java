@@ -2,6 +2,7 @@ package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SucursalBancaria implements Serializable {
 
@@ -10,7 +11,6 @@ public class SucursalBancaria implements Serializable {
     String direccionSucursalBancaria;
     EntidadBancaria entidadBancaria;
     
-
     public SucursalBancaria() {
     }
 
@@ -18,14 +18,6 @@ public class SucursalBancaria implements Serializable {
         this.idSucursalBancaria = idSucursalBancaria;
         this.nombreSucursalBancaria = nombreSucursalBancaria;
         this.direccionSucursalBancaria = direccionSucursalBancaria;
-        this.entidadBancaria = EntidadBancaria;
-    }
-
-    public EntidadBancaria getEntidadBancaria() {
-        return entidadBancaria;
-    }
-
-    public void setEntidadBancaria(EntidadBancaria EntidadBancaria) {
         this.entidadBancaria = EntidadBancaria;
     }
 
@@ -51,6 +43,15 @@ public class SucursalBancaria implements Serializable {
 
     public void setDireccionSucursalBancaria(String direccionSucursalBancaria) {
         this.direccionSucursalBancaria = direccionSucursalBancaria;
+    }
+    
+    
+    public EntidadBancaria getEntidadBancaria() {
+        return entidadBancaria;
+    }
+
+    public void setEntidadBancaria(EntidadBancaria EntidadBancaria) {
+        this.entidadBancaria = EntidadBancaria;
     }
 
 }

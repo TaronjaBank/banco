@@ -117,11 +117,8 @@ public class EntidadBancariaController {
             @PathVariable("idEntidadBancaria") int idEntidadBancaria) {
            {
         try {
-           
             EntidadBancaria entidadBancaria=entidadBancariaDAO.get(idEntidadBancaria);
             Set<SucursalBancaria> sucursalesBancarias=entidadBancaria.getSucursalesBancarias();
-            
-            
             String jsonSalida = jsonTransformer.toJson(sucursalesBancarias);
             httpServletResponse.getWriter().println(jsonSalida);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
