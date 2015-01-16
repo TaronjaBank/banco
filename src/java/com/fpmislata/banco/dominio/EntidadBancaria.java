@@ -13,13 +13,13 @@ public class EntidadBancaria implements Serializable{
     String nombreEntidadBancaria;
     Date fechaCreacionEntidadBancaria;
     @JsonIgnore
-    private List<SucursalBancaria> sucursalesBancarias;
+    private Set<SucursalBancaria> sucursalesBancarias;
 
-    public List<SucursalBancaria> getSucursalesBancarias() {
+    public Set<SucursalBancaria> getSucursalesBancarias() {
         return sucursalesBancarias;
     }
 
-    public void setSucursalesBancarias(List<SucursalBancaria> SucursalesBancarias) {
+    public void setSucursalesBancarias(Set<SucursalBancaria> SucursalesBancarias) {
         this.sucursalesBancarias = SucursalesBancarias;
     }
 

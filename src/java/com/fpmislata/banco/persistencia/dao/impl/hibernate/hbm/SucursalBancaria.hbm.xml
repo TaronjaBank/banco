@@ -9,7 +9,7 @@
         <property name="direccionSucursalBancaria" column="direccionSucursalBancaria" access="field" />
        
         <many-to-one name="entidadBancaria">
-            <column name="idEntidadBancaria"  />
+            <column name="idEntidadBancaria"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

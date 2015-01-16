@@ -10,22 +10,12 @@
         <property name="fechaCreacionEntidadBancaria" type="date" column="fechaCreacionEntidadBancaria" access="field" />
     
         
-        <list name="sucursalesBancarias"  cascade="all" inverse="true"  >
+        <set name="sucursalesBancarias"  cascade="all" inverse="false"  >
         <key>
             <column name="idEntidadBancaria"  />
          </key>
-          <list-index>
-            <column name="idx"  />
-         </list-index>
+           
          <one-to-many class="com.fpmislata.banco.dominio.SucursalBancaria" />
-    </list>
-    
-    
-    
-    
-    
-    
+        </set>
     </class>
-    
-     
-</hibernate-mapping>
+ </hibernate-mapping>

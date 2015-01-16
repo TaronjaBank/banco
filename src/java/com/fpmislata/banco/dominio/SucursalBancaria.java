@@ -1,17 +1,24 @@
 package com.fpmislata.banco.dominio;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
-public class SucursalBancaria implements Serializable{
+public class SucursalBancaria implements Serializable {
 
     int idSucursalBancaria;
     String nombreSucursalBancaria;
     String direccionSucursalBancaria;
-    @JsonIgnore
     EntidadBancaria entidadBancaria;
-    
+    int idx;
+
     public SucursalBancaria() {
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     public SucursalBancaria(int idSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria EntidadBancaria) {
@@ -20,7 +27,6 @@ public class SucursalBancaria implements Serializable{
         this.direccionSucursalBancaria = direccionSucursalBancaria;
         this.entidadBancaria = EntidadBancaria;
     }
-    
 
     public EntidadBancaria getEntidadBancaria() {
         return entidadBancaria;
@@ -53,6 +59,5 @@ public class SucursalBancaria implements Serializable{
     public void setDireccionSucursalBancaria(String direccionSucursalBancaria) {
         this.direccionSucursalBancaria = direccionSucursalBancaria;
     }
-
 
 }
