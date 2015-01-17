@@ -9,14 +9,21 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$locat
         $scope.irLista = function() {
             $location.path("/movimientobancario/list");
         };
-
+      
+$scope.tipoMovimientos = [
+   {ID: '0', nombre: 'DEBE'},
+   {ID: '1', nombre: 'HABER'}
+];
+$scope.movimientoBancario={};
+$scope.movimientoBancario.tipoMovimiento=null;
+alert($scope.movimientoBancario);
         $scope.insert = function () {
+            alert($scope.movimientoBancario);
             $http({
                 method: "POST",
                 url: contextPath + "/api/MovimientoBancario",
                 data: $scope.movimientoBancario
             }).success(function (data) {
-                //alert("El nuevo movimiento bancario ha sido insertado correctamente...");
                 $scope.movimientoBancario = data;
                 $scope.movimientoBancario = null;
             }).error(function () {

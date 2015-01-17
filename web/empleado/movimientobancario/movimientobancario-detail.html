@@ -11,9 +11,12 @@
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.idCuentaBancariaDestino" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Cantidad</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.cantidadMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Concepto</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.conceptoMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
-    </section>
+        <div class="labelDetail">Tipo</div>
+        
+        <select ng-model="movimientoBancario.tipoMovimiento" ng-style="estilo" ng-options="tipoMovimiento.ID as tipoMovimiento.nombre for tipoMovimiento in tipoMovimientos" >
+                <option value="">--Elige opcion--</option>
+            </select>    
+        
     
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar movimiento</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>

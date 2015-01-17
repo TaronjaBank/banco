@@ -6,7 +6,7 @@
         <div class="celdaCabecera columnaId-Codigo">Cuenta origen</div>
         <div class="celdaCabecera columnaId-Codigo">Cuenta destino</div>
         <div class="celdaCabecera columnaCantidad">Cantidad</div>
-        <div class="celdaCabecera columnaConcepto-Direccion">Concepto</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Tipo</div>
     </section>
 
     <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
@@ -16,7 +16,7 @@
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaOrigen}}</div>
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaDestino}}</div>
             <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
-            <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.conceptoMovimientoBancario}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.tipoMovimiento}}</div>
         </div>
 
         <div class="celdaIconoTabla">

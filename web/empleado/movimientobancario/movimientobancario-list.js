@@ -1,4 +1,8 @@
 app.controller("MovimientoBancarioListController", ["$scope", "$http", function ($scope, $http) {
+        
+        
+        
+        
         $scope.findAll = function () {
             $http({
                 method: "GET",

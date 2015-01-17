@@ -1,12 +1,13 @@
 package com.fpmislata.banco.dominio;
 
+
 public class MovimientoBancario {
 
     int idMovimientoBancario;
     int idCuentaBancariaOrigen;
     int idCuentaBancariaDestino;
     double cantidadMovimientoBancario;
-    String conceptoMovimientoBancario;
+    private TipoMovimiento tipoMovimiento;
 
     public MovimientoBancario() {
     }
@@ -43,12 +44,14 @@ public class MovimientoBancario {
         this.cantidadMovimientoBancario = cantidadMovimientoBancario;
     }
 
-    public String getConceptoMovimientoBancario() {
-        return conceptoMovimientoBancario;
+    public TipoMovimiento getTipoMovimiento() {
+        return tipoMovimiento;
     }
 
-    public void setConceptoMovimientoBancario(String conceptoMovimientoBancario) {
-        this.conceptoMovimientoBancario = conceptoMovimientoBancario;
+    public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
+        this.tipoMovimiento = tipoMovimiento;
     }
+
+    
 
 }
