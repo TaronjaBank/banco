@@ -16,9 +16,7 @@ $scope.tipoMovimientos = [
 ];
 $scope.movimientoBancario={};
 $scope.movimientoBancario.tipoMovimiento=null;
-alert($scope.movimientoBancario);
         $scope.insert = function () {
-            alert($scope.movimientoBancario);
             $http({
                 method: "POST",
                 url: contextPath + "/api/MovimientoBancario",
@@ -61,8 +59,10 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
 
 
         $scope.get();
-
-
+       $scope.tipoMovimientos = [
+   {ID: '0', nombre: 'DEBE'},
+   {ID: '1', nombre: 'HABER'}
+];
         $scope.update = function () {
 
             $http({
@@ -109,7 +109,11 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$h
         };//Consultar
 
         $scope.get();
-
+        $scope.get();
+       $scope.tipoMovimientos = [
+                {ID: '0', nombre: 'DEBE'},
+                {ID: '1', nombre: 'HABER'}
+];
 
         $scope.deleteData = function () {
             $http({

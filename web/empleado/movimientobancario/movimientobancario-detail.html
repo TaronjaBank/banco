@@ -13,7 +13,7 @@
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.cantidadMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Tipo</div>
         
-        <select ng-model="movimientoBancario.tipoMovimiento" ng-style="estilo" ng-options="tipoMovimiento.ID as tipoMovimiento.nombre for tipoMovimiento in tipoMovimientos" >
+        <select ng-model="movimientoBancario.tipoMovimiento" ng-style="estilo" ng-options="tipoMovimiento.nombre as tipoMovimiento.nombre for tipoMovimiento in tipoMovimientos" >
                 <option value="">--Elige opcion--</option>
             </select>    
         
