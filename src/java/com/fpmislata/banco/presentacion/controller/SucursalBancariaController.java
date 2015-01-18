@@ -109,7 +109,9 @@ public class SucursalBancariaController {
         }
     }
     
-    
+     @RequestMapping(
+            value = "/{idSucursalBancaria}/CuentaBancaria",
+            method = RequestMethod.GET)
     public void finAllCuentasBancariasBySucursal(
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
