@@ -5,10 +5,14 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         };
         
         $scope.estilo = "";
+        
+        //Para el ng-Options
         $scope.sucursalBancaria={};
         $scope.sucursalBancaria.entidadBancaria={};
         $scope.entidadBancaria={};
         $scope.entidadBancaria.idEntidadBancaria=null;
+        
+        
         $scope.insert = function () {
             $scope.sucursalBancaria.entidadBancaria.idEntidadBancaria=$scope.entidadBancaria.idEntidadBancaria;
             $http({
