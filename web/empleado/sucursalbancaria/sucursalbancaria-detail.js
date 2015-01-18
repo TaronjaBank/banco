@@ -5,8 +5,12 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         };
         
         $scope.estilo = "";
-
+        $scope.sucursalBancaria={};
+        $scope.sucursalBancaria.entidadBancaria={};
+        $scope.entidadBancaria={};
+        $scope.entidadBancaria.idEntidadBancaria=null;
         $scope.insert = function () {
+            $scope.sucursalBancaria.entidadBancaria.idEntidadBancaria=$scope.entidadBancaria.idEntidadBancaria;
             $http({
                 method: "POST",
                 url: contextPath + "/api/SucursalBancaria",
@@ -18,6 +22,23 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
+        $scope.findAll = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function(data) {
+                $scope.entidadesBancarias = data;
+                for (var i = 0; i < $scope.entidadesBancarias.length; i++){
+                    var fecha = $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria;
+                    $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria = new Date(fecha);
+                }
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAll();
 
     }]);
 

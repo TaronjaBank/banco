@@ -2,7 +2,7 @@ app.controller("SucursalBancariaListController", ["$scope", "$http", function ($
 
         $scope.sucursalesBancarias = {};
 
-        $scope.list = function () {
+        $scope.findAll = function () {
 
             $http({
                 method: "GET",
@@ -13,5 +13,6 @@ app.controller("SucursalBancariaListController", ["$scope", "$http", function ($
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        $scope.findAll();
 
     }]);

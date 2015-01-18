@@ -10,7 +10,9 @@
         <div class="labelDetail">Dirección</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.direccionSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Id Entidad Bancaria</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.entidadBancaria.idEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+       <select ng-model="entidadBancaria.idEntidadBancaria" ng-style="estilo" ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias" >
+                <option value="">--Elige opcion--</option>
+            </select>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar sucursal</span>
