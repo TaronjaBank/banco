@@ -67,6 +67,19 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
+         $scope.findAllMovimientosByCuenta = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/CuentaBancaria/"+ $scope.cuentaBancaria.idCuentaBancaria+"/MovimientoBancario"
+            }).success(function(data) {
+                $scope.movimientosBancarios = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllMovimientosByCuenta();
     }]);
 
 app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
@@ -109,5 +122,18 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http"
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        
+        $scope.findAllMovimientosByCuenta = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/CuentaBancaria/"+ $scope.cuentaBancaria.idCuentaBancaria+"/MovimientoBancario"
+            }).success(function(data) {
+                $scope.movimientosBancarios = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllMovimientosByCuenta();
     }]);
 

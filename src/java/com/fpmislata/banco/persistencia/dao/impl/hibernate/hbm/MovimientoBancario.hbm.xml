@@ -6,12 +6,15 @@
             <generator class="identity"/>
         </id>
         <property name="idCuentaBancariaOrigen" column="idCuentaBancariaOrigen" access="field" />
-        <property name="idCuentaBancariaDestino" column="idCuentaBancariaDestino" access="field" />
+       
         <property name="cantidadMovimientoBancario" column="cantidadMovimientoBancario" access="field" />
         <property name="tipoMovimiento" >
              <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.fpmislata.banco.dominio.TipoMovimiento</param>                <param name="type">12</param>
             </type>
         </property>
+        <many-to-one name="cuentaBancaria">
+            <column name="idCuentaBancaria" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

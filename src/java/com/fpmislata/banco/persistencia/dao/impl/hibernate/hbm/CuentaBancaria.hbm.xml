@@ -12,5 +12,12 @@
             <column name="idSucursalBancaria" not-null="true"/>
         </many-to-one>
         
+        <set name="movimientosBancarios"  cascade="all" inverse="true"  >
+            <key>
+                <column name="idCuentaBancaria"/>
+            </key>
+            <one-to-many class="com.fpmislata.banco.dominio.MovimientoBancario" />
+        </set>
+        
     </class>
 </hibernate-mapping>
