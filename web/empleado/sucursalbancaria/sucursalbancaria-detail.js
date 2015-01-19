@@ -1,20 +1,23 @@
-app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
-
+app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$location", "$routeParams", function ($scope, $http, $location,$routeParams) {
+        
+       
+        
         $scope.estado = {
             accion: 'insertar'
         };
         
         $scope.estilo = "";
         
+        
         //Para el ng-Options
         $scope.sucursalBancaria={};
         $scope.sucursalBancaria.entidadBancaria={};
         $scope.entidadBancaria={};
-        $scope.entidadBancaria.idEntidadBancaria=null;
+        
+   
         
         
         $scope.insert = function () {
-            $scope.sucursalBancaria.entidadBancaria.idEntidadBancaria=$scope.entidadBancaria.idEntidadBancaria;
             $http({
                 method: "POST",
                 url: contextPath + "/api/SucursalBancaria",
@@ -34,16 +37,22 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
             }).success(function(data) {
                 $scope.entidadesBancarias = data;
                 for (var i = 0; i < $scope.entidadesBancarias.length; i++){
-                    var fecha = $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria;
-                    $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria = new Date(fecha);
+                    var entidadBancaria=$scope.entidadesBancarias[i];
+                    var fecha = entidadBancaria.fechaCreacionEntidadBancaria;
+                    entidadBancaria.fechaCreacionEntidadBancaria = new Date(fecha);
+                    if (entidadBancaria.idEntidadBancaria===($routeParams.idEntidadBancaria*1)) {
+                        $scope.sucursalBancaria.entidadBancaria=entidadBancaria;
+                    }
                 }
+                
             }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };
         
         $scope.findAll();
-
+     
+        
     }]);
 
 app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
@@ -73,7 +82,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
-                //Asignacion al ng-options
                 $scope.entidadBancaria.idEntidadBancaria=$scope.sucursalBancaria.entidadBancaria.idEntidadBancaria;
         }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
@@ -83,8 +91,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.get();
 
         $scope.update = function () {
-            //Asignacion del ng-options
-            $scope.sucursalBancaria.entidadBancaria.idEntidadBancaria=$scope.entidadBancaria.idEntidadBancaria;
             $http({
                 method: "PUT",
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,

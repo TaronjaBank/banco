@@ -1,5 +1,5 @@
 app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
-
+        
         $scope.estado = {
             accion: 'insertar'
         };
