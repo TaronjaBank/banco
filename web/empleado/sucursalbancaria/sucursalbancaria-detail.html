@@ -8,7 +8,7 @@
         <div class="labelDetail">Dirección</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.direccionSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre Entidad</div>
-       <select ng-model="sucursalBancaria.entidadBancaria.idEntidadBancaria" ng-style="estilo" ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias" ng-disabled="estado.accion === 'borrar'" >
+       <select ng-model="sucursalBancaria.entidadBancaria.idEntidadBancaria" ng-style="estilo" ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias" ng-disabled="estado.accion === 'borrar'||insertdesdedetail.accion==='insertardesdedetail'" >
                 <option value="">--Elige opcion--</option>
             </select>
     </section>

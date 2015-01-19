@@ -41,6 +41,9 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                     entidadBancaria.fechaCreacionEntidadBancaria = new Date(fecha);
                     if (entidadBancaria.idEntidadBancaria===($routeParams.idEntidadBancaria*1)) {
                         $scope.sucursalBancaria.entidadBancaria=entidadBancaria;
+                        $scope.insertdesdedetail = {
+                            accion: 'insertardesdedetail'
+                        };
                     }
                 }
                 

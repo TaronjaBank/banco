@@ -37,6 +37,9 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                     var sucursalBancaria=$scope.sucursalesBancarias[i];
                     if (sucursalBancaria.idSucursalBancaria===($routeParams.idSucursalBancaria*1)) {
                         $scope.cuentaBancaria.sucursalBancaria=sucursalBancaria;
+                        $scope.insertdesdedetail = {
+                            accion: 'insertardesdedetail'
+                        };
                     }
                 }
             }).error(function () {

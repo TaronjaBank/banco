@@ -42,6 +42,9 @@ $scope.movimientoBancario={};
                     var cuentaBancaria=$scope.cuentasBancarias[i];
                     if (cuentaBancaria.idCuentaBancaria===($routeParams.idCuentaBancaria*1)) {
                         $scope.movimientoBancario.cuentaBancaria=cuentaBancaria;
+                        $scope.insertdesdedetail = {
+                            accion: 'insertardesdedetail'
+                        };
                     }
                 }
             }).error(function () {
