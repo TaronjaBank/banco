@@ -12,7 +12,7 @@
                 <option value="">--Elige opcion--</option>
             </select>
         <div class="labelDetail">Id Cliente</div>
-        
+          <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.idCliente" ng-disabled="estado.accion === 'borrar'"/>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cuenta</span>
