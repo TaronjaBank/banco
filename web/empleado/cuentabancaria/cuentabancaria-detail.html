@@ -3,12 +3,11 @@
     <div id="tituloDetail">Detalle Cuenta Bancaria</div>
 
     <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id Cuenta</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="cuentaBancaria.idCuentaBancaria" ng-disabled="true"/>
+        
         <div class="labelDetail">Número</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre Sucursal</div>
-        <select ng-model="sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" >
+        <select class="labelDetail" ng-model="sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" ng-disabled="estado.accion === 'borrar'">
                 <option value="">--Elige opcion--</option>
             </select>
         <div class="labelDetail">Id Cliente</div>

@@ -3,14 +3,11 @@
     <div id="tituloDetail">Detalle Entidad Bancaria</div>
 
     <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id Entidad</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="entidadBancaria.idEntidadBancaria" ng-disabled="true"/>
-        <div class="labelDetail">Código</div>
+       <div class="labelDetail">Código</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.codigoEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Fecha creación</div>
-        <!-- ui-date-format="dd-mm-yy"  -->
         <input ui-date class="inputDetail" type="text" ng-style="estilo"  ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
     </section>
 
@@ -27,14 +24,12 @@
 
     <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id sucursal</div>
         <div class="celdaCabecera columnaNombre">Nombre</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Dirección</div>
     </section>
 
     <section class="filaContenido" ng-repeat="sucursalBancaria in sucursalesBancarias">
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idSucursalBancaria}}</div>
             <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
         </div>

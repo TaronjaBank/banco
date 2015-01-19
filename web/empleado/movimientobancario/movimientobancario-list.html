@@ -2,21 +2,20 @@
 
     <p id="tituloTabla">Listado Movimientos Bancarios</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
         <div class="celdaCabecera columnaId-Codigo">Cuenta origen</div>
         <div class="celdaCabecera columnaCantidad">Cantidad</div>
-        <div class="celdaCabecera columnaConcepto-Direccion">Tipo</div>
-        <div class="celdaCabecera columnaId-Codigo">Numero Cuenta</div>
+        <div class="celdaCabecera columnaCantidad">Tipo</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Numero Cuenta</div>
     </section>
 
     <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
+            
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaOrigen}}</div>
             <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
-            <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.tipoMovimiento}}</div>
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
+            <div class="celdaContenido columnaCantidad">{{movimientoBancario.tipoMovimiento}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
         </div>
 
         <div class="celdaIconoTabla">

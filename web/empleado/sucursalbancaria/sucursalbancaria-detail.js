@@ -149,21 +149,27 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$htt
         $scope.irLista = function() {
             $location.path("/sucursalbancaria/list");
         };
-
+        
+        $scope.entidadesBancarias=[];
+        $scope.entidadBancaria={};
         $scope.get = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
+                $scope.entidadesBancarias[0]=$scope.sucursalBancaria.entidadBancaria;
+                $scope.entidadBancaria.idEntidadBancaria=$scope.entidadesBancarias[0].idEntidadBancaria;
+                
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
 
         $scope.get();
-
-
+      
+      
+        
         $scope.deleteData = function () {
             $http({
                 method: "DELETE",

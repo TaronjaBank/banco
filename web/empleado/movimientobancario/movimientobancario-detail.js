@@ -132,13 +132,16 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$h
         $scope.irLista = function() {
             $location.path("/movimientobancario/list");
         };
-
+        $scope.cuentasBancarias=[];
+        $scope.cuentaBancaria={};
         $scope.get = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function (data) {
                 $scope.movimientoBancario = data;
+                 $scope.cuentasBancarias[0]=$scope.movimientoBancario.cuentaBancaria;
+                $scope.cuentaBancaria.idCuentaBancaria=$scope.cuentasBancarias[0].idCuentaBancaria;
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });//success.Error
@@ -163,15 +166,5 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$h
             });//success.Error
         };//Consultar
 
-        $scope.findAll = function () {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/CuentaBancaria"
-            }).success(function (data) {
-                $scope.cuentasBancarias = data;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar  
-        $scope.findAll();
+        
     }]);

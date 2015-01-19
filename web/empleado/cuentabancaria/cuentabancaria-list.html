@@ -2,8 +2,7 @@
 
     <p id="tituloTabla">Listado Cuentas Bancarias</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id cuenta</div>
-        <div class="celdaCabecera columnaNumCuenta">Numero</div>
+        <div class="celdaCabecera columnaNumCuenta">Numero Cuenta</div>
         <div class="celdaCabecera columnaId-Codigo">Id sucursal</div>
         <div class="celdaCabecera columnaId-Codigo">Id cliente</div>
     </section>
@@ -11,7 +10,6 @@
     <section class="filaContenido" ng-repeat="cuentaBancaria in cuentasBancarias">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCuentaBancaria}}</div>
             <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
             <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.sucursalBancaria.nombreSucursalBancaria}}</div>
             <div class="celdaContenido columnaId-Codigo">{{cuentaBancaria.idCliente}}</div>

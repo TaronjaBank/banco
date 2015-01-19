@@ -2,19 +2,17 @@
 
     <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id Sucursal</div>
         <div class="celdaCabecera columnaNombre">Nombre</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Dirección</div>
-        <div class="celdaCabecera columnaNombre">Entidad</div>
+        <div class="celdaCabecera celdaContenido columnaConcepto-Direccion">Nombre Entidad</div>
     </section>
 
     <section class="filaContenido" ng-repeat="sucursalBancaria in sucursalesBancarias">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{sucursalBancaria.idSucursalBancaria}}</div>
             <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
-            <div class="celdaContenido columnaNombre">{{sucursalBancaria.entidadBancaria.nombreEntidadBancaria}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.entidadBancaria.nombreEntidadBancaria}}</div>
         </div>
 
         <div class="celdaIconoTabla">
