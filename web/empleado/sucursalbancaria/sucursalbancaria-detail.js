@@ -11,8 +11,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         
         //Para el ng-Options
         $scope.sucursalBancaria={};
-        $scope.sucursalBancaria.entidadBancaria={};
-        $scope.entidadBancaria={};
+        
         
    
         
@@ -66,11 +65,8 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.sucursalBancaria = {
             idSucursalBancaria: $routeParams.idSucursalBancaria
         };
-        //Para el ng-Options
-        $scope.sucursalBancaria.entidadBancaria={};
-        $scope.entidadBancaria={};
         
-        
+   
         $scope.irLista = function() {
             $location.path("/sucursalbancaria/list");
         };
@@ -82,7 +78,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
-                $scope.entidadBancaria.idEntidadBancaria=$scope.sucursalBancaria.entidadBancaria.idEntidadBancaria;
         }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -157,7 +152,7 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$htt
         };
         
         $scope.entidadesBancarias=[];
-        $scope.entidadBancaria={};
+        
         $scope.get = function () {
             $http({
                 method: "GET",

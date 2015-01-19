@@ -1,4 +1,4 @@
-app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
+app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
         
         $scope.estado = {
             accion: 'insertar'
@@ -14,15 +14,12 @@ $scope.tipoMovimientos = [
    {ID: '0', nombre: 'DEBE'},
    {ID: '1', nombre: 'HABER'}
 ];
+
 $scope.movimientoBancario={};
 
-        $scope.movimientoBancario.cuentaBancaria={};
-        $scope.cuentaBancaria={};
-        $scope.cuentaBancaria.idCuentaBancaria=null;
-        $scope.movimientoBancario.tipoMovimiento=null;
         
         $scope.insert = function () {
-              $scope.movimientoBancario.cuentaBancaria.idCuentaBancaria=$scope.cuentaBancaria.idCuentaBancaria;
+           
             $http({
                 method: "POST",
                 url: contextPath + "/api/MovimientoBancario",
@@ -41,6 +38,12 @@ $scope.movimientoBancario={};
                 url: contextPath + "/api/CuentaBancaria"
             }).success(function (data) {
                 $scope.cuentasBancarias = data;
+                for (var i = 0; i < $scope.cuentasBancarias.length; i++){
+                    var cuentaBancaria=$scope.cuentasBancarias[i];
+                    if (cuentaBancaria.idCuentaBancaria===($routeParams.idCuentaBancaria*1)) {
+                        $scope.movimientoBancario.cuentaBancaria=cuentaBancaria;
+                    }
+                }
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });//success.Error
@@ -64,19 +67,12 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             $location.path("/movimientobancario/list");
         };
         
-        
-
-        $scope.movimientoBancario.cuentaBancaria={};
-        $scope.cuentaBancaria={};
-        $scope.movimientoBancario.tipoMovimiento=null;
-
         $scope.get = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function (data) {
                 $scope.movimientoBancario = data;
-                $scope.cuentaBancaria.idCuentaBancaria=$scope.movimientoBancario.cuentaBancaria.idCuentaBancaria;
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });

@@ -1,4 +1,4 @@
-app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
+app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
         
         $scope.estado = {
             accion: 'insertar'
@@ -12,12 +12,8 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location"
         
         //Para el ng-Options
         $scope.cuentaBancaria={};
-        $scope.cuentaBancaria.sucursalBancaria={};
-        $scope.sucursalBancaria={};
-        $scope.sucursalBancaria.idSucursalBancaria=null;
         
         $scope.insert = function () {
-            $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria=$scope.sucursalBancaria.idSucursalBancaria;
             $http({
                 method: "POST",
                 data: $scope.cuentaBancaria,
@@ -27,7 +23,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location"
                 $scope.cuentaBancaria = null;
             }).error(function (data, status) {
                 alert("Error: no se ha podido realizar la operación");
-                //console.log(data + "    " + status);
             });
         };
         
@@ -38,6 +33,12 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location"
                 url: contextPath + "/api/SucursalBancaria"
             }).success(function (data) {
                 $scope.sucursalesBancarias = data;
+                for (var i = 0; i < $scope.sucursalesBancarias.length; i++){
+                    var sucursalBancaria=$scope.sucursalesBancarias[i];
+                    if (sucursalBancaria.idSucursalBancaria===($routeParams.idSucursalBancaria*1)) {
+                        $scope.cuentaBancaria.sucursalBancaria=sucursalBancaria;
+                    }
+                }
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });
@@ -62,9 +63,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             $location.path("/cuentabancaria/list");
         };
         
-         //Para el ng-Options
-        $scope.cuentaBancaria.sucursalBancaria={};
-        $scope.sucursalBancaria={};
+        
 
         $scope.get = function () {
             $http({
@@ -81,7 +80,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         $scope.get();
 
         $scope.update = function () {
-             $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria=$scope.sucursalBancaria.idSucursalBancaria;
+          
             $http({
                 method: "PUT",
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,

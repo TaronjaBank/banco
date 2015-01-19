@@ -7,7 +7,7 @@
         <div class="labelDetail">Número</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre Sucursal</div>
-        <select class="labelDetail" ng-model="sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" ng-disabled="estado.accion === 'borrar'">
+        <select class="labelDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" ng-disabled="estado.accion === 'borrar'">
                 <option value="">--Elige opcion--</option>
             </select>
         <div class="labelDetail">Id Cliente</div>
@@ -55,7 +55,7 @@
     </section>
 
     <section id="botoneraList">
-        <span id="botonNew" class="botonBackEnd"><a href="#/movimientobancario/new">Nuevo movimiento</a></span>
+        <span id="botonNew" class="botonBackEnd"><a href="#/movimientobancario/new/{{cuentaBancaria.idCuentaBancaria}}">Nuevo movimiento</a></span>
         <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
     </section>
 
