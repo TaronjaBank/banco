@@ -57,18 +57,24 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.sucursalBancaria = {
             idSucursalBancaria: $routeParams.idSucursalBancaria
         };
+        //Para el ng-Options
+        $scope.sucursalBancaria.entidadBancaria={};
+        $scope.entidadBancaria={};
+        
         
         $scope.irLista = function() {
             $location.path("/sucursalbancaria/list");
         };
 
         $scope.get = function () {
+            
             $http({
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
-                
+                //Asignacion al ng-options
+                $scope.entidadBancaria.idEntidadBancaria=$scope.sucursalBancaria.entidadBancaria.idEntidadBancaria;
         }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -77,6 +83,8 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.get();
 
         $scope.update = function () {
+            //Asignacion del ng-options
+            $scope.sucursalBancaria.entidadBancaria.idEntidadBancaria=$scope.entidadBancaria.idEntidadBancaria;
             $http({
                 method: "PUT",
                 url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
@@ -101,6 +109,23 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
         
         $scope.findAllCuentasBySucursal();
+        
+         $scope.findAll = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function(data) {
+                $scope.entidadesBancarias = data;
+                for (var i = 0; i < $scope.entidadesBancarias.length; i++){
+                    var fecha = $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria;
+                    $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria = new Date(fecha);
+                }
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAll();
 
     }]);
 

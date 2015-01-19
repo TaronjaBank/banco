@@ -7,10 +7,12 @@
         <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="cuentaBancaria.idCuentaBancaria" ng-disabled="true"/>
         <div class="labelDetail">Número</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Id Sucursal Bancaria</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">Nombre Sucursal</div>
+        <select ng-model="sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" >
+                <option value="">--Elige opcion--</option>
+            </select>
         <div class="labelDetail">Id Cliente</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.idCliente" ng-disabled="estado.accion === 'borrar'"/>
+        
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cuenta</span>

@@ -9,14 +9,20 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$locat
         $scope.irLista = function() {
             $location.path("/movimientobancario/list");
         };
-      
+      //ng-Options
 $scope.tipoMovimientos = [
    {ID: '0', nombre: 'DEBE'},
    {ID: '1', nombre: 'HABER'}
 ];
 $scope.movimientoBancario={};
-$scope.movimientoBancario.tipoMovimiento=null;
+
+        $scope.movimientoBancario.cuentaBancaria={};
+        $scope.cuentaBancaria={};
+        $scope.cuentaBancaria.idCuentaBancaria=null;
+        $scope.movimientoBancario.tipoMovimiento=null;
+        
         $scope.insert = function () {
+              $scope.movimientoBancario.cuentaBancaria.idCuentaBancaria=$scope.cuentaBancaria.idCuentaBancaria;
             $http({
                 method: "POST",
                 url: contextPath + "/api/MovimientoBancario",
@@ -28,6 +34,18 @@ $scope.movimientoBancario.tipoMovimiento=null;
                 alert("Error: no se ha podido realizar la operación");
             });//success.Error
         };
+        
+        $scope.findAll = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/CuentaBancaria"
+            }).success(function (data) {
+                $scope.cuentasBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });//success.Error
+        };//Consultar  
+        $scope.findAll();
     }]);
 
 app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
@@ -45,6 +63,12 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
         $scope.irLista = function() {
             $location.path("/movimientobancario/list");
         };
+        
+        
+
+        $scope.movimientoBancario.cuentaBancaria={};
+        $scope.cuentaBancaria={};
+        $scope.movimientoBancario.tipoMovimiento=null;
 
         $scope.get = function () {
             $http({
@@ -52,6 +76,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function (data) {
                 $scope.movimientoBancario = data;
+                $scope.cuentaBancaria.idCuentaBancaria=$scope.movimientoBancario.cuentaBancaria.idCuentaBancaria;
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -60,11 +85,11 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
 
         $scope.get();
        $scope.tipoMovimientos = [
-   {ID: '0', nombre: 'DEBE'},
-   {ID: '1', nombre: 'HABER'}
-];
+            {ID: '0', nombre: 'DEBE'},
+            {ID: '1', nombre: 'HABER'}
+            ];
         $scope.update = function () {
-
+            $scope.movimientoBancario.cuentaBancaria.idCuentaBancaria=$scope.cuentaBancaria.idCuentaBancaria;
             $http({
                 method: "PUT",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
@@ -78,6 +103,17 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             });
 
         };
+        $scope.findAll = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/CuentaBancaria"
+            }).success(function (data) {
+                $scope.cuentasBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });//success.Error
+        };//Consultar  
+        $scope.findAll();
 
     }]);
 
@@ -109,7 +145,6 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$h
         };//Consultar
 
         $scope.get();
-        $scope.get();
        $scope.tipoMovimientos = [
                 {ID: '0', nombre: 'DEBE'},
                 {ID: '1', nombre: 'HABER'}
@@ -128,5 +163,15 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$h
             });//success.Error
         };//Consultar
 
-
+        $scope.findAll = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/CuentaBancaria"
+            }).success(function (data) {
+                $scope.cuentasBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });//success.Error
+        };//Consultar  
+        $scope.findAll();
     }]);

@@ -9,8 +9,15 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location"
         $scope.irLista = function() {
             $location.path("/cuentabancaria/list");
         };
-
+        
+        //Para el ng-Options
+        $scope.cuentaBancaria={};
+        $scope.cuentaBancaria.sucursalBancaria={};
+        $scope.sucursalBancaria={};
+        $scope.sucursalBancaria.idSucursalBancaria=null;
+        
         $scope.insert = function () {
+            $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria=$scope.sucursalBancaria.idSucursalBancaria;
             $http({
                 method: "POST",
                 data: $scope.cuentaBancaria,
@@ -23,6 +30,19 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$location"
                 //console.log(data + "    " + status);
             });
         };
+        
+        $scope.findAll = function () {
+
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        $scope.findAll();
 
     }]);
 
@@ -41,6 +61,10 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         $scope.irLista = function() {
             $location.path("/cuentabancaria/list");
         };
+        
+         //Para el ng-Options
+        $scope.cuentaBancaria.sucursalBancaria={};
+        $scope.sucursalBancaria={};
 
         $scope.get = function () {
             $http({
@@ -48,6 +72,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria
             }).success(function (data) {
                 $scope.cuentaBancaria = data;
+                $scope.sucursalBancaria.idSucursalBancaria=$scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria;
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -56,6 +81,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         $scope.get();
 
         $scope.update = function () {
+             $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria=$scope.sucursalBancaria.idSucursalBancaria;
             $http({
                 method: "PUT",
                 url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
@@ -80,6 +106,19 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         };
         
         $scope.findAllMovimientosByCuenta();
+        
+        $scope.findAll = function () {
+
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        $scope.findAll();
     }]);
 
 app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
