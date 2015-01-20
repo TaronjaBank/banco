@@ -6,9 +6,9 @@
             maxIdle="30" 
             maxWait="10000" 
             name="jdbc/MySQLDS" 
-            username="usuarioOpenShift" 
-            password="contraseñaOpenshift" 
+            username="adminf8wj6Df" 
+            password="BN8BJYWzfk9i" 
             type="javax.sql.DataSource" 
-            url="jdbc:mysql://localhost:3306/banco" 
+            url="taronjabank" 
             validationQuery="SELECT 1 FROM dual"/>
 </Context>
