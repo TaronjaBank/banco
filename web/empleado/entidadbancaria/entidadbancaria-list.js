@@ -1,20 +1,7 @@
 app.controller("EntidadBancariaListController", ["$scope", "$http","$rootScope", function($scope, $http ,$rootScope) {
         
-         $scope.verEstadoSesion = function() {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/Session/Empleado"
-            }).success(function(data) {
-                if ($rootScope.empleado === data) {
-                    alert("Sesión abierta");
-                } else {
-                    $rootScope.empleado=data;
-                }
-            }).error(function(status) {
-                alert("Error en la peticiión al servidor; error: " + status);
-            });
-        };
-        $scope.verEstadoSesion();
+        
+        $rootScope.asignarEstadoSesion();
         
         $scope.findAll = function() {
             $http({

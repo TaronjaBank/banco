@@ -1,8 +1,5 @@
-app.controller("MovimientoBancarioListController", ["$scope", "$http", function ($scope, $http) {
-        
-        
-        
-        
+app.controller("MovimientoBancarioListController", ["$scope", "$http","$rootScope", function ($scope, $http, $rootScope) {
+        $rootScope.asignarEstadoSesion();
         $scope.findAll = function () {
             $http({
                 method: "GET",

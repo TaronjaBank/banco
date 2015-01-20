@@ -1,4 +1,5 @@
-app.controller("CuentaBancariaListController", ["$scope", "$http", function ($scope, $http) {
+app.controller("CuentaBancariaListController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+        $rootScope.asignarEstadoSesion();
         $scope.findAll = function () {
             $http({
                 method: "GET",

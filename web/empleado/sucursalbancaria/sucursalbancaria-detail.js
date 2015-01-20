@@ -1,7 +1,6 @@
-app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$location", "$routeParams", function ($scope, $http, $location,$routeParams) {
-        
+app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$location", "$routeParams", "$rootScope", function ($scope, $http, $location, $routeParams, $rootScope) {
+        $rootScope.asignarEstadoSesion();
        
-        
         $scope.estado = {
             accion: 'insertar'
         };
@@ -11,10 +10,6 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         
         //Para el ng-Options
         $scope.sucursalBancaria={};
-        
-        
-   
-        
         
         $scope.insert = function () {
             $http({
@@ -57,8 +52,8 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         
     }]);
 
-app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
-
+app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location",  "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
+        $rootScope.asignarEstadoSesion();
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -139,7 +134,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
 
 
 app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-
+        $rootScope.asignarEstadoSesion();
         $scope.estado = {
             accion: 'borrar'
         };
