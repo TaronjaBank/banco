@@ -88,7 +88,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             {ID: '1', nombre: 'HABER'}
             ];
         $scope.update = function () {
-            $scope.movimientoBancario.cuentaBancaria.idCuentaBancaria=$scope.cuentaBancaria.idCuentaBancaria;
+         
             $http({
                 method: "PUT",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
