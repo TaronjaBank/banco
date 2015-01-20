@@ -35,13 +35,13 @@ public class FilterImplSecurity implements Filter {
         String URI = httpServletRequest.getContextPath() + "/api/Session/Empleado";
 
         HttpSession httpSession = httpServletRequest.getSession(true);
-        Integer idEmpleado = (Integer) httpSession.getAttribute("idEmpleado");
+        String loginEmpleado = (String) httpSession.getAttribute("loginEmpleado");
 
         Boolean logueado;
         Boolean permitido;
 
                 
-        if (idEmpleado == null) {
+        if (loginEmpleado == null) {
             logueado = false;
         }else{
             logueado=true;
