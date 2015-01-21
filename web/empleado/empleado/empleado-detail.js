@@ -1,5 +1,5 @@
 app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
-
+        
         $scope.estado = {
             accion: 'insertar'
         };
