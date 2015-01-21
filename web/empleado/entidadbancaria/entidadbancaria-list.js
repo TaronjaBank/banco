@@ -1,7 +1,10 @@
-app.controller("EntidadBancariaListController", ["$scope", "$http","$rootScope", function($scope, $http ,$rootScope) {
+app.controller("EntidadBancariaListController", ["$scope", "$http","$rootScope", "$location", function($scope, $http ,$rootScope, $location) {
         
         
         $rootScope.asignarEstadoSesion();
+        if ($rootScope.empleado === null){
+            $location.path("/portada");
+        }
         
         $scope.findAll = function() {
             $http({

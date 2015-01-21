@@ -5,6 +5,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "IndexController"
         });
         
-        $routeProvider.otherwise({redirectTo: '/'});
+        $routeProvider.otherwise({redirectTo: '/portada'});
     }]);
 
