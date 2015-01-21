@@ -78,6 +78,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/EntidadBancaria/"+ $scope.entidadBancaria.idEntidadBancaria+"/SucursalBancaria"
             }).success(function(data) {
                 $scope.sucursalesBancarias = data;
+                
             }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });

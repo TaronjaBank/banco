@@ -21,7 +21,7 @@
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
 </section>
 
-<section id="tablaListado">
+<section id="tablaListado" ng-show="cuentasBancarias.length !== 0" ng-hide="estado.accion === 'insertar'">
 
     <p id="tituloTabla">Listado Cuentas Bancarias</p><br/>
     <section id="filaCabecera">
@@ -51,7 +51,6 @@
 
     <section id="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new/{{sucursalBancaria.idSucursalBancaria}}">Nueva cuenta</a></span>
-        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
     </section>
 
 </section>

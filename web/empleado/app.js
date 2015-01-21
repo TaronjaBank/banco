@@ -11,12 +11,10 @@ app.run(function ($rootScope, $http) {
                 method: "GET",
                 url: contextPath + "/api/Session/Empleado"
             }).success(function(data) {
-                if ($rootScope.empleado === data) {
-                    alert("Sesión abierta");
-                } else {
+               
                     $rootScope.empleado=data;
                     $rootScope.rol = "empleado";
-                }
+                
             }).error(function(status) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });

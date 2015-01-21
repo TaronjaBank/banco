@@ -1,5 +1,5 @@
-app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", function ($scope, $http, $location) {
-        
+app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", function ($scope, $http, $location, $rootScope) {
+        $rootScope.asignarEstadoSesion();
         $scope.estado = {
             accion: 'insertar'
         };
@@ -26,8 +26,8 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", func
     }]);
 
 
-app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
-
+app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
+        $rootScope.asignarEstadoSesion();
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -73,7 +73,7 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
     }]);
 
 app.controller("EmpleadoDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-
+        $rootScope.asignarEstadoSesion();
         $scope.estado = {
             accion: 'borrar'
         };

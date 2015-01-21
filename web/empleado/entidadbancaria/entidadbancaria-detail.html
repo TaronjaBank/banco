@@ -20,7 +20,7 @@
 </section>
 
                 <!-- Tabla de Sucursales Bancarias.  -->
-<section id="tablaListado">
+<section id="tablaListado" ng-show="sucursalesBancarias.length !== 0" ng-hide="estado.accion === 'insertar'">
 
     <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
     <section id="filaCabecera">
@@ -47,7 +47,6 @@
 
     <section id="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/sucursalbancaria/new/{{entidadBancaria.idEntidadBancaria}}">Nueva sucursal</a></span>
-        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
     </section>
 
 </section>
