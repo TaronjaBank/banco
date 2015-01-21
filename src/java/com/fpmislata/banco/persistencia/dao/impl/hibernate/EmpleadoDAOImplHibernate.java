@@ -5,6 +5,8 @@ import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
 import org.hibernate.Session;
 import com.fpmislata.banco.dominio.Empleado;
 import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
+import java.util.List;
+import org.hibernate.Query;
 
 public class EmpleadoDAOImplHibernate extends GenericDAOImplHibernate<Empleado> implements EmpleadoDAO {
 
@@ -13,7 +15,9 @@ public class EmpleadoDAOImplHibernate extends GenericDAOImplHibernate<Empleado> 
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Empleado empleado = (Empleado) session.get(Empleado.class, loginEmpleado);
+        Query query = session.createQuery("SELECT e FROM Empleado e where loginEmpleado=:loginEmpleado");
+        query.setParameter("loginEmpleado",loginEmpleado);
+        Empleado empleado =(Empleado) query.uniqueResult();
         session.getTransaction().commit();
 
         return empleado;

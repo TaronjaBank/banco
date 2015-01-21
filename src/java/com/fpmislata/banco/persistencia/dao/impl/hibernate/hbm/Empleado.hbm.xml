@@ -2,8 +2,8 @@
  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.banco.dominio.Empleado" table="empleado" >
-        <id column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
-        <property name="idEmpleado" column="idEmpleado" access="field" />
+        <id name="idEmpleado" column="idEmpleado" access="field" />
+        <property column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
         <property name="dniEmpleado" column="dniEmpleado" access="field" />
         <property name="nombreEmpleado" column="nombreEmpleado" access="field" />
         <property name="apellido1Empleado" column="apellido1Empleado" access="field" />
