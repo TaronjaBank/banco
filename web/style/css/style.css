@@ -333,7 +333,7 @@ body {
               opacity: .9; }
         body #capaSuperior #seccionCentral #contenidos #tablaListado {
           /* Tabla de listado consulta findAll */
-          margin-left: 40px; }
+          margin: 100px 0 0 60px; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado #tituloTabla {
             color: grey;
             margin: 80px 0 15px;
@@ -386,7 +386,7 @@ body {
                 transition-duration: .3s; }
         body #capaSuperior #seccionCentral #contenidos #contenedorDetail {
           width: 550px;
-          margin: 100px auto; }
+          margin: 50px 0 0 60px; }
           body #capaSuperior #seccionCentral #contenidos #contenedorDetail #tituloDetail {
             padding: 3px 10px 1px;
             margin-bottom: 10px;
