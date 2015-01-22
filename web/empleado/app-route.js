@@ -1,6 +1,6 @@
 app.config(['$routeProvider', function ($routeProvider) {
         
-        $routeProvider.when('/index', {
+        $routeProvider.when('/indexEmpleado', {
             templateUrl: "index.html",
             controller: "IndexController"
         });

@@ -78,8 +78,8 @@
                 <section id="cabecera-Centro"></section>
                 <section id="cabecera-Login" ng-show="empleado!==null">
                     <p class="tituloLogin">Cambiar a...</p>
-                    <div id="botonClientes" class="botonHeader" ng-hide="rol==='cliente'">CLIENTE</div>
-                    <div id="botonEmpleados" class="botonHeader" ng-hide="rol==='empleado'">EMPLEADO</div>
+                    <div id="botonClientes" class="botonHeader" ng-show="empleado!==null">CLIENTE</div>
+                    <div id="botonEmpleados" class="botonHeader" ng-show="empleado===null">EMPLEADO</div>
                     <p id="cerrarSesion" class="tituloLogin" ng-click="logOut()">Cerrar sesión {{empleado.apellido1Empleado}}, {{empleado.nombreEmpleado}}</p>
                     
                 </section>

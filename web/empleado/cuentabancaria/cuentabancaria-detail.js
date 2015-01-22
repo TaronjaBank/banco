@@ -1,14 +1,10 @@
 app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'insertar'
         };
         
         $scope.estilo = "";
-        
-        $scope.irLista = function() {
-            $location.path("/cuentabancaria/list");
-        };
         
         //Para el ng-Options
         $scope.cuentaBancaria={};
@@ -19,16 +15,14 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 data: $scope.cuentaBancaria,
                 url: contextPath + "/api/CuentaBancaria"
             }).success(function (data) {
-                $scope.cuentaBancaria = data;
                 $scope.cuentaBancaria = null;
             }).error(function (data, status) {
-                alert("Error: no se ha podido realizar la operación");
+                alert("Error: No se ha podido Insertar");
             });
         };
         
         $scope.findAll = function () {
-
-            $http({
+             $http({
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria"
             }).success(function (data) {
@@ -43,7 +37,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                     }
                 }
             }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
+                alert("Error: no se ha podido listar las Sucursales");
             });
         };
         $scope.findAll();
@@ -51,7 +45,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
     }]);
 
 app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -62,12 +56,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             idCuentaBancaria:$routeParams.idCuentaBancaria
         };
         
-        $scope.irLista = function() {
-            $location.path("/cuentabancaria/list");
-        };
         
-        
-
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -90,7 +79,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 data: $scope.cuentaBancaria
             }).success(function () {
                 $scope.cuentaBancaria = {};
-                $scope.irLista();
+                $location.path("/cuentabancaria/list");
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });
@@ -124,7 +113,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
     }]);
 
 app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'borrar'
         };

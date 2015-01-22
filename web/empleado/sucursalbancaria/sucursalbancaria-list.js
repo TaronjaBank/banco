@@ -1,5 +1,5 @@
 app.controller("SucursalBancariaListController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         
         $scope.sucursalesBancarias = {};
 

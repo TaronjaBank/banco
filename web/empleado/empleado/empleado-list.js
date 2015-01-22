@@ -1,5 +1,5 @@
 app.controller("EmpleadoListController", ["$scope", "$http", "$rootScope", "$location", function ($scope, $http, $rootScope, $location) {
-        $rootScope.asignarEstadoSesion();
+        
         
         $scope.findAll = function () {
             $http({

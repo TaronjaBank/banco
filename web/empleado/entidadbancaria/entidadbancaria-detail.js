@@ -1,5 +1,5 @@
 app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         
         $scope.estado = {
             accion: 'insertar'
@@ -30,7 +30,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
 
 
 app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -89,7 +89,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
     }]);
 
 app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'borrar'
         };

@@ -1,5 +1,5 @@
 app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'insertar'
         };
@@ -55,7 +55,7 @@ $scope.movimientoBancario={};
     }]);
 
 app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -117,7 +117,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
     }]);
 
 app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.asignarEstadoSesion();
+        
         $scope.estado = {
             accion: 'borrar'
         };
