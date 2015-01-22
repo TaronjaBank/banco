@@ -1,3 +1,6 @@
-app.controller("CuentaBancariaMainController", [function(){}]);
+app.controller("CuentaBancariaMainController", ["$rootScope",function($rootScope){
+         $rootScope.comprobarSesion();
+        
+}]);
 
 

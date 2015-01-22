@@ -1,5 +1,5 @@
 app.controller("MovimientoBancarioListController", ["$scope", "$http","$rootScope", function ($scope, $http, $rootScope) {
-        
+        $rootScope.comprobarSesion();
         $scope.findAll = function () {
             $http({
                 method: "GET",

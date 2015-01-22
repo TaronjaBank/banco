@@ -1,3 +1,4 @@
-app.controller("MovimientoBancarioMainController", [function(){}]);
-
-
+app.controller("MovimientoBancarioMainController", ["$rootScope",function($rootScope){
+         $rootScope.comprobarSesion();
+        
+}]);

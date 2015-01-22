@@ -1,5 +1,5 @@
 app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'insertar'
         };
@@ -45,7 +45,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
     }]);
 
 app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -113,7 +113,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
     }]);
 
 app.controller("CuentaBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        
+         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'borrar'
         };

@@ -1,6 +1,5 @@
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$location", "$routeParams", "$rootScope", function ($scope, $http, $location, $routeParams, $rootScope) {
-        
-       
+        $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'insertar'
         };
@@ -53,7 +52,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
     }]);
 
 app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location",  "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -134,7 +133,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
 
 
 app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        
+         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'borrar'
         };

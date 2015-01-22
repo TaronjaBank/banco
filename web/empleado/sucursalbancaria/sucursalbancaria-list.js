@@ -1,7 +1,7 @@
 app.controller("SucursalBancariaListController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
         
-        
-        $scope.sucursalesBancarias = {};
+         $rootScope.comprobarSesion();
+       
 
         $scope.findAll = function () {
 
