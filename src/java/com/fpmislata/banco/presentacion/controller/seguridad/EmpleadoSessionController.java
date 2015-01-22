@@ -39,12 +39,17 @@ public class EmpleadoSessionController {
 
             if (httpSession != null) {
                 loginEmpleado= (String)httpSession.getAttribute("loginEmpleado");
+                
                 empleado=empleadoDAO.getFromLogin(loginEmpleado);
-
+                if (empleado == null) {
+                     httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                }
+                else{
                 jsonSalida = jsonTransformer.toJson(empleado);
                 httpServletResponse.getWriter().println(jsonSalida);
                 httpServletResponse.setContentType("application/json; char=UTF-8");
                 httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                }
             } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }

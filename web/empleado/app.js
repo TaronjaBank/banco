@@ -1,10 +1,23 @@
 var app = angular.module("app", ['ngRoute', 'ui.date']);
 
-app.run(function ($rootScope, $http) {
+app.run(function ($rootScope, $http, $location) {
     
     $rootScope.empleado = null;
     $rootScope.estiloBloqueado = {'background-color':'#ffb478', 'font-weight':'bolder'};//Estilo para los input disabled
-
+    $rootScope.comprobarSesion= function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Session/Empleado"
+            }).success(function(data,status) {
+                if(status===200){
+                    $rootScope.empleado=data;
+                }else{
+                    $location.path("/portada");
+                }
+            }).error(function(status) {
+                alert("Error en la peticiión al servidor; error: " + status);
+            });
+        };
 });
 
 app.constant('uiDateConfig', {

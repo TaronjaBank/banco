@@ -12,18 +12,6 @@ app.controller("LoginController", ['$scope', '$location', '$http', '$rootScope',
                 alert("No se ha podido inciar sesión, revise los datos introducidos");
             });
         };
-
-        $scope.getSesion = function() {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/Session/Empleado"
-            }).success(function(data) {
-                $rootScope.empleado = data;
-            }).error(function(status) {
-                alert("Error en la peticiión al servidor; error: " + status);
-            });
-        };
-
         $scope.logOut = function() {
             $http({
                 method: "DELETE",
