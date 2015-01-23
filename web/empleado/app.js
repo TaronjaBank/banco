@@ -1,6 +1,6 @@
 var app = angular.module("app", ['ngRoute', 'ui.date']);
 
-app.run(function ($rootScope, $http, $location) {
+app.run(function ($rootScope, $http, $location, $q) {
     
     $rootScope.empleado = null;
     $rootScope.estiloBloqueado = {'background-color':'#ffb478', 'font-weight':'bolder'};//Estilo para los input disabled
@@ -18,13 +18,26 @@ app.run(function ($rootScope, $http, $location) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
         };
-        $rootScope.comprobarSesiona= function(funcionparameter) {
+        
+        $rootScope.comprobarSesiona= function() {
+            var defered = $q.defer();
+            var promise = defered.promise;
             $http({
                 method: "GET",
                 url: contextPath + "/api/Session/Empleado"
+            }).success(function(data,status) {
+                if(status===200){
+                    $rootScope.empleado=data;
+                    defered.resolve(status);
+                }else{
+                    $location.path("/portada");
+                }
+            }).error(function(status) {
+                defered.reject(status);
             });
+           return promise; 
         };
-});
+  });
 
 app.constant('uiDateConfig', {
     dateFormat: "dd-mm-yy",

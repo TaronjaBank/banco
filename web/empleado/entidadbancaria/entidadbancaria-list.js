@@ -15,15 +15,16 @@ app.controller("EntidadBancariaListController", ["$rootScope", "$scope", "$http"
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        
-        $rootScope.comprobarSesiona($scope.findAll).success(function(data,status) {
-                if(status===200){
-                    $rootScope.empleado=data;
-                    $scope.findAll;
-                }else{
-                    $location.path("/portada");
-                }
-            });
+        f      
+        var promise = $rootScope.comprobarSesiona();
+        promise.then(function(status) {
+            if(status===200){
+                $scope.findAll();
+            }
+        }, function(error) {
+            alert("Error: no se ha podido realizar la operación");
+        });
+ 
         
     }]);
 
