@@ -10,6 +10,54 @@
 <project name="banco" default="default" basedir=".">
     <description>Builds, tests, and runs the project banco.</description>
     <import file="nbproject/build-impl.xml"/>
+    
+    <target name="-pre-dist" if="openshift">
+        <delete file="build/web/META-INF/context.xml"></delete>
+        <move file="build/web/META-INF/context.openshift.xml" tofile="build/web/META-INF/context.xml"></move>
+    </target>
+    
+    <target name="-post-dist">
+        <move file="dist/banco.war" tofile="dist/ROOT.war"></move>
+    </target>
+    
+    <target name="distOpenShift" depends="enableopenshift,dist">
+        
+        <delete dir="../taronjabank"></delete>
+        <git command="clone"  dir=".." options="ssh://54c21264fcf933ea1e000040@taronjabank-taronjabank.rhcloud.com/~/git/taronjabank.git/"></git>
+        <delete file="../taronjabank/webapps/ROOT.war"></delete>
+        <copy file="dist/ROOT.war" todir="../taronjabank/webapps"></copy>
+        <git dir="../taronjabank" command="add *"></git>
+        <git dir="../taronjabank" command="commit" options=" -am 'commit'"></git>
+        <git dir="../taronjabank" command="push"></git>
+        
+    </target>
+    
+    <target name="enableopenshift" >
+        <property name="libs.CopyLibs.classpath" value="bin/ant/lib/org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+        <property name="j2ee.server.home" value="bin/ant"/>
+ 
+        <property name="openshift" value="true" />
+    </target>    
+
+<!--
+    	Start Git Macros
+-->
+<macrodef name="git">
+    <attribute name="command" />
+    <attribute name="options" default="" />
+    <attribute name="dir" default="" />
+    <attribute name="failerror" default="false" />
+    <element name="args" optional="true" />
+    <sequential>
+        <echo message="git dir @{dir}" />
+        <echo message="git @{command}" />
+        <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
+            <arg line="@{command} @{options}" />
+            <args />
+        </exec>
+    </sequential>
+</macrodef>
+    
     <!--
 
     There exist several targets which are by default empty and which can be 
