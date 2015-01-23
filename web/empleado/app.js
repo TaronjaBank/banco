@@ -18,6 +18,12 @@ app.run(function ($rootScope, $http, $location) {
                 alert("Error en la peticiión al servidor; error: " + status);
             });
         };
+        $rootScope.comprobarSesiona= function(funcionparameter) {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Session/Empleado"
+            });
+        };
 });
 
 app.constant('uiDateConfig', {
