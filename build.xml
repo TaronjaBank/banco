@@ -16,7 +16,7 @@
         <move file="build/web/META-INF/context.openshift.xml" tofile="build/web/META-INF/context.xml"></move>
     </target>
     
-    <target name="-post-dist">
+    <target name="-post-dist" if="openshift">
         <move file="dist/banco.war" tofile="dist/ROOT.war"></move>
     </target>
     
