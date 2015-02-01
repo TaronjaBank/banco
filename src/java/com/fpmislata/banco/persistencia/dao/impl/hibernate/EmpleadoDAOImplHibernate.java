@@ -14,13 +14,12 @@ public class EmpleadoDAOImplHibernate extends GenericDAOImplHibernate<Empleado> 
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("SELECT e FROM Empleado e where loginEmpleado=:loginEmpleado");
-        query.setParameter("loginEmpleado",loginEmpleado);
-        Empleado empleado =(Empleado) query.uniqueResult();
+        Query query = session.createQuery("SELECT e FROM Empleado e WHERE loginEmpleado=:loginEmpleado");
+        query.setParameter("loginEmpleado", loginEmpleado);
+        Empleado empleado = (Empleado) query.uniqueResult();
         session.getTransaction().commit();
 
         return empleado;
     }
 
 }
-

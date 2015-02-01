@@ -47,12 +47,12 @@ INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido
 	(3, '12345-B', 'Ivan', 'Sanchez', 'Aaaa', 3, 'login3', 'password3'),
 	(4, '45678-C', 'Fran', 'Navarro', 'Flores', 4, 'login4', 'password4');
 
-INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cliente`, `apellido2Cliente`, `idCuentaBancaria`) VALUES
-	(1, '123456789-R', 'Marti', 'Gomez', 'Fabia', 1),
-	(2, '987654321-Q', 'Jona', 'Hidalgo', 'Mora', 2),
-	(3, '123456789-A', 'Ivan', 'Sanchez', 'Aaaa', 3),
-	(4, '123456789-B', 'Fran', 'Navarro', 'Flores', 4),
-	(5, 'prueba', 'prueba', 'prueba', 'prueba', 5);
+INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cliente`, `apellido2Cliente`, `loginCliente`, `passwordCliente`, `idCuentaBancaria`) VALUES
+	(1, '123456789-R', 'Marti', 'Gomez', 'Fabia', 'cliente1', 'cliente1', 1),
+	(2, '987654321-Q', 'Jona', 'Hidalgo', 'Mora', 'cliente2', 'cliente2', 2),
+	(3, '123456789-A', 'Ivan', 'Sanchez', 'Aaaa', 'cliente3', 'cliente3', 3),
+	(4, '123456789-B', 'Fran', 'Navarro', 'Flores', 'cliente4', 'cliente4', 4),
+	(5, 'prueba', 'prueba', 'prueba', 'prueba', 'cliente5', 'cliente5', 5);
 
 
 

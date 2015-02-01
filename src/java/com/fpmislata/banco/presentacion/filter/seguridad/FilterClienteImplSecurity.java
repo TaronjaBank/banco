@@ -29,7 +29,7 @@ public class FilterClienteImplSecurity implements Filter {
         
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-        String URI = httpServletRequest.getContextPath() + "api/Session/Cliente";
+        String URI = httpServletRequest.getContextPath() + "/api/Session/Cliente";
 
         HttpSession httpSession = httpServletRequest.getSession(true);
         String loginCliente = (String) httpSession.getAttribute("loginCliente");

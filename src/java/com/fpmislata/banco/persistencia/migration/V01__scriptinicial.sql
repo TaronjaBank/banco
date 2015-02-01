@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `nombreCliente` varchar(50) NOT NULL,
   `apellido1Cliente` varchar(50) DEFAULT NULL,
   `apellido2Cliente` varchar(50) DEFAULT NULL,
+  `loginCliente` varchar(50) NOT NULL,
+  `passwordCliente` varchar(50) NOT NULL,
   `idCuentaBancaria` int(11) NOT NULL,
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
