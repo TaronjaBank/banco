@@ -20,12 +20,14 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String dniCliente, String nombreCliente, String apellido1Cliente, String apellido2Cliente, Set<CuentaBancaria> cuentasBancarias) {
+    public Cliente(int idCliente, String dniCliente, String nombreCliente, String apellido1Cliente, String apellido2Cliente, String loginCliente, String passwordCliente, Set<CuentaBancaria> cuentasBancarias) {
         this.idCliente = idCliente;
         this.dniCliente = dniCliente;
         this.nombreCliente = nombreCliente;
         this.apellido1Cliente = apellido1Cliente;
         this.apellido2Cliente = apellido2Cliente;
+        this.loginCliente = loginCliente;
+        this.passwordCliente = passwordCliente;
         this.cuentasBancarias = cuentasBancarias;
     }
 
