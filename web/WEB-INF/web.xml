@@ -13,11 +13,19 @@
     </session-config>
     
     <filter>
-        <filter-name>FilterImplSecurity</filter-name>
-        <filter-class>com.fpmislata.banco.presentacion.filter.seguridad.FilterImplSecurity</filter-class>
+        <filter-name>FilterEmpleadoImplSecurity</filter-name>
+        <filter-class>com.fpmislata.banco.presentacion.filter.seguridad.FilterEmpleadoImplSecurity</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>FilterImplSecurity</filter-name>
+        <filter-name>FilterEmpleadoImplSecurity</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>FilterClienteImplSecurity</filter-name>
+        <filter-class>com.fpmislata.banco.presentacion.filter.seguridad.FilterClienteImplSecurity</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterClienteImplSecurity</filter-name>
         <url-pattern>/api/*</url-pattern>
     </filter-mapping>
     
@@ -33,7 +41,6 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -42,15 +49,12 @@
             classpath:com/fpmislata/banco/servicio/seguridad/securityContext.xml
         </param-value>
     </context-param>
-    
-     <listener>
+    <listener>
         <listener-class>com.fpmislata.banco.presentacion.listener.persistencia.migration.ServletContextListenerImplDataBase</listener-class>
     </listener>
-    
     <listener>
         <listener-class>com.fpmislata.banco.presentacion.listener.persistencia.hibernate.ServletContextListenerImplHibernate</listener-class>
     </listener>
-    
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

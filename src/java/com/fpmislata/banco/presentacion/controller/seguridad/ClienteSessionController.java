@@ -1,10 +1,10 @@
 package com.fpmislata.banco.presentacion.controller.seguridad;
 
 import com.fpmislata.banco.common.json.JsonTransformer;
+import com.fpmislata.banco.dominio.Cliente;
 import com.fpmislata.banco.dominio.Credencial;
-import com.fpmislata.banco.dominio.Empleado;
-import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
-import com.fpmislata.banco.servicio.seguridad.EmpleadoAuthentication;
+import com.fpmislata.banco.persistencia.dao.ClienteDAO;
+import com.fpmislata.banco.servicio.seguridad.ClienteAuthentication;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,78 +16,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/Session/Empleado")
-public class EmpleadoSessionController {
+@RequestMapping("/Session/Cliente")
+public class ClienteSessionController {
 
+    @Autowired
+    ClienteDAO clienteDAO;
     @Autowired
     JsonTransformer jsonTransformer;
     @Autowired
-    EmpleadoDAO empleadoDAO;
-    @Autowired
-    EmpleadoAuthentication empleadoAuthentication;
+    ClienteAuthentication clienteAuthentication;
 
     @RequestMapping(method = RequestMethod.GET)
     public void get(
             HttpServletRequest httpServletRequest,
-            HttpServletResponse httpServletResponse) throws IOException {
-        try {
-            String loginEmpleado;
-            String jsonSalida;
-            Empleado empleado;
+            HttpServletResponse httpServletResponse) {
 
+        try {
             HttpSession httpSession = httpServletRequest.getSession(true);
 
             if (httpSession != null) {
-                loginEmpleado = (String) httpSession.getAttribute("loginEmpleado");
-
-                empleado = empleadoDAO.getFromLogin(loginEmpleado);
-                if (empleado == null) {
+                String loginCliente = (String) httpSession.getAttribute("loginCliente");
+                Cliente cliente = clienteDAO.getFromLogin(loginCliente);
+                if (cliente == null) {
                     httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
                 } else {
-                    jsonSalida = jsonTransformer.toJson(empleado);
+                    String jsonSalida = jsonTransformer.toJson(cliente);
                     httpServletResponse.getWriter().println(jsonSalida);
-                    httpServletResponse.setContentType("application/json; char=UTF-8");
                     httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                    httpServletResponse.setContentType("application/json; char=UTF-8");
                 }
             } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }
-
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public void logIn(
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
-            @RequestBody String jsonEntrada) throws IOException {
+            @RequestBody String jsonEntrada) {
 
-        String jsonSalida;
-        Credencial credencial;
-        Empleado empleado;
-        HttpSession httpSession;
         try {
-            credencial = (Credencial) jsonTransformer.fromJson(jsonEntrada, Credencial.class);
-            System.out.println("password: " + credencial.getPassword());
-            empleado = empleadoAuthentication.authenticate(credencial);
+            Credencial credencial = (Credencial) jsonTransformer.fromJson(jsonEntrada, Credencial.class);
+            Cliente cliente = clienteAuthentication.authenticate(credencial);
+            if (cliente != null) {
+                HttpSession httpSession = httpServletRequest.getSession(true);
+                httpSession.setAttribute("loginCLiente", cliente.getLoginCliente());
 
-            if (empleado != null) {
-                httpSession = httpServletRequest.getSession(true);
-                httpSession.setAttribute("loginEmpleado", empleado.getLoginEmpleado());
-
-                jsonSalida = jsonTransformer.toJson(empleado);
+                String jsonSalida = jsonTransformer.toJson(cliente);
                 httpServletResponse.getWriter().println(jsonSalida);
-                httpServletResponse.setContentType("application/json; char=UTF-8");
                 httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.setContentType("application/json; char=UTF-8");
             } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
-
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
@@ -96,8 +86,7 @@ public class EmpleadoSessionController {
             HttpServletResponse httpServletResponse) throws IOException {
 
         HttpSession httpSession = httpServletRequest.getSession(true);
-        httpSession.setAttribute("loginEmpleado", null);
-
+        httpSession.setAttribute("loginCliente", null);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
     }

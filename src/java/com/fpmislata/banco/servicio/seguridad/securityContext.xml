@@ -9,6 +9,7 @@
     <context:annotation-config/>
     
     <bean class="com.fpmislata.banco.servicio.seguridad.impl.EmpleadoAuthenticationImplDataBase" />
+    <bean class="com.fpmislata.banco.servicio.seguridad.impl.ClienteAuthenticationImplDataBase" />
     
 </beans>
 

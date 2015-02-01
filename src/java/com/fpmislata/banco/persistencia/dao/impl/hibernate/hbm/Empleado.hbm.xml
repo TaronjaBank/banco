@@ -3,12 +3,12 @@
 <hibernate-mapping>
     <class name="com.fpmislata.banco.dominio.Empleado" table="empleado" >
         <id name="idEmpleado" column="idEmpleado" access="field" />
-        <property column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
         <property name="dniEmpleado" column="dniEmpleado" access="field" />
         <property name="nombreEmpleado" column="nombreEmpleado" access="field" />
         <property name="apellido1Empleado" column="apellido1Empleado" access="field" />
         <property name="apellido2Empleado" column="apellido2Empleado" access="field" />
         <property name="idSucursalBancaria" column="idSucursalBancaria" access="field" />
+        <property name="loginEmpleado" column="loginEmpleado" type="string" access="field" />
         <property name="passwordEmpleado" column="passwordEmpleado" access="field" />
     </class>
 </hibernate-mapping>

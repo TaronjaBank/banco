@@ -12,6 +12,8 @@ public class Cliente {
     String nombreCliente;
     String apellido1Cliente;
     String apellido2Cliente;
+    String loginCliente;
+    String passwordCliente;
     @JsonIgnore
     private Set<CuentaBancaria> cuentasBancarias;
 
@@ -65,6 +67,22 @@ public class Cliente {
 
     public void setApellido2Cliente(String apellido2Cliente) {
         this.apellido2Cliente = apellido2Cliente;
+    }
+
+    public String getLoginCliente() {
+        return loginCliente;
+    }
+
+    public void setLoginCliente(String loginCliente) {
+        this.loginCliente = loginCliente;
+    }
+
+    public String getPasswordCliente() {
+        return passwordCliente;
+    }
+
+    public void setPasswordCliente(String passwordCliente) {
+        this.passwordCliente = passwordCliente;
     }
 
     public Set<CuentaBancaria> getCuentasBancarias() {

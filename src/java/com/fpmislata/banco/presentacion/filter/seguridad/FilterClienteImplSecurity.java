@@ -14,11 +14,8 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-/**
- *
- * @author Administrador
- */
-public class FilterImplSecurity implements Filter {
+
+public class FilterClienteImplSecurity implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,35 +26,34 @@ public class FilterImplSecurity implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
+        
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-        String URI = httpServletRequest.getContextPath() + "/api/Session/Empleado";
+        String URI = httpServletRequest.getContextPath() + "api/Session/Cliente";
 
         HttpSession httpSession = httpServletRequest.getSession(true);
-        String loginEmpleado = (String) httpSession.getAttribute("loginEmpleado");
+        String loginCliente = (String) httpSession.getAttribute("loginCliente");
 
         Boolean logueado;
         Boolean permitido;
 
-                
-        if (loginEmpleado == null) {
+        if (loginCliente == null) {
             logueado = false;
-        }else{
-            logueado=true;
+        } else {
+            logueado = true;
         }
-
-        if (httpServletRequest.getRequestURI().equals(URI)) {
+        
+        if (httpServletRequest.getRequestURI().equals(URI)){
             permitido = true;
         } else {
-            if (logueado) {
+            if (logueado){
                 permitido = true;
-            }else{
-                permitido=false;
+            } else {
+                permitido = false;
             }
         }
-
-        if (permitido) {
+        
+        if (permitido){
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         } else {
             httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);

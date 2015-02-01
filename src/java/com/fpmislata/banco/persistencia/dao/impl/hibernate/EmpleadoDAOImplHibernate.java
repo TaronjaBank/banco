@@ -1,11 +1,10 @@
 package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.GenericDAOImplHibernate;
-import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
-import org.hibernate.Session;
 import com.fpmislata.banco.dominio.Empleado;
 import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
-import java.util.List;
+import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
+import org.hibernate.Session;
 import org.hibernate.Query;
 
 public class EmpleadoDAOImplHibernate extends GenericDAOImplHibernate<Empleado> implements EmpleadoDAO {
