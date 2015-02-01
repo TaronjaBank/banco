@@ -5,9 +5,9 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `nombreCliente` varchar(50) NOT NULL,
   `apellido1Cliente` varchar(50) DEFAULT NULL,
   `apellido2Cliente` varchar(50) DEFAULT NULL,
+  `idCuentaBancaria` int(11) NOT NULL,
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 CREATE TABLE IF NOT EXISTS `entidadBancaria` (
@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `entidadBancaria` (
   PRIMARY KEY (`idEntidadBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 CREATE TABLE IF NOT EXISTS `sucursalBancaria` (
   `idSucursalBancaria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreSucursalBancaria` varchar(50) DEFAULT NULL,
@@ -27,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `sucursalBancaria` (
   KEY `FKEntidadBancariaSucursal` (`idEntidadBancaria`),
   CONSTRAINT `FK_sucursalBancaria_entidadBancaria` FOREIGN KEY (`idEntidadBancaria`) REFERENCES `entidadBancaria` (`idEntidadBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `cuentaBancaria` (
   `idCuentaBancaria` int(11) NOT NULL AUTO_INCREMENT,
@@ -40,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `cuentaBancaria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
 CREATE TABLE IF NOT EXISTS `movimientoBancario` (
   `idMovimientoBancario` int(11) NOT NULL AUTO_INCREMENT,
   `idCuentaBancariaOrigen` int(11) NOT NULL,
@@ -52,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `movimientoBancario` (
   KEY `FKCuentaBancariaMovimiento2` (`idCuentaBancaria`),
   CONSTRAINT `FK_movimientobancario_cuentabancaria` FOREIGN KEY (`idCuentaBancaria`) REFERENCES `cuentaBancaria` (`idCuentaBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `empleado` (
   `idEmpleado` int(11) NOT NULL DEFAULT '0',

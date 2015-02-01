@@ -38,7 +38,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:com/fpmislata/banco/common/json/jsonContext.xml
-            classpath:com/fpmislata/banco/persistencia/dao/daoContext.xml
+            classpath:com/fpmislata/banco/persistencia/dao/impl/hibernate/daoImplHibernateContext.xml
             classpath:com/fpmislata/banco/servicio/seguridad/securityContext.xml
         </param-value>
     </context-param>
