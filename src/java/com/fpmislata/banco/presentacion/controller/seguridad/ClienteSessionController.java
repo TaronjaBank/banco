@@ -29,7 +29,7 @@ public class ClienteSessionController {
     @RequestMapping(method = RequestMethod.GET)
     public void get(
             HttpServletRequest httpServletRequest,
-            HttpServletResponse httpServletResponse) {
+            HttpServletResponse httpServletResponse) throws IOException {
 
         try {
             HttpSession httpSession = httpServletRequest.getSession(true);
@@ -58,10 +58,11 @@ public class ClienteSessionController {
     public void logIn(
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
-            @RequestBody String jsonEntrada) {
+            @RequestBody String jsonEntrada) throws IOException {
 
         try {
             Credencial credencial = (Credencial) jsonTransformer.fromJson(jsonEntrada, Credencial.class);
+            System.out.println("password: " + credencial.getPassword());
             Cliente cliente = clienteAuthentication.authenticate(credencial);
             if (cliente != null) {
                 HttpSession httpSession = httpServletRequest.getSession(true);
