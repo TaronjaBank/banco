@@ -9,13 +9,15 @@ import java.util.Set;
 public class SucursalBancaria implements Serializable {
 
     int idSucursalBancaria;
+    String codigoSucursalBancaria;
     String nombreSucursalBancaria;
     String direccionSucursalBancaria;
     EntidadBancaria entidadBancaria;
-     @JsonIgnore
-    private Set<CuentaBancaria> cuentasBancarias;
     @JsonIgnore
-    private Set<Empleado> empleados;
+    Set<CuentaBancaria> cuentasBancarias;
+    @JsonIgnore
+    Set<Empleado> empleados;
+
     public SucursalBancaria() {
     }
 
@@ -34,6 +36,14 @@ public class SucursalBancaria implements Serializable {
         this.idSucursalBancaria = idSucursalBancaria;
     }
 
+    public String getCodigoSucursalBancaria() {
+        return codigoSucursalBancaria;
+    }
+
+    public void setCodigoSucursalBancaria(String codigoSucursalBancaria) {
+        this.codigoSucursalBancaria = codigoSucursalBancaria;
+    }
+
     public String getNombreSucursalBancaria() {
         return nombreSucursalBancaria;
     }
@@ -49,8 +59,7 @@ public class SucursalBancaria implements Serializable {
     public void setDireccionSucursalBancaria(String direccionSucursalBancaria) {
         this.direccionSucursalBancaria = direccionSucursalBancaria;
     }
-    
-    
+
     public EntidadBancaria getEntidadBancaria() {
         return entidadBancaria;
     }

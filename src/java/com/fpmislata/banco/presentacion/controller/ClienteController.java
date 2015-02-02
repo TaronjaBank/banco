@@ -110,7 +110,7 @@ public class ClienteController {
     @RequestMapping(
             value = "/{idCliente}/CuentaBancaria",
             method = RequestMethod.GET)
-    public void finAllCuentasBancariasByCliente(
+    public void finAllCuentasByCliente(
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @PathVariable("idCliente") int idCliente) {

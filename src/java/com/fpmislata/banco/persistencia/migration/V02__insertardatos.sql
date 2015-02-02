@@ -8,21 +8,21 @@ ALTER TABLE `sucursalBancaria` DISABLE KEYS ;
 
 
 
-INSERT INTO `entidadBancaria` (`idEntidadBancaria`, `codigoEntidadBancaria`, `nombreEntidadBancaria`, `fechaCreacionEntidadBancaria`) VALUES
-	(1, 'SBcam', 'Sabadell', '2015-01-18'),
-	(2, 'ST', 'Santander', '2014-10-08'),
-	(3, 'BBVA', 'Banco Bilbao', '2014-10-17'),
-	(4, 'BK', 'Bankia', '2014-10-17'),
-	(6, 'Bankia2', 'Bankia2', '2015-01-01');
+INSERT INTO `entidadbancaria` (`idEntidadBancaria`, `codigoEntidadBancaria`, `nombreEntidadBancaria`, `fechaCreacionEntidadBancaria`) VALUES
+	(1, 'E001', 'Sabadell', '2015-01-18'),
+	(2, 'E002', 'Santander', '2014-10-08'),
+	(3, 'E003', 'Banco Bilbao', '2014-10-17'),
+	(4, 'E004', 'Bankia', '2014-10-17'),
+	(6, 'E006', 'Bankia2', '2015-01-01');
 
-INSERT INTO `sucursalBancaria` (`idSucursalBancaria`, `nombreSucursalBancaria`, `direccionSucursalBancaria`, `idEntidadBancaria`) VALUES
-	(2, 'Sucursal2', 'Madrid', 2),
-	(3, 'Susursal3', 'Valencia', 1),
-	(4, 'Sucursal4', 'Barcelona', 2),
-	(5, 'prueba', 'prueba', 3),
-	(6, 'dsf', 'dfgh', 2),
-	(7, 'dfg', 'dfg', 4),
-	(8, 'sdf', 'sdf', 4);
+INSERT INTO `sucursalbancaria` (`idSucursalBancaria`, `codigoSucursalBancaria`, `nombreSucursalBancaria`, `direccionSucursalBancaria`, `idEntidadBancaria`) VALUES
+	(2, 'S002', 'Sucursal2', 'Madrid', 2),
+	(3, 'S003', 'Susursal3', 'Valencia', 1),
+	(4, 'S004', 'Sucursal4', 'Barcelona', 2),
+	(5, 'S005', 'prueba', 'prueba', 3),
+	(6, 'S006', 'dsf', 'dfgh', 2),
+	(7, 'S007', 'dfg', 'dfg', 4),
+	(8, 'S008', 'sdf', 'sdf', 4);
 
 INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cliente`, `apellido2Cliente`, `loginCliente`, `passwordCliente`) VALUES
 	(1, '123456789-R', 'Marti', 'Gomez', 'Fabia', 'cliente1', 'cliente1'),

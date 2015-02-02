@@ -162,6 +162,6 @@ app.controller("ClienteDeleteController", ["$rootScope", "$scope", "$http", "$ro
             });
         };
 
-        $scope.findAllCuentasBySucursal();
+        $scope.findAllCuentasByCliente();
 
     }]);

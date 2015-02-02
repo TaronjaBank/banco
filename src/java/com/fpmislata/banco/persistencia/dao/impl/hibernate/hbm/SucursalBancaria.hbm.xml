@@ -5,6 +5,7 @@
         <id column="idSucursalBancaria" name="idSucursalBancaria" type="integer" access="field" >
             <generator class="identity"/>
         </id>
+        <property name="codigoSucursalBancaria" column="codigoSucursalBancaria" access="field" />
         <property name="nombreSucursalBancaria" column="nombreSucursalBancaria" access="field" />
         <property name="direccionSucursalBancaria" column="direccionSucursalBancaria" access="field" />
        
