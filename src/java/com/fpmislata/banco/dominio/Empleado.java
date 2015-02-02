@@ -10,7 +10,7 @@ public class Empleado {
     String nombreEmpleado;
     String apellido1Empleado;
     String apellido2Empleado;
-    private SucursalBancaria sucursalBancaria;
+    SucursalBancaria sucursalBancaria;
     String loginEmpleado;
     String passwordEmpleado;
 
