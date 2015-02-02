@@ -49,7 +49,6 @@ INSERT INTO `movimientoBancario` (`idMovimientoBancario`, `idCuentaBancariaDesti
 	(10, 2, 1324.00, 'DEBE', 2),
 	(11, 1, 345.00, 'DEBE', 5);
 
-
 INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido1Empleado`, `apellido2Empleado`, `idSucursalBancaria`, `loginEmpleado`, `passwordEmpleado`) VALUES
 	(5, 'prueba', 'prueba', 'prueba', 'prueba', 5, 'a', 'a'),
 	(1, '12345-A', 'Marti', 'Gomez', 'Fabia', 2, 'login1', 'password1'),
@@ -57,18 +56,6 @@ INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido
 	(3, '12345-B', 'Ivan', 'Sanchez', 'Aaaa', 3, 'login3', 'password3'),
 	(4, '45678-C', 'Fran', 'Navarro', 'Flores', 4, 'login4', 'password4');
 
-
-
-
-
-
- 
-
-
-
-
-
- 
 
 ALTER TABLE `sucursalBancaria` ENABLE KEYS ;
 ALTER TABLE `cliente` ENABLE KEYS ;

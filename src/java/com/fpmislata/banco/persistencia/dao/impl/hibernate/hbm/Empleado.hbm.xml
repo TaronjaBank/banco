@@ -5,7 +5,6 @@
         <id name="idEmpleado" column="idEmpleado" type="integer" access="field" >
             <generator class="identity"/>
         </id>
-        <property column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
         <property name="dniEmpleado" column="dniEmpleado" access="field" />
         <property name="nombreEmpleado" column="nombreEmpleado" access="field" />
         <property name="apellido1Empleado" column="apellido1Empleado" access="field" />
@@ -13,6 +12,7 @@
         <many-to-one name="sucursalBancaria">
             <column name="idSucursalBancaria" not-null="true"/>
         </many-to-one>
+        <property column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
         <property name="passwordEmpleado" column="passwordEmpleado" access="field" />
     </class>
 </hibernate-mapping>

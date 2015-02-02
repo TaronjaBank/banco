@@ -22,15 +22,6 @@
     </filter-mapping>
     
     <filter>
-        <filter-name>FilterClienteImplSecurity</filter-name>
-        <filter-class>com.fpmislata.banco.presentacion.filter.seguridad.FilterClienteImplSecurity</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>FilterClienteImplSecurity</filter-name>
-        <url-pattern>/api/*</url-pattern>
-    </filter-mapping>
-    
-    <filter>
         <filter-name>FilterImplHibernate</filter-name>
         <filter-class>com.fpmislata.banco.presentacion.filter.persistencia.hibernate.FilterImplHibernate</filter-class>
     </filter>

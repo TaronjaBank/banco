@@ -40,14 +40,6 @@ public class CuentaBancaria {
     public void setNumeroCuentaBancaria(int numeroCuentaBancaria) {
         this.numeroCuentaBancaria = numeroCuentaBancaria;
     }
-    
-//    public int getIdCliente() {
-//        return idCliente;
-//    }
-//
-//    public void setIdCliente(int idCliente) {
-//        this.idCliente = idCliente;
-//    }
 
     public SucursalBancaria getSucursalBancaria() {
         return sucursalBancaria;
