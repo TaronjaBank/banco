@@ -3,7 +3,6 @@ package com.fpmislata.banco.dominio;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
-
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
 
@@ -12,15 +11,15 @@ public class Cliente {
     String nombreCliente;
     String apellido1Cliente;
     String apellido2Cliente;
-    String loginCliente;
-    String passwordCliente;
+    private String loginCliente;
+    private String passwordCliente;
     @JsonIgnore
     private Set<CuentaBancaria> cuentasBancarias;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String dniCliente, String nombreCliente, String apellido1Cliente, String apellido2Cliente, String loginCliente, String passwordCliente, Set<CuentaBancaria> cuentasBancarias) {
+    public Cliente(int idCliente, String dniCliente, String nombreCliente, String apellido1Cliente, String apellido2Cliente, String loginCliente, String passwordCliente) {
         this.idCliente = idCliente;
         this.dniCliente = dniCliente;
         this.nombreCliente = nombreCliente;
@@ -28,8 +27,9 @@ public class Cliente {
         this.apellido2Cliente = apellido2Cliente;
         this.loginCliente = loginCliente;
         this.passwordCliente = passwordCliente;
-        this.cuentasBancarias = cuentasBancarias;
     }
+
+   
 
     public int getIdCliente() {
         return idCliente;
@@ -71,6 +71,14 @@ public class Cliente {
         this.apellido2Cliente = apellido2Cliente;
     }
 
+    public Set<CuentaBancaria> getCuentasBancarias() {
+        return cuentasBancarias;
+    }
+
+    public void setCuentasBancarias(Set<CuentaBancaria> cuentasBancarias) {
+        this.cuentasBancarias = cuentasBancarias;
+    }
+
     public String getLoginCliente() {
         return loginCliente;
     }
@@ -86,14 +94,5 @@ public class Cliente {
     public void setPasswordCliente(String passwordCliente) {
         this.passwordCliente = passwordCliente;
     }
-
-    public Set<CuentaBancaria> getCuentasBancarias() {
-        return cuentasBancarias;
-    }
-
-    public void setCuentasBancarias(Set<CuentaBancaria> cuentasBancarias) {
-        this.cuentasBancarias = cuentasBancarias;
-    }
-    
 
 }

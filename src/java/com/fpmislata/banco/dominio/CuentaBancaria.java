@@ -9,9 +9,8 @@ public class CuentaBancaria {
 
     int idCuentaBancaria;
     int numeroCuentaBancaria;
-//    int idCliente;
-    
     private Cliente cliente;
+    private double saldoCuentaBancaria;
     private SucursalBancaria sucursalBancaria;
     @JsonIgnore
     private Set<MovimientoBancario> movimientosBancarios;
@@ -50,14 +49,6 @@ public class CuentaBancaria {
 //        this.idCliente = idCliente;
 //    }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     public SucursalBancaria getSucursalBancaria() {
         return sucursalBancaria;
     }
@@ -72,6 +63,22 @@ public class CuentaBancaria {
 
     public void setMovimientosBancarios(Set<MovimientoBancario> movimientosBancarios) {
         this.movimientosBancarios = movimientosBancarios;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public double getSaldoCuentaBancaria() {
+        return saldoCuentaBancaria;
+    }
+
+    public void setSaldoCuentaBancaria(double saldoCuentaBancaria) {
+        this.saldoCuentaBancaria = saldoCuentaBancaria;
     }
 
 }

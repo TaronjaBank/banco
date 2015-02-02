@@ -14,7 +14,8 @@ public class SucursalBancaria implements Serializable {
     EntidadBancaria entidadBancaria;
      @JsonIgnore
     private Set<CuentaBancaria> cuentasBancarias;
-    
+    @JsonIgnore
+    private Set<Empleado> empleados;
     public SucursalBancaria() {
     }
 
@@ -64,6 +65,14 @@ public class SucursalBancaria implements Serializable {
 
     public void setCuentasBancarias(Set<CuentaBancaria> cuentasBancarias) {
         this.cuentasBancarias = cuentasBancarias;
+    }
+
+    public Set<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Set<Empleado> empleados) {
+        this.empleados = empleados;
     }
 
 }

@@ -1,5 +1,8 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Empleado {
 
     int idEmpleado;
@@ -7,11 +10,22 @@ public class Empleado {
     String nombreEmpleado;
     String apellido1Empleado;
     String apellido2Empleado;
-    int idSucursalBancaria;
+    private SucursalBancaria sucursalBancaria;
     String loginEmpleado;
     String passwordEmpleado;
 
     public Empleado() {
+    }
+
+    public Empleado(int idEmpleado, String dniEmpleado, String nombreEmpleado, String apellido1Empleado, String apellido2Empleado, SucursalBancaria sucursalBancaria, String loginEmpleado, String passwordEmpleado) {
+        this.idEmpleado = idEmpleado;
+        this.dniEmpleado = dniEmpleado;
+        this.nombreEmpleado = nombreEmpleado;
+        this.apellido1Empleado = apellido1Empleado;
+        this.apellido2Empleado = apellido2Empleado;
+        this.sucursalBancaria = sucursalBancaria;
+        this.loginEmpleado = loginEmpleado;
+        this.passwordEmpleado = passwordEmpleado;
     }
 
     public int getIdEmpleado() {
@@ -54,14 +68,6 @@ public class Empleado {
         this.apellido2Empleado = apellido2Empleado;
     }
 
-    public int getIdSucursalBancaria() {
-        return idSucursalBancaria;
-    }
-
-    public void setIdSucursalBancaria(int idSucursalBancaria) {
-        this.idSucursalBancaria = idSucursalBancaria;
-    }
-
     public String getLoginEmpleado() {
         return loginEmpleado;
     }
@@ -76,6 +82,14 @@ public class Empleado {
 
     public void setPasswordEmpleado(String passwordEmpleado) {
         this.passwordEmpleado = passwordEmpleado;
+    }
+
+    public SucursalBancaria getSucursalBancaria() {
+        return sucursalBancaria;
+    }
+
+    public void setSucursalBancaria(SucursalBancaria sucursalBancaria) {
+        this.sucursalBancaria = sucursalBancaria;
     }
 
 }
