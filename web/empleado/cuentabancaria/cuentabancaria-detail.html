@@ -27,7 +27,7 @@
     <p id="tituloTabla">Listado Movimientos Bancarios</p><br/>
     <section id="filaCabecera">
         <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
-        <div class="celdaCabecera columnaId-Codigo">Cuenta origen</div>
+        <div class="celdaCabecera columnaNumCuenta">Cuenta destino</div>
         <div class="celdaCabecera columnaCantidad">Cantidad</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Tipo</div>
     </section>
@@ -36,7 +36,7 @@
 
         <div class="bloqueDatos">
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaOrigen}}</div>
+            <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.idCuentaBancariaDestino}}</div>
             <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.tipoMovimiento}}</div>
         </div>
