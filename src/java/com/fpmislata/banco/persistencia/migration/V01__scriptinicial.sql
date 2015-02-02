@@ -45,12 +45,13 @@ CREATE TABLE IF NOT EXISTS `cuentabancaria` (
 CREATE TABLE IF NOT EXISTS `movimientobancario` (
   `idMovimientoBancario` int(11) NOT NULL AUTO_INCREMENT,
   `idCuentaBancariaDestino` int(11) NOT NULL,
+  `conceptoMovimientoBancario` varchar(150) NOT NULL,
   `cantidadMovimientoBancario` decimal(10,2) DEFAULT '0.00',
   `tipoMovimiento` enum('DEBE','HABER') NOT NULL DEFAULT 'DEBE',
   `idCuentaBancaria` int(11) NOT NULL,
   PRIMARY KEY (`idMovimientoBancario`),
   CONSTRAINT `FK_movimientobancario_cuentabancaria` FOREIGN KEY (`idCuentaBancaria`) REFERENCES `cuentabancaria` (`idCuentaBancaria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `empleado` (

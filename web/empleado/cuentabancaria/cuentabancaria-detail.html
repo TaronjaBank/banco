@@ -10,8 +10,8 @@
         <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'">
             <option value="">--Elige opcion--</option>
         </select>
-        <div class="labelDetail">Id Cliente</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.cliente.nombreCliente + ' ' + cuentaBancaria.cliente.apellido1Cliente + ' ' + cuentaBancaria.cliente.apellido2Cliente" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">DNI Cliente</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.cliente.dniCliente" ng-disabled="estado.accion === 'borrar'"/>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cuenta</span>
