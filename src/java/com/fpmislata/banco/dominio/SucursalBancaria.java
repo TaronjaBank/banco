@@ -21,11 +21,12 @@ public class SucursalBancaria implements Serializable {
     public SucursalBancaria() {
     }
 
-    public SucursalBancaria(int idSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria EntidadBancaria) {
+    public SucursalBancaria(int idSucursalBancaria, String codigoSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria entidadBancaria) {
         this.idSucursalBancaria = idSucursalBancaria;
+        this.codigoSucursalBancaria = codigoSucursalBancaria;
         this.nombreSucursalBancaria = nombreSucursalBancaria;
         this.direccionSucursalBancaria = direccionSucursalBancaria;
-        this.entidadBancaria = EntidadBancaria;
+        this.entidadBancaria = entidadBancaria;
     }
 
     public int getIdSucursalBancaria() {

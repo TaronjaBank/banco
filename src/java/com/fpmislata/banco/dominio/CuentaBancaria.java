@@ -9,11 +9,11 @@ public class CuentaBancaria {
 
     int idCuentaBancaria;
     String numeroCuentaBancaria;
-    private Cliente cliente;
-    private double saldoCuentaBancaria;
-    private SucursalBancaria sucursalBancaria;
+    Cliente cliente;
+    double saldoCuentaBancaria;
+    SucursalBancaria sucursalBancaria;
     @JsonIgnore
-    private Set<MovimientoBancario> movimientosBancarios;
+    Set<MovimientoBancario> movimientosBancarios;
 
     public CuentaBancaria() {
     }
