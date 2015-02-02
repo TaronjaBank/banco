@@ -9,5 +9,13 @@
         <property name="nombreCliente" column="nombreCliente" access="field" />
         <property name="apellido1Cliente" column="apellido1Cliente" access="field" />
         <property name="apellido2Cliente" column="apellido2Cliente" access="field" />
+        <property name="loginCliente" column="loginCliente" access="field" />
+        <property name="passwordCliente" column="passwordCliente" access="field" />
+         <set name="cuentasBancarias"  cascade="all" inverse="true"  >
+            <key>
+                <column name="idCliente"/>
+            </key>
+            <one-to-many class="com.fpmislata.banco.dominio.CuentaBancaria" />
+        </set>
     </class>
 </hibernate-mapping>

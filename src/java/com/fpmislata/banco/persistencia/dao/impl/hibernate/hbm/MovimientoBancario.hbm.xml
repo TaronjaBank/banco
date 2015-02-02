@@ -5,7 +5,7 @@
         <id column="idMovimientoBancario" name="idMovimientoBancario" type="integer" access="field" >
             <generator class="identity"/>
         </id>
-        <property name="idCuentaBancariaOrigen" column="idCuentaBancariaOrigen" access="field" />
+        <property name="idCuentaBancariaDestino" column="idCuentaBancariaDestino" access="field" />
        
         <property name="cantidadMovimientoBancario" column="cantidadMovimientoBancario" access="field" />
         <property name="tipoMovimiento" >

@@ -18,5 +18,11 @@
             </key>
             <one-to-many class="com.fpmislata.banco.dominio.CuentaBancaria" />
         </set>
+        <set name="empleados"  cascade="all" inverse="true"  >
+            <key>
+                <column name="idSucursalBancaria"/>
+            </key>
+            <one-to-many class="com.fpmislata.banco.dominio.Empleado" />
+        </set>
     </class>
 </hibernate-mapping>
