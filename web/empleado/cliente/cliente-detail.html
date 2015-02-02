@@ -27,7 +27,6 @@
     <p id="tituloTabla">Listado Cuentas Bancarias</p><br/>
     <section id="filaCabecera">
         <div class="celdaCabecera columnaNumCuenta">Código</div>
-        <div class="celdaCabecera columnaConcepto-Direccion">Cliente</div>
         <div class="celdaCabecera columnaCantidad">Saldo</div>
     </section>
 
@@ -35,7 +34,6 @@
 
         <div class="bloqueDatos">
             <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
-            <div class="celdaContenido columnaConcepto-Direccion">{{cuentaBancaria.cliente.nombreCliente}} {{cuentaBancaria.cliente.apellido1Cliente}} {{cuentaBancaria.cliente.apellido2Cliente}}</div>
             <div class="celdaContenido columnaCantidad">{{cuentaBancaria.saldoCuentaBancaria}}</div>
         </div>
 

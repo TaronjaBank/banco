@@ -32,13 +32,13 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cli
 	(5, 'prueba', 'prueba', 'prueba', 'prueba', 'b', 'b');
 
 INSERT INTO `cuentaBancaria` (`idCuentaBancaria`, `numeroCuentaBancaria`, `idSucursalBancaria`, `idCliente`, `saldoCuentaBancaria`) VALUES
-	(1, 123456789, 2, 2, 0),
-	(2, 987654321, 2, 2, 0),
-	(3, 0, 3, 2, 0),
-	(4, 789654123, 4, 3, 0),
-	(5, 444444444, 5, 2, 0),
-	(6, 234, 2, 2, 0),
-	(7, 33333333, 5, 1, 0);
+	(1, 123456789, 2, 2, 0.00),
+	(2, 987654321, 2, 4, 0.00),
+	(3, 0, 3, 2, 0.00),
+	(4, 789654123, 4, 3, 0.00),
+	(5, 444444444, 5, 4, 0.00),
+	(6, 234, 2, 2, 0.00),
+	(7, 33333333, 5, 1, 0.00);
 
 INSERT INTO `movimientoBancario` (`idMovimientoBancario`, `idCuentaBancariaDestino`, `cantidadMovimientoBancario`, `tipoMovimiento`, `idCuentaBancaria`) VALUES
 	(1, 2, 4536.00, 'DEBE', 1),

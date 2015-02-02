@@ -20,7 +20,7 @@ app.run(function ($rootScope, $http, $location) {
         };
 });
 
-//Configuración de datepicker
+//Configuración datepicker
 app.constant('uiDateConfig', {
     dateFormat: "dd-mm-yy",
     dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],

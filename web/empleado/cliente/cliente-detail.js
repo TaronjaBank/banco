@@ -1,13 +1,13 @@
 app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$routeParams", "$rootScope", function ($scope, $http, $location, $routeParams, $rootScope) {
+
         $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'insertar'
         };
 
         $scope.estilo = "";
 
-
-        //Para el ng-Options
         $scope.cliente = {};
 
         $scope.insert = function () {
@@ -46,11 +46,13 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
 //
 //        $scope.findAll();
 
-
     }]);
 
+
 app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
+        
         $rootScope.comprobarSesion();
+        
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -60,7 +62,6 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
         $scope.cliente = {
             idCliente: $routeParams.idCliente
         };
-
 
         $scope.irLista = function () {
             $location.path("/cliente/list");
@@ -77,6 +78,7 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
+
         $scope.get();
 
         $scope.update = function () {
@@ -105,28 +107,7 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
 
         $scope.findAllCuentasByCliente();
 
-//        $scope.findAll = function () {
-//            $http({
-//                method: "GET",
-//                url: contextPath + "/api/EntidadBancaria"
-//            }).success(function (data) {
-//                $scope.entidadesBancarias = data;
-//                for (var i = 0; i < $scope.entidadesBancarias.length; i++) {
-//                    var fecha = $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria;
-//                    $scope.entidadesBancarias[i].fechaCreacionEntidadBancaria = new Date(fecha);
-//                }
-//            }).error(function () {
-//                alert("Error: no se ha podido realizar la operación");
-//            });
-//        };
-//
-//        $scope.findAll();
-
     }]);
-
-
-
-
 
 
 app.controller("ClienteDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
@@ -145,25 +126,18 @@ app.controller("ClienteDeleteController", ["$rootScope", "$scope", "$http", "$ro
             $location.path("/cliente/list");
         };
 
-//        $scope.entidadesBancarias = [];
-
         $scope.get = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente
             }).success(function (data) {
                 $scope.cliente = data;
-//                $scope.entidadesBancarias[0] = $scope.sucursalBancaria.entidadBancaria;
-//                $scope.entidadBancaria.idEntidadBancaria = $scope.entidadesBancarias[0].idEntidadBancaria;
-
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
 
         $scope.get();
-
-
 
         $scope.deleteData = function () {
             $http({
