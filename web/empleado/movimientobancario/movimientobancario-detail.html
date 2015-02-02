@@ -3,25 +3,27 @@
     <div id="tituloDetail">Detalle Movimiento Bancario</div>
 
     <section id="contenedorFormularioDetail">
-      <div class="labelDetail">Id cuenta origen</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.idCuentaBancariaOrigen" ng-disabled="estado.accion === 'borrar'"/>
-        
+        <div class="labelDetail">Cuenta destino</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
+
         <div class="labelDetail">Cantidad</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.cantidadMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Tipo</div>
         <select class="inputDetail" ng-model="movimientoBancario.tipoMovimiento" ng-style="estilo" ng-options="tipoMovimiento.nombre as tipoMovimiento.nombre for tipoMovimiento in tipoMovimientos" ng-disabled="estado.accion === 'borrar'" >
-                <option value="">--Elige opcion--</option>
+            <option value="">--Elige opcion--</option>
         </select>   
-        
-        <div class="labelDetail">numero cuenta </div>
-        <select class="inputDetail" ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" ng-style="estilo" ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias" ng-disabled="estado.accion === 'borrar'||insertdesdedetail.accion==='insertardesdedetail'" >
-                <option value="">--Elige opcion--</option>
+
+        <div class="labelDetail">Número cuenta </div>
+        <select class="inputDetail" ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" ng-style="estilo" ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+            <option value="">-- Elige opción --</option>
         </select>
-    
-    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar movimiento</span>
-    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
-    <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar movimiento</span>
-    
-    <span id="botonVolverLista" class="botonBackEnd"><a href="#/movimientobancario/list">Ir a listado</a></span>
-    <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+
+        <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar movimiento</span>
+        <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
+        <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar movimiento</span>
+
+        <span id="botonVolverLista" class="botonBackEnd"><a href="#/movimientobancario/list">Ir a listado</a></span>
+        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    </section>
+
 </section>
