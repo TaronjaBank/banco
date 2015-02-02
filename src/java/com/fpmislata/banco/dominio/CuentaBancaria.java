@@ -8,7 +8,7 @@ import java.util.Set;
 public class CuentaBancaria {
 
     int idCuentaBancaria;
-    int numeroCuentaBancaria;
+    String numeroCuentaBancaria;
     private Cliente cliente;
     private double saldoCuentaBancaria;
     private SucursalBancaria sucursalBancaria;
@@ -18,7 +18,7 @@ public class CuentaBancaria {
     public CuentaBancaria() {
     }
     
-    public CuentaBancaria(int idCuentaBancaria, int numeroCuentaBancaria, int idEntidadBancaria, Cliente cliente, SucursalBancaria sucursalBancaria) {
+    public CuentaBancaria(int idCuentaBancaria, String numeroCuentaBancaria, int idEntidadBancaria, Cliente cliente, SucursalBancaria sucursalBancaria) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.numeroCuentaBancaria = numeroCuentaBancaria;
         this.cliente = cliente;
@@ -33,11 +33,11 @@ public class CuentaBancaria {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public int getNumeroCuentaBancaria() {
+    public String getNumeroCuentaBancaria() {
         return numeroCuentaBancaria;
     }
 
-    public void setNumeroCuentaBancaria(int numeroCuentaBancaria) {
+    public void setNumeroCuentaBancaria(String numeroCuentaBancaria) {
         this.numeroCuentaBancaria = numeroCuentaBancaria;
     }
 

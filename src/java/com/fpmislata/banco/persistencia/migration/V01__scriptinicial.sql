@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 
 CREATE TABLE IF NOT EXISTS `cuentabancaria` (
   `idCuentaBancaria` int(11) NOT NULL AUTO_INCREMENT,
-  `numeroCuentaBancaria` int(11) NOT NULL DEFAULT '0',
+  `numeroCuentaBancaria` varchar(50) NOT NULL DEFAULT 'E000-S000-0',
   `idSucursalBancaria` int(11) NOT NULL DEFAULT '0',
   `idCliente` int(11) DEFAULT NULL,
-`saldoCuentaBancaria` decimal(10,2) DEFAULT '0',
+  `saldoCuentaBancaria` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`idCuentaBancaria`),
   CONSTRAINT `FK_cuentabancaria_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
   CONSTRAINT `FK_cuentabancaria_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalbancaria` (`idSucursalBancaria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `movimientobancario` (
