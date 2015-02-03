@@ -4,27 +4,27 @@
 
     <section id="contenedorFormularioDetail">
         <div class="labelDetail">Id Empleado</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="empleadoEdit.idEmpleado" ng-disabled="true"/>
+        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="empleado.idEmpleado" ng-disabled="true"/>
         <div class="labelDetail">DNI</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.dniEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleado.dniEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.nombreEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleado.nombreEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Apellido1</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido1Empleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleado.apellido1Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Apellido2</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleado.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Entidad</div>
-        <select class="inputDetail" ng-model="empleadoEdit.sucursalBancaria.entidadBancaria.nombreEntidadBancaria" ng-style="estilo" ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+        <select class="inputDetail" ng-model="empleado.sucursalBancaria.entidadBancaria.idEntidadBancaria" ng-style="estilo" ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Sucursal</div>
-        <select class="inputDetail" ng-model="empleadoEdit.sucursalBancaria.nombreSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+        <select class="inputDetail" ng-model="empleado.sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Login</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.loginEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleado.loginEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Password</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.passwordEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleado.passwordEmpleado" ng-disabled="estado.accion === 'borrar'"/>
 
 
     </section>
