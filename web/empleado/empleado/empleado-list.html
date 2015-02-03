@@ -4,7 +4,8 @@
     <section id="filaCabecera">
         <div class="celdaCabecera columnaId-Codigo">DNI</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Nombre</div>
-        <div class="celdaCabecera columnaNombre">Sucursal</div>
+        <div class="celdaCabecera columnaNombre-Entidad-Sucursal">Entidad</div>
+        <div class="celdaCabecera columnaNombre-Entidad-Sucursal">Sucursal</div>
     </section>
 
     <section class="filaContenido" ng-repeat="empleado in empleados">
@@ -12,7 +13,8 @@
         <div class="bloqueDatos">
             <div class="celdaContenido columnaId-Codigo">{{empleado.dniEmpleado}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{empleado.nombreEmpleado}} {{empleado.apellido1Empleado}} {{empleado.apellido2Empleado}}</div>
-            <div class="celdaContenido columnaNombre">{{empleado.sucursalbancaria.codigoSucursalBancaria}} - {{empleado.sucursalbancaria.nombreSucursalBancaria}}</div>
+            <div class="celdaContenido columnaNombre-Entidad-Sucursal">{{empleado.sucursalBancaria.entidadBancaria.codigoEntidadBancaria}} - {{empleado.sucursalBancaria.entidadBancaria.nombreEntidadBancaria}}</div>
+            <div class="celdaContenido columnaNombre-Entidad-Sucursal">{{empleado.sucursalBancaria.codigoSucursalBancaria}} - {{empleado.sucursalBancaria.nombreSucursalBancaria}}</div>
         </div>
 
         <div class="celdaIconoTabla">

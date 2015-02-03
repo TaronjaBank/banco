@@ -29,7 +29,7 @@
         <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
         <div class="celdaCabecera columnaNumCuenta">Cuenta destino</div>
         <div class="celdaCabecera columnaCantidad">Cantidad</div>
-        <div class="celdaCabecera columnaConcepto-Direccion">Tipo</div>
+        <div class="celdaCabecera columnaId-Codigo">Tipo</div>
     </section>
 
     <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
@@ -38,7 +38,7 @@
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
             <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.idCuentaBancariaDestino}}</div>
             <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
-            <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.tipoMovimiento}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.tipoMovimiento}}</div>
         </div>
 
         <div class="celdaIconoTabla">

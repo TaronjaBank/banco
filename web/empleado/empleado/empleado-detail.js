@@ -1,14 +1,28 @@
-app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", function ($scope, $http, $location, $rootScope) {
-        
+app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", "$routeParams", function ($scope, $http, $location, $rootScope, $routeParams) {
+
         $scope.estado = {
             accion: 'insertar'
         };
-        
+
         $scope.estilo = "";
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+        $scope.findAllEntidades = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                $scope.entidadesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllEntidades();
+
 
         $scope.insert = function () {
             $http({
@@ -27,20 +41,60 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
 
 
 app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+
         $scope.estado = {
             accion: 'actualizar'
         };
-        
+
         $scope.estilo = "";
 
         $scope.empleadoEdit = {
             idEmpleado: $routeParams.idEmpleado
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+
+        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllEntidades = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                $scope.entidadesBancarias = data;
+                for (var i = 0; i < $scope.entidadesBancarias.length; i++){
+                    $scope.findSucursalesByEntidad($scope.entidadesBancarias[i].idEntidadBancaria);
+                }
+//                for (var i = 0; i < $scope.entidadesBancarias.length; i++) {
+//                    var entidadBancaria = $scope.entidadesBancarias[i];
+//                    var fecha = entidadBancaria.fechaCreacionEntidadBancaria;
+//                    entidadBancaria.fechaCreacionEntidadBancaria = new Date(fecha);
+//                    if (entidadBancaria.idEntidadBancaria === ($routeParams.idEntidadBancaria*1)) {
+//                        $scope.sucursalBancaria.entidadBancaria = entidadBancaria;
+//                        $scope.insertdesdedetail = {
+//                            accion: 'insertardesdedetail'
+//                        };
+//                    }
+//                }
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllEntidades();
+
 
         $scope.get = function () {
             $http({
@@ -72,22 +126,36 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
 
     }]);
 
-app.controller("EmpleadoDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        
+app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
+
         $scope.estado = {
             accion: 'borrar'
         };
-        
+
         $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
 
         $scope.empleadoEdit = {
             idEmpleado: $routeParams.idEmpleado
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/empleado/list");
         };
 
+        $scope.findAllEntidades = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                $scope.entidadesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllEntidades();
+        
+        
         $scope.get = function () {
             $http({
                 method: "GET",

@@ -121,7 +121,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         
         $scope.findAllEmpleadosBySucursal();
         
-         $scope.findAll = function() {
+         $scope.findAllEntidades = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
@@ -136,7 +136,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             });
         };
         
-        $scope.findAll();
+        $scope.findAllEntidades();
 
     }]);
 

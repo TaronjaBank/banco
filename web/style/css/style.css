@@ -344,6 +344,8 @@ body {
             text-align: center; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNombre {
             width: 100px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre-Entidad-Sucursal, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNombre-Entidad-Sucursal {
+            width: 140px; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaApellido, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaApellido {
             width: 90px; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNumCuenta, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNumCuenta {
