@@ -22,13 +22,33 @@
     
     <target name="distOpenShift" depends="enableopenshift,dist">
         
+        <taskdef  resource="es/logongas/openshift/ant/antlib.xml" />
+        
         <delete dir="../taronjabank"></delete>
-        <git command="clone"  dir=".." options="ssh://54c21264fcf933ea1e000040@taronjabank-taronjabank.rhcloud.com/~/git/taronjabank.git/"></git>
+              
+        <gitcloneapplication    
+            userName="martigomez31@gmail.com"
+            password="${password}"
+            domainName="taronjabank"
+            applicationName="taronjabank" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../taronjabank"
+        />
         <delete file="../taronjabank/webapps/ROOT.war"></delete>
         <copy file="dist/ROOT.war" todir="../taronjabank/webapps"></copy>
+        
         <git dir="../taronjabank" command="add *"></git>
         <git dir="../taronjabank" command="commit" options=" -am 'commit'"></git>
-        <git dir="../taronjabank" command="push"></git>
+        
+        <gitpushapplication    
+            userName="martigomez31@gmail.com"
+            password="${password}"
+            domainName="taronjabank"
+            applicationName="taronjabank" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../taronjabank"
+        />
+     
         
     </target>
     
@@ -39,24 +59,7 @@
         <property name="openshift" value="true" />
     </target>    
 
-<!--
-    	Start Git Macros
--->
-<macrodef name="git">
-    <attribute name="command" />
-    <attribute name="options" default="" />
-    <attribute name="dir" default="" />
-    <attribute name="failerror" default="false" />
-    <element name="args" optional="true" />
-    <sequential>
-        <echo message="git dir @{dir}" />
-        <echo message="git @{command}" />
-        <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
-            <arg line="@{command} @{options}" />
-            <args />
-        </exec>
-    </sequential>
-</macrodef>
+
     
     <!--
 
