@@ -3,23 +3,24 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
         $scope.estado = {
             accion: 'insertar'
         };
-        
+
         $scope.estilo = "";
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/movimientobancario/list");
         };
-      //ng-Options
-$scope.tipoMovimientos = [
-   {ID: '0', nombre: 'DEBE'},
-   {ID: '1', nombre: 'HABER'}
-];
-
-$scope.movimientoBancario={};
-
         
+        //ng-Options
+        $scope.tipoMovimientos = [
+            {ID: '0', nombre: 'DEBE'},
+            {ID: '1', nombre: 'HABER'}
+        ];
+
+        $scope.movimientoBancario = {};
+
+
         $scope.insert = function () {
-           
+
             $http({
                 method: "POST",
                 url: contextPath + "/api/MovimientoBancario",
@@ -31,17 +32,17 @@ $scope.movimientoBancario={};
                 alert("Error: no se ha podido realizar la operación");
             });//success.Error
         };
-        
+
         $scope.findAll = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/CuentaBancaria"
             }).success(function (data) {
                 $scope.cuentasBancarias = data;
-                for (var i = 0; i < $scope.cuentasBancarias.length; i++){
-                    var cuentaBancaria=$scope.cuentasBancarias[i];
-                    if (cuentaBancaria.idCuentaBancaria===($routeParams.idCuentaBancaria*1)) {
-                        $scope.movimientoBancario.cuentaBancaria=cuentaBancaria;
+                for (var i = 0; i < $scope.cuentasBancarias.length; i++) {
+                    var cuentaBancaria = $scope.cuentasBancarias[i];
+                    if (cuentaBancaria.idCuentaBancaria === ($routeParams.idCuentaBancaria * 1)) {
+                        $scope.movimientoBancario.cuentaBancaria = cuentaBancaria;
                         $scope.insertdesdedetail = {
                             accion: 'insertardesdedetail'
                         };
@@ -59,17 +60,17 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
         $scope.estado = {
             accion: 'actualizar'
         };
-        
+
         $scope.estilo = "";
 
         $scope.movimientoBancario = {
             idMovimientoBancario: $routeParams.idMovimientoBancario
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/movimientobancario/list");
         };
-        
+
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -83,12 +84,12 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
 
 
         $scope.get();
-       $scope.tipoMovimientos = [
+        $scope.tipoMovimientos = [
             {ID: '0', nombre: 'DEBE'},
             {ID: '1', nombre: 'HABER'}
-            ];
+        ];
         $scope.update = function () {
-         
+
             $http({
                 method: "PUT",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
@@ -116,41 +117,41 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
 
     }]);
 
-app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
+app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'borrar'
         };
-        
+
         $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
 
         $scope.movimientoBancario = {
             idMovimientoBancario: $routeParams.idMovimientoBancario
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/movimientobancario/list");
         };
-        $scope.cuentasBancarias=[];
-        $scope.cuentaBancaria={};
+        $scope.cuentasBancarias = [];
+        $scope.cuentaBancaria = {};
         $scope.get = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function (data) {
                 $scope.movimientoBancario = data;
-                 $scope.cuentasBancarias[0]=$scope.movimientoBancario.cuentaBancaria;
-                $scope.cuentaBancaria.idCuentaBancaria=$scope.cuentasBancarias[0].idCuentaBancaria;
+                $scope.cuentasBancarias[0] = $scope.movimientoBancario.cuentaBancaria;
+                $scope.cuentaBancaria.idCuentaBancaria = $scope.cuentasBancarias[0].idCuentaBancaria;
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });//success.Error
         };//Consultar
 
         $scope.get();
-       $scope.tipoMovimientos = [
-                {ID: '0', nombre: 'DEBE'},
-                {ID: '1', nombre: 'HABER'}
-];
+        $scope.tipoMovimientos = [
+            {ID: '0', nombre: 'DEBE'},
+            {ID: '1', nombre: 'HABER'}
+        ];
 
         $scope.deleteData = function () {
             $http({
@@ -165,5 +166,5 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope","$scope", "$h
             });//success.Error
         };//Consultar
 
-        
+
     }]);

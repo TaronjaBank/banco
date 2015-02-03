@@ -9,6 +9,24 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+        
+        $scope.entidadbancaria = {
+            idEntidadBancaria: $routeParams.idEntidadBancaria
+        };
+        
+        
+        $scope.$watch($scope.findSucursalesByEntidad);
+        
+        $scope.findSucursalesByEntidad = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + $scope.entidadbancaria.idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
 
         $scope.findAllEntidades = function () {
             $http({
@@ -74,20 +92,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                 url: contextPath + "/api/EntidadBancaria"
             }).success(function (data) {
                 $scope.entidadesBancarias = data;
-                for (var i = 0; i < $scope.entidadesBancarias.length; i++){
-                    $scope.findSucursalesByEntidad($scope.entidadesBancarias[i].idEntidadBancaria);
-                }
-//                for (var i = 0; i < $scope.entidadesBancarias.length; i++) {
-//                    var entidadBancaria = $scope.entidadesBancarias[i];
-//                    var fecha = entidadBancaria.fechaCreacionEntidadBancaria;
-//                    entidadBancaria.fechaCreacionEntidadBancaria = new Date(fecha);
-//                    if (entidadBancaria.idEntidadBancaria === ($routeParams.idEntidadBancaria*1)) {
-//                        $scope.sucursalBancaria.entidadBancaria = entidadBancaria;
-//                        $scope.insertdesdedetail = {
-//                            accion: 'insertardesdedetail'
-//                        };
-//                    }
-//                }
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });

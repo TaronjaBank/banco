@@ -18,10 +18,10 @@ INSERT INTO `sucursalbancaria` (`idSucursalBancaria`, `codigoSucursalBancaria`, 
 	(2, 'S002', 'Sucursal2', 'Valencia', 2),
 	(3, 'S003', 'Susursal3', 'Madrid', 1),
 	(4, 'S004', 'Sucursal4', 'Barcelona', 2),
-	(5, 'S005', 'prueba', 'prueba', 3),
-	(6, 'S006', 'dsf', 'dfgh', 2),
-	(7, 'S007', 'dfg', 'dfg', 4),
-	(8, 'S008', 'sdf', 'sdf', 4);
+	(5, 'S005', 'Sucursal5', 'Zaragoza', 3),
+	(6, 'S006', 'Sucursal6', 'Sevilla', 2),
+	(7, 'S007', 'Sucursal7', 'Lepe', 4),
+	(8, 'S008', 'Sucursal8', 'Valencia', 4);
 
 INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cliente`, `apellido2Cliente`, `loginCliente`, `passwordCliente`) VALUES
 	(1, '00000001R', 'Marti', 'Gomez', 'Fabia', 'cliente1', 'cliente1'),
