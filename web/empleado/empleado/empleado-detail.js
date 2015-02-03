@@ -21,7 +21,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-//        $scope.findSucursalesByEntidad();
 
         $scope.findAllEntidades = function () {
             $http({
@@ -174,8 +173,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
 //                alert(JSON.stringify($scope.empleadoEdit));
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
-            });//success.Error
-        };//Consultar
+            });
+        };
         $scope.get();
 
         $scope.deleteData = function () {
@@ -183,12 +182,11 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
                 method: "DELETE",
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
             }).success(function () {
-                //alert("El empleado nº " + $scope.empleadoEdit.idEmpleado + " ha sido borrado correctamente...");
                 $scope.empleadoEdit = {};
                 $scope.irLista();
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);
 
