@@ -9,12 +9,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
-        
-        $scope.entidadBancaria = {
-            idEntidadBancaria: ""
-        };
-        
-        $scope.$watch($scope.findSucursalesByEntidad);
 
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
@@ -95,7 +89,7 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             });
         };
         $scope.findAllEntidades();
-        
+
 
         $scope.get = function () {
             $http({
@@ -167,8 +161,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
             });
         };
         $scope.findAllEntidades();
-        
-        
+
+
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -179,8 +173,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
 //                alert(JSON.stringify($scope.empleadoEdit));
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
-            });//success.Error
-        };//Consultar
+            });
+        };
         $scope.get();
 
         $scope.deleteData = function () {
@@ -188,12 +182,11 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
                 method: "DELETE",
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
             }).success(function () {
-                //alert("El empleado nº " + $scope.empleadoEdit.idEmpleado + " ha sido borrado correctamente...");
                 $scope.empleadoEdit = {};
                 $scope.irLista();
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);
 

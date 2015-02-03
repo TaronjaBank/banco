@@ -15,7 +15,7 @@
         </select>   
 
         <div class="labelDetail">Número cuenta </div>
-        <select class="inputDetail" ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" ng-style="estilo" ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+        <select class="inputDetail" ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" ng-style="estilo" ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias | orderBy: 'numeroCuentaBancaria'" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
             <option value="">-- Elige opción --</option>
         </select>
 
