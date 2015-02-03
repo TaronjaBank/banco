@@ -9,12 +9,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
-        
-        $scope.entidadBancaria = {
-            idEntidadBancaria: ""
-        };
-        
-        $scope.$watch($scope.findSucursalesByEntidad);
 
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
@@ -27,6 +21,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+//        $scope.findSucursalesByEntidad();
 
         $scope.findAllEntidades = function () {
             $http({
@@ -95,7 +90,7 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             });
         };
         $scope.findAllEntidades();
-        
+
 
         $scope.get = function () {
             $http({
@@ -167,8 +162,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
             });
         };
         $scope.findAllEntidades();
-        
-        
+
+
         $scope.get = function () {
             $http({
                 method: "GET",
