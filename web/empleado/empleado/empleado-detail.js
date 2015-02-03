@@ -45,8 +45,8 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 $scope.empleadoEdit = null;
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);
 
 
