@@ -7,7 +7,6 @@ ALTER TABLE `movimientoBancario` DISABLE KEYS ;
 ALTER TABLE `sucursalBancaria` DISABLE KEYS ;
 
 
-
 INSERT INTO `entidadbancaria` (`idEntidadBancaria`, `codigoEntidadBancaria`, `nombreEntidadBancaria`, `fechaCreacionEntidadBancaria`) VALUES
 	(1, 'E001', 'Sabadell', '2015-01-18'),
 	(2, 'E002', 'Santander', '2014-10-08'),
@@ -52,10 +51,10 @@ INSERT INTO `movimientobancario` (`idMovimientoBancario`, `idCuentaBancariaDesti
 
 INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido1Empleado`, `apellido2Empleado`, `idSucursalBancaria`, `loginEmpleado`, `passwordEmpleado`) VALUES
 	(5, 'prueba', 'prueba', 'prueba', 'prueba', 5, 'a', 'a'),
-	(1, '12345-A', 'Marti', 'Gomez', 'Fabia', 2, 'login1', 'password1'),
-	(2, '67890-B', 'Jona', 'Hidalgo', 'Mora', 2, 'login2', 'password2'),
-	(3, '12345-B', 'Ivan', 'Sanchez', 'Aaaa', 3, 'login3', 'password3'),
-	(4, '45678-C', 'Fran', 'Navarro', 'Flores', 4, 'login4', 'password4');
+	(1, '00000001R', 'Marti', 'Gomez', 'Fabia', 2, 'login1', 'password1'),
+	(2, '00000002W', 'Jona', 'Hidalgo', 'Mora', 2, 'login2', 'password2'),
+	(3, '00000003A', 'Ivan', 'Sanchez', 'Aaaa', 3, 'login3', 'password3'),
+	(4, '00000004G', 'Fran', 'Navarro', 'Flores', 4, 'login4', 'password4');
 
 
 ALTER TABLE `sucursalBancaria` ENABLE KEYS ;
