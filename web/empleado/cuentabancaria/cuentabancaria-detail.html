@@ -4,14 +4,23 @@
 
     <section id="contenedorFormularioDetail">
 
-        <div class="labelDetail">Número</div>
+        <div class="labelDetail">Número cuenta</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Nombre Sucursal</div>
-        <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'">
+        <div class="labelDetail">Nombre sucursal</div>
+        <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
+                ng-style="estilo" 
+                ng-change="findClientesBySucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
+                ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
+                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'">
             <option value="">--Elige opcion--</option>
         </select>
-        <div class="labelDetail">DNI Cliente</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.cliente.dniCliente" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">DNI cliente</div>
+        <select class="inputDetail" ng-model="cliente.dniCliente" 
+                ng-style="estilo" 
+                ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
+                ng-disabled="estado.accion === 'borrar'">
+            <option value="">--Elige opcion--</option>
+        </select>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cuenta</span>
@@ -26,8 +35,7 @@
 
     <p id="tituloTabla">Listado Movimientos Bancarios</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
-        <div class="celdaCabecera columnaNumCuenta">Cuenta destino</div>
+        <div class="celdaCabecera columnaNumCuenta">Número cuenta</div>
         <div class="celdaCabecera columnaCantidad">Cantidad</div>
         <div class="celdaCabecera columnaId-Codigo">Tipo</div>
     </section>
@@ -35,8 +43,7 @@
     <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
-            <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.idCuentaBancariaDestino}}</div>
+            <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
             <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.tipoMovimiento}}</div>
         </div>

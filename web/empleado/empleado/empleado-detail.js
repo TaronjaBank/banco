@@ -10,6 +10,15 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
             $location.path("/empleado/list");
         };
 
+        $scope.empleadoEdit = {
+            sucursalBancaria: {
+                idSucursalBancaria: parseInt($routeParams.idSucursalBancaria),
+                entidadBancaria: {
+                    idEntidadBancaria: parseInt($routeParams.idEntidadBancaria)
+                }
+            }
+        };
+//        alert($scope.empleadoEdit.sucursalBancaria.idSucursalBancaria + "; " + $scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
@@ -21,6 +30,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+        $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
 
         $scope.findAllEntidades = function () {
             $http({
@@ -103,7 +113,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-
         $scope.get();
 
 

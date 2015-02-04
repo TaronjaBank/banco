@@ -26,7 +26,9 @@
 
     <p id="tituloTabla">Listado Cuentas Bancarias</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaNumCuenta">Código</div>
+        <div class="celdaCabecera columnaNumCuenta">Número cuenta</div>
+        <div class="celdaCabecera columnaNombre-Entidad-Sucursal">Entidad</div>
+        <div class="celdaCabecera columnaNombre-Entidad-Sucursal">Sucursal</div>
         <div class="celdaCabecera columnaCantidad">Saldo</div>
     </section>
 
@@ -34,6 +36,8 @@
 
         <div class="bloqueDatos">
             <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
+            <div class="celdaContenido columnaNombre-Entidad-Sucursal">{{cuentaBancaria.sucursalBancaria.entidadBancaria.nombreEntidadBancaria}}</div>
+            <div class="celdaContenido columnaNombre-Entidad-Sucursal">{{cuentaBancaria.sucursalBancaria.nombreSucursalBancaria}}</div>
             <div class="celdaContenido columnaCantidad">{{cuentaBancaria.saldoCuentaBancaria}}</div>
         </div>
 
@@ -51,7 +55,7 @@
     </section>
 
     <section id="botoneraList">
-        <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new/{{cuentaBancaria.idCuentaBancaria}}">Nueva cuenta</a></span>
+        <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new/{{cuentaBancaria.sucursalBancaria.idSucursalBancaria}}">Nueva cuenta</a></span>
     </section>
 
 </section>

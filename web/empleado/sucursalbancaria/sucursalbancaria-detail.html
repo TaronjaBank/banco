@@ -55,7 +55,7 @@
     </section>
 
     <section id="botoneraList-cuentas">
-        <span id="botonNew-cuentas" class="botonBackEnd"><a href="#/cuentabancaria/new/{{cuentaBancaria.idCuentaBancaria}}">Nueva cuenta</a></span>
+        <span id="botonNew-cuentas" class="botonBackEnd"><a href="#/cuentabancaria/new/{{sucursalBancaria.idSucursalBancaria}}">Nueva cuenta</a></span>
     </section>
 
 </section>
@@ -90,7 +90,9 @@
     </section>
 
     <section id="botoneraList-empleados">
-        <span id="botonNew-empleados" class="botonBackEnd"><a href="#/empleado/new/{{empleado.idEmpleado}}">Nuevo empleado</a></span>
+        <span id="botonNew-empleados" class="botonBackEnd">
+            <a href="#/empleado/new/{{sucursalBancaria.idSucursalBancaria}}/{{sucursalBancaria.entidadBancaria.idEntidadBancaria}}">Nuevo empleado</a>
+        </span>
     </section>
 
 </section>

@@ -8,6 +8,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "empleado/empleado-detail.html",
             controller: "EmpleadoInsertController"
         });
+        $routeProvider.when('/empleado/new/:idSucursalBancaria/:idEntidadBancaria', {
+            templateUrl: "empleado/empleado-detail.html",
+            controller: "EmpleadoInsertController"
+        });
         $routeProvider.when("/empleado/update/:idEmpleado", {
             templateUrl: "empleado/empleado-detail.html",
             controller: "EmpleadoUpdateController"
