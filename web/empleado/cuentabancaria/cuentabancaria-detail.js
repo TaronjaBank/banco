@@ -39,7 +39,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
-//                alert(JSON.stringify($scope.sucursalBancaria));
+                alert(JSON.stringify($scope.sucursalBancaria));
                 var sucursal = $scope.sucursalBancaria;
                 var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
                 var codigoSucursal = sucursal.codigoSucursalBancaria;
