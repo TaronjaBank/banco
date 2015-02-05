@@ -9,7 +9,7 @@
         <property name="saldoCuentaBancaria" column="saldoCuentaBancaria" access="field" />
         
         <many-to-one name="sucursalBancaria">
-            <column name="idSucursalBancaria" />
+            <column name="idSucursalBancaria" not-null="true"/>
         </many-to-one>
         <many-to-one name="cliente">
             <column name="idCliente" />

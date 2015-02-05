@@ -7,6 +7,7 @@
         <div class="labelDetail">Número cuenta</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre sucursal</div>
+        <!-- ng-change="findClientesBySucursal()" -->
         <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
                 ng-style="estilo" 
                 ng-change="findClientesBySucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
@@ -15,10 +16,11 @@
             <option value="">--Elige opcion--</option>
         </select>
         <div class="labelDetail">DNI cliente</div>
-        <select class="inputDetail" ng-model="cliente.dniCliente" 
+        <select class="inputDetail" ng-model="cuentaBancaria.cliente.idCliente" 
                 ng-style="estilo" 
                 ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
-                ng-disabled="estado.accion === 'borrar'">
+                ng-disabled="estado.accion === 'borrar'"
+                >
             <option value="">--Elige opcion--</option>
         </select>
     </section>
