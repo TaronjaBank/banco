@@ -5,6 +5,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         };
 
         $scope.estilo = "";
+        $scope.estiloDisabled = "";
 
         $scope.irLista = function () {
             $location.path("/empleado/list");
@@ -20,6 +21,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         };
 //        alert($scope.empleadoEdit.sucursalBancaria.idSucursalBancaria + "; " + $scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
 
+
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
                 method: "GET",
@@ -30,7 +32,15 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+
+        if ($routeParams.idEntidadBancaria) {
+            $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+            $scope.insertdesdedetail = {
+                accion: 'insertardesdedetail'
+            };
+            $scope.estiloDisabled = $rootScope.estiloBloqueado;
+        }
+
 
         $scope.findAllEntidades = function () {
             $http({
@@ -77,6 +87,21 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
         };
 
 
+        $scope.get = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
+            }).success(function (data) {
+                $scope.empleadoEdit = data;
+                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+//                alert(JSON.stringify($scope.empleadoEdit));
+            }).error(function () {
+                alert("Error: no existe coincidencia en la base de datos");
+            });
+        };
+        $scope.get();
+
+
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
                 method: "GET",
@@ -99,21 +124,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             });
         };
         $scope.findAllEntidades();
-
-
-        $scope.get = function () {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function (data) {
-                $scope.empleadoEdit = data;
-                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-//                alert(JSON.stringify($scope.empleadoEdit));
-            }).error(function () {
-                alert("Error: no existe coincidencia en la base de datos");
-            });
-        };
-        $scope.get();
 
 
         $scope.update = function () {
@@ -148,6 +158,21 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
         };
 
 
+        $scope.get = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
+            }).success(function (data) {
+                $scope.empleadoEdit = data;
+                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+//                alert(JSON.stringify($scope.empleadoEdit));
+            }).error(function () {
+                alert("Error: no existe coincidencia en la base de datos");
+            });
+        };
+        $scope.get();
+
+
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
                 method: "GET",
@@ -171,20 +196,6 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
         };
         $scope.findAllEntidades();
 
-
-        $scope.get = function () {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function (data) {
-                $scope.empleadoEdit = data;
-                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-//                alert(JSON.stringify($scope.empleadoEdit));
-            }).error(function () {
-                alert("Error: no existe coincidencia en la base de datos");
-            });
-        };
-        $scope.get();
 
         $scope.deleteData = function () {
             $http({

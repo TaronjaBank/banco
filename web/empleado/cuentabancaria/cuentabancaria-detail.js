@@ -5,29 +5,57 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         };
 
         $scope.estilo = "";
+        $scope.estiloDisabled = {
+            estiloDisabledSucursal: "",
+            estiloDisabledCliente: ""
+        };
+        $scope.insertdesdedetail = {
+            accionDesdeSucursal: false,
+            accionDesdeCliente: false
+        };
 
-        $scope.cuentaBancaria = {};
+        $scope.cuentaBancaria = {
+            sucursalBancaria: {}
+        };
+        $scope.cliente = {idCliente: parseInt($routeParams.idCliente)};
         $scope.clientes = [];
-        
 
-        $scope.insert = function () {
+        var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
+
+        //Comportamiento en función al parámetro de la URL
+        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
+        if ($routeParams.idSucursalBancaria) {
+            $scope.estiloDisabled.estiloDisabledSucursal = $rootScope.estiloBloqueado;
+            $scope.insertdesdedetail.accionDesdeSucursal = true;
+        } else if ($routeParams.idCliente) {
+            $scope.estiloDisabled.estiloDisabledCliente = $rootScope.estiloBloqueado;
+            $scope.insertdesdedetail.accionDesdeCliente = true;
+        }
+
+        //Operaciones a realizar al cambiar selección del ng-options de sucursales
+        $scope.fromChangeSucursal = function (idSucursalBancaria) {
             $http({
-                method: "POST",
-                data: $scope.cuentaBancaria,
-                url: contextPath + "/api/CuentaBancaria"
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria
             }).success(function (data) {
-                $scope.cuentaBancaria = {};
-                $scope.findAll();
-                $scope.clientes = [];
-            }).error(function (data, status) {
-                alert("Error: No se ha podido Insertar");
+                $scope.sucursalBancaria = data;
+//                alert(JSON.stringify($scope.sucursalBancaria));
+                var sucursal = $scope.sucursalBancaria;
+                var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
+                var codigoSucursal = sucursal.codigoSucursalBancaria;
+                $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-";
+
+                $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
+            }).error(function () {
+                alert("Error: no existe coincidencia en la base de datos");
             });
         };
-        var idSucursalBancaria=parseInt($routeParams.idSucursalBancaria);
+
+
         $scope.findClientesBySucursal = function (idSucursalBancaria) {
             $http({
                 method: "GET",
-                url: contextPath + "/api/SucursalBancaria/" +idSucursalBancaria + "/CuentaBancaria"
+                url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria + "/CuentaBancaria"
             }).success(function (data) {
                 $scope.cuentasBancarias = data;
                 for (var i = 0; i < $scope.cuentasBancarias.length; i++) {
@@ -50,9 +78,9 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             }).error(function () {
                 alert("Error: no se ha podido listar las Sucursales");
             });
-
         };
-        $scope.findAll = function () {
+
+        $scope.findAllSucursales = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria"
@@ -63,18 +91,29 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
 
                     if (sucursalBancaria.idSucursalBancaria === idSucursalBancaria) {
                         $scope.cuentaBancaria.sucursalBancaria = sucursalBancaria;
-                        $scope.findClientesBySucursal(idSucursalBancaria);
-                        $scope.insertdesdedetail = {
-                            accion: 'insertardesdedetail'
-                        };
+                        $scope.fromChangeSucursal(sucursalBancaria.idSucursalBancaria);
                     }
                 }
             }).error(function () {
-                alert("Error: no se ha podido listar las Sucursalesaaaaaa");
+                alert("Error: no se ha podido listar las Sucursales");
             });
-
         };
-        $scope.findAll();
+        $scope.findAllSucursales();
+
+        $scope.insert = function () {
+            $http({
+                method: "POST",
+                data: $scope.cuentaBancaria,
+                url: contextPath + "/api/CuentaBancaria"
+            }).success(function (data) {
+                $scope.cuentaBancaria = {};
+                $scope.findAll();
+                $scope.clientes = [];
+            }).error(function (data, status) {
+                alert("Error: No se ha podido Insertar");
+            });
+        };
+
     }]);
 
 app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
@@ -92,7 +131,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         $scope.sucursalBancaria = {
             idSucursalBancaria: ""
         };
-        
+
         $scope.clientes = [];
 
 
@@ -122,13 +161,13 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         };
         $scope.findAllMovimientosByCuenta();
 
-        var idSucursalBancaria=parseInt($routeParams.idSucursalBancaria);
+        var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
         $scope.findClientesBySucursal = function (idSucursalBancaria) {
             $http({
                 method: "GET",
-                url: contextPath + "/api/SucursalBancaria/" +idSucursalBancaria + "/CuentaBancaria"
+                url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria + "/CuentaBancaria"
             }).success(function (data) {
-                $scope.clientes=[];
+                $scope.clientes = [];
                 $scope.cuentasBancarias = data;
                 for (var i = 0; i < $scope.cuentasBancarias.length; i++) {
                     if (i === 0) {
@@ -152,7 +191,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             });
 
         };
-        $scope.findAll = function () {
+        $scope.findAllSucursales = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria"
@@ -170,11 +209,11 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                     }
                 }
             }).error(function () {
-                alert("Error: no se ha podido listar las Sucursalesaaaaaa");
+                alert("Error: no se ha podido listar las Sucursales");
             });
 
         };
-        $scope.findAll();
+        $scope.findAllSucursales();
 
         $scope.update = function () {
             $http({
@@ -211,11 +250,9 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
         $scope.sucursalBancaria = {
             idSucursalBancaria: ""
         };
-        
+
         $scope.clientes = [];
-        
-        
-        
+
 
         $scope.get = function () {
             $http({
@@ -231,7 +268,6 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
         };
         $scope.get();
 
-
         $scope.findAllMovimientosByCuenta = function () {
             $http({
                 method: "GET",
@@ -243,14 +279,14 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
             });
         };
         $scope.findAllMovimientosByCuenta();
-        
-        var idSucursalBancaria=parseInt($routeParams.idSucursalBancaria);
+
+        var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
         $scope.findClientesBySucursal = function (idSucursalBancaria) {
             $http({
                 method: "GET",
-                url: contextPath + "/api/SucursalBancaria/" +idSucursalBancaria + "/CuentaBancaria"
+                url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria + "/CuentaBancaria"
             }).success(function (data) {
-                $scope.clientes=[];
+                $scope.clientes = [];
                 $scope.cuentasBancarias = data;
                 for (var i = 0; i < $scope.cuentasBancarias.length; i++) {
                     if (i === 0) {
@@ -274,7 +310,8 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
             });
 
         };
-        $scope.findAll = function () {
+
+        $scope.findAllSucursales = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria"
@@ -292,11 +329,11 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
                     }
                 }
             }).error(function () {
-                alert("Error: no se ha podido listar las Sucursalesaaaaaa");
+                alert("Error: no se ha podido listar las Sucursales");
             });
 
         };
-        $scope.findAll();
+        $scope.findAllSucursales();
 
         $scope.deleteData = function () {
             $http({

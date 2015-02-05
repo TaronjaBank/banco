@@ -16,7 +16,7 @@ INSERT INTO `entidadbancaria` (`idEntidadBancaria`, `codigoEntidadBancaria`, `no
 
 INSERT INTO `sucursalbancaria` (`idSucursalBancaria`, `codigoSucursalBancaria`, `nombreSucursalBancaria`, `direccionSucursalBancaria`, `idEntidadBancaria`) VALUES
 	(2, 'S002', 'Sucursal2', 'Valencia', 2),
-	(3, 'S003', 'Susursal3', 'Madrid', 1),
+	(3, 'S003', 'Sucursal3', 'Madrid', 1),
 	(4, 'S004', 'Sucursal4', 'Barcelona', 2),
 	(5, 'S005', 'Sucursal5', 'Zaragoza', 3),
 	(6, 'S006', 'Sucursal6', 'Sevilla', 2),

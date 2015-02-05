@@ -18,13 +18,13 @@
                 ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
                 ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
                 ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'"
-                ng-style="estilo" >
+                ng-style="estiloDisabled" >
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Sucursal</div>
         <select class="inputDetail" 
                 ng-model="empleadoEdit.sucursalBancaria.idSucursalBancaria" 
-                ng-style="estilo" 
+                ng-style="estiloDisabled" 
                 ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
                 ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
             <option value="">-- Elige opción --</option>
