@@ -13,7 +13,7 @@
         <div class="bloqueDatos">
             <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.conceptoMovimientoBancario}}</div>
-            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
+            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario | number:2}} €</div>
             <div class="celdaContenido columnaNombre">{{movimientoBancario.tipoMovimiento}}</div>
         </div>
 

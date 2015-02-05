@@ -5,23 +5,27 @@
     <section id="contenedorFormularioDetail">
 
         <div class="labelDetail">Número cuenta</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" 
+               ng-style="estiloDisabledNumCuenta" 
+               ng-model="cuentaBancaria.numeroCuentaBancaria" 
+               ng-disabled="true"/>
         <div class="labelDetail">Nombre sucursal</div>
-        <!-- ng-change="findClientesBySucursal()" -->
         <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
-                ng-style="estilo" 
-                ng-change="findClientesBySucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
+                ng-style="estiloDisabledSucursal" 
+                ng-change="fromChangeSucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
                 ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
-                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'">
-            <option value="">--Elige opcion--</option>
+                ng-disabled="estado.accion !== 'insertar' || insertdesdedetail.accionDesdeSucursal === true"
+                >
+            <!-- ng-disabled="estado.accion !== 'borrar' || estado.accion === 'actualizar' || insertdesdedetail.accionDesdeSucursal === true" -->
+            <option value="">--Elige opción--</option>
         </select>
         <div class="labelDetail">DNI cliente</div>
         <select class="inputDetail" ng-model="cuentaBancaria.cliente.idCliente" 
-                ng-style="estilo" 
+                ng-style="estiloDisabledCliente" 
                 ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
-                ng-disabled="estado.accion === 'borrar'"
+                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeCliente === true"
                 >
-            <option value="">--Elige opcion--</option>
+            <option value="">--Elige opción--</option>
         </select>
     </section>
 

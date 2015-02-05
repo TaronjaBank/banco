@@ -7,7 +7,6 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         $scope.estilo = "";
         
         
-        //Para el ng-Options
         $scope.sucursalBancaria={};
         
         $scope.insert = function () {
@@ -81,19 +80,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
 
         $scope.get();
-
-        $scope.update = function () {
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
-                data: $scope.sucursalBancaria
-            }).success(function () {
-                $scope.sucursalBancaria = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
-        };
         
         $scope.findAllCuentasBySucursal = function() {
             $http({
@@ -138,11 +124,20 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         
         $scope.findAllEntidades();
 
+        $scope.update = function () {
+            $http({
+                method: "PUT",
+                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
+                data: $scope.sucursalBancaria
+            }).success(function () {
+                $scope.sucursalBancaria = {};
+                $scope.irLista();
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
     }]);
-
-    
-
-
 
 
 app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
@@ -178,20 +173,6 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$htt
         };
 
         $scope.get();
-      
-      
-        
-        $scope.deleteData = function () {
-            $http({
-                method: "DELETE",
-                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
-            }).success(function () {
-                $scope.sucursalBancaria = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
-        };
         
         $scope.findAllCuentasBySucursal = function() {
             $http({
@@ -218,5 +199,17 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$htt
         };
         
         $scope.findAllEmpleadosBySucursal();
+        
+        $scope.deleteData = function () {
+            $http({
+                method: "DELETE",
+                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria
+            }).success(function () {
+                $scope.sucursalBancaria = {};
+                $scope.irLista();
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
 
     }]);

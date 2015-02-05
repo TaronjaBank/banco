@@ -5,6 +5,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         };
 
         $scope.estilo = "";
+        $scope.estiloDisabled = "";
 
         $scope.irLista = function () {
             $location.path("/empleado/list");
@@ -18,7 +19,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 }
             }
         };
-//        alert($scope.empleadoEdit.sucursalBancaria.idSucursalBancaria + "; " + $scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
@@ -30,7 +31,15 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+
+        if ($routeParams.idEntidadBancaria) {
+            $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+            $scope.estado = {
+                accion: 'insertarDesdeSucursal'
+            };
+            $scope.estiloDisabled = $rootScope.estiloBloqueado;
+        }
+
 
         $scope.findAllEntidades = function () {
             $http({
@@ -62,9 +71,18 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
 
 app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
         $rootScope.comprobarSesion();
-        $scope.estado = {
-            accion: 'actualizar'
-        };
+
+        if ($routeParams.idSucursalBancaria) {
+            $scope.estado = {
+                accion: 'actualizarDesdeSucursal'
+            };
+            $scope.estiloDisabled = $rootScope.estiloBloqueado;
+        } else {
+            $scope.estado = {
+                accion: 'actualizar'
+            };
+        }
+
 
         $scope.estilo = "";
 
@@ -75,6 +93,21 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+
+        $scope.get = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
+            }).success(function (data) {
+                $scope.empleadoEdit = data;
+                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+//                alert(JSON.stringify($scope.empleadoEdit));
+            }).error(function () {
+                alert("Error: no existe coincidencia en la base de datos");
+            });
+        };
+        $scope.get();
 
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
@@ -99,21 +132,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             });
         };
         $scope.findAllEntidades();
-
-
-        $scope.get = function () {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function (data) {
-                $scope.empleadoEdit = data;
-                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-//                alert(JSON.stringify($scope.empleadoEdit));
-            }).error(function () {
-                alert("Error: no existe coincidencia en la base de datos");
-            });
-        };
-        $scope.get();
 
 
         $scope.update = function () {
@@ -137,7 +155,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
             accion: 'borrar'
         };
 
-        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estiloDisabled = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.empleadoEdit = {
             idEmpleado: $routeParams.idEmpleado
@@ -146,6 +165,21 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+
+        $scope.get = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
+            }).success(function (data) {
+                $scope.empleadoEdit = data;
+                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+//                alert(JSON.stringify($scope.empleadoEdit));
+            }).error(function () {
+                alert("Error: no existe coincidencia en la base de datos");
+            });
+        };
+        $scope.get();
 
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
@@ -171,20 +205,6 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
         };
         $scope.findAllEntidades();
 
-
-        $scope.get = function () {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function (data) {
-                $scope.empleadoEdit = data;
-                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-//                alert(JSON.stringify($scope.empleadoEdit));
-            }).error(function () {
-                alert("Error: no existe coincidencia en la base de datos");
-            });
-        };
-        $scope.get();
 
         $scope.deleteData = function () {
             $http({

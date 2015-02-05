@@ -12,21 +12,20 @@
         <div class="labelDetail">Apellido2</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Entidad</div>
-        
         <select class="inputDetail" 
                 ng-model="empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria" 
                 ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
                 ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
-                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'"
-                ng-style="estilo" >
+                ng-disabled="estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'"
+                ng-style="estiloDisabled" >
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Sucursal</div>
         <select class="inputDetail" 
                 ng-model="empleadoEdit.sucursalBancaria.idSucursalBancaria" 
-                ng-style="estilo" 
                 ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
-                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+                ng-disabled="estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'" 
+                ng-style="estiloDisabled" >
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Login</div>

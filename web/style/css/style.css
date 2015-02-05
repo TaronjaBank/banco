@@ -351,7 +351,7 @@ body {
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNumCuenta, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNumCuenta {
             width: 130px; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaCantidad, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaCantidad {
-            width: 60px;
+            width: 80px;
             text-align: right; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaConcepto-Direccion, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaConcepto-Direccion {
             width: 180px; }
