@@ -3,12 +3,11 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         $scope.estado = {
             accion: 'insertar'
         };
-
-        $scope.estilo = "";
-        $scope.estiloDisabled = {
-            estiloDisabledSucursal: "",
-            estiloDisabledCliente: ""
-        };
+        
+        $scope.estiloDisabledNumCuenta = $rootScope.estiloBloqueado;
+        $scope.estiloDisabledSucursal = "";
+        $scope.estiloDisabledCliente = "";
+        
         $scope.insertdesdedetail = {
             accionDesdeSucursal: false,
             accionDesdeCliente: false
@@ -17,20 +16,22 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         $scope.cuentaBancaria = {
             sucursalBancaria: {}
         };
+        $scope.lastIdCuenta = -1;
         $scope.cliente = {idCliente: parseInt($routeParams.idCliente)};
         $scope.clientes = [];
 
         var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
 
         //Comportamiento en función al parámetro de la URL
-        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
+//        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
         if ($routeParams.idSucursalBancaria) {
-            $scope.estiloDisabled.estiloDisabledSucursal = $rootScope.estiloBloqueado;
+            $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeSucursal = true;
         } else if ($routeParams.idCliente) {
-            $scope.estiloDisabled.estiloDisabledCliente = $rootScope.estiloBloqueado;
+            $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeCliente = true;
         }
+
 
         //Operaciones a realizar al cambiar selección del ng-options de sucursales
         $scope.fromChangeSucursal = function (idSucursalBancaria) {
@@ -39,11 +40,11 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria
             }).success(function (data) {
                 $scope.sucursalBancaria = data;
-                alert(JSON.stringify($scope.sucursalBancaria));
+//                alert(JSON.stringify($scope.sucursalBancaria));
                 var sucursal = $scope.sucursalBancaria;
                 var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
                 var codigoSucursal = sucursal.codigoSucursalBancaria;
-                $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-";
+                $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ($scope.lastIdCuenta + 1);
 
                 $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
             }).error(function () {
@@ -80,6 +81,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             });
         };
 
+
         $scope.findAllSucursales = function () {
             $http({
                 method: "GET",
@@ -88,7 +90,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 $scope.sucursalesBancarias = data;
                 for (var i = 0; i < $scope.sucursalesBancarias.length; i++) {
                     var sucursalBancaria = $scope.sucursalesBancarias[i];
-
                     if (sucursalBancaria.idSucursalBancaria === idSucursalBancaria) {
                         $scope.cuentaBancaria.sucursalBancaria = sucursalBancaria;
                         $scope.fromChangeSucursal(sucursalBancaria.idSucursalBancaria);
@@ -100,6 +101,25 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         };
         $scope.findAllSucursales();
 
+
+        $scope.getLastIdCuenta = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/CuentaBancaria"
+            }).success(function (data) {
+                var cuentas = data;
+                for (var i = 0; i < cuentas.length; i++) {
+                    if (cuentas[i].idCuentaBancaria > $scope.lastIdCuenta) {
+                        $scope.lastIdCuenta = cuentas[i].idCuentaBancaria;
+                    }
+                }
+            }).error(function () {
+                alert("Error: no se han podido listar las cuentas bancarias");
+            });
+        };
+        $scope.getLastIdCuenta();
+
+
         $scope.insert = function () {
             $http({
                 method: "POST",
@@ -107,8 +127,9 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 url: contextPath + "/api/CuentaBancaria"
             }).success(function (data) {
                 $scope.cuentaBancaria = {};
-                $scope.findAll();
+                $scope.findAllSucursales();
                 $scope.clientes = [];
+                $scope.lastIdCuenta++;
             }).error(function (data, status) {
                 alert("Error: No se ha podido Insertar");
             });
@@ -122,7 +143,8 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             accion: 'actualizar'
         };
 
-        $scope.estilo = "";
+        $scope.estiloDisabledNumCuenta = $rootScope.estiloBloqueado;
+        $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
 
         $scope.cuentaBancaria = {
             idCuentaBancaria: $routeParams.idCuentaBancaria
@@ -236,7 +258,9 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
             accion: 'borrar'
         };
 
-        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estiloDisabledNumCuenta = $rootScope.estiloBloqueado;
+        $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
+        $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
 
         $scope.cuentaBancaria = {
             idCuentaBancaria: $routeParams.idCuentaBancaria

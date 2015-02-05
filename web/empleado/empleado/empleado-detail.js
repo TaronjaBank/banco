@@ -19,7 +19,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 }
             }
         };
-//        alert($scope.empleadoEdit.sucursalBancaria.idSucursalBancaria + "; " + $scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
 
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
@@ -35,8 +34,8 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
 
         if ($routeParams.idEntidadBancaria) {
             $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-            $scope.insertdesdedetail = {
-                accion: 'insertardesdedetail'
+            $scope.estado = {
+                accion: 'insertarDesdeSucursal'
             };
             $scope.estiloDisabled = $rootScope.estiloBloqueado;
         }
@@ -72,9 +71,18 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
 
 app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
         $rootScope.comprobarSesion();
-        $scope.estado = {
-            accion: 'actualizar'
-        };
+
+        if ($routeParams.idSucursalBancaria) {
+            $scope.estado = {
+                accion: 'actualizarDesdeSucursal'
+            };
+            $scope.estiloDisabled = $rootScope.estiloBloqueado;
+        } else {
+            $scope.estado = {
+                accion: 'actualizar'
+            };
+        }
+
 
         $scope.estilo = "";
 
@@ -147,7 +155,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
             accion: 'borrar'
         };
 
-        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estiloDisabled = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.empleadoEdit = {
             idEmpleado: $routeParams.idEmpleado
