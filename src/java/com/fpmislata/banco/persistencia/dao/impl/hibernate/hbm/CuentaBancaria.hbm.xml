@@ -12,7 +12,7 @@
             <column name="idSucursalBancaria" not-null="true"/>
         </many-to-one>
         <many-to-one name="cliente">
-            <column name="idCliente" not-null="true"/>
+            <column name="idCliente" />
         </many-to-one>
         <set name="movimientosBancarios"  cascade="all" inverse="true"  >
             <key>

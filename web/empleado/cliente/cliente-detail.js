@@ -23,29 +23,6 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
             });
         };
 
-//        $scope.findAll = function () {
-//            $http({
-//                method: "GET",
-//                url: contextPath + "/api/CuentaBancaria"
-//            }).success(function (data) {
-//                $scope.cuentasBancarias = data;
-//                for (var i = 0; i < $scope.cuentasBancarias.length; i++) {
-//                    var cuentaBancaria = $scope.cuentasBancarias[i];
-//                    if (cuentaBancaria.idCuentaBancaria === ($routeParams.idCuentaBancaria*1)) {
-//                        $scope.cliente.cuentaBancaria = cuentaBancaria;
-//                        $scope.insertdesdedetail = {
-//                            accion: 'insertardesdedetail'
-//                        };
-//                    }
-//                }
-//
-//            }).error(function () {
-//                alert("Error: no se ha podido realizar la operación");
-//            });
-//        };
-//
-//        $scope.findAll();
-
     }]);
 
 

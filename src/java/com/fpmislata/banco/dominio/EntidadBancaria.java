@@ -14,7 +14,7 @@ public class EntidadBancaria implements Serializable{
     String nombreEntidadBancaria;
     Date fechaCreacionEntidadBancaria;
     @JsonIgnore
-    private Set<SucursalBancaria> sucursalesBancarias;
+    Set<SucursalBancaria> sucursalesBancarias;
 
     public EntidadBancaria() {
     }

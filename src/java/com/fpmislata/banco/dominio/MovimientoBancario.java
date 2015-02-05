@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class MovimientoBancario {
 
     int idMovimientoBancario;
-    int idCuentaBancariaDestino;
     String conceptoMovimientoBancario;
     double cantidadMovimientoBancario;
     TipoMovimiento tipoMovimiento;
@@ -15,9 +14,8 @@ public class MovimientoBancario {
     public MovimientoBancario() {
     }
 
-    public MovimientoBancario(int idMovimientoBancario, int idCuentaBancariaDestino, String conceptoMovimientoBancario, double cantidadMovimientoBancario, TipoMovimiento tipoMovimiento, CuentaBancaria cuentaBancaria) {
+    public MovimientoBancario(int idMovimientoBancario, String conceptoMovimientoBancario, double cantidadMovimientoBancario, TipoMovimiento tipoMovimiento, CuentaBancaria cuentaBancaria) {
         this.idMovimientoBancario = idMovimientoBancario;
-        this.idCuentaBancariaDestino = idCuentaBancariaDestino;
         this.conceptoMovimientoBancario = conceptoMovimientoBancario;
         this.cantidadMovimientoBancario = cantidadMovimientoBancario;
         this.tipoMovimiento = tipoMovimiento;
@@ -30,14 +28,6 @@ public class MovimientoBancario {
 
     public void setIdMovimientoBancario(int idMovimientoBancario) {
         this.idMovimientoBancario = idMovimientoBancario;
-    }
-
-    public int getIdCuentaBancariaDestino() {
-        return idCuentaBancariaDestino;
-    }
-
-    public void setIdCuentaBancariaDestino(int idCuentaBancariaDestino) {
-        this.idCuentaBancariaDestino = idCuentaBancariaDestino;
     }
 
     public String getConceptoMovimientoBancario() {

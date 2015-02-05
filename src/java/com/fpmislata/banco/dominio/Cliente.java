@@ -11,10 +11,10 @@ public class Cliente {
     String nombreCliente;
     String apellido1Cliente;
     String apellido2Cliente;
-    private String loginCliente;
-    private String passwordCliente;
+    String loginCliente;
+    String passwordCliente;
     @JsonIgnore
-    private Set<CuentaBancaria> cuentasBancarias;
+    Set<CuentaBancaria> cuentasBancarias;
 
     public Cliente() {
     }

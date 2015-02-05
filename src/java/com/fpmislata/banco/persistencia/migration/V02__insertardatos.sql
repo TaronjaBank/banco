@@ -40,14 +40,14 @@ INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `numeroCuentaBancaria`, `idSuc
 	(6, 'E002-S002-6', 2, 2, 0.00),
 	(7, 'E003-S005-7', 5, 1, 0.00);
 
-INSERT INTO `movimientobancario` (`idMovimientoBancario`, `idCuentaBancariaDestino`, `conceptoMovimientoBancario`, `cantidadMovimientoBancario`, `tipoMovimiento`, `idCuentaBancaria`) VALUES
-	(1, 2, 'a', 4536.00, 'DEBE', 1),
-	(5, 3, 'b', 445.00, 'HABER', 3),
-	(6, 2, 'c', 234.00, 'HABER', 1),
-	(7, 4, 'd', 2345.00, 'DEBE', 2),
-	(9, 1, 'e', 432.00, 'HABER', 4),
-	(10, 2, 'f', 1324.00, 'DEBE', 2),
-	(11, 1, 'g', 345.00, 'DEBE', 5);
+INSERT INTO `movimientobancario` (`idMovimientoBancario`, `conceptoMovimientoBancario`, `cantidadMovimientoBancario`, `tipoMovimiento`, `idCuentaBancaria`) VALUES
+	(1, 'a', 4536.00, 'DEBE', 1),
+	(5, 'b', 445.00, 'HABER', 3),
+	(6, 'c', 234.00, 'HABER', 1),
+	(7, 'd', 2345.00, 'DEBE', 2),
+	(9, 'e', 432.00, 'HABER', 4),
+	(10, 'f', 1324.00, 'DEBE', 2),
+	(11, 'g', 345.00, 'DEBE', 5);
 
 INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido1Empleado`, `apellido2Empleado`, `idSucursalBancaria`, `loginEmpleado`, `passwordEmpleado`) VALUES
 	(5, 'prueba', 'prueba', 'prueba', 'prueba', 5, 'a', 'a'),

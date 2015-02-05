@@ -3,8 +3,6 @@
     <div id="tituloDetail">Detalle Empleado</div>
 
     <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id Empleado</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="empleadoEdit.idEmpleado" ng-disabled="true"/>
         <div class="labelDetail">DNI</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.dniEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Nombre</div>
@@ -14,12 +12,13 @@
         <div class="labelDetail">Apellido2</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Entidad</div>
+        
         <select class="inputDetail" 
                 ng-model="empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria" 
-                ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
-                ng-style="estilo" 
                 ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
-                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+                ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
+                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'"
+                ng-style="estilo" >
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Sucursal</div>
