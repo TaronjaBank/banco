@@ -2,17 +2,20 @@
 
     <div id="tituloDetail">Detalle Empleado</div>
 
-    <section id="contenedorFormularioDetail">
+    <form id="contenedorFormularioDetail" name="formularioEmpleado">
         <div class="labelDetail">DNI</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.dniEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" name="campoDniEmpleado"
+               ng-style="estilo" 
+               ng-model="empleadoEdit.dniEmpleado" ng-disabled="estado.accion === 'borrar'"
+               ng-pattern="/(\d{8})([a-zA-Z]{1})/"/>
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.nombreEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" name="campoNombreEmpleado" ng-style="estilo" ng-model="empleadoEdit.nombreEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Apellido1</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido1Empleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text" name="campoApellido1Empleado" ng-style="estilo" ng-model="empleadoEdit.apellido1Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Apellido2</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="text"  name="campoApellido2Empleado"ng-style="estilo" ng-model="empleadoEdit.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Entidad</div>
-        <select class="inputDetail" 
+        <select class="inputDetail" name="campoNombreEntidad" 
                 ng-model="empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria" 
                 ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
                 ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
@@ -21,7 +24,7 @@
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Sucursal</div>
-        <select class="inputDetail" 
+        <select class="inputDetail" name="campoNombreSucursal" 
                 ng-model="empleadoEdit.sucursalBancaria.idSucursalBancaria" 
                 ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
                 ng-disabled="estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'" 
@@ -29,12 +32,12 @@
             <option value="">-- Elige opción --</option>
         </select>
         <div class="labelDetail">Login</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.loginEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" name="campoLoginEmpleado" type="text" ng-style="estilo" 
+               ng-model="empleadoEdit.loginEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Password</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.passwordEmpleado" ng-disabled="estado.accion === 'borrar'"/>
-
-
-    </section>
+        <input class="inputDetail" name="campoPasswordEmpleado" type="text" ng-style="estilo" 
+               ng-model="empleadoEdit.passwordEmpleado" ng-disabled="estado.accion === 'borrar'"/>
+    </form>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar Empleado</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar Empleado</span>
@@ -42,5 +45,18 @@
 
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/empleado/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+
+    <br/><br/>
+
+    <div id="validacion-caja-mensajes-empleado" class="validacion-caja-mensajes">
+        <p id="validacion-mensaje-error-dniEmpleado" class="validacion-mensaje-error"
+           ng-show="formularioEmpleado.campoDniEmpleado.$error.pattern">
+           Error DNI empleado: formato incorrecto
+        </p>
+        <p id="validacion-mensaje-error-loginEmpleado" class="validacion-mensaje-error"
+           ng-show="formularioEmpleado.campoLoginEmpleado.$error.pattern">
+           Error login empleado: el login no debe contener espacios en blanco
+        </p>
+    </div>
 
 </section>

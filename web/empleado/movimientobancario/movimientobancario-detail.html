@@ -14,7 +14,11 @@
         <div class="labelDetail">Concepto</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.conceptoMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Cantidad</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.cantidadMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" type="number" 
+               ng-style="estilo" 
+               ng-model="movimientoBancario.cantidadMovimientoBancario" 
+               ng-disabled="estado.accion === 'borrar'"
+               />
         
         <div class="labelDetail">Tipo movimiento</div>
         <select class="inputDetail" 
