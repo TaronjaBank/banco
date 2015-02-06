@@ -5,6 +5,7 @@
         <id column="idSucursalBancaria" name="idSucursalBancaria" type="integer" access="field" >
             <generator class="identity"/>
         </id>
+        <property name="codigoSucursalBancaria" column="codigoSucursalBancaria" access="field" />
         <property name="nombreSucursalBancaria" column="nombreSucursalBancaria" access="field" />
         <property name="direccionSucursalBancaria" column="direccionSucursalBancaria" access="field" />
        
@@ -17,6 +18,12 @@
                 <column name="idSucursalBancaria"/>
             </key>
             <one-to-many class="com.fpmislata.banco.dominio.CuentaBancaria" />
+        </set>
+        <set name="empleados"  cascade="all" inverse="true"  >
+            <key>
+                <column name="idSucursalBancaria"/>
+            </key>
+            <one-to-many class="com.fpmislata.banco.dominio.Empleado" />
         </set>
     </class>
 </hibernate-mapping>

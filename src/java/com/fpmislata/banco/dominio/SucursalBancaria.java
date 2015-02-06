@@ -9,20 +9,24 @@ import java.util.Set;
 public class SucursalBancaria implements Serializable {
 
     int idSucursalBancaria;
+    String codigoSucursalBancaria;
     String nombreSucursalBancaria;
     String direccionSucursalBancaria;
     EntidadBancaria entidadBancaria;
-     @JsonIgnore
-    private Set<CuentaBancaria> cuentasBancarias;
-    
+    @JsonIgnore
+    Set<CuentaBancaria> cuentasBancarias;
+    @JsonIgnore
+    Set<Empleado> empleados;
+
     public SucursalBancaria() {
     }
 
-    public SucursalBancaria(int idSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria EntidadBancaria) {
+    public SucursalBancaria(int idSucursalBancaria, String codigoSucursalBancaria, String nombreSucursalBancaria, String direccionSucursalBancaria, EntidadBancaria entidadBancaria) {
         this.idSucursalBancaria = idSucursalBancaria;
+        this.codigoSucursalBancaria = codigoSucursalBancaria;
         this.nombreSucursalBancaria = nombreSucursalBancaria;
         this.direccionSucursalBancaria = direccionSucursalBancaria;
-        this.entidadBancaria = EntidadBancaria;
+        this.entidadBancaria = entidadBancaria;
     }
 
     public int getIdSucursalBancaria() {
@@ -31,6 +35,14 @@ public class SucursalBancaria implements Serializable {
 
     public void setIdSucursalBancaria(int idSucursalBancaria) {
         this.idSucursalBancaria = idSucursalBancaria;
+    }
+
+    public String getCodigoSucursalBancaria() {
+        return codigoSucursalBancaria;
+    }
+
+    public void setCodigoSucursalBancaria(String codigoSucursalBancaria) {
+        this.codigoSucursalBancaria = codigoSucursalBancaria;
     }
 
     public String getNombreSucursalBancaria() {
@@ -48,8 +60,7 @@ public class SucursalBancaria implements Serializable {
     public void setDireccionSucursalBancaria(String direccionSucursalBancaria) {
         this.direccionSucursalBancaria = direccionSucursalBancaria;
     }
-    
-    
+
     public EntidadBancaria getEntidadBancaria() {
         return entidadBancaria;
     }
@@ -64,6 +75,14 @@ public class SucursalBancaria implements Serializable {
 
     public void setCuentasBancarias(Set<CuentaBancaria> cuentasBancarias) {
         this.cuentasBancarias = cuentasBancarias;
+    }
+
+    public Set<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Set<Empleado> empleados) {
+        this.empleados = empleados;
     }
 
 }

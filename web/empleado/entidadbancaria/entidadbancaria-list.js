@@ -1,5 +1,5 @@
 app.controller("EntidadBancariaListController", ["$rootScope", "$scope", "$http", "$location", function($rootScope, $scope, $http , $location) {
-        
+        $rootScope.comprobarSesion();
         
         $scope.findAll = function() {
             $http({
@@ -15,16 +15,8 @@ app.controller("EntidadBancariaListController", ["$rootScope", "$scope", "$http"
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        f      
-        var promise = $rootScope.comprobarSesiona();
-        promise.then(function(status) {
-            if(status===200){
-                $scope.findAll();
-            }
-        }, function(error) {
-            alert("Error: no se ha podido realizar la operación");
-        });
- 
+        $scope.findAll();
+        
         
     }]);
 

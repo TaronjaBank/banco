@@ -2,23 +2,19 @@
 
     <p id="tituloTabla">Listado Empleados</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id empleado</div>
         <div class="celdaCabecera columnaId-Codigo">DNI</div>
-        <div class="celdaCabecera columnaNombre">Nombre</div>
-        <div class="celdaCabecera columnaApellido">Apellido1</div>
-        <div class="celdaCabecera columnaApellido">Apellido2</div>
-        <div class="celdaCabecera columnaId-Codigo">Id Sucursal</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Nombre</div>
+        <div class="celdaCabecera columnaNombre-Entidad-Sucursal">Entidad</div>
+        <div class="celdaCabecera columnaNombre-Entidad-Sucursal">Sucursal</div>
     </section>
 
     <section class="filaContenido" ng-repeat="empleado in empleados">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{empleado.idEmpleado}}</div>
             <div class="celdaContenido columnaId-Codigo">{{empleado.dniEmpleado}}</div>
-            <div class="celdaContenido columnaNombre">{{empleado.nombreEmpleado}}</div>
-            <div class="celdaContenido columnaApellido">{{empleado.apellido1Empleado}}</div>
-            <div class="celdaContenido columnaApellido">{{empleado.apellido2Empleado}}</div>
-            <div class="celdaContenido columnaId-Codigo">{{empleado.idSucursalBancaria}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{empleado.nombreEmpleado}} {{empleado.apellido1Empleado}} {{empleado.apellido2Empleado}}</div>
+            <div class="celdaContenido columnaNombre-Entidad-Sucursal">{{empleado.sucursalBancaria.entidadBancaria.codigoEntidadBancaria}} - {{empleado.sucursalBancaria.entidadBancaria.nombreEntidadBancaria}}</div>
+            <div class="celdaContenido columnaNombre-Entidad-Sucursal">{{empleado.sucursalBancaria.codigoSucursalBancaria}} - {{empleado.sucursalBancaria.nombreSucursalBancaria}}</div>
         </div>
 
         <div class="celdaIconoTabla">

@@ -8,19 +8,20 @@ import java.util.Set;
 public class CuentaBancaria {
 
     int idCuentaBancaria;
-    int numeroCuentaBancaria;
-    int idCliente;
-    private SucursalBancaria sucursalBancaria;
+    String numeroCuentaBancaria;
+    Cliente cliente;
+    double saldoCuentaBancaria;
+    SucursalBancaria sucursalBancaria;
     @JsonIgnore
-    private Set<MovimientoBancario> movimientosBancarios;
+    Set<MovimientoBancario> movimientosBancarios;
 
     public CuentaBancaria() {
     }
     
-    public CuentaBancaria(int idCuentaBancaria, int numeroCuentaBancaria, int idEntidadBancaria, int idCliente, SucursalBancaria sucursalBancaria) {
+    public CuentaBancaria(int idCuentaBancaria, String numeroCuentaBancaria, int idEntidadBancaria, Cliente cliente, SucursalBancaria sucursalBancaria) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.numeroCuentaBancaria = numeroCuentaBancaria;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
         this.sucursalBancaria = sucursalBancaria;
     }
     
@@ -32,21 +33,12 @@ public class CuentaBancaria {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public int getNumeroCuentaBancaria() {
+    public String getNumeroCuentaBancaria() {
         return numeroCuentaBancaria;
     }
 
-    public void setNumeroCuentaBancaria(int numeroCuentaBancaria) {
+    public void setNumeroCuentaBancaria(String numeroCuentaBancaria) {
         this.numeroCuentaBancaria = numeroCuentaBancaria;
-    }
-
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
     }
 
     public SucursalBancaria getSucursalBancaria() {
@@ -63,6 +55,22 @@ public class CuentaBancaria {
 
     public void setMovimientosBancarios(Set<MovimientoBancario> movimientosBancarios) {
         this.movimientosBancarios = movimientosBancarios;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public double getSaldoCuentaBancaria() {
+        return saldoCuentaBancaria;
+    }
+
+    public void setSaldoCuentaBancaria(double saldoCuentaBancaria) {
+        this.saldoCuentaBancaria = saldoCuentaBancaria;
     }
 
 }

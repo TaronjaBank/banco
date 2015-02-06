@@ -2,13 +2,17 @@
  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.banco.dominio.Empleado" table="empleado" >
-        <id name="idEmpleado" column="idEmpleado" access="field" />
-        <property column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
+        <id name="idEmpleado" column="idEmpleado" type="integer" access="field" >
+            <generator class="identity"/>
+        </id>
         <property name="dniEmpleado" column="dniEmpleado" access="field" />
         <property name="nombreEmpleado" column="nombreEmpleado" access="field" />
         <property name="apellido1Empleado" column="apellido1Empleado" access="field" />
         <property name="apellido2Empleado" column="apellido2Empleado" access="field" />
-        <property name="idSucursalBancaria" column="idSucursalBancaria" access="field" />
+        <many-to-one name="sucursalBancaria">
+            <column name="idSucursalBancaria" not-null="true"/>
+        </many-to-one>
+        <property column="loginEmpleado" name="loginEmpleado" type="string" access="field" />
         <property name="passwordEmpleado" column="passwordEmpleado" access="field" />
     </class>
 </hibernate-mapping>

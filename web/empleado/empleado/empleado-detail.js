@@ -1,14 +1,49 @@
-app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", function ($scope, $http, $location, $rootScope) {
-        
+app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", "$routeParams", function ($scope, $http, $location, $rootScope, $routeParams) {
+        $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'insertar'
         };
-        
+
         $scope.estilo = "";
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+        $scope.empleadoEdit = {
+            sucursalBancaria: {
+                idSucursalBancaria: parseInt($routeParams.idSucursalBancaria),
+                entidadBancaria: {
+                    idEntidadBancaria: parseInt($routeParams.idEntidadBancaria)
+                }
+            }
+        };
+//        alert($scope.empleadoEdit.sucursalBancaria.idSucursalBancaria + "; " + $scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+
+        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+
+        $scope.findAllEntidades = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                $scope.entidadesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        $scope.findAllEntidades();
+
 
         $scope.insert = function () {
             $http({
@@ -16,31 +51,55 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 data: $scope.empleadoEdit,
                 url: contextPath + "/api/Empleado"
             }).success(function (data) {
-                //alert("El nuevo Empleado ha sido insertado correctamente...");
                 $scope.empleadoEdit = data;
                 $scope.empleadoEdit = null;
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);
 
 
 app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+        $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'actualizar'
         };
-        
+
         $scope.estilo = "";
 
         $scope.empleadoEdit = {
             idEmpleado: $routeParams.idEmpleado
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+
+        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllEntidades = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                $scope.entidadesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        $scope.findAllEntidades();
+
 
         $scope.get = function () {
             $http({
@@ -48,11 +107,12 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
             }).success(function (data) {
                 $scope.empleadoEdit = data;
+                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+//                alert(JSON.stringify($scope.empleadoEdit));
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-
         $scope.get();
 
 
@@ -62,7 +122,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado,
                 data: $scope.empleadoEdit
             }).success(function () {
-                //alert("Los datos del empleado nº " + $scope.empleado.idEmpleado + " se han actualizado correctamente...");
                 $scope.empleadoEdit = {};
                 $scope.irLista();
             }).error(function () {
@@ -72,21 +131,46 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
 
     }]);
 
-app.controller("EmpleadoDeleteController", ["$rootScope","$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        
+app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
+        $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'borrar'
         };
-        
+
         $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
 
         $scope.empleadoEdit = {
             idEmpleado: $routeParams.idEmpleado
         };
-        
-        $scope.irLista = function() {
+
+        $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+
+        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllEntidades = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                $scope.entidadesBancarias = data;
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        $scope.findAllEntidades();
+
 
         $scope.get = function () {
             $http({
@@ -94,11 +178,12 @@ app.controller("EmpleadoDeleteController", ["$rootScope","$scope", "$http", "$ro
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
             }).success(function (data) {
                 $scope.empleadoEdit = data;
+                $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
+//                alert(JSON.stringify($scope.empleadoEdit));
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
-            });//success.Error
-        };//Consultar
-
+            });
+        };
         $scope.get();
 
         $scope.deleteData = function () {
@@ -106,12 +191,11 @@ app.controller("EmpleadoDeleteController", ["$rootScope","$scope", "$http", "$ro
                 method: "DELETE",
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
             }).success(function () {
-                //alert("El empleado nº " + $scope.empleado.idEmpleado + " ha sido borrado correctamente...");
                 $scope.empleadoEdit = {};
                 $scope.irLista();
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
     }]);
 

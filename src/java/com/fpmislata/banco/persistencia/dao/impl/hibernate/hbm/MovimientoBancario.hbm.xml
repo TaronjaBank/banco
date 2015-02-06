@@ -5,16 +5,16 @@
         <id column="idMovimientoBancario" name="idMovimientoBancario" type="integer" access="field" >
             <generator class="identity"/>
         </id>
-        <property name="idCuentaBancariaOrigen" column="idCuentaBancariaOrigen" access="field" />
-       
+        <property name="conceptoMovimientoBancario" column="conceptoMovimientoBancario" access="field" />
         <property name="cantidadMovimientoBancario" column="cantidadMovimientoBancario" access="field" />
         <property name="tipoMovimiento" >
-             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.fpmislata.banco.dominio.TipoMovimiento</param>                <param name="type">12</param>
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.fpmislata.banco.dominio.TipoMovimiento</param>                
+                <param name="type">12</param>
             </type>
         </property>
-        <many-to-one name="cuentaBancaria">
-            <column name="idCuentaBancaria" not-null="true"/>
+        <many-to-one name="cuentaBancaria" cascade="all">
+            <column name="idCuentaBancaria" />
         </many-to-one>
     </class>
 </hibernate-mapping>

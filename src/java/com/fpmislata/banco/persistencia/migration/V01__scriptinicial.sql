@@ -1,70 +1,67 @@
-
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
-  `dniCliente` varchar(50) NOT NULL,
-  `nombreCliente` varchar(50) NOT NULL,
-  `apellido1Cliente` varchar(50) DEFAULT NULL,
-  `apellido2Cliente` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-CREATE TABLE IF NOT EXISTS `entidadBancaria` (
+CREATE TABLE IF NOT EXISTS `entidadbancaria` (
   `idEntidadBancaria` int(11) NOT NULL AUTO_INCREMENT,
-  `codigoEntidadBancaria` varchar(50) DEFAULT NULL,
+  `codigoEntidadBancaria` varchar(4) DEFAULT NULL,
   `nombreEntidadBancaria` varchar(50) DEFAULT NULL,
   `fechaCreacionEntidadBancaria` date DEFAULT NULL,
   PRIMARY KEY (`idEntidadBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `sucursalBancaria` (
+
+CREATE TABLE IF NOT EXISTS `sucursalbancaria` (
   `idSucursalBancaria` int(11) NOT NULL AUTO_INCREMENT,
+  `codigoSucursalBancaria` varchar(4) DEFAULT NULL,
   `nombreSucursalBancaria` varchar(50) DEFAULT NULL,
   `direccionSucursalBancaria` varchar(50) DEFAULT NULL,
-  `idEntidadBancaria` int(11) NOT NULL,
+  `idEntidadBancaria` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSucursalBancaria`),
-  KEY `FKEntidadBancariaSucursal` (`idEntidadBancaria`),
-  CONSTRAINT `FK_sucursalBancaria_entidadBancaria` FOREIGN KEY (`idEntidadBancaria`) REFERENCES `entidadBancaria` (`idEntidadBancaria`)
+  CONSTRAINT `FK_sucursalBancaria_entidadBancaria` FOREIGN KEY (`idEntidadBancaria`) REFERENCES `entidadbancaria` (`idEntidadBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `cuentaBancaria` (
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `dniCliente` varchar(50) DEFAULT NULL,
+  `nombreCliente` varchar(50) DEFAULT NULL,
+  `apellido1Cliente` varchar(50) DEFAULT NULL,
+  `apellido2Cliente` varchar(50) DEFAULT NULL,
+  `loginCliente` varchar(50) DEFAULT NULL,
+  `passwordCliente` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `cuentabancaria` (
   `idCuentaBancaria` int(11) NOT NULL AUTO_INCREMENT,
-  `numeroCuentaBancaria` int(11) NOT NULL DEFAULT '0',
-  `idSucursalBancaria` int(11) NOT NULL DEFAULT '0',
+  `numeroCuentaBancaria` varchar(50) DEFAULT NULL,
+  `idSucursalBancaria` int(11) DEFAULT NULL,
   `idCliente` int(11) DEFAULT NULL,
+  `saldoCuentaBancaria` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`idCuentaBancaria`),
-  KEY `FKidEntidadBancariaCuenta` (`idSucursalBancaria`),
-  KEY `FKidCliente` (`idCliente`),
-  CONSTRAINT `FK_cuentabancaria_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalBancaria` (`idSucursalBancaria`)
+  CONSTRAINT `FK_cuentabancaria_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
+  CONSTRAINT `FK_cuentabancaria_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalbancaria` (`idSucursalBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-CREATE TABLE IF NOT EXISTS `movimientoBancario` (
+CREATE TABLE IF NOT EXISTS `movimientobancario` (
   `idMovimientoBancario` int(11) NOT NULL AUTO_INCREMENT,
-  `idCuentaBancariaOrigen` int(11) NOT NULL,
-  `cantidadMovimientoBancario` decimal(10,2) DEFAULT '0.00',
-  `tipoMovimiento` enum('DEBE','HABER') NOT NULL DEFAULT 'DEBE',
-  `idCuentaBancaria` int(11) NOT NULL,
+  `conceptoMovimientoBancario` varchar(150) DEFAULT NULL,
+  `cantidadMovimientoBancario` decimal(10,2) DEFAULT NULL,
+  `tipoMovimiento` enum('DEBE','HABER') DEFAULT NULL,
+  `idCuentaBancaria` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMovimientoBancario`),
-  KEY `FKCuentaBancariaMovimiento` (`idCuentaBancariaOrigen`),
-  KEY `FKCuentaBancariaMovimiento2` (`idCuentaBancaria`),
-  CONSTRAINT `FK_movimientobancario_cuentabancaria` FOREIGN KEY (`idCuentaBancaria`) REFERENCES `cuentaBancaria` (`idCuentaBancaria`)
+  CONSTRAINT `FK_movimientobancario_cuentabancaria` FOREIGN KEY (`idCuentaBancaria`) REFERENCES `cuentabancaria` (`idCuentaBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `empleado` (
-  `idEmpleado` int(11) NOT NULL DEFAULT '0',
-  `dniEmpleado` varchar(50) DEFAULT '0',
-  `nombreEmpleado` varchar(50) DEFAULT '0',
-  `apellido1Empleado` varchar(50) DEFAULT '0',
-  `apellido2Empleado` varchar(50) DEFAULT '0',
-  `idSucursalBancaria` int(11) NOT NULL DEFAULT '0',
-  `loginEmpleado` varchar(50) NOT NULL DEFAULT '0',
-  `passwordEmpleado` varchar(50) DEFAULT '0',
+  `idEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+  `dniEmpleado` varchar(50) DEFAULT NULL,
+  `nombreEmpleado` varchar(50) DEFAULT NULL,
+  `apellido1Empleado` varchar(50) DEFAULT NULL,
+  `apellido2Empleado` varchar(50) DEFAULT NULL,
+  `idSucursalBancaria` int(11) DEFAULT NULL,
+  `loginEmpleado` varchar(50) DEFAULT NULL,
+  `passwordEmpleado` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idEmpleado`),
-  KEY `FKSucursalBancariaEmpleado` (`idSucursalBancaria`)
+  CONSTRAINT `FK_empleado_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalbancaria` (`idSucursalBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-

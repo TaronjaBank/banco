@@ -14,11 +14,8 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-/**
- *
- * @author Administrador
- */
-public class FilterImplSecurity implements Filter {
+
+public class FilterEmpleadoImplSecurity implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

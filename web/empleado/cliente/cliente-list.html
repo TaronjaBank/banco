@@ -1,0 +1,38 @@
+<section id="tablaListado" >
+
+    <p id="tituloTabla">Listado Clientes</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaId-Codigo">DNI</div>
+        <div class="celdaCabecera columnaNombre">Nombre</div>
+        <div class="celdaCabecera columnaApellido">Apellido 1º</div>
+        <div class="celdaCabecera columnaApellido">Apellido 2º</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="cliente in clientes">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{cliente.dniCliente}}</div>
+            <div class="celdaContenido columnaNombre">{{cliente.nombreCliente}}</div>
+            <div class="celdaContenido columnaApellido">{{cliente.apellido1Cliente}}</div>
+            <div class="celdaContenido columnaApellido">{{cliente.apellido2Cliente}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/cliente/update/{{cliente.idCliente}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/cliente/delete/{{cliente.idCliente}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/cliente/new">Nuevo cliente</a></span>
+        <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    </section>
+
+</section>

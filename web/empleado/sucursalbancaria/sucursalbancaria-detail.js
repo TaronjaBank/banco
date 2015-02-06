@@ -108,7 +108,20 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         
         $scope.findAllCuentasBySucursal();
         
-         $scope.findAll = function() {
+        $scope.findAllEmpleadosBySucursal = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria/"+ $scope.sucursalBancaria.idSucursalBancaria+"/Empleado"
+            }).success(function(data) {
+                $scope.empleados = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllEmpleadosBySucursal();
+        
+         $scope.findAllEntidades = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
@@ -123,7 +136,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             });
         };
         
-        $scope.findAll();
+        $scope.findAllEntidades();
 
     }]);
 
@@ -192,5 +205,18 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope","$scope", "$htt
         };
         
         $scope.findAllCuentasBySucursal();
+        
+        $scope.findAllEmpleadosBySucursal = function() {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria/"+ $scope.sucursalBancaria.idSucursalBancaria+"/Empleado"
+            }).success(function(data) {
+                $scope.empleados = data;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+        
+        $scope.findAllEmpleadosBySucursal();
 
     }]);
