@@ -2,33 +2,38 @@
 
     <div id="tituloDetail">Detalle Movimiento Bancario</div>
 
-    <section id="contenedorFormularioDetail">
+    <form id="contenedorFormularioDetail" name="formularioMovimiento">
         <div class="labelDetail">Número cuenta </div>
-        <select class="inputDetail" 
+        <select class="inputDetail" name="campoNumeroCuenta"
                 ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" 
                 ng-style="estilo" 
                 ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias | orderBy: 'numeroCuentaBancaria'" 
                 ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
             <option value="">-- Elige opción --</option>
         </select>
+        
         <div class="labelDetail">Concepto</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.conceptoMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" name="campoConceptoMovimiento" type="text" 
+               ng-style="estilo" 
+               ng-model="movimientoBancario.conceptoMovimientoBancario" 
+               ng-disabled="estado.accion === 'borrar'"/>
+        
         <div class="labelDetail">Cantidad</div>
-        <input class="inputDetail" type="number" 
+        <input class="inputDetail" name="campoCantidadMovimiento" type="number" 
                ng-style="estilo" 
                ng-model="movimientoBancario.cantidadMovimientoBancario" 
-               ng-disabled="estado.accion === 'borrar'"
-               />
+               ng-disabled="estado.accion === 'borrar'"/>
         
         <div class="labelDetail">Tipo movimiento</div>
-        <select class="inputDetail" 
+        <select class="inputDetail" name="campoTipoMovimiento"
                 ng-model="movimientoBancario.tipoMovimiento" 
                 ng-style="estilo" 
                 ng-options="tipoMovimiento.nombre as tipoMovimiento.nombre for tipoMovimiento in tipoMovimientos" 
                 ng-disabled="estado.accion === 'borrar'" >
             <option value="">--Elige opcion--</option>
-        </select>   
-
+        </select>
+        
+    </form>   
 
         <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar movimiento</span>
         <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
@@ -36,6 +41,5 @@
 
         <span id="botonVolverLista" class="botonBackEnd"><a href="#/movimientobancario/list">Ir a listado</a></span>
         <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
-    </section>
 
 </section>

@@ -2,24 +2,36 @@
 
     <div id="tituloDetail">Detalle Entidad Bancaria</div>
 
-    <section id="contenedorFormularioDetail">
-       <div class="labelDetail">Código</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.codigoEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+    <form id="contenedorFormularioDetail" name="formularioEntidadBancaria">
+        <div class="labelDetail">Código</div>
+        <input class="inputDetail" name="campoCodigoEntidad" type="text" 
+               ng-style="estilo" 
+               ng-model="entidadBancaria.codigoEntidadBancaria" 
+               ng-disabled="estado.accion === 'borrar'"/>
+        
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" name="campoNombreEntidad" type="text" 
+               ng-style="estilo" 
+               ng-model="entidadBancaria.nombreEntidadBancaria" 
+               ng-disabled="estado.accion === 'borrar'"/>
+        
         <div class="labelDetail">Fecha creación</div>
-        <input ui-date class="inputDetail" type="text" ng-style="estilo"  ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
-    </section>
+        <input name="campoFechaEntidad" ui-date class="inputDetail" type="text" 
+               ng-style="estilo" 
+               ng-model="entidadBancaria.fechaCreacionEntidadBancaria" 
+               ng-disabled="estado.accion === 'borrar'"/>
+    </form>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar entidad</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar entidad</span>
+
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/entidadbancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
 
 </section>
 
-                <!-- Tabla de Sucursales Bancarias.  -->
+<!-- Tabla de Sucursales Bancarias.  -->
 <section id="tablaListado" ng-show="sucursalesBancarias.length !== 0" ng-hide="estado.accion === 'insertar'">
 
     <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
