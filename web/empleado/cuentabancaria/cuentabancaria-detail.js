@@ -3,11 +3,11 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         $scope.estado = {
             accion: 'insertar'
         };
-        
+
         $scope.estiloDisabledNumCuenta = $rootScope.estiloBloqueado;
         $scope.estiloDisabledSucursal = "";
         $scope.estiloDisabledCliente = "";
-        
+
         $scope.insertdesdedetail = {
             accionDesdeSucursal: false,
             accionDesdeCliente: false
@@ -23,14 +23,22 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
 
         //Comportamiento en función al parámetro de la URL
-//        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
-        if ($routeParams.idSucursalBancaria) {
+        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
+        if (($routeParams.idSucursalBancaria) && (!$routeParams.idCliente)) {
             $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeSucursal = true;
-        } else if ($routeParams.idCliente) {
+        } else if ((!$routeParams.idSucursalBancaria) && ($routeParams.idCliente)) {
             $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeCliente = true;
+        } else if (($routeParams.idSucursalBancaria) && ($routeParams.idCliente)) {
+            throw new error("ambos parámetros tienen valor");
+        } else if ((!$routeParams.idSucursalBancaria) && (!$routeParams.idCliente)) {
+            throw new error("ningún parámetro tiene valor");
+        } else {
+            throw new error("falta alguna opción");
         }
+
+
 
 
         //Operaciones a realizar al cambiar selección del ng-options de sucursales
