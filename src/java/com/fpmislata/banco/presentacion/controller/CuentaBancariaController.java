@@ -4,9 +4,11 @@ import com.fpmislata.banco.dominio.CuentaBancaria;
 import com.fpmislata.banco.persistencia.dao.CuentaBancariaDAO;
 import com.fpmislata.banco.common.json.JsonTransformer;
 import com.fpmislata.banco.dominio.MovimientoBancario;
-import com.fpmislata.banco.dominio.SucursalBancaria;
+import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.BussinessException;
 import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,14 @@ public class CuentaBancariaController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -58,6 +68,14 @@ public class CuentaBancariaController {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -80,6 +98,14 @@ public class CuentaBancariaController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -90,8 +116,18 @@ public class CuentaBancariaController {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @PathVariable("idCuentaBancaria") int idCuentaBancaria){
-        cuentaBancariaDAO.delete(idCuentaBancaria);
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        try {
+            cuentaBancariaDAO.delete(idCuentaBancaria);
+            httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        }
     }
 
     @RequestMapping(
@@ -106,6 +142,14 @@ public class CuentaBancariaController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
     
@@ -126,6 +170,14 @@ public class CuentaBancariaController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
     }

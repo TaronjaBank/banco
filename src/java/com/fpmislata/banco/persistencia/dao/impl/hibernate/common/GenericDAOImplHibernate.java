@@ -21,7 +21,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T get(int id) {
+    public T get(int id) throws BussinessException{
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
@@ -50,7 +50,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T insert(T t) {
+    public T insert(T t) throws BussinessException{
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
@@ -80,7 +80,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T update(T t) {
+    public T update(T t) throws BussinessException{
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
@@ -109,7 +109,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws BussinessException{
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
@@ -141,7 +141,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public List<T> findAll() {
+    public List<T> findAll() throws BussinessException{
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
