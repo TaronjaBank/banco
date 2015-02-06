@@ -16,11 +16,11 @@ public class PasarelaPago {
         this.transaccion = transaccion;
     }
     
-    public MovimientoBancario getMovimientoBancarioDEBE(){
+    public MovimientoBancario getMovimientoBancarioDEBE(CuentaBancaria cuentaBancariaOrigen){
         MovimientoBancario movimientoBancarioDEBE=new MovimientoBancario();
        
             movimientoBancarioDEBE.setConceptoMovimientoBancario(this.transaccion.getConcepto());
-            movimientoBancarioDEBE.setCuentaBancaria(this.transaccion.getCuentaOrigen());
+            movimientoBancarioDEBE.setCuentaBancaria(cuentaBancariaOrigen);
             movimientoBancarioDEBE.setTipoMovimiento(TipoMovimiento.DEBE);
             movimientoBancarioDEBE.setCantidadMovimientoBancario(this.transaccion.getImporte());
             
@@ -28,11 +28,11 @@ public class PasarelaPago {
         return movimientoBancarioDEBE;
     }
      
-    public MovimientoBancario getMovimientoBancarioHABER(){
+    public MovimientoBancario getMovimientoBancarioHABER(CuentaBancaria cuentaBancariaDestino){
         MovimientoBancario movimientoBancarioHABER=new MovimientoBancario();
        
             movimientoBancarioHABER.setConceptoMovimientoBancario(this.transaccion.getConcepto());
-            movimientoBancarioHABER.setCuentaBancaria(this.transaccion.getCuentaDestino());
+            movimientoBancarioHABER.setCuentaBancaria(cuentaBancariaDestino);
             movimientoBancarioHABER.setTipoMovimiento(TipoMovimiento.HABER);
             movimientoBancarioHABER.setCantidadMovimientoBancario(this.transaccion.getImporte());
             

@@ -10,6 +10,7 @@ import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<CuentaBancaria> implements CuentaBancariaDAO {
@@ -50,6 +51,22 @@ public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<Cuen
             throw new RuntimeException(ex);
         }
     }
+    
+   
+    @Override
+    public CuentaBancaria getFromNumeroCuenta(String numeroCuenta) {
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Query query = session.createQuery("SELECT c FROM CuentaBancaria c WHERE numeroCuentaBancaria=:numeroCuenta");
+        query.setParameter("numeroCuenta", numeroCuenta);
+        CuentaBancaria cuentaBancaria = (CuentaBancaria) query.uniqueResult();
+        session.getTransaction().commit();
+
+        return cuentaBancaria;
+    }
+    }
+    
 
 
 
@@ -59,5 +76,3 @@ public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<Cuen
 
 
 
-
-}

@@ -6,38 +6,23 @@
 package com.fpmislata.banco.dominio;
 
 public class Transaccion {
-  private CuentaBancaria CuentaOrigen;
-  private CuentaBancaria CuentaDestino;
+  private String numeroCuentaOrigen;
+  private String numeroCuentaDestino;
   private double importe;
   private String concepto;
   
     public Transaccion() {
     }
 
-    public Transaccion(CuentaBancaria CuentaOrigen, CuentaBancaria CuentaDestino, double importe, String concepto) {
-        this.CuentaOrigen = CuentaOrigen;
-        this.CuentaDestino = CuentaDestino;
+    public Transaccion(String numeroCuentaOrigen, String numeroCuentaDestino, double importe, String concepto) {
+        this.numeroCuentaOrigen = numeroCuentaOrigen;
+        this.numeroCuentaDestino = numeroCuentaDestino;
         this.importe = importe;
         this.concepto = concepto;
     }
-
+    
+    
    
-
-    public CuentaBancaria getCuentaOrigen() {
-        return CuentaOrigen;
-    }
-
-    public void setCuentaOrigen(CuentaBancaria CuentaOrigen) {
-        this.CuentaOrigen = CuentaOrigen;
-    }
-
-    public CuentaBancaria getCuentaDestino() {
-        return CuentaDestino;
-    }
-
-    public void setCuentaDestino(CuentaBancaria CuentaDestino) {
-        this.CuentaDestino = CuentaDestino;
-    }
 
     public double getImporte() {
         return importe;
@@ -53,6 +38,22 @@ public class Transaccion {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
+    }
+
+    public String getNumeroCuentaOrigen() {
+        return numeroCuentaOrigen;
+    }
+
+    public void setNumeroCuentaOrigen(String numeroCuentaOrigen) {
+        this.numeroCuentaOrigen = numeroCuentaOrigen;
+    }
+
+    public String getNumeroCuentaDestino() {
+        return numeroCuentaDestino;
+    }
+
+    public void setNumeroCuentaDestino(String numeroCuentaDestino) {
+        this.numeroCuentaDestino = numeroCuentaDestino;
     }
 
    
