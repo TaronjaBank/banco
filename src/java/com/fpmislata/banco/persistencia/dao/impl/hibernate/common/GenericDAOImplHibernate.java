@@ -1,17 +1,17 @@
 package com.fpmislata.banco.persistencia.dao.impl.hibernate.common;
 
 import com.fpmislata.banco.persistencia.dao.GenericDAO;
-
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.validation.ConstraintViolationException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
-    
+
     SessionFactory sessionFactory;
 
     public static final Logger LOGGER = Logger.getLogger(GenericDAOImplHibernate.class.getName());
@@ -21,13 +21,23 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T get(int id) throws BussinessException{
+    public T get(int id) throws BussinessException {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
             T t = (T) session.get(getEntityClass(), id);
             session.getTransaction().commit();
             return t;
+        } catch (ConstraintViolationException cve) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                LOGGER.log(Level.WARNING, "Error al hacer rollback", exc);
+            }
+            throw new BussinessException(cve);
+
         } catch (RuntimeException ex) {
             try {
                 if (session.getTransaction().isActive()) {
@@ -50,14 +60,23 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T insert(T t) throws BussinessException{
+    public T insert(T t) throws BussinessException {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
-            
+
             session.save(t);
             session.getTransaction().commit();
             return t;
+        } catch (ConstraintViolationException cve) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                LOGGER.log(Level.WARNING, "Error al hacer rollback", exc);
+            }
+            throw new BussinessException(cve);
         } catch (RuntimeException ex) {
             try {
                 if (session.getTransaction().isActive()) {
@@ -80,13 +99,23 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T update(T t) throws BussinessException{
+    public T update(T t) throws BussinessException {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
             session.update(t);
             session.getTransaction().commit();
             return t;
+        } catch (ConstraintViolationException cve) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                LOGGER.log(Level.WARNING, "Error al hacer rollback", exc);
+            }
+            throw new BussinessException(cve);
+
         } catch (RuntimeException ex) {
             try {
                 if (session.getTransaction().isActive()) {
@@ -109,16 +138,26 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public void delete(int id) throws BussinessException{
+    public void delete(int id) throws BussinessException {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
             T t = (T) session.get(getEntityClass(), id);
-            if(t == null){
+            if (t == null) {
                 throw new Exception("Los datos que se intentan borrar no existen");
             }
             session.delete(t);
             session.getTransaction().commit();
+        } catch (ConstraintViolationException cve) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                LOGGER.log(Level.WARNING, "Error al hacer rollback", exc);
+            }
+            throw new BussinessException(cve);
+
         } catch (RuntimeException ex) {
             try {
                 if (session.getTransaction().isActive()) {
@@ -141,7 +180,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    public List<T> findAll() throws BussinessException{
+    public List<T> findAll() throws BussinessException {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
@@ -149,6 +188,16 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
             List<T> ts = query.list();
             session.getTransaction().commit();
             return ts;
+        } catch (ConstraintViolationException cve) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                LOGGER.log(Level.WARNING, "Error al hacer rollback", exc);
+            }
+            throw new BussinessException(cve);
+
         } catch (RuntimeException ex) {
             try {
                 if (session.getTransaction().isActive()) {

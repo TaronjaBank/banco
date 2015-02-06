@@ -3,18 +3,38 @@ package com.fpmislata.banco.dominio;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
 
     int idCliente;
+    @NotNull
+    @Size(min=9,max=9)
     String dniCliente;
+    @NotNull
+    @Size(min=3,max=50)
     String nombreCliente;
+    @NotNull
+    @Size(min=3,max=50)
     String apellido1Cliente;
+    @Size(min=3,max=50)
     String apellido2Cliente;
+    @NotNull
+    @Size(min=3,max=50)
     String loginCliente;
+    @NotNull
+    @Size(min=3,max=50)
     String passwordCliente;
     @JsonIgnore
     Set<CuentaBancaria> cuentasBancarias;
+
+    @AssertTrue(message = "El DNI no es correcto")
+    private boolean isDNIValido() {
+        return true;
+    }
 
     public Cliente() {
     }
@@ -28,8 +48,6 @@ public class Cliente {
         this.loginCliente = loginCliente;
         this.passwordCliente = passwordCliente;
     }
-
-   
 
     public int getIdCliente() {
         return idCliente;
