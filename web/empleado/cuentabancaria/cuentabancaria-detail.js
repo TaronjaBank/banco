@@ -14,30 +14,49 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         };
 
         $scope.cuentaBancaria = {
-            sucursalBancaria: {}
+            sucursalBancaria: {
+                idSucursalBancaria: parseInt($routeParams.idSucursalBancaria)
+            },
+            cliente: {
+                idCliente: ""
+            }
         };
         $scope.lastIdCuenta = -1;
-        $scope.cliente = {idCliente: parseInt($routeParams.idCliente)};
+        
         $scope.clientes = [];
 
-        var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
+        var idSucursalBancaria = $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria;
+
+
+        $scope.findClientes = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/Cliente"
+            }).success(function (data) {
+                $scope.clientes = data;
+            }).error(function () {
+                alert("Error: no se ha podido listar los clientes");
+            });
+        };
+        $scope.findClientes();
+
 
         //Comportamiento en función al parámetro de la URL
-        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
+//        alert("idSucursal: " + $routeParams.idSucursalBancaria + "; idCliente: " + $routeParams.idCliente);
         if (($routeParams.idSucursalBancaria) && (!$routeParams.idCliente)) {
             $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeSucursal = true;
         } else if ((!$routeParams.idSucursalBancaria) && ($routeParams.idCliente)) {
+            $scope.cuentaBancaria.cliente.idCliente = parseInt($routeParams.idCliente);
             $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeCliente = true;
         } else if (($routeParams.idSucursalBancaria) && ($routeParams.idCliente)) {
-            throw new error("ambos parámetros tienen valor");
+            throw new error("ambos parámetros tienen valor!");
         } else if ((!$routeParams.idSucursalBancaria) && (!$routeParams.idCliente)) {
-            throw new error("ningún parámetro tiene valor");
+//            throw new error("ningún parámetro tiene valor!");
         } else {
-            throw new error("falta alguna opción");
+            throw new error("falta alguna opción por considerar!");
         }
-
 
 
 
@@ -53,8 +72,10 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
                 var codigoSucursal = sucursal.codigoSucursalBancaria;
                 $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ($scope.lastIdCuenta + 1);
-
-                $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
+                
+                if (!$routeParams.idCliente){
+                    $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
+                }
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });
@@ -66,6 +87,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 method: "GET",
                 url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria + "/CuentaBancaria"
             }).success(function (data) {
+                $scope.clientes = [];
                 $scope.cuentasBancarias = data;
                 for (var i = 0; i < $scope.cuentasBancarias.length; i++) {
                     if (i === 0) {
