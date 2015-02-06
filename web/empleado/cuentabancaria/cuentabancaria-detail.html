@@ -8,24 +8,27 @@
         <input class="inputDetail" name="campoNumeroCuenta" type="text" 
                ng-style="estiloDisabledNumCuenta" 
                ng-model="cuentaBancaria.numeroCuentaBancaria" 
-               ng-disabled="true"/>
+               ng-disabled="true"
+               required/>
         
         <div class="labelDetail">Nombre sucursal</div>
         <select class="inputDetail" name="campoNombreSucursal" 
-                ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
-                ng-style="estiloDisabledSucursal" 
-                ng-change="fromChangeSucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
-                ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
-                ng-disabled="estado.accion !== 'insertar' || insertdesdedetail.accionDesdeSucursal === true">
+               ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
+               ng-style="estiloDisabledSucursal" 
+               ng-change="fromChangeSucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
+               ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
+               ng-disabled="estado.accion !== 'insertar' || insertdesdedetail.accionDesdeSucursal === true"
+               required>
             <option value="">--Elige opción--</option>
         </select>
         
         <div class="labelDetail">DNI cliente</div>
         <select class="inputDetail" name="campoDniCliente" 
-                ng-model="cuentaBancaria.cliente.idCliente" 
-                ng-style="estiloDisabledCliente" 
-                ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
-                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeCliente === true">
+               ng-model="cuentaBancaria.cliente.idCliente" 
+               ng-style="estiloDisabledCliente" 
+               ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
+               ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeCliente === true"
+               required>
             <option value="">--Elige opción--</option>
         </select>
     </form>
@@ -36,6 +39,24 @@
 
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/cuentabancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    
+    <br/><br/>
+
+    <div id="validacion-caja-mensajes-cuenta" class="validacion-caja-mensajes">
+        <p id="validacion-mensaje-required-numeroCuenta" class="validacion-mensaje-required"
+           ng-show="formularioCuentaBancaria.campoNumeroCuenta.$error.required">
+           Error número cuenta: campo requerido
+        </p>
+        <p id="validacion-mensaje-required-nombreSucursal" class="validacion-mensaje-required"
+           ng-show="formularioCuentaBancaria.campoNombreSucursal.$error.required">
+           Error nombre sucursal: campo requerido
+        </p>
+        <p id="validacion-mensaje-required-dniCliente" class="validacion-mensaje-required"
+           ng-show="formularioCuentaBancaria.campoDniCliente.$error.required">
+           Error DNI cliente: campo requerido
+        </p>
+    </div>
+    
 </section>
 
 <section id="tablaListado" ng-show="movimientosBancarios.length !== 0" ng-hide="estado.accion === 'insertar'">
