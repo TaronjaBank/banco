@@ -19,9 +19,18 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         $scope.errorValidacion = false;
 
 
-        $scope.insert = function () {
+        $scope.comprobarValidaciones = function () {
             if (!$scope.formularioSucursal.$error.required
                     && !$scope.formularioSucursal.$error.pattern) {
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
+            return $scope.errorValidacion;
+        };
+
+        $scope.insert = function () {
+            if ($scope.comprobarValidaciones() === false) {
                 $http({
                     method: "POST",
                     url: contextPath + "/api/SucursalBancaria",
@@ -32,9 +41,14 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-                $scope.errorValidacion = false;
             } else {
-                $scope.errorValidacion = true;
+                $("#contenedorFormularioDetail input").keyup(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $("#contenedorFormularioDetail select").change(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -137,12 +151,20 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-
         $scope.findAllEntidades();
-
-        $scope.update = function () {
+        
+        $scope.comprobarValidaciones = function () {
             if (!$scope.formularioSucursal.$error.required
                     && !$scope.formularioSucursal.$error.pattern) {
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
+            return $scope.errorValidacion;
+        };
+        
+        $scope.update = function () {
+            if ($scope.comprobarValidaciones() === false) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
@@ -153,9 +175,14 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-                $scope.errorValidacion = false;
             } else {
-                $scope.errorValidacion = true;
+                $("#contenedorFormularioDetail input").keyup(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $("#contenedorFormularioDetail select").change(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -180,6 +207,9 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
         };
 
         $scope.entidadesBancarias = [];
+
+        $scope.errorValidacion = false;
+
 
         $scope.get = function () {
             $http({

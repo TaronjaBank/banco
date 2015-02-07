@@ -43,29 +43,33 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-cliente" class="validacion-caja-mensajes">
+    <div id="validacion-caja-mensajes-cliente" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
+        <p id="validacion-caja-titulo-cliente" class="validacion-caja-titulo" ng-show="errorValidacion === true">
+           ERRORES EN CAMPOS DE FORMULARIO:
+        </p>
+        
         <p id="validacion-mensaje-error-dniCliente" class="validacion-mensaje-error"
            ng-show="formularioCliente.campoDniCliente.$error.pattern && errorValidacion === true">
-           Error DNI: valor incorrecto
+           * Error DNI: valor incorrecto
         </p>
         <p id="validacion-mensaje-required-dniCliente" class="validacion-mensaje-required"
            ng-show="formularioCliente.campoDniCliente.$error.required && errorValidacion === true">
-           Error DNI: campo requerido
+           * Error DNI: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreCliente" class="validacion-mensaje-required"
            ng-show="formularioCliente.campoNombreCliente.$error.required && errorValidacion === true">
-           Error nombre: campo requerido
+           * Error nombre: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-apellido1Cliente" class="validacion-mensaje-required"
            ng-show="formularioCliente.campoApellido1Cliente.$error.required && errorValidacion === true">
-           Error apellido 1: campo requerido
+           * Error apellido 1: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-apellido2Cliente" class="validacion-mensaje-required"
            ng-show="formularioCliente.campoApellido2Cliente.$error.required && errorValidacion === true">
-           Error apellido 2: campo requerido
+           * Error apellido 2: campo requerido
         </p>
     </div>
     

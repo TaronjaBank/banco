@@ -21,10 +21,19 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
         $scope.errorValidacion = false;
 
 
-        $scope.insert = function () {
+        $scope.comprobarValidaciones = function () {
             if (!$scope.formularioMovimiento.$error.required
                     && !$scope.formularioMovimiento.$error.pattern
                     && !$scope.formularioMovimiento.$error.number) {
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
+            return $scope.errorValidacion;
+        };
+
+        $scope.insert = function () {
+            if ($scope.comprobarValidaciones() === false) {
                 $http({
                     method: "POST",
                     url: contextPath + "/api/MovimientoBancario",
@@ -35,9 +44,17 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-                $scope.errorValidacion = false;
             } else {
-                $scope.errorValidacion = true;
+                $("#contenedorFormularioDetail input").keyup(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $("#contenedorFormularioDetail input").click(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $("#contenedorFormularioDetail select").change(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -78,7 +95,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
         $scope.irLista = function () {
             $location.path("/movimientobancario/list");
         };
-        
+
         $scope.errorValidacion = false;
 
 
@@ -98,25 +115,42 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             {ID: '0', nombre: 'DEBE'},
             {ID: '1', nombre: 'HABER'}
         ];
-        
-        $scope.update = function () {
+
+
+        $scope.comprobarValidaciones = function () {
             if (!$scope.formularioMovimiento.$error.required
                     && !$scope.formularioMovimiento.$error.pattern
                     && !$scope.formularioMovimiento.$error.number) {
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
+            return $scope.errorValidacion;
+        };
+
+        $scope.update = function () {
+            if ($scope.comprobarValidaciones() === false) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
                     data: $scope.movimientoBancario
                 }).success(function () {
-                    //alert("Los datos del movimiento nº " + $scope.movimientoBancario.idMovimientoBancario + " se han actualizado correctamente...");
                     $scope.movimientoBancario = {};
                     $scope.irLista();
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-                $scope.errorValidacion = false;
             } else {
-                $scope.errorValidacion = true;
+                $("#contenedorFormularioDetail input").keyup(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $("#contenedorFormularioDetail input").click(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $("#contenedorFormularioDetail select").change(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
 
         };
@@ -152,6 +186,10 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
         };
         $scope.cuentasBancarias = [];
         $scope.cuentaBancaria = {};
+
+        $scope.errorValidacion = false;
+
+
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -176,7 +214,6 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
                 method: "DELETE",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function () {
-                //alert("El movimiento nº " + $scope.movimientoBancario.idMovimientoBancario + " ha sido borrado correctamente...");
                 $scope.movimientoBancario = {};
                 $scope.irLista();
             }).error(function () {

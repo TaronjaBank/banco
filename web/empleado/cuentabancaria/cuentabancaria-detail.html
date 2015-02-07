@@ -42,18 +42,21 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-cuenta" class="validacion-caja-mensajes">
+    <div id="validacion-caja-mensajes-cuenta" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
+        <p id="validacion-caja-titulo-cuenta" class="validacion-caja-titulo" ng-show="errorValidacion === true">
+           ERRORES EN CAMPOS DE FORMULARIO:
+        </p>
         <p id="validacion-mensaje-required-numeroCuenta" class="validacion-mensaje-required"
            ng-show="formularioCuentaBancaria.campoNumeroCuenta.$error.required && errorValidacion === true">
-           Error número cuenta: campo requerido
+           * Error número cuenta: campo requerido
         </p>
         <p id="validacion-mensaje-required-nombreSucursal" class="validacion-mensaje-required"
            ng-show="formularioCuentaBancaria.campoNombreSucursal.$error.required && errorValidacion === true">
-           Error nombre sucursal: campo requerido
+           * Error nombre sucursal: campo requerido
         </p>
         <p id="validacion-mensaje-required-dniCliente" class="validacion-mensaje-required"
            ng-show="formularioCuentaBancaria.campoDniCliente.$error.required && errorValidacion === true">
-           Error DNI cliente: campo requerido
+           * Error DNI cliente: campo requerido
         </p>
     </div>
     

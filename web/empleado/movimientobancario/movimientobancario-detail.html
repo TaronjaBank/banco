@@ -49,7 +49,11 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-movimiento" class="validacion-caja-mensajes">
+    <div id="validacion-caja-mensajes-movimiento" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
+        <p id="validacion-caja-titulo-movimiento" class="validacion-caja-titulo" ng-show="errorValidacion === true">
+           ERRORES EN CAMPOS DE FORMULARIO:
+        </p>
+        
         <p id="validacion-mensaje-error-numeroCuenta" class="validacion-mensaje-error"
            ng-show="formularioMovimiento.campoNumeroCuenta.$error.pattern && errorValidacion === true">
            Error número cuenta: valor incorrecto

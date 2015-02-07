@@ -13,9 +13,18 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
         $scope.errorValidacion = false;
 
 
-        $scope.insert = function () {
+        $scope.comprobarValidaciones = function () {
             if (!$scope.formularioCliente.$error.required
                     && !$scope.formularioCliente.$error.pattern) {
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
+            return $scope.errorValidacion;
+        };
+
+        $scope.insert = function () {
+            if ($scope.comprobarValidaciones() === false) {
                 $http({
                     method: "POST",
                     url: contextPath + "/api/Cliente",
@@ -26,9 +35,11 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-                $scope.errorValidacion = false;
             } else {
-                $scope.errorValidacion = true;
+                $("#contenedorFormularioDetail input").keyup(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -66,12 +77,21 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-
         $scope.get();
 
-        $scope.update = function () {
+
+        $scope.comprobarValidaciones = function () {
             if (!$scope.formularioCliente.$error.required
                     && !$scope.formularioCliente.$error.pattern) {
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
+            return $scope.errorValidacion;
+        };
+
+        $scope.update = function () {
+            if ($scope.comprobarValidaciones() === false) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente,
@@ -82,9 +102,11 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-                $scope.errorValidacion = false;
             } else {
-                $scope.errorValidacion = true;
+                $("#contenedorFormularioDetail input").keyup(function () {
+                    $scope.comprobarValidaciones();
+                });
+                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 

@@ -80,7 +80,11 @@
 
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-empleado" class="validacion-caja-mensajes">
+    <div id="validacion-caja-mensajes-empleado" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
+        <p id="validacion-caja-titulo-empleado" class="validacion-caja-titulo" ng-show="errorValidacion === true">
+           ERRORES EN CAMPOS DE FORMULARIO:
+        </p>
+        
         <p id="validacion-mensaje-error-dniEmpleado" class="validacion-mensaje-error"
            ng-show="formularioEmpleado.campoDniEmpleado.$error.pattern && errorValidacion === true">
            Error DNI: valor incorrecto
