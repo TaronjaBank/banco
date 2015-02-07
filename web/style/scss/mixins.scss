@@ -127,7 +127,8 @@
         transition-duration: .3s;
     }
 }
-@mixin estiloBotonBackEnd(){
+/*Opción cambio 03*/
+/*@mixin estiloBotonBackEnd(){
     & a{
         @include estiloEnlace(block,black);
     }
@@ -149,7 +150,7 @@
         font-style: italic;
         transition-duration: .3s;
     }
-}
+}*/
 /*Opción cambio 01*/
 /*@mixin estiloBotonBackEnd(){
     & a{
@@ -199,7 +200,7 @@
     }
 }*/
 /*Original*/
-/*@mixin estiloBotonBackEnd(){
+@mixin estiloBotonBackEnd(){
     & a{
         @include estiloEnlace(block,white);
     }
@@ -221,7 +222,7 @@
         font-style: italic;
         transition-duration: .3s;
     }
-}*/
+}
 @mixin estiloIconoBackEnd($background-color){
     width: 25%;
     height: auto;
