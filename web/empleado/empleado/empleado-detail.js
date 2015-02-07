@@ -20,6 +20,8 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
             }
         };
 
+        $scope.errorValidacion = false;
+
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
@@ -55,16 +57,22 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
 
 
         $scope.insert = function () {
-            $http({
-                method: "POST",
-                data: $scope.empleadoEdit,
-                url: contextPath + "/api/Empleado"
-            }).success(function (data) {
-                $scope.empleadoEdit = data;
-                $scope.empleadoEdit = null;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioEmpleado.$error.required
+                    && !$scope.formularioEmpleado.$error.pattern) {
+                $http({
+                    method: "POST",
+                    data: $scope.empleadoEdit,
+                    url: contextPath + "/api/Empleado"
+                }).success(function (data) {
+                    $scope.empleadoEdit = data;
+                    $scope.empleadoEdit = null;
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
     }]);
 
@@ -93,6 +101,8 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
+
+        $scope.errorValidacion = false;
 
 
         $scope.get = function () {
@@ -135,16 +145,22 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
 
 
         $scope.update = function () {
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado,
-                data: $scope.empleadoEdit
-            }).success(function () {
-                $scope.empleadoEdit = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioEmpleado.$error.required
+                    && !$scope.formularioEmpleado.$error.pattern) {
+                $http({
+                    method: "PUT",
+                    url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado,
+                    data: $scope.empleadoEdit
+                }).success(function () {
+                    $scope.empleadoEdit = {};
+                    $scope.irLista();
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
     }]);

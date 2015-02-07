@@ -22,8 +22,10 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             }
         };
         $scope.lastIdCuenta = -1;
-        
+
         $scope.clientes = [];
+
+        $scope.errorValidacion = false;
 
         var idSucursalBancaria = $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria;
 
@@ -72,8 +74,8 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
                 var codigoSucursal = sucursal.codigoSucursalBancaria;
                 $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ($scope.lastIdCuenta + 1);
-                
-                if (!$routeParams.idCliente){
+
+                if (!$routeParams.idCliente) {
                     $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
                 }
             }).error(function () {
@@ -151,18 +153,23 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
 
 
         $scope.insert = function () {
-            $http({
-                method: "POST",
-                data: $scope.cuentaBancaria,
-                url: contextPath + "/api/CuentaBancaria"
-            }).success(function (data) {
-                $scope.cuentaBancaria = {};
-                $scope.findAllSucursales();
-                $scope.clientes = [];
-                $scope.lastIdCuenta++;
-            }).error(function (data, status) {
-                alert("Error: No se ha podido Insertar");
-            });
+            if (!$scope.formularioCuentaBancaria.$error.required) {
+                $http({
+                    method: "POST",
+                    data: $scope.cuentaBancaria,
+                    url: contextPath + "/api/CuentaBancaria"
+                }).success(function (data) {
+                    $scope.cuentaBancaria = {};
+                    $scope.findAllSucursales();
+                    $scope.clientes = [];
+                    $scope.lastIdCuenta++;
+                }).error(function (data, status) {
+                    alert("Error: No se ha podido Insertar");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
     }]);
@@ -185,6 +192,8 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         };
 
         $scope.clientes = [];
+
+        $scope.errorValidacion = false;
 
 
         $scope.get = function () {
@@ -268,16 +277,21 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         $scope.findAllSucursales();
 
         $scope.update = function () {
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
-                data: $scope.cuentaBancaria
-            }).success(function () {
-                $scope.cuentaBancaria = {};
-                $location.path("/cuentabancaria/list");
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioCuentaBancaria.$error.required) {
+                $http({
+                    method: "PUT",
+                    url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
+                    data: $scope.cuentaBancaria
+                }).success(function () {
+                    $scope.cuentaBancaria = {};
+                    $location.path("/cuentabancaria/list");
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
     }]);

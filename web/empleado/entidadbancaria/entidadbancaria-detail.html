@@ -38,21 +38,21 @@
 
     <div id="validacion-caja-mensajes-entidad" class="validacion-caja-mensajes">
         <p id="validacion-mensaje-error-codigoEntidad" class="validacion-mensaje-error"
-           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.pattern">
+           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.pattern && errorValidacion === true">
            Error código: formato incorrecto
         </p>
         <p id="validacion-mensaje-required-codigoEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.required">
+           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.required && errorValidacion === true">
            Error código: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEntidadBancaria.campoNombreEntidad.$error.required">
+           ng-show="formularioEntidadBancaria.campoNombreEntidad.$error.required && errorValidacion === true">
            Error nombre: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-fechaEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEntidadBancaria.campoFechaEntidad.$error.required">
+           ng-show="formularioEntidadBancaria.campoFechaEntidad.$error.required && errorValidacion === true">
            Error fecha: campo requerido
         </p>
         

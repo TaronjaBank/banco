@@ -10,26 +10,35 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
 
         $scope.cliente = {};
 
+        $scope.errorValidacion = false;
+
+
         $scope.insert = function () {
-            $http({
-                method: "POST",
-                url: contextPath + "/api/Cliente",
-                data: $scope.cliente
-            }).success(function (data) {
-                $scope.cliente = data;
-                $scope.cliente = null;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioCliente.$error.required
+                    && !$scope.formularioCliente.$error.pattern) {
+                $http({
+                    method: "POST",
+                    url: contextPath + "/api/Cliente",
+                    data: $scope.cliente
+                }).success(function (data) {
+                    $scope.cliente = data;
+                    $scope.cliente = null;
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
     }]);
 
 
 app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+
         $rootScope.comprobarSesion();
-        
+
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -39,6 +48,8 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
         $scope.cliente = {
             idCliente: $routeParams.idCliente
         };
+
+        $scope.errorValidacion = false;
 
         $scope.irLista = function () {
             $location.path("/cliente/list");
@@ -59,16 +70,22 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
         $scope.get();
 
         $scope.update = function () {
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente,
-                data: $scope.cliente
-            }).success(function () {
-                $scope.cliente = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioCliente.$error.required
+                    && !$scope.formularioCliente.$error.pattern) {
+                $http({
+                    method: "PUT",
+                    url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente,
+                    data: $scope.cliente
+                }).success(function () {
+                    $scope.cliente = {};
+                    $scope.irLista();
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
         $scope.findAllCuentasByCliente = function () {

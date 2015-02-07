@@ -48,26 +48,26 @@
 
     <div id="validacion-caja-mensajes-sucursal" class="validacion-caja-mensajes">
         <p id="validacion-mensaje-error-codigoSucursal" class="validacion-mensaje-error"
-           ng-show="formularioSucursal.campoCodigoSucursal.$error.pattern">
+           ng-show="formularioSucursal.campoCodigoSucursal.$error.pattern && errorValidacion === true">
            Error código: formato incorrecto
         </p>
         <p id="validacion-mensaje-required-codigoSucursal" class="validacion-mensaje-required"
-           ng-show="formularioSucursal.campoCodigoSucursal.$error.required">
+           ng-show="formularioSucursal.campoCodigoSucursal.$error.required && errorValidacion === true">
            Error código: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreSucursal" class="validacion-mensaje-required"
-           ng-show="formularioSucursal.campoNombreSucursal.$error.required">
+           ng-show="formularioSucursal.campoNombreSucursal.$error.required && errorValidacion === true">
            Error nombre: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-direccionSucursal" class="validacion-mensaje-required"
-           ng-show="formularioSucursal.campoDireccionSucursal.$error.required">
+           ng-show="formularioSucursal.campoDireccionSucursal.$error.required && errorValidacion === true">
            Error direccion postal: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreEntidad" class="validacion-mensaje-required"
-           ng-show="formularioSucursal.campoNombreEntidad.$error.required">
+           ng-show="formularioSucursal.campoNombreEntidad.$error.required && errorValidacion === true">
            Error nombre entidad: campo requerido
         </p>
     </div>

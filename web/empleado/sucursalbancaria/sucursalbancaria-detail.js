@@ -16,17 +16,26 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
 
         $scope.sucursalBancaria = {};
 
+        $scope.errorValidacion = false;
+
+
         $scope.insert = function () {
-            $http({
-                method: "POST",
-                url: contextPath + "/api/SucursalBancaria",
-                data: $scope.sucursalBancaria
-            }).success(function (data) {
-                $scope.sucursalBancaria = data;
-                $scope.sucursalBancaria = null;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioSucursal.$error.required
+                    && !$scope.formularioSucursal.$error.pattern) {
+                $http({
+                    method: "POST",
+                    url: contextPath + "/api/SucursalBancaria",
+                    data: $scope.sucursalBancaria
+                }).success(function (data) {
+                    $scope.sucursalBancaria = data;
+                    $scope.sucursalBancaria = null;
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
         $scope.findAll = function () {
@@ -67,10 +76,12 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             idSucursalBancaria: $routeParams.idSucursalBancaria
         };
 
-
         $scope.irLista = function () {
             $location.path("/sucursalbancaria/list");
         };
+
+        $scope.errorValidacion = false;
+
 
         $scope.get = function () {
 
@@ -130,16 +141,22 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.findAllEntidades();
 
         $scope.update = function () {
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
-                data: $scope.sucursalBancaria
-            }).success(function () {
-                $scope.sucursalBancaria = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            if (!$scope.formularioSucursal.$error.required
+                    && !$scope.formularioSucursal.$error.pattern) {
+                $http({
+                    method: "PUT",
+                    url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
+                    data: $scope.sucursalBancaria
+                }).success(function () {
+                    $scope.sucursalBancaria = {};
+                    $scope.irLista();
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+                $scope.errorValidacion = false;
+            } else {
+                $scope.errorValidacion = true;
+            }
         };
 
     }]);
@@ -151,7 +168,8 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
             accion: 'borrar'
         };
 
-        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estiloDisabledNombreEntidad = $rootScope.estiloBloqueado;
+        $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.sucursalBancaria = {
             idSucursalBancaria: $routeParams.idSucursalBancaria
