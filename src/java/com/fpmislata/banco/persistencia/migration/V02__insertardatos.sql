@@ -28,7 +28,7 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cli
 	(2, '00000002W', 'Jona', 'Hidalgo', 'Mora', 'cliente2', 'cliente2'),
 	(3, '00000003A', 'Ivan', 'Sanchez', 'Aaaa', 'cliente3', 'cliente3'),
 	(4, '00000004G', 'Fran', 'Navarro', 'Flores', 'cliente4', 'cliente4'),
-	(5, 'prueba', 'prueba', 'prueba', 'prueba', 'b', 'b'),
+	(5, '00000005M', 'prueba', 'prueba', 'prueba', 'b', 'b'),
         (6, '00000000T', 'Taronja', 'Games', 'SL', 'taronja', 'taronja');
 
 INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `numeroCuentaBancaria`, `idSucursalBancaria`, `idCliente`, `saldoCuentaBancaria`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `movimientobancario` (`idMovimientoBancario`, `conceptoMovimientoBan
 	(11, 'g', 345.00, 'DEBE', 5);
 
 INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido1Empleado`, `apellido2Empleado`, `idSucursalBancaria`, `loginEmpleado`, `passwordEmpleado`) VALUES
-	(5, 'prueba', 'prueba', 'prueba', 'prueba', 5, 'a', 'a'),
+	(5, '00000005M', 'prueba', 'prueba', 'prueba', 5, 'a', 'a'),
 	(1, '00000001R', 'Marti', 'Gomez', 'Fabia', 2, 'login1', 'password1'),
 	(2, '00000002W', 'Jona', 'Hidalgo', 'Mora', 2, 'login2', 'password2'),
 	(3, '00000003A', 'Ivan', 'Sanchez', 'Aaaa', 3, 'login3', 'password3'),
