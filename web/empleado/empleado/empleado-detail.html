@@ -59,7 +59,7 @@
                ng-style="estilo" 
                ng-model="empleadoEdit.loginEmpleado" 
                ng-disabled="estado.accion === 'borrar'"
-               ng-pattern="/(\S)*/"
+               ng-pattern="/(\S)+/"
                required/>
         
         <div class="labelDetail">Password</div>
@@ -67,7 +67,7 @@
                ng-style="estilo" 
                ng-model="empleadoEdit.passwordEmpleado" 
                ng-disabled="estado.accion === 'borrar'"
-               ng-pattern="/\S/"
+               ng-pattern="/(\S)+/"
                required/>
     </form>
 
