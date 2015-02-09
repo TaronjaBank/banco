@@ -30,7 +30,7 @@ public class FilterEmpleadoImplSecurity implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String URI = httpServletRequest.getContextPath() + "/api/Session/Empleado";
-
+        String URITransaccion = httpServletRequest.getContextPath() + "/api/Transaccion";
         HttpSession httpSession = httpServletRequest.getSession(true);
         String loginEmpleado = (String) httpSession.getAttribute("loginEmpleado");
 
@@ -44,7 +44,7 @@ public class FilterEmpleadoImplSecurity implements Filter {
             logueado=true;
         }
 
-        if (httpServletRequest.getRequestURI().equals(URI)) {
+        if (httpServletRequest.getRequestURI().equals(URI)||httpServletRequest.getRequestURI().equals(URITransaccion)) {
             permitido = true;
         } else {
             if (logueado) {

@@ -1,94 +1,721 @@
-/*
-Error: Invalid CSS after "...   width: 140px": expected "{", was ";"
-        on line 48 of H:/git/banco/web/style/scss/mixins.scss
-        from line 1 of H:/git/banco/web/style/scss/commonStyle.scss
-        from line 2 of H:\git\banco\web\style\scss\style.scss
+@charset "UTF-8";
+/*Opci├│n cambio 03*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,black);
+    }
 
-43:     .columnaNombre{// Columnas tipo nombre
-44:                    width: 100px;
-45:     }
-46:     .columnaNombre-Entidad-Sucursal{// Columnas tipo nombre
-47: <<<<<<< HEAD
-48:                    width: 140px;
-49: =======
-50:                                     width: 140px;
-51: >>>>>>> develop
-52:     }
-53:     .columnaApellido{// Columnas tipo apellido
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
 
-Backtrace:
-H:/git/banco/web/style/scss/mixins.scss:48
-H:/git/banco/web/style/scss/commonStyle.scss:1
-H:\git\banco\web\style\scss\style.scss:2
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:1163:in `expected'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:1099:in `expected'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:1094:in `tok!'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:641:in `block'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:711:in `declaration_or_ruleset'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:661:in `block_child'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:650:in `block_contents'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:642:in `block'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:711:in `declaration_or_ruleset'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:661:in `block_child'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:653:in `block_contents'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:642:in `block'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:231:in `mixin_directive'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:219:in `special_directive'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:194:in `directive'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:660:in `block_child'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:653:in `block_contents'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:117:in `stylesheet'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/scss/parser.rb:42:in `parse'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/engine.rb:393:in `_to_tree'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/engine.rb:299:in `to_tree'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:313:in `block in visit_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:88:in `block in with_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:88:in `with_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:312:in `visit_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:315:in `block (2 levels) in visit_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:315:in `map'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:315:in `block in visit_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:88:in `block in with_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:88:in `with_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:312:in `visit_import'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:157:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/visitors/perform.rb:8:in `visit'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/engine.rb:368:in `_render_with_sourcemap'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/engine.rb:285:in `render_with_sourcemap'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/exec/sass_scss.rb:396:in `run'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/exec/sass_scss.rb:62:in `process_result'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/exec/base.rb:52:in `parse'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/lib/sass/exec/base.rb:19:in `parse!'
-C:/Ruby21/lib/ruby/gems/2.1.0/gems/sass-3.4.5/bin/sass:13:in `<top (required)>'
-C:/Ruby21/bin/sass:23:in `load'
-C:/Ruby21/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"...   width: 140px\": expected \"{\", was \";\"\A         on line 48 of H:/git/banco/web/style/scss/mixins.scss\A         from line 1 of H:/git/banco/web/style/scss/commonStyle.scss\A         from line 2 of H:\git\banco\web\style\scss\style.scss\A \A 43:     .columnaNombre{// Columnas tipo nombre\A 44:                    width: 100px;\A 45:     }\A 46:     .columnaNombre-Entidad-Sucursal{// Columnas tipo nombre\A 47: <<<<<<< HEAD\A 48:                    width: 140px;\A 49: =======\A 50:                                     width: 140px;\A 51: >>>>>>> develop\A 52:     }\A 53:     .columnaApellido{// Columnas tipo apellido"; }
+    @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+        font-style: italic;
+        transition-duration: .3s;
+    }
+}*/
+/*Opci├│n cambio 01*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,black);
+    }
+
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
+
+    @include botonOut(rgba($colorCorporativo,.15),rgba($colorTransparencia,1),black,rgba($colorCorporativo,.1),rgba($colorTransparencia,.55));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+        font-style: italic;
+        transition-duration: .3s;
+    }
+}*/
+/*Opci├│n cambio 02*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,rgba($colorTransparencia,.9));
+    }
+
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
+
+    @include botonOut(rgba($colorCorporativo,0),rgba($colorCorporativo,1),rgba($colorTransparencia,.9),rgba($colorCorporativo,0.09),rgba($colorTransparencia,0));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,.9));
+        font-style: italic;
+        transition-duration: .4s;
+    }
+}*/
+/*Original*/
+@font-face {
+  /* Adjunta en el proyecto la fuente de la pagina web */
+  font-family: "Century Gothic";
+  src: url("../font/gothic.ttf") format("truetype"); }
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+  font-family: "Century Gothic" !important;
+  font-size: 15px; }
+  body ::-webkit-scrollbar-thumb {
+    background-color: #ff6600; }
+  body ::-webkit-scrollbar-track {
+    background-color: rgba(255, 102, 0, 0.4); }
+  body ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; }
+  body #capaSuperior {
+    /* Capa que engloba todos los contenidos de la web; se situa por encima de la capa de fondo */
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto; }
+    body #capaSuperior .botonBackEnd {
+      display: inline-block;
+      float: left;
+      font-size: 13px;
+      text-align: center;
+      margin: 10px 5px;
+      padding: 2px 10px;
+      border-radius: 4px;
+      border-left: 1px solid lightgrey;
+      border-top: 1px solid lightgrey;
+      border-right: 1px solid grey;
+      border-bottom: 1px solid grey;
+      color: white;
+      background-color: #ff6600;
+      box-shadow: 1px 1px 2px grey; }
+      body #capaSuperior .botonBackEnd a {
+        display: block;
+        text-decoration: none;
+        color: white; }
+      body #capaSuperior .botonBackEnd:hover {
+        border-radius: 4px;
+        border-left: 1px solid black;
+        border-top: 1px solid black;
+        border-right: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
+        cursor: pointer;
+        color: white;
+        background-color: #ff6600;
+        box-shadow: none;
+        opacity: .9;
+        font-style: italic;
+        transition-duration: .3s; }
+        body #capaSuperior .botonBackEnd:hover a {
+          color: white;
+          font-style: bolder; }
+    body #capaSuperior #header {
+      height: 130px; }
+      body #capaSuperior #header #cabecera-Logo {
+        /* Seccion contenedora del logo de la empresa */
+        width: 200px;
+        height: 130px;
+        float: left; }
+        body #capaSuperior #header #cabecera-Logo #logo {
+          margin: 10px;
+          width: 180px;
+          background-repeat: no-repeat; }
+          body #capaSuperior #header #cabecera-Logo #logo:hover {
+            cursor: pointer; }
+      body #capaSuperior #header #cabecera-Centro {
+        /* Seccion que podria tener algun contenido en algun momento futuro */
+        width: 630px;
+        height: 130px;
+        float: left; }
+      body #capaSuperior #header #cabecera-Login {
+        /* Seccion contenedora del formulario de login de la pagina */
+        margin: 15px 10px;
+        width: 150px;
+        height: 110px;
+        display: inline-block;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 7px; }
+        body #capaSuperior #header #cabecera-Login .tituloLogin {
+          margin-top: 12px;
+          font-size: 11px;
+          color: white; }
+        body #capaSuperior #header #cabecera-Login #cerrarSesion {
+          cursor: pointer;
+          margin: 10px 5px 0; }
+        body #capaSuperior #header #cabecera-Login #seccionUsuario, body #capaSuperior #header #cabecera-Login #seccionPassword {
+          margin: 5px 7px;
+          height: 35px;
+          font-size: 11px;
+          color: white; }
+          body #capaSuperior #header #cabecera-Login #seccionUsuario #campoUsuario, body #capaSuperior #header #cabecera-Login #seccionUsuario #campoPassword, body #capaSuperior #header #cabecera-Login #seccionPassword #campoUsuario, body #capaSuperior #header #cabecera-Login #seccionPassword #campoPassword {
+            height: 12px; }
+        body #capaSuperior #header #cabecera-Login .botonHeader {
+          /*Botones de logueo y acceso a clientes y empleados*/
+          text-align: center;
+          font-size: 10px;
+          margin: 4px 15px;
+          padding: 2px 10px;
+          border-radius: 4px;
+          border-left: 1px solid lightgrey;
+          border-top: 1px solid lightgrey;
+          border-right: 1px solid #ff6600;
+          border-bottom: 1px solid #ff6600;
+          color: white;
+          background-color: transparent;
+          box-shadow: 1px 1px 2px transparent; }
+          body #capaSuperior #header #cabecera-Login .botonHeader a {
+            display: block;
+            text-decoration: none;
+            color: white; }
+          body #capaSuperior #header #cabecera-Login .botonHeader:hover {
+            border-radius: 4px;
+            border-left: 1px solid #ff6600;
+            border-top: 1px solid #ff6600;
+            border-right: 1px solid lightgrey;
+            border-bottom: 1px solid lightgrey;
+            cursor: pointer;
+            color: #e6e6e6;
+            background-color: rgba(150, 150, 150, 0.05);
+            box-shadow: none;
+            opacity: .9;
+            transition-duration: .3s; }
+        body #capaSuperior #header #cabecera-Login #botonClientes, body #capaSuperior #header #cabecera-Login #botonEmpleados {
+          margin-top: 15px; }
+    body #capaSuperior #menuPrincipal {
+      /* Menu horizontal superior que contiene los enlaces a las secciones principales de la web y el formulario de busqueda */
+      height: 30px; }
+      body #capaSuperior #menuPrincipal #seccionesPrincipales {
+        /* Contenedor de enlaces a secciones principales de la pagina */
+        width: 600px;
+        height: 30px;
+        float: left;
+        color: white;
+        text-align: center;
+        margin-left: 150px; }
+        body #capaSuperior #menuPrincipal #seccionesPrincipales p {
+          margin: 3px 15px; }
+        body #capaSuperior #menuPrincipal #seccionesPrincipales .bloqueEnlaceMenuH {
+          /* Cada uno de los bloques contenedores de cada enlace */
+          height: 30px;
+          float: left;
+          color: white;
+          text-align: center; }
+          body #capaSuperior #menuPrincipal #seccionesPrincipales .bloqueEnlaceMenuH p {
+            margin: 3px 15px; }
+          body #capaSuperior #menuPrincipal #seccionesPrincipales .bloqueEnlaceMenuH:hover {
+            border-top-right-radius: 6px;
+            border-top-left-radius: 6px;
+            background-color: white;
+            color: black;
+            font-style: italic;
+            cursor: pointer;
+            transition-duration: .3s; }
+        body #capaSuperior #menuPrincipal #seccionesPrincipales #bloqueIconoHome {
+          height: 30px;
+          display: inline-block;
+          text-align: center;
+          margin: auto 20px; }
+          body #capaSuperior #menuPrincipal #seccionesPrincipales #bloqueIconoHome #iconoHome {
+            width: 20px;
+            height: 20px; }
+            body #capaSuperior #menuPrincipal #seccionesPrincipales #bloqueIconoHome #iconoHome:hover {
+              cursor: pointer;
+              transform: scale(1.2);
+              transition-duration: .3s; }
+      body #capaSuperior #menuPrincipal #bloqueBuscar {
+        /* Formulario de busqueda */
+        width: 200px;
+        height: 30px;
+        float: left;
+        color: white;
+        text-align: center;
+        float: right; }
+        body #capaSuperior #menuPrincipal #bloqueBuscar p {
+          margin: 3px 15px; }
+        body #capaSuperior #menuPrincipal #bloqueBuscar #campoBuscar {
+          margin-top: 4px;
+          float: right;
+          background-color: #ffe6d2; }
+        body #capaSuperior #menuPrincipal #bloqueBuscar #botonBuscar {
+          margin: 7px;
+          float: right;
+          height: 15px; }
+          body #capaSuperior #menuPrincipal #bloqueBuscar #botonBuscar:hover {
+            cursor: pointer; }
+    body #capaSuperior #seccionCentral {
+      /* Seccion central de contenidos propiamente dicha (body) */
+      height: 745px; }
+      body #capaSuperior #seccionCentral #menuVertical {
+        width: 15%;
+        font-size: 12px;
+        height: 745px;
+        float: left; }
+        body #capaSuperior #seccionCentral #menuVertical .listaMenu {
+          /* Cada una de las listas que se corresponden con las secciones principales de la pagina */
+          margin: 15px 0;
+          width: 145px; }
+          body #capaSuperior #seccionCentral #menuVertical .listaMenu #tituloMenuEmpleados {
+            cursor: pointer; }
+          body #capaSuperior #seccionCentral #menuVertical .listaMenu .celdaTituloMenuV {
+            /* Titulo de cada una de las listas */
+            padding: 4px 0 4px 7px;
+            color: grey;
+            font-weight: bold;
+            background-color: rgba(190, 190, 190, 0.2);
+            box-shadow: 2px 1px #adadad;
+            border-radius: 4px; }
+            body #capaSuperior #seccionCentral #menuVertical .listaMenu .celdaTituloMenuV a {
+              display: block;
+              text-decoration: none;
+              color: inherit; }
+            body #capaSuperior #seccionCentral #menuVertical .listaMenu .celdaTituloMenuV:hover {
+              cursor: pointer;
+              font-size: 1.03em;
+              font-style: italic;
+              color: black;
+              transition-duration: .2s; }
+          body #capaSuperior #seccionCentral #menuVertical .listaMenu .itemMenuV {
+            /* Cada una de las opciones de lista del menu */
+            padding: 4px 12px;
+            box-shadow: 1px 1px #bbb;
+            border-radius: 4px;
+            color: black; }
+            body #capaSuperior #seccionCentral #menuVertical .listaMenu .itemMenuV a {
+              display: block;
+              text-decoration: none;
+              color: inherit; }
+            body #capaSuperior #seccionCentral #menuVertical .listaMenu .itemMenuV:hover {
+              background-color: #ff6600;
+              color: white;
+              font-style: italic;
+              cursor: pointer;
+              transform: scale(1.03);
+              transition-duration: .3s; }
+      body #capaSuperior #seccionCentral #contenidos {
+        /* Seccion dende se displayan los contenidos propiamente dichos. Tambien incluye un panel de informacion adicional */
+        /*width: 850px;*/
+        width: 85%;
+        height: 745px;
+        float: left;
+        /*Opci├│n cambio 03*/
+        /*@mixin estiloBotonBackEnd(){
+            & a{
+                @include estiloEnlace(block,black);
+            }
+        
+            display: inline-block;
+            float: left;
+            font-size: 13px;
+            text-align: center;
+            margin: 10px 5px;
+            padding: 2px 10px;
+        
+            @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
+            &:hover{
+                & a{
+                    color: white;
+                    font-style: bolder;
+                }
+                @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+                font-style: italic;
+                transition-duration: .3s;
+            }
+        }*/
+        /*Opci├│n cambio 01*/
+        /*@mixin estiloBotonBackEnd(){
+            & a{
+                @include estiloEnlace(block,black);
+            }
+        
+            display: inline-block;
+            float: left;
+            font-size: 13px;
+            text-align: center;
+            margin: 10px 5px;
+            padding: 2px 10px;
+        
+            @include botonOut(rgba($colorCorporativo,.15),rgba($colorTransparencia,1),black,rgba($colorCorporativo,.1),rgba($colorTransparencia,.55));
+            &:hover{
+                & a{
+                    color: white;
+                    font-style: bolder;
+                }
+                @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+                font-style: italic;
+                transition-duration: .3s;
+            }
+        }*/
+        /*Opci├│n cambio 02*/
+        /*@mixin estiloBotonBackEnd(){
+            & a{
+                @include estiloEnlace(block,rgba($colorTransparencia,.9));
+            }
+        
+            display: inline-block;
+            float: left;
+            font-size: 13px;
+            text-align: center;
+            margin: 10px 5px;
+            padding: 2px 10px;
+        
+            @include botonOut(rgba($colorCorporativo,0),rgba($colorCorporativo,1),rgba($colorTransparencia,.9),rgba($colorCorporativo,0.09),rgba($colorTransparencia,0));
+            &:hover{
+                & a{
+                    color: white;
+                    font-style: bolder;
+                }
+                @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,.9));
+                font-style: italic;
+                transition-duration: .4s;
+            }
+        }*/
+        /*Original*/ }
+@font-face {
+  body #capaSuperior #seccionCentral #contenidos {
+    /* Adjunta en el proyecto la fuente de la pagina web */
+    font-family: "Century Gothic";
+    src: url("../font/gothic.ttf") format("truetype"); } }
+        body #capaSuperior #seccionCentral #contenidos .validacion-caja-mensajes {
+          /*display: none;//NO ES NECESARIO, SE CONTROLA CON ng-style*/
+          border: 1px solid rgba(255, 102, 0, 0.3);
+          background-color: lightyellow;
+          margin: 15px;
+          padding: 0 10px;
+          color: red;
+          font-size: 12px; }
+          body #capaSuperior #seccionCentral #contenidos .validacion-caja-mensajes .validacion-caja-titulo {
+            font-weight: bold; }
+          body #capaSuperior #seccionCentral #contenidos .validacion-caja-mensajes .validacion-mensaje-required {
+            color: navy; }
+        body #capaSuperior #seccionCentral #contenidos #imgPortadaEmpleado {
+          z-index: -1;
+          position: absolute;
+          margin: 10px 0 0 10px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          border-bottom-right-radius: 60px;
+          border-top-left-radius: 60px;
+          box-shadow: 15px 15px 15px silver; }
+        body #capaSuperior #seccionCentral #contenidos #textoPortada {
+          text-align: right;
+          font-size: 20px;
+          color: white;
+          padding-top: 30px;
+          padding-right: 30px; }
+          body #capaSuperior #seccionCentral #contenidos #textoPortada a {
+            font-family: inherit;
+            text-decoration-line: underline;
+            color: white;
+            font: 25px bold; }
+            body #capaSuperior #seccionCentral #contenidos #textoPortada a:hover {
+              color: #ff6600;
+              transition-duration: .5s; }
+        body #capaSuperior #seccionCentral #contenidos #cajaLogin {
+          /* Caja contenedora del formulario de logueo*/
+          margin: 150px 0 0 200px;
+          padding: 25px;
+          width: 250px;
+          color: white;
+          background-color: #ff6600;
+          border-radius: 15px;
+          box-shadow: 5px 5px 5px silver; }
+          body #capaSuperior #seccionCentral #contenidos #cajaLogin .labelLogin, body #capaSuperior #seccionCentral #contenidos #cajaLogin .campoLogin {
+            display: inline-block;
+            width: 35%;
+            margin-top: 5px; }
+          body #capaSuperior #seccionCentral #contenidos #cajaLogin .campoLogin {
+            width: 60%; }
+            body #capaSuperior #seccionCentral #contenidos #cajaLogin .campoLogin:focus {
+              background-color: cornsilk; }
+          body #capaSuperior #seccionCentral #contenidos #cajaLogin #botonLoguear {
+            display: inline-block;
+            float: left;
+            font-size: 13px;
+            text-align: center;
+            margin: 10px 5px;
+            padding: 2px 10px;
+            border-radius: 4px;
+            border-left: 1px solid lightgrey;
+            border-top: 1px solid lightgrey;
+            border-right: 1px solid grey;
+            border-bottom: 1px solid grey;
+            color: white;
+            background-color: #ff6600;
+            box-shadow: 1px 1px 2px grey;
+            border-radius: 4px;
+            border-left: 1px solid lightgrey;
+            border-top: 1px solid lightgrey;
+            border-right: 1px solid rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+            color: white;
+            background-color: #ff6600;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            float: none;
+            margin-top: 15px; }
+            body #capaSuperior #seccionCentral #contenidos #cajaLogin #botonLoguear a {
+              display: block;
+              text-decoration: none;
+              color: white; }
+            body #capaSuperior #seccionCentral #contenidos #cajaLogin #botonLoguear:hover {
+              border-radius: 4px;
+              border-left: 1px solid black;
+              border-top: 1px solid black;
+              border-right: 1px solid lightgrey;
+              border-bottom: 1px solid lightgrey;
+              cursor: pointer;
+              color: white;
+              background-color: #ff6600;
+              box-shadow: none;
+              opacity: .9;
+              font-style: italic;
+              transition-duration: .3s; }
+              body #capaSuperior #seccionCentral #contenidos #cajaLogin #botonLoguear:hover a {
+                color: white;
+                font-style: bolder; }
+            body #capaSuperior #seccionCentral #contenidos #cajaLogin #botonLoguear:hover {
+              border-radius: 4px;
+              border-left: 1px solid black;
+              border-top: 1px solid black;
+              border-right: 1px solid lightgrey;
+              border-bottom: 1px solid lightgrey;
+              cursor: pointer;
+              color: #e6e6e6;
+              background-color: #ff6600;
+              box-shadow: none;
+              opacity: .9; }
+        body #capaSuperior #seccionCentral #contenidos #tablaListado, body #capaSuperior #seccionCentral #contenidos .tablaListado {
+          /* Tabla de listado consulta findAll */
+          margin: 100px 0 0 60px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado #tituloTabla, body #capaSuperior #seccionCentral #contenidos #tablaListado .tituloTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado #tituloTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .tituloTabla {
+            color: grey;
+            margin: 80px 0 0;
+            font-weight: bold;
+            font-size: 18px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaId-Codigo, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaId-Codigo {
+            width: 100px;
+            text-align: center; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNombre {
+            width: 100px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre-Entidad-Sucursal, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNombre-Entidad-Sucursal {
+            width: 140px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaApellido, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaApellido {
+            width: 90px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNumCuenta, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNumCuenta {
+            width: 130px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaCantidad, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaCantidad {
+            width: 80px;
+            text-align: right; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaConcepto-Direccion, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaConcepto-Direccion {
+            width: 180px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaFecha, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaFecha {
+            width: 110px;
+            text-align: center; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos, body #capaSuperior #seccionCentral #contenidos .tablaListado .bloqueDatos {
+            float: left; }
+            body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .bloqueDatos:hover {
+              cursor: pointer;
+              background-color: #ffe6d2; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaCabecera, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaCabecera {
+            padding: 1px 10px;
+            display: inline-block;
+            box-shadow: 0 2px 2px grey;
+            background-color: #ff6600;
+            font-size: 13px;
+            color: white; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaContenido, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaContenido {
+            padding: 1px 10px;
+            display: inline-block;
+            border-bottom: 1px solid silver;
+            font-size: 12px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla {
+            padding: 2px 2px;
+            display: inline-block;
+            width: 20px; }
+            body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla .iconoTabla {
+              width: 15px;
+              height: 15px; }
+              body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla .iconoTabla:hover {
+                cursor: pointer;
+                transform: scale(1.2);
+                transition-duration: .3s; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado #botoneraList, body #capaSuperior #seccionCentral #contenidos .tablaListado #botoneraList {
+            clear: left; }
+        body #capaSuperior #seccionCentral #contenidos #contenedorDetail {
+          width: 550px;
+          margin: 50px 0 0 60px; }
+          body #capaSuperior #seccionCentral #contenidos #contenedorDetail #tituloDetail {
+            padding: 3px 10px 1px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 2px grey;
+            background-color: #ff6600;
+            color: white; }
+          body #capaSuperior #seccionCentral #contenidos #contenedorDetail .labelDetail {
+            padding: 1px 10px;
+            display: inline-block;
+            width: 170px;
+            margin-bottom: 3px;
+            color: grey;
+            border-bottom: 1px solid rgba(255, 102, 0, 0.6);
+            border-radius: 5px; }
+          body #capaSuperior #seccionCentral #contenidos #contenedorDetail .inputDetail {
+            width: 345px;
+            padding-left: 5px;
+            background-color: #ffe6d2;
+            border-color: #ff6600;
+            border-style: none;
+            border-radius: 3px;
+            border-top-style: groove;
+            border-left-style: groove;
+            display: inline-block; }
+            body #capaSuperior #seccionCentral #contenidos #contenedorDetail .inputDetail:focus {
+              background-color: cornsilk; }
+        body #capaSuperior #seccionCentral #contenidos .botoneraMain {
+          margin: 5% auto; }
+          body #capaSuperior #seccionCentral #contenidos .botoneraMain .titulo-apartado {
+            color: grey;
+            margin: 40px 30px;
+            font-weight: bold;
+            font-size: 18px; }
+          body #capaSuperior #seccionCentral #contenidos .botoneraMain .filaIconosBackEnd {
+            width: 100%;
+            text-align: center; }
+            body #capaSuperior #seccionCentral #contenidos .botoneraMain .filaIconosBackEnd .cajaIconoBackEnd {
+              width: 25%;
+              height: auto;
+              display: inline-block;
+              margin: 15px 0 15px 15px;
+              border-radius: 15px;
+              background-color: #ff6600; }
+              body #capaSuperior #seccionCentral #contenidos .botoneraMain .filaIconosBackEnd .cajaIconoBackEnd:hover {
+                box-shadow: 5px 5px 4px grey;
+                transform: translate(-3px, -3px);
+                transition-duration: .4s;
+                background-color: rgba(255, 102, 0, 0.8);
+                cursor: pointer; }
+              body #capaSuperior #seccionCentral #contenidos .botoneraMain .filaIconosBackEnd .cajaIconoBackEnd img {
+                width: 100%;
+                height: 100%; }
+        body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal {
+          /* Contenido propiamente dicho */
+          width: 680px;
+          height: 745px;
+          float: left; }
+          body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal .articulo {
+            /* Informaci├│n del contenedor principal de la p├ígina Home */
+            display: inline-block;
+            vertical-align: top;
+            width: 310px;
+            margin-left: 15px;
+            font-size: 13px;
+            text-align: left; }
+            body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal .articulo .imgContenidos {
+              width: 95%;
+              max-width: 310px;
+              height: auto;
+              margin-top: 20px;
+              background-repeat: no-repeat; }
+            body #capaSuperior #seccionCentral #contenidos #contenidoPrincipal .articulo p {
+              margin: 0 0 5px 0;
+              padding: 0; }
+        body #capaSuperior #seccionCentral #contenidos #panelInfo {
+          /* Panel reservado para informacion adicional o publicidad */
+          width: 170px;
+          height: 745px;
+          float: left;
+          background-color: rgba(0, 0, 0, 0.05); }
+          body #capaSuperior #seccionCentral #contenidos #panelInfo p {
+            padding: 15px;
+            color: #969696; }
+    body #capaSuperior #footer {
+      height: 120px;
+      background-color: #969696; }
+      body #capaSuperior #footer #footerContenidos {
+        /* Seccion contenedora de los enlaces del footer a informacion de la pagina y a otras paginas (redes sociales, etc.) */
+        height: 102px; }
+        body #capaSuperior #footer #footerContenidos #footerEnlaces {
+          /* Secci├│n contenedora de los enlaces internos a otras secciones */
+          font-size: 11px;
+          width: 600px;
+          height: 102px;
+          float: left; }
+          body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterIzquierda, body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterDerecha {
+            display: inline-block;
+            margin: 15px 60px;
+            text-align: left; }
+            body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterIzquierda .footerTituloMenu, body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterDerecha .footerTituloMenu {
+              color: white;
+              font-weight: bold;
+              margin-bottom: 2px; }
+            body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterIzquierda .footerItemMenu, body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterDerecha .footerItemMenu {
+              color: #f0f0f0;
+              text-decoration: none; }
+              body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterIzquierda .footerItemMenu:hover, body #capaSuperior #footer #footerContenidos #footerEnlaces #listaFooterDerecha .footerItemMenu:hover {
+                color: #ffc29a; }
+        body #capaSuperior #footer #footerContenidos #redesSociales {
+          /* Iconos de enlace a redes sociales y otras paginas externas */
+          width: 400px;
+          height: 102px;
+          float: left; }
+          body #capaSuperior #footer #footerContenidos #redesSociales .iconoRedSocial {
+            width: 28px;
+            margin: 12px 7px;
+            float: right;
+            box-shadow: 3px 3px 2px grey; }
+            body #capaSuperior #footer #footerContenidos #redesSociales .iconoRedSocial:hover {
+              transform: scale(1.1);
+              transition-duration: .3s;
+              cursor: pointer; }
+          body #capaSuperior #footer #footerContenidos #redesSociales #iconoFacebook {
+            margin-right: 60px; }
+        body #capaSuperior #footer #footerContenidos #infoContacto {
+          /* Banda inferior al footer con la informacion basica de contacto de la empresa */
+          text-align: center;
+          height: 18px;
+          color: white;
+          font-size: 10px; }
+          body #capaSuperior #footer #footerContenidos #infoContacto a {
+            color: inherit; }
+  body #capaFondo {
+    /* Esta capa es para independizar el disenio del fondo de los contenidos propiamente dichos */
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+    body #capaFondo #fondoBandaSup {
+      height: 130px;
+      background-color: #ff6600; }
+    body #capaFondo #fondoBandaBajoMenuH {
+      height: 30px;
+      background-color: #ff6600; }
+    body #capaFondo #fondoCentro {
+      height: 745px;
+      background-color: transparent; }
+    body #capaFondo #fondoBandaInf {
+      height: 120px;
+      background-color: transparent; }
+
+/*# sourceMappingURL=style.css.map */
