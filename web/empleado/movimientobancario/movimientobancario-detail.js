@@ -88,6 +88,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
         };
 
         $scope.get();
+        
         $scope.tipoMovimientos = [
             {ID: '0', nombre: 'DEBE'},
             {ID: '1', nombre: 'HABER'}
