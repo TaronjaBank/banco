@@ -10,6 +10,57 @@
 <project name="banco" default="default" basedir=".">
     <description>Builds, tests, and runs the project banco.</description>
     <import file="nbproject/build-impl.xml"/>
+    
+    <target name="-pre-dist" if="openshift">
+        <delete file="build/web/META-INF/context.xml"></delete>
+        <move file="build/web/META-INF/context.openshift.xml" tofile="build/web/META-INF/context.xml"></move>
+    </target>
+    
+    <target name="-post-dist" if="openshift">
+        <move file="dist/banco.war" tofile="dist/ROOT.war"></move>
+    </target>
+    
+    <target name="distOpenShift" depends="enableopenshift,dist">
+        
+        <taskdef  resource="es/logongas/openshift/ant/antlib.xml" />
+        
+        <delete dir="../taronjabank"></delete>
+              
+        <gitcloneapplication    
+            userName="martigomez31@gmail.com"
+            password="${password}"
+            domainName="taronjabank"
+            applicationName="taronjabank" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../taronjabank"
+        />
+        <delete file="../taronjabank/webapps/ROOT.war"></delete>
+        <copy file="dist/ROOT.war" todir="../taronjabank/webapps"></copy>
+        
+        <git dir="../taronjabank" command="add *"></git>
+        <git dir="../taronjabank" command="commit" options=" -am 'commit'"></git>
+        
+        <gitpushapplication    
+            userName="martigomez31@gmail.com"
+            password="${password}"
+            domainName="taronjabank"
+            applicationName="taronjabank" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../taronjabank"
+        />
+     
+        
+    </target>
+    
+    <target name="enableopenshift" >
+        <property name="libs.CopyLibs.classpath" value="bin/ant/lib/org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+        <property name="j2ee.server.home" value="bin/ant"/>
+ 
+        <property name="openshift" value="true" />
+    </target>    
+
+
+    
     <!--
 
     There exist several targets which are by default empty and which can be 

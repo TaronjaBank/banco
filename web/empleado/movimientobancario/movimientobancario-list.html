@@ -13,19 +13,8 @@
         <div class="bloqueDatos">
             <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.conceptoMovimientoBancario}}</div>
-            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
+            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario | number:2}} €</div>
             <div class="celdaContenido columnaNombre">{{movimientoBancario.tipoMovimiento}}</div>
-        </div>
-
-        <div class="celdaIconoTabla">
-            <a href="#/movimientobancario/update/{{movimientoBancario.idMovimientoBancario}}">
-                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
-            </a>
-        </div>
-        <div class="celdaIconoTabla">
-            <a href="#/movimientobancario/delete/{{movimientoBancario.idMovimientoBancario}}">
-                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
-            </a>
         </div>
 
     </section>

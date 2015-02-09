@@ -1,3 +1,76 @@
+@charset "UTF-8";
+/*Opci├│n cambio 03*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,black);
+    }
 
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
+
+    @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+        font-style: italic;
+        transition-duration: .3s;
+    }
+}*/
+/*Opci├│n cambio 01*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,black);
+    }
+
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
+
+    @include botonOut(rgba($colorCorporativo,.15),rgba($colorTransparencia,1),black,rgba($colorCorporativo,.1),rgba($colorTransparencia,.55));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+        font-style: italic;
+        transition-duration: .3s;
+    }
+}*/
+/*Opci├│n cambio 02*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,rgba($colorTransparencia,.9));
+    }
+
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
+
+    @include botonOut(rgba($colorCorporativo,0),rgba($colorCorporativo,1),rgba($colorTransparencia,.9),rgba($colorCorporativo,0.09),rgba($colorTransparencia,0));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,.9));
+        font-style: italic;
+        transition-duration: .4s;
+    }
+}*/
+/*Original*/
 
 /*# sourceMappingURL=mixins.css.map */

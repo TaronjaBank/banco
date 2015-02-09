@@ -2,28 +2,36 @@
 
     <div id="tituloDetail">Detalle Cuenta Bancaria</div>
 
-    <section id="contenedorFormularioDetail">
+    <form id="contenedorFormularioDetail" name="formularioCuentaBancaria">
 
         <div class="labelDetail">Número cuenta</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" name="campoNumeroCuenta" type="text" 
+               ng-style="estiloDisabledNumCuenta" 
+               ng-model="cuentaBancaria.numeroCuentaBancaria" 
+               ng-disabled="true"
+               required/>
+        
         <div class="labelDetail">Nombre sucursal</div>
-        <!-- ng-change="findClientesBySucursal()" -->
-        <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
-                ng-style="estilo" 
-                ng-change="findClientesBySucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
-                ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
-                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'">
-            <option value="">--Elige opcion--</option>
+        <select class="inputDetail" name="campoNombreSucursal" 
+               ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
+               ng-style="estiloDisabledSucursal" 
+               ng-change="fromChangeSucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
+               ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
+               ng-disabled="estado.accion !== 'insertar' || insertdesdedetail.accionDesdeSucursal === true"
+               required>
+            <option value="">--Elige opción--</option>
         </select>
+        
         <div class="labelDetail">DNI cliente</div>
-        <select class="inputDetail" ng-model="cuentaBancaria.cliente.idCliente" 
-                ng-style="estilo" 
-                ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
-                ng-disabled="estado.accion === 'borrar'"
-                >
-            <option value="">--Elige opcion--</option>
+        <select class="inputDetail" name="campoDniCliente" 
+               ng-model="cuentaBancaria.cliente.idCliente" 
+               ng-style="estiloDisabledCliente" 
+               ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
+               ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeCliente === true"
+               required>
+            <option value="">--Elige opción--</option>
         </select>
-    </section>
+    </form>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cuenta</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
@@ -31,6 +39,27 @@
 
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/cuentabancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    
+    <br/><br/>
+
+    <div id="validacion-caja-mensajes-cuenta" class="validacion-caja-mensajes" ng-show="errorValidacion === true" ng-hide="errorValidacion === false">
+        <p id="validacion-caja-titulo-cuenta" class="validacion-caja-titulo">
+           ERRORES EN CAMPOS DE FORMULARIO:
+        </p>
+        <p id="validacion-mensaje-required-numeroCuenta" class="validacion-mensaje-required"
+           ng-show="formularioCuentaBancaria.campoNumeroCuenta.$error.required && errorValidacion === true">
+           * Error número cuenta: campo requerido
+        </p>
+        <p id="validacion-mensaje-required-nombreSucursal" class="validacion-mensaje-required"
+           ng-show="formularioCuentaBancaria.campoNombreSucursal.$error.required && errorValidacion === true">
+           * Error nombre sucursal: campo requerido
+        </p>
+        <p id="validacion-mensaje-required-dniCliente" class="validacion-mensaje-required"
+           ng-show="formularioCuentaBancaria.campoDniCliente.$error.required && errorValidacion === true">
+           * Error DNI cliente: campo requerido
+        </p>
+    </div>
+    
 </section>
 
 <section id="tablaListado" ng-show="movimientosBancarios.length !== 0" ng-hide="estado.accion === 'insertar'">
@@ -48,17 +77,6 @@
             <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
             <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
             <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.tipoMovimiento}}</div>
-        </div>
-
-        <div class="celdaIconoTabla">
-            <a href="#/movimientobancario/update/{{movimientoBancario.idMovimientoBancario}}">
-                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
-            </a>
-        </div>
-        <div class="celdaIconoTabla">
-            <a href="#/movimientobancario/delete/{{movimientoBancario.idMovimientoBancario}}">
-                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
-            </a>
         </div>
 
     </section>
