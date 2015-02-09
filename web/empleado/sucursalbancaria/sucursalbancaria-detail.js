@@ -40,7 +40,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
 
 
         $scope.insert = function () {
-            $scope.validar = true;
+            $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
             
             if (!$scope.formularioSucursalBancaria.$invalid) {
@@ -158,7 +158,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         
         
         $scope.update = function () {
-            $scope.validar = true;
+            $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
             
             if (!$scope.formularioSucursalBancaria.$invalid) {

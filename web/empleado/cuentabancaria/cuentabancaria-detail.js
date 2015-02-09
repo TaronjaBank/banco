@@ -6,7 +6,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
 
         $scope.estiloDisabledNumCuenta = $rootScope.estiloBloqueado;
         $scope.estiloDisabledSucursal = "";
-        $scope.estiloDisabledCliente = "";
+        $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
 
         $scope.insertdesdedetail = {
             accionDesdeSucursal: false,
@@ -48,7 +48,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             $scope.insertdesdedetail.accionDesdeSucursal = true;
         } else if ((!$routeParams.idSucursalBancaria) && ($routeParams.idCliente)) {
             $scope.cuentaBancaria.cliente.idCliente = parseInt($routeParams.idCliente);
-            $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
+//            $scope.estiloDisabledCliente = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeCliente = true;
         } else if (($routeParams.idSucursalBancaria) && ($routeParams.idCliente)) {
             throw new error("ambos parámetros tienen valor!");
@@ -71,6 +71,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
                 var codigoSucursal = sucursal.codigoSucursalBancaria;
                 $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ("000" + ($scope.lastIdCuenta + 1)).slice(-4);
+                $scope.estiloDisabledCliente = false;
 
                 if (!$routeParams.idCliente) {
                     $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
@@ -150,7 +151,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         
 
         $scope.insert = function () {
-            $scope.validar = true;
+            $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
             
             if (!$scope.formularioCuentaBancaria.$invalid) {
