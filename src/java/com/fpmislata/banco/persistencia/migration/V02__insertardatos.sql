@@ -32,22 +32,22 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cli
         (6, '00000000T', 'Taronja', 'Games', 'SL', 'taronja', 'taronja');
 
 INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `numeroCuentaBancaria`, `idSucursalBancaria`, `idCliente`, `saldoCuentaBancaria`) VALUES
-	(1, '0002-0002-1', 2, 6, 0.00),
-	(2, '0002-0002-2', 2, 4, 0.00),
-	(3, '0001-0003-3', 3, 2, 0.00),
-	(4, '0002-0004-4', 4, 3, 0.00),
-	(5, '0003-0005-5', 5, 4, 0.00),
-	(6, '0002-0002-6', 2, 2, 0.00),
-	(7, '0003-0005-7', 5, 1, 0.00);
+	(1, '0002-0002-0001', 2, 6, 0.00),
+	(2, '0002-0002-0002', 2, 4, 0.00),
+	(3, '0001-0003-0003', 3, 2, 0.00),
+	(4, '0002-0004-0004', 4, 3, 0.00),
+	(5, '0003-0005-0005', 5, 4, 0.00),
+	(6, '0002-0002-0006', 2, 2, 0.00),
+	(7, '0003-0005-0007', 5, 1, 0.00);
 
 INSERT INTO `movimientobancario` (`idMovimientoBancario`, `conceptoMovimientoBancario`, `cantidadMovimientoBancario`, `tipoMovimiento`, `idCuentaBancaria`) VALUES
-	(1, 'a', 4536.00, 'DEBE', 1),
-	(5, 'b', 445.00, 'HABER', 3),
-	(6, 'c', 234.00, 'HABER', 1),
-	(7, 'd', 2345.00, 'DEBE', 2),
-	(9, 'e', 432.00, 'HABER', 4),
-	(10, 'f', 1324.00, 'DEBE', 2),
-	(11, 'g', 345.00, 'DEBE', 5);
+	(1, 'concepto 1', 4536.00, 'DEBE', 1),
+	(5, 'concepto 2', 445.00, 'HABER', 3),
+	(6, 'concepto 3', 234.00, 'HABER', 1),
+	(7, 'concepto 4', 2345.00, 'DEBE', 2),
+	(9, 'concepto 5', 432.00, 'HABER', 4),
+	(10, 'concepto 6', 1324.00, 'DEBE', 2),
+	(11, 'concepto 7', 345.00, 'DEBE', 5);
 
 INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido1Empleado`, `apellido2Empleado`, `idSucursalBancaria`, `loginEmpleado`, `passwordEmpleado`) VALUES
 	(5, '00000005M', 'prueba', 'prueba', 'prueba', 5, 'a', 'a'),
