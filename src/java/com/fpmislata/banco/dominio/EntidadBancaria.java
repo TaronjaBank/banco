@@ -13,15 +13,19 @@ import javax.validation.constraints.Size;
 public class EntidadBancaria implements Serializable{
     
     int idEntidadBancaria;
+    
     @NotNull
     @Size(min=4, max=4)
     String codigoEntidadBancaria;
+    
     @NotNull
-    @Size(min=3,max=50)
+    @Size(min=0,max=50)
     String nombreEntidadBancaria;
+    
     @NotNull
     @Past        
     Date fechaCreacionEntidadBancaria;
+    
     @JsonIgnore
     Set<SucursalBancaria> sucursalesBancarias;
 

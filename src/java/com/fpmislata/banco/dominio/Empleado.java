@@ -1,19 +1,42 @@
 package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fpmislata.banco.common.utilidades;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Empleado {
 
     int idEmpleado;
+    
+    @NotNull
     String dniEmpleado;
+    
+    @NotNull
     String nombreEmpleado;
+    
+    @NotNull
     String apellido1Empleado;
+    
+    @NotNull
     String apellido2Empleado;
+    
+    @NotNull
     SucursalBancaria sucursalBancaria;
+    
+    @NotNull
     String loginEmpleado;
+    
+    @NotNull
     String passwordEmpleado;
 
+    
+    @AssertTrue(message = "El DNI no es correcto")
+    private boolean isDNIValido() {
+        this.dniEmpleado=this.dniEmpleado.toUpperCase();
+        return utilidades.comprobarDNI(this.dniEmpleado);
+    }
     public Empleado() {
     }
 

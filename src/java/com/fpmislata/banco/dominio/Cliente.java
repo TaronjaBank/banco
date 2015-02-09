@@ -2,6 +2,7 @@ package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fpmislata.banco.common.utilidades;
 import java.util.Set;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
@@ -11,29 +12,36 @@ import javax.validation.constraints.Size;
 public class Cliente {
 
     int idCliente;
+
     @NotNull
-    @Size(min=9,max=9)
+    @Size(min = 9, max = 9)
     String dniCliente;
+
     @NotNull
-    @Size(min=3,max=50)
+    @Size(min = 0, max = 50)
     String nombreCliente;
+
     @NotNull
-    @Size(min=3,max=50)
+    @Size(min = 0, max = 50)
     String apellido1Cliente;
-    @Size(min=3,max=50)
+
+    @NotNull
+    @Size(min = 0, max = 50)
     String apellido2Cliente;
-    @NotNull
-    @Size(min=3,max=50)
+
+    @Size(min = 0, max = 50)
     String loginCliente;
-    @NotNull
-    @Size(min=3,max=50)
+
+    @Size(min = 0, max = 50)
     String passwordCliente;
+
     @JsonIgnore
     Set<CuentaBancaria> cuentasBancarias;
 
     @AssertTrue(message = "El DNI no es correcto")
     private boolean isDNIValido() {
-        return true;
+        this.dniCliente=this.dniCliente.toUpperCase();
+        return utilidades.comprobarDNI(this.dniCliente);
     }
 
     public Cliente() {

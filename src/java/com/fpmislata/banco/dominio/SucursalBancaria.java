@@ -4,15 +4,30 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SucursalBancaria implements Serializable {
 
     int idSucursalBancaria;
+    
+    @NotNull
+    @Size(min=4, max=4)
     String codigoSucursalBancaria;
+    
+    @NotNull
+    @Size(min=0,max=50)
     String nombreSucursalBancaria;
+    
+    @NotNull
+    @Size(min=0,max=50)
     String direccionSucursalBancaria;
+    
+    @NotNull
     EntidadBancaria entidadBancaria;
+    
+    
     @JsonIgnore
     Set<CuentaBancaria> cuentasBancarias;
     @JsonIgnore
