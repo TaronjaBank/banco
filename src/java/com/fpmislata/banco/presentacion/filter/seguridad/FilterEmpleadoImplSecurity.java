@@ -44,7 +44,7 @@ public class FilterEmpleadoImplSecurity implements Filter {
             logueado=true;
         }
 
-        if (httpServletRequest.getRequestURI().equals(URI)||httpServletRequest.getRequestURI().equals(URITransaccion)) {
+        if (httpServletRequest.getRequestURI().equals(URI) || httpServletRequest.getRequestURI().equals(URITransaccion)) {
             permitido = true;
         } else {
             if (logueado) {
