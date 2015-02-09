@@ -19,41 +19,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 }
             }
         };
-//        alert($scope.empleadoEdit.sucursalBancaria.idSucursalBancaria + "; " + $scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-
-        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
-            }).success(function (data) {
-                $scope.sucursalesBancarias = data;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
-        };
-        $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
-
-        $scope.findAllEntidades = function () {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/EntidadBancaria"
-            }).success(function (data) {
-                $scope.entidadesBancarias = data;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
-        };
-        $scope.findAllEntidades();
-
-
-        $scope.empleadoEdit = {
-            sucursalBancaria: {
-                idSucursalBancaria: parseInt($routeParams.idSucursalBancaria),
-                entidadBancaria: {
-                    idEntidadBancaria: parseInt($routeParams.idEntidadBancaria)
-                }
-            }
-        };
 
         $scope.errorValidacion = false;
 
