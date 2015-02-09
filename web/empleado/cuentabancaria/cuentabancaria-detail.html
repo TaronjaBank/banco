@@ -42,8 +42,8 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-cuenta" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
-        <p id="validacion-caja-titulo-cuenta" class="validacion-caja-titulo" ng-show="errorValidacion === true">
+    <div id="validacion-caja-mensajes-cuenta" class="validacion-caja-mensajes" ng-show="errorValidacion === true" ng-hide="errorValidacion === false">
+        <p id="validacion-caja-titulo-cuenta" class="validacion-caja-titulo">
            ERRORES EN CAMPOS DE FORMULARIO:
         </p>
         <p id="validacion-mensaje-required-numeroCuenta" class="validacion-mensaje-required"

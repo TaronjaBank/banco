@@ -9,14 +9,36 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         };
 
         $scope.estilo = "";
+        $scope.estiloBloqueado = $rootScope.estiloBloqueado;
 
         if ($routeParams.idEntidadBancaria) {
             $scope.estiloDisabledNombreEntidad = $rootScope.estiloBloqueado;
         }
 
         $scope.sucursalBancaria = {};
+        
+        $scope.lastIdSucursal = -1;
 
         $scope.errorValidacion = false;
+        
+        
+
+        $scope.getLastIdSucursal = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/SucursalBancaria"
+            }).success(function (data) {
+                var sucursales = data;
+                for (var i = 0; i < sucursales.length; i++) {
+                    if (sucursales[i].idSucursalBancaria > $scope.lastIdSucursal) {
+                        $scope.sucursalBancaria.codigoSucursalBancaria = ("000" + (sucursales[i].idSucursalBancaria + 1)).slice(-4);
+                    }
+                }
+            }).error(function () {
+                alert("Error: no se han podido listar las cuentas bancarias");
+            });
+        };
+        $scope.getLastIdSucursal();
 
 
         $scope.comprobarValidaciones = function () {
@@ -52,7 +74,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
             }
         };
 
-        $scope.findAll = function () {
+        $scope.findAllEntidades = function () {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
@@ -73,7 +95,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
             });
         };
 
-        $scope.findAll();
+        $scope.findAllEntidades();
 
 
     }]);

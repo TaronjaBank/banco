@@ -6,12 +6,35 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
         };
 
         $scope.estilo = "";
+        $scope.estiloBloqueado = $rootScope.estiloBloqueado;
 
         $scope.entidadBancaria = {
+            codigoEntidadBancaria: "",
             fechaCreacionEntidadBancaria: new Date()
         };
+        
+        $scope.lastIdEntidad = -1;
 
         $scope.errorValidacion = false;
+        
+
+        
+        $scope.getLastIdEntidad = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria"
+            }).success(function (data) {
+                var entidades = data;
+                for (var i = 0; i < entidades.length; i++) {
+                    if (entidades[i].idEntidadBancaria > $scope.lastIdEntidad) {
+                        $scope.entidadBancaria.codigoEntidadBancaria = ("000" + (entidades[i].idEntidadBancaria + 1)).slice(-4);
+                    }
+                }
+            }).error(function () {
+                alert("Error: no se han podido listar las cuentas bancarias");
+            });
+        };
+        $scope.getLastIdEntidad();
         
         
         $scope.comprobarValidaciones = function () {

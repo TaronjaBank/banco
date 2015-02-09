@@ -5,11 +5,11 @@
     <form id="contenedorFormularioDetail" name="formularioEntidadBancaria">
         <div class="labelDetail">Código</div>
         <input class="inputDetail" name="campoCodigoEntidad" type="text" 
-               ng-style="estilo" 
+               ng-style="estiloBloqueado" 
                ng-model="entidadBancaria.codigoEntidadBancaria" 
-               ng-disabled="estado.accion === 'borrar'"
-               ng-pattern="/(E{1})(\d{3})/"
-               placeholder="Código entidad: formato correcto 'E000'"
+               ng-disabled="true"
+               ng-pattern="/\d{4}/"
+               placeholder="Código entidad: formato correcto '0000'"
                required/>
         
         <div class="labelDetail">Nombre</div>

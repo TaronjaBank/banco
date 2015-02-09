@@ -72,7 +72,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 var sucursal = $scope.sucursalBancaria;
                 var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
                 var codigoSucursal = sucursal.codigoSucursalBancaria;
-                $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ($scope.lastIdCuenta + 1);
+                $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ("000" + ($scope.lastIdCuenta + 1)).slice(-4);
 
                 if (!$routeParams.idCliente) {
                     $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
