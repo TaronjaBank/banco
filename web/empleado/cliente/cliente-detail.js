@@ -10,21 +10,12 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
 
         $scope.cliente = {};
 
-        $scope.errorValidacion = false;
-
-
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioCliente.$error.required
-                    && !$scope.formularioCliente.$error.pattern) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
 
         $scope.insert = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioCliente.$invalid) {
                 $http({
                     method: "POST",
                     url: contextPath + "/api/Cliente",
@@ -35,11 +26,6 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -60,8 +46,6 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
             idCliente: $routeParams.idCliente
         };
 
-        $scope.errorValidacion = false;
-
         $scope.irLista = function () {
             $location.path("/cliente/list");
         };
@@ -80,18 +64,11 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
         $scope.get();
 
 
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioCliente.$error.required
-                    && !$scope.formularioCliente.$error.pattern) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
-
         $scope.update = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioCliente.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente,
@@ -102,11 +79,6 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 

@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAgCA,UAGC;;EAFG,WAAW,EAAE,gBAAgB;EAC7B,GAAG,EAAE,4CAA6C;AChCtD,yBAAyB;;EAErB,MAAM,EAAE,gCAAoC;EAC5C,gBAAgB,EAAE,WAAW;EAC7B,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,MAAM;EACf,KAAK,EAAE,GAAG;EACV,SAAS,EAAE,IAAI;EAEf,iDAAyB;IACrB,WAAW,EAAE,IAAI;EAGrB,sDAA8B;IAC1B,KAAK,EAAE,IAAI",
+"mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAgCA,UAGC;;EAFG,WAAW,EAAE,gBAAgB;EAC7B,GAAG,EAAE,4CAA6C;AChCtD,yBAAyB;;EAErB,MAAM,EAAE,iCAAqC;EAC7C,gBAAgB,EAAE,WAAW;EAC7B,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,MAAM;EACf,KAAK,EAAE,GAAG;EACV,SAAS,EAAE,IAAI;EAEf,iDAAyB;IACrB,WAAW,EAAE,IAAI;EAGrB,sDAA8B;IAC1B,KAAK,EAAE,IAAI",
 "sources": ["../scss/commonStyle.scss","../scss/validaciones.scss"],
 "names": [],
 "file": "validaciones.css"

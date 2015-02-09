@@ -55,8 +55,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
             }
         };
 
-        $scope.errorValidacion = false;
-
 
         $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
             $http({
@@ -90,18 +88,12 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         };
         $scope.findAllEntidades();
 
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioEmpleado.$error.required
-                    && !$scope.formularioEmpleado.$error.pattern) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
 
         $scope.insert = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioEmpleado.$invalid) {
                 $http({
                     method: "POST",
                     data: $scope.empleadoEdit,
@@ -112,14 +104,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail select").change(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
     }]);
@@ -149,8 +133,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
-
-        $scope.errorValidacion = false;
 
 
         $scope.get = function () {
@@ -191,18 +173,12 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
         };
         $scope.findAllEntidades();
         
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioEmpleado.$error.required
-                    && !$scope.formularioEmpleado.$error.pattern) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
 
         $scope.update = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioEmpleado.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado,
@@ -213,14 +189,6 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail select").change(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -242,8 +210,6 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
         $scope.irLista = function () {
             $location.path("/empleado/list");
         };
-
-        $scope.errorValidacion = false;
 
 
         $scope.get = function () {

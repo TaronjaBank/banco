@@ -14,7 +14,6 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-
 public class FilterEmpleadoImplSecurity implements Filter {
 
     @Override
@@ -31,17 +30,17 @@ public class FilterEmpleadoImplSecurity implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String URI = httpServletRequest.getContextPath() + "/api/Session/Empleado";
         String URITransaccion = httpServletRequest.getContextPath() + "/api/Transaccion";
+
         HttpSession httpSession = httpServletRequest.getSession(true);
         String loginEmpleado = (String) httpSession.getAttribute("loginEmpleado");
 
         Boolean logueado;
         Boolean permitido;
 
-                
         if (loginEmpleado == null) {
             logueado = false;
-        }else{
-            logueado=true;
+        } else {
+            logueado = true;
         }
 
         if (httpServletRequest.getRequestURI().equals(URI) || httpServletRequest.getRequestURI().equals(URITransaccion)) {
@@ -49,8 +48,8 @@ public class FilterEmpleadoImplSecurity implements Filter {
         } else {
             if (logueado) {
                 permitido = true;
-            }else{
-                permitido=false;
+            } else {
+                permitido = false;
             }
         }
 

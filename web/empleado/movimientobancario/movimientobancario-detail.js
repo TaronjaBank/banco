@@ -18,22 +18,12 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
 
         $scope.movimientoBancario = {};
 
-        $scope.errorValidacion = false;
-
-
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioMovimiento.$error.required
-                    && !$scope.formularioMovimiento.$error.pattern
-                    && !$scope.formularioMovimiento.$error.number) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
 
         $scope.insert = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioMovimientoBancario.$invalid) {
                 $http({
                     method: "POST",
                     url: contextPath + "/api/MovimientoBancario",
@@ -44,17 +34,6 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail input").click(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail select").change(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -96,8 +75,6 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             $location.path("/movimientobancario/list");
         };
 
-        $scope.errorValidacion = false;
-
 
         $scope.get = function () {
             $http({
@@ -117,19 +94,11 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
         ];
 
 
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioMovimiento.$error.required
-                    && !$scope.formularioMovimiento.$error.pattern
-                    && !$scope.formularioMovimiento.$error.number) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
-
         $scope.update = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioMovimientoBancario.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
@@ -140,19 +109,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail input").click(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail select").change(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
-
         };
 
         $scope.findAll = function () {
@@ -186,8 +143,6 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
         };
         $scope.cuentasBancarias = [];
         $scope.cuentaBancaria = {};
-
-        $scope.errorValidacion = false;
 
 
         $scope.get = function () {

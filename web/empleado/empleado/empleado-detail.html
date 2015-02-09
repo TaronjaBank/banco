@@ -80,60 +80,60 @@
 
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-empleado" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
-        <p id="validacion-caja-titulo-empleado" class="validacion-caja-titulo" ng-show="errorValidacion === true">
-           ERRORES EN CAMPOS DE FORMULARIO:
+    <div id="validacion-caja-mensajes-empleado" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioEmpleado.$invalid">
+        <p id="validacion-caja-titulo-empleado" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
         </p>
         
         <p id="validacion-mensaje-error-dniEmpleado" class="validacion-mensaje-error"
-           ng-show="formularioEmpleado.campoDniEmpleado.$error.pattern && errorValidacion === true">
+           ng-show="formularioEmpleado.campoDniEmpleado.$error.pattern">
            Error DNI: valor incorrecto
         </p>
         <p id="validacion-mensaje-required-dniEmpleado" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoDniEmpleado.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoDniEmpleado.$error.required">
            Error DNI: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreEmpleado" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoNombreEmpleado.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoNombreEmpleado.$error.required">
            Error nombre: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-apellido1Empleado" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoApellido1Empleado.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoApellido1Empleado.$error.required">
            Error apellido 1: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-apellido2Empleado" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoApellido2Empleado.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoApellido2Empleado.$error.required">
            Error apellido 2: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoNombreEntidad.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoNombreEntidad.$error.required">
            Error nombre entidad: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreSucursal" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoNombreSucursal.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoNombreSucursal.$error.required">
            Error nombre sucursal: campo requerido
         </p>
         
         <p id="validacion-mensaje-error-loginEmpleado" class="validacion-mensaje-error"
-           ng-show="formularioEmpleado.campoLoginEmpleado.$error.pattern && errorValidacion === true">
+           ng-show="formularioEmpleado.campoLoginEmpleado.$error.pattern">
            Error login: el login no debe contener espacios en blanco
         </p>
         <p id="validacion-mensaje-required-loginEmpleado" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoLoginEmpleado.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoLoginEmpleado.$error.required">
            Error login: campo requerido
         </p>
         
         <p id="validacion-mensaje-error-passwordEmpleado" class="validacion-mensaje-error"
-           ng-show="formularioEmpleado.campoPasswordEmpleado.$error.pattern && errorValidacion === true">
+           ng-show="formularioEmpleado.campoPasswordEmpleado.$error.pattern">
            Error password: el password no debe contener espacios en blanco
         </p>
         <p id="validacion-mensaje-required-passwordEmpleado" class="validacion-mensaje-required"
-           ng-show="formularioEmpleado.campoPasswordEmpleado.$error.required && errorValidacion === true">
+           ng-show="formularioEmpleado.campoPasswordEmpleado.$error.required">
            Error password: campo requerido
         </p>
         

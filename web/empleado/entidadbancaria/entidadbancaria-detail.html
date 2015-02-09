@@ -36,27 +36,27 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-entidad" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
-        <p id="validacion-caja-titulo-entidad" class="validacion-caja-titulo" ng-show="errorValidacion === true">
-           ERRORES EN CAMPOS DE FORMULARIO:
+    <div id="validacion-caja-mensajes-entidad" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioEntidadBancaria.$invalid">
+        <p id="validacion-caja-titulo-entidad" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
         </p>
         
         <p id="validacion-mensaje-error-codigoEntidad" class="validacion-mensaje-error"
-           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.pattern && errorValidacion === true">
+           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.pattern">
            Error código: formato incorrecto
         </p>
         <p id="validacion-mensaje-required-codigoEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.required && errorValidacion === true">
+           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.required">
            Error código: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEntidadBancaria.campoNombreEntidad.$error.required && errorValidacion === true">
+           ng-show="formularioEntidadBancaria.campoNombreEntidad.$error.required">
            Error nombre: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-fechaEntidad" class="validacion-mensaje-required"
-           ng-show="formularioEntidadBancaria.campoFechaEntidad.$error.required && errorValidacion === true">
+           ng-show="formularioEntidadBancaria.campoFechaEntidad.$error.required">
            Error fecha: campo requerido
         </p>
         
@@ -90,7 +90,7 @@
         </div>
     </section>
 
-    <section id="botoneraList">
+    <section class="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/sucursalbancaria/new/{{entidadBancaria.idEntidadBancaria}}">Nueva sucursal</a></span>
     </section>
 

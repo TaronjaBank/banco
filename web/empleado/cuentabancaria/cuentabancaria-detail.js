@@ -25,8 +25,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
 
         $scope.clientes = [];
 
-        $scope.errorValidacion = false;
-
         var idSucursalBancaria = $scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria;
 
 
@@ -149,20 +147,13 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             });
         };
         $scope.getLastIdCuenta();
-
-
-        $scope.comprobarValidaciones = function () {
-//            alert("estoy en $scope.comprobarValidaciones");
-            if (!$scope.formularioCuentaBancaria.$error.required) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
+        
 
         $scope.insert = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.validar = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioCuentaBancaria.$invalid) {
                 $http({
                     method: "POST",
                     data: $scope.cuentaBancaria,
@@ -175,15 +166,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 }).error(function (data, status) {
                     alert("Error: No se ha podido Insertar");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail select").change(function () {
-//                    alert("estoy en change");
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -207,8 +189,6 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
         };
 
         $scope.clientes = [];
-
-        $scope.errorValidacion = false;
 
 
         $scope.get = function () {
@@ -290,18 +270,13 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
 
         };
         $scope.findAllSucursales();
-
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioCuentaBancaria.$error.required) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
+        
 
         $scope.update = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioCuentaBancaria.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/CuentaBancaria/" + $scope.cuentaBancaria.idCuentaBancaria,
@@ -312,14 +287,6 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $("#contenedorFormularioDetail select").change(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -349,8 +316,6 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
         };
 
         $scope.clientes = [];
-
-        $scope.errorValidacion = false;
 
 
         $scope.get = function () {
