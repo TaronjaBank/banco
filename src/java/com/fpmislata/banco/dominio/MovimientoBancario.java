@@ -11,7 +11,6 @@ public class MovimientoBancario {
     @NotNull
     String conceptoMovimientoBancario;
     
-    @NotNull
     double cantidadMovimientoBancario;
     
     @NotNull

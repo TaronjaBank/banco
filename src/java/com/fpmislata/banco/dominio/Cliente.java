@@ -2,10 +2,11 @@ package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fpmislata.banco.common.utilidades;
+import com.fpmislata.banco.common.Validaciones;
 import java.util.Set;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -14,7 +15,7 @@ public class Cliente {
     int idCliente;
 
     @NotNull
-    @Size(min = 9, max = 9)
+    @Pattern(regexp = "(\\d{8})([a-zA-Z]{1})")
     String dniCliente;
 
     @NotNull
@@ -40,8 +41,14 @@ public class Cliente {
 
     @AssertTrue(message = "El DNI no es correcto")
     private boolean isDNIValido() {
-        this.dniCliente=this.dniCliente.toUpperCase();
-        return utilidades.comprobarDNI(this.dniCliente);
+        boolean valido;
+        if (this.dniCliente != null) {
+            this.dniCliente = this.dniCliente.toUpperCase();
+            valido = Validaciones.comprobarDNI(this.dniCliente);
+        } else {
+            valido = false;
+        }
+        return valido;
     }
 
     public Cliente() {

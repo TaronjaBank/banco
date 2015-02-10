@@ -1,6 +1,6 @@
 package com.fpmislata.banco.common;
 
-public abstract class utilidades {
+public abstract class Validaciones {
 
     public static boolean comprobarDNI(String dni) {
         boolean valido;
@@ -10,7 +10,7 @@ public abstract class utilidades {
 
                 String juegoCaracteres = "TRWAGMYFPDXBNJZSQVHLCKET";
 
-                Integer numeroDNI = Integer.parseInt(dni.substring(0,8));
+                Integer numeroDNI = Integer.parseInt(dni.substring(0, 8));
                 int modulo = numeroDNI % 23;
 
                 char letraDNI = dni.charAt(8);
@@ -18,16 +18,26 @@ public abstract class utilidades {
 
                 if (letraDNI == letra) {
                     valido = true;
-                }else{
-                    valido=false;
+                } else {
+                    valido = false;
                 }
-            }else{
-                valido=false;
+            } else {
+                valido = false;
             }
 
-            }catch (NumberFormatException ex){
-            valido=false;
-        
+        } catch (NumberFormatException ex) {
+            valido = false;
+
+        }
+        return valido;
+    }
+
+    public static boolean espaciosEnBlanco(String texto) {
+        boolean valido;
+        if (texto.indexOf(" ") != -1) {
+            valido = false;
+        } else {
+            valido = true;
         }
         return valido;
     }

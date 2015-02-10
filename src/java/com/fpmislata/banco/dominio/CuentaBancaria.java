@@ -2,11 +2,9 @@ package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fpmislata.banco.persistencia.dao.ClienteDAO;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CuentaBancaria {
@@ -19,7 +17,6 @@ public class CuentaBancaria {
     
     @NotNull
     Cliente cliente;
-    
     
     double saldoCuentaBancaria;
     

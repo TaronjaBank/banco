@@ -1,9 +1,11 @@
 package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fpmislata.banco.common.utilidades;
+import com.fpmislata.banco.common.Validaciones;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Empleado {
@@ -11,31 +13,53 @@ public class Empleado {
     int idEmpleado;
     
     @NotNull
+    @Pattern(regexp = "(\\d{8})([a-zA-Z]{1})")
     String dniEmpleado;
     
     @NotNull
+    @Size(min = 0, max = 50)        
     String nombreEmpleado;
     
     @NotNull
+    @Size(min = 0, max = 50)
     String apellido1Empleado;
     
     @NotNull
+    @Size(min = 0, max = 50)
     String apellido2Empleado;
     
     @NotNull
     SucursalBancaria sucursalBancaria;
     
     @NotNull
+    @Size(min = 0, max = 50)
     String loginEmpleado;
     
     @NotNull
+    @Size(min = 0, max = 50)
     String passwordEmpleado;
 
     
     @AssertTrue(message = "El DNI no es correcto")
     private boolean isDNIValido() {
-        this.dniEmpleado=this.dniEmpleado.toUpperCase();
-        return utilidades.comprobarDNI(this.dniEmpleado);
+        boolean valido;
+        if (this.dniEmpleado != null) {
+            this.dniEmpleado = this.dniEmpleado.toUpperCase();
+            valido = Validaciones.comprobarDNI(this.dniEmpleado);
+        } else {
+            valido = false;
+        }
+        return valido;
+    }
+    
+    @AssertTrue(message = "El campo login no puede contener espacios en blanco")
+    private boolean isLoginValido() {
+        return Validaciones.espaciosEnBlanco(this.loginEmpleado);
+    }
+    
+    @AssertTrue(message = "El campo password no puede contener espacios en blanco")
+    private boolean isPasswordValido() {
+        return Validaciones.espaciosEnBlanco(this.passwordEmpleado);
     }
     public Empleado() {
     }
