@@ -4,8 +4,11 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
             accion: 'insertar'
         };
 
+        $scope.sucursalDisabled = true;
+
         $scope.estilo = "";
-        $scope.estiloDisabled = "";
+        $scope.estiloDisabledEntidad = "";
+        $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
 
         $scope.irLista = function () {
             $location.path("/empleado/list");
@@ -27,6 +30,10 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
             }).success(function (data) {
                 $scope.sucursalesBancarias = data;
+                if (!$routeParams.idEntidadBancaria) {
+                    $scope.estiloDisabledSucursal = "";
+                }
+                $scope.sucursalDisabled = false;
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });
@@ -37,7 +44,8 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
             $scope.estado = {
                 accion: 'insertarDesdeSucursal'
             };
-            $scope.estiloDisabled = $rootScope.estiloBloqueado;
+            $scope.estiloDisabledEntidad = $rootScope.estiloBloqueado;
+            $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
         }
 
 
@@ -57,7 +65,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         $scope.insert = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioEmpleado.$invalid) {
                 $http({
                     method: "POST",
@@ -82,7 +90,8 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             $scope.estado = {
                 accion: 'actualizarDesdeSucursal'
             };
-            $scope.estiloDisabled = $rootScope.estiloBloqueado;
+            $scope.estiloDisabledEntidad = $rootScope.estiloBloqueado;
+            $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
         } else {
             $scope.estado = {
                 accion: 'actualizar'
@@ -138,12 +147,12 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             });
         };
         $scope.findAllEntidades();
-        
+
 
         $scope.update = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioEmpleado.$invalid) {
                 $http({
                     method: "PUT",
@@ -166,7 +175,8 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
             accion: 'borrar'
         };
 
-        $scope.estiloDisabled = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estiloDisabledEntidad = $rootScope.estiloBloqueado;
+        $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
         $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.empleadoEdit = {

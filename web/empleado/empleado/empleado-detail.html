@@ -39,7 +39,7 @@
                ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
                ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
                ng-disabled="estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'"
-               ng-style="estiloDisabled"
+               ng-style="estiloDisabledEntidad"
                required>
             <option value="">-- Elige opción --</option>
         </select>
@@ -48,8 +48,8 @@
         <select class="inputDetail" name="campoNombreSucursal" 
                ng-model="empleadoEdit.sucursalBancaria.idSucursalBancaria" 
                ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
-               ng-disabled="estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'" 
-               ng-style="estiloDisabled"
+               ng-disabled="sucursalDisabled || estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'" 
+               ng-style="estiloDisabledSucursal"
                required>
             <option value="">-- Elige opción --</option>
         </select>
