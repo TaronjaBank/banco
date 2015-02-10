@@ -66,6 +66,8 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             if (idSucursalBancaria === undefined) {
                 $scope.clientes = [];
                 $scope.cuentaBancaria.numeroCuentaBancaria = "";
+                $scope.estiloCliente = $rootScope.estiloBloqueado;
+                $scope.bloqueo.dniCliente = true;
             } else {
                 $http({
                     method: "GET",
