@@ -29,7 +29,7 @@
         <div class="labelDetail">Nombre entidad</div>
         <select class="inputDetail" name="campoNombreEntidad" 
                ng-model="sucursalBancaria.entidadBancaria.idEntidadBancaria" 
-               ng-style="estiloDisabledNombreEntidad" 
+               ng-style="estiloNombreEntidad" 
                ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeEntidad === true"
                required>

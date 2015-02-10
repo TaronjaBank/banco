@@ -71,8 +71,8 @@
                required/>
     </form>
 
-    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar Empleado</span>
-    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar Empleado</span>
+    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar' || estado.accion === 'insertarDesdeSucursal'">Insertar Empleado</span>
+    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar' || estado.accion === 'actualizarDesdeSucursal'">Guardar Empleado</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar Empleado</span>
 
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/empleado/list">Ir a listado</a></span>

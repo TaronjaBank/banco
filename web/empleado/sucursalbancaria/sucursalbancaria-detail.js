@@ -12,7 +12,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         $scope.estiloBloqueado = $rootScope.estiloBloqueado;
 
         if ($routeParams.idEntidadBancaria) {
-            $scope.estiloDisabledNombreEntidad = $rootScope.estiloBloqueado;
+            $scope.estiloNombreEntidad = $rootScope.estiloBloqueado;
         }
 
         $scope.sucursalBancaria = {};
@@ -89,8 +89,13 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.estado = {
             accion: 'actualizar'
         };
+        
+        $scope.insertdesdedetail = {
+            accionDesdeEntidad: false
+        };
 
         $scope.estilo = "";
+        $scope.estiloNombreEntidad = "";
 
         $scope.sucursalBancaria = {
             idSucursalBancaria: $routeParams.idSucursalBancaria
@@ -99,6 +104,11 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.irLista = function () {
             $location.path("/sucursalbancaria/list");
         };
+        
+        if ($routeParams.idEntidadBancaria) {
+            $scope.estiloNombreEntidad = $rootScope.estiloBloqueado;
+            $scope.insertdesdedetail.accionDesdeEntidad = true;
+        }
 
 
         $scope.get = function () {
@@ -185,7 +195,7 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
             accion: 'borrar'
         };
 
-        $scope.estiloDisabledNombreEntidad = $rootScope.estiloBloqueado;
+        $scope.estiloNombreEntidad = $rootScope.estiloBloqueado;
         $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.sucursalBancaria = {

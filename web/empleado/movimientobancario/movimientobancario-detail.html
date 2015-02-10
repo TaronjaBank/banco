@@ -7,7 +7,7 @@
         <div class="labelDetail">Número cuenta</div>
         <select class="inputDetail" name="campoNumeroCuenta"
                ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" 
-               ng-style="estilo" 
+               ng-style="estiloNumeroCuenta" 
                ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias | orderBy: 'numeroCuentaBancaria'" 
                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'"
                required>

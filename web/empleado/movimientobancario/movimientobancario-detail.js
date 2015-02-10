@@ -5,6 +5,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
         };
 
         $scope.estilo = "";
+        $scope.estiloNumeroCuenta = "";
 
         $scope.irLista = function () {
             $location.path("/movimientobancario/list");
@@ -51,6 +52,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                         $scope.insertdesdedetail = {
                             accion: 'insertardesdedetail'
                         };
+                        $scope.estiloNumeroCuenta = $rootScope.estiloBloqueado;
                     }
                 }
             }).error(function () {
