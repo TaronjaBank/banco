@@ -6,7 +6,7 @@
 
         <div class="labelDetail">Número cuenta</div>
         <input class="inputDetail" name="campoNumeroCuenta" type="text" 
-               ng-style="estiloDisabledNumCuenta" 
+               ng-style="estiloNumCuenta" 
                ng-model="cuentaBancaria.numeroCuentaBancaria" 
                ng-disabled="true"
                required/>
@@ -14,7 +14,7 @@
         <div class="labelDetail">Nombre sucursal</div>
         <select class="inputDetail" name="campoNombreSucursal" 
                ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" 
-               ng-style="estiloDisabledSucursal" 
+               ng-style="estiloSucursal" 
                ng-change="fromChangeSucursal(cuentaBancaria.sucursalBancaria.idSucursalBancaria)"
                ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
                ng-disabled="estado.accion !== 'insertar' || insertdesdedetail.accionDesdeSucursal === true"
@@ -25,9 +25,9 @@
         <div class="labelDetail">DNI cliente</div>
         <select class="inputDetail" name="campoDniCliente" 
                ng-model="cuentaBancaria.cliente.idCliente" 
-               ng-style="estiloDisabledCliente" 
+               ng-style="estiloCliente" 
                ng-options="cliente.idCliente as cliente.dniCliente for cliente in clientes | orderBy: 'dniCliente'" 
-               ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeCliente === true"
+               ng-disabled="estado.accion === 'borrar' || bloqueo.dniCliente === true || insertdesdedetail.accionDesdeCliente === true"
                required>
             <option value="">--Elige opción--</option>
         </select>
