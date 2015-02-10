@@ -164,7 +164,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                     $scope.findAllSucursales();
                     $scope.clientes = [];
                     $scope.mostrarValidaciones = false;
-                    $scope.lastIdCuenta++;
                 }).error(function (data, status) {
                     alert("Error: No se ha podido Insertar");
                 });
