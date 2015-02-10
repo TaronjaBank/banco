@@ -13,8 +13,8 @@
                 <param name="type">12</param>
             </type>
         </property>
-        <many-to-one name="cuentaBancaria">
-            <column name="idCuentaBancaria" not-null="true"/>
+        <many-to-one name="cuentaBancaria" cascade="all">
+            <column name="idCuentaBancaria" />
         </many-to-one>
     </class>
 </hibernate-mapping>

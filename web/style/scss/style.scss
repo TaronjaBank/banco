@@ -13,7 +13,7 @@ body{
         family: "Century Gothic" !important;
         size: $sizeFuenteBase;
     }
-    
+
     @include reglasBarrasScroll();
 
     #capaSuperior{/* Capa que engloba todos los contenidos de la web; se situa por encima de la capa de fondo */
@@ -226,6 +226,7 @@ body{
                 /*width: 850px;*/
                 width: 85%;
                 @include reglasComunesZonaCentro();
+                @import "validaciones.scss";
 
                 #imgPortadaEmpleado{
                     z-index: -1;
@@ -303,14 +304,6 @@ body{
 
                     @include reglasColumnasTabla();//Mixin para las anchuras de columna segun clases de datos
 
-                    .bloqueDatos{
-                        float: left;
-                        &:hover{
-                            cursor: $cursorActivo;
-                            background-color: $colorFilaHover;
-                        }
-                    }
-
                     .celdaCabecera{
                         @include formatoCeldasTabla(1px 10px);
                         box-shadow: 0 2px 2px grey;
@@ -318,25 +311,44 @@ body{
                         font-size: 13px;
                         color: white;
                     }
-                    .celdaContenido{
-                        @include formatoCeldasTabla(1px 10px);
-                        border-bottom: 1px solid silver;
-                        font-size: 12px;
-                    }
-                    .celdaIconoTabla{
-                        @include formatoCeldasTabla(2px 2px);
-                        width: 20px;
 
-                        .iconoTabla{
-                            @include sizeIcono(15px);
-
+                    .filaContenido{
+                        
+                        .bloqueDatos{
+                            float: left;
+                            clear: left;
                             &:hover{
                                 cursor: $cursorActivo;
-                                transform: scale(1.2);
-                                transition-duration: .3s;
+                                background-color: $colorFilaHover;
+                            }
+                        }
+                        .celdaContenido{
+                            @include formatoCeldasTabla(1px 10px);
+                            border-bottom: 1px solid silver;
+                            font-size: 12px;
+                        }
+                        .celdaIconoTabla{
+                            float: left;
+                            clear: right;
+                            @include formatoCeldasTabla(2px 2px);
+                            width: 20px;
+
+                            .iconoTabla{
+                                @include sizeIcono(15px);
+
+                                &:hover{
+                                    cursor: $cursorActivo;
+                                    transform: scale(1.2);
+                                    transition-duration: .3s;
+                                }
                             }
                         }
                     }
+                    
+                    .botoneraList{
+                        clear: left;
+                    }
+                    
                 }
 
                 #contenedorDetail{
@@ -382,7 +394,7 @@ body{
 
                 .botoneraMain{
                     margin: 5% auto;
-                    
+
                     .titulo-apartado{
                         color: grey;
                         margin: 40px 30px;
@@ -391,7 +403,7 @@ body{
                             size: 18px;
                         }
                     }
-                    
+
                     .filaIconosBackEnd{
                         width: 100%;
                         text-align: center;

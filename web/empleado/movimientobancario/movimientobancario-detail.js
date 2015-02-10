@@ -5,11 +5,12 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
         };
 
         $scope.estilo = "";
+        $scope.estiloNumeroCuenta = "";
 
         $scope.irLista = function () {
             $location.path("/movimientobancario/list");
         };
-        
+
         //ng-Options
         $scope.tipoMovimientos = [
             {ID: '0', nombre: 'DEBE'},
@@ -20,17 +21,22 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
 
 
         $scope.insert = function () {
-
-            $http({
-                method: "POST",
-                url: contextPath + "/api/MovimientoBancario",
-                data: $scope.movimientoBancario
-            }).success(function (data) {
-                $scope.movimientoBancario = data;
-                $scope.movimientoBancario = null;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });//success.Error
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioMovimientoBancario.$invalid) {
+                $http({
+                    method: "POST",
+                    url: contextPath + "/api/MovimientoBancario",
+                    data: $scope.movimientoBancario
+                }).success(function (data) {
+                    $scope.movimientoBancario = data;
+                    $scope.movimientoBancario = null;
+                    $scope.mostrarValidaciones = false;
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+            }
         };
 
         $scope.findAll = function () {
@@ -46,12 +52,13 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                         $scope.insertdesdedetail = {
                             accion: 'insertardesdedetail'
                         };
+                        $scope.estiloNumeroCuenta = $rootScope.estiloBloqueado;
                     }
                 }
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar  
+            });
+        };
         $scope.findAll();
     }]);
 
@@ -71,6 +78,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             $location.path("/movimientobancario/list");
         };
 
+
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -82,27 +90,32 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             });
         };
 
-
         $scope.get();
+        
         $scope.tipoMovimientos = [
             {ID: '0', nombre: 'DEBE'},
             {ID: '1', nombre: 'HABER'}
         ];
+
+
         $scope.update = function () {
-
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
-                data: $scope.movimientoBancario
-            }).success(function () {
-                //alert("Los datos del movimiento nº " + $scope.movimientoBancario.idMovimientoBancario + " se han actualizado correctamente...");
-                $scope.movimientoBancario = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
-
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioMovimientoBancario.$invalid) {
+                $http({
+                    method: "PUT",
+                    url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
+                    data: $scope.movimientoBancario
+                }).success(function () {
+                    $scope.movimientoBancario = {};
+                    $scope.irLista();
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+            }
         };
+
         $scope.findAll = function () {
             $http({
                 method: "GET",
@@ -111,8 +124,8 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 $scope.cuentasBancarias = data;
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar  
+            });
+        };
         $scope.findAll();
 
     }]);
@@ -134,6 +147,8 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
         };
         $scope.cuentasBancarias = [];
         $scope.cuentaBancaria = {};
+
+
         $scope.get = function () {
             $http({
                 method: "GET",
@@ -144,8 +159,8 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
                 $scope.cuentaBancaria.idCuentaBancaria = $scope.cuentasBancarias[0].idCuentaBancaria;
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
-            });//success.Error
-        };//Consultar
+            });
+        };
 
         $scope.get();
         $scope.tipoMovimientos = [
@@ -158,13 +173,12 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
                 method: "DELETE",
                 url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario
             }).success(function () {
-                //alert("El movimiento nº " + $scope.movimientoBancario.idMovimientoBancario + " ha sido borrado correctamente...");
                 $scope.movimientoBancario = {};
                 $scope.irLista();
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
-            });//success.Error
-        };//Consultar
+            });
+        };
 
 
     }]);

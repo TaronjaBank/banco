@@ -10,26 +10,33 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
 
         $scope.cliente = {};
 
+
         $scope.insert = function () {
-            $http({
-                method: "POST",
-                url: contextPath + "/api/Cliente",
-                data: $scope.cliente
-            }).success(function (data) {
-                $scope.cliente = data;
-                $scope.cliente = null;
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+
+            if (!$scope.formularioCliente.$invalid) {
+                $http({
+                    method: "POST",
+                    url: contextPath + "/api/Cliente",
+                    data: $scope.cliente
+                }).success(function (data) {
+                    $scope.cliente = data;
+                    $scope.cliente = null;
+                    $scope.mostrarValidaciones = false;
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+            }
         };
 
     }]);
 
 
 app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        
+
         $rootScope.comprobarSesion();
-        
+
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -55,20 +62,25 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-
         $scope.get();
 
+
         $scope.update = function () {
-            $http({
-                method: "PUT",
-                url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente,
-                data: $scope.cliente
-            }).success(function () {
-                $scope.cliente = {};
-                $scope.irLista();
-            }).error(function () {
-                alert("Error: no se ha podido realizar la operación");
-            });
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+
+            if (!$scope.formularioCliente.$invalid) {
+                $http({
+                    method: "PUT",
+                    url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente,
+                    data: $scope.cliente
+                }).success(function () {
+                    $scope.cliente = {};
+                    $scope.irLista();
+                }).error(function () {
+                    alert("Error: no se ha podido realizar la operación");
+                });
+            }
         };
 
         $scope.findAllCuentasByCliente = function () {

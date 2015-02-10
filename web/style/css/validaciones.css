@@ -76,5 +76,17 @@
   /* Adjunta en el proyecto la fuente de la pagina web */
   font-family: "Century Gothic";
   src: url("../font/gothic.ttf") format("truetype"); }
+.validacion-caja-mensajes {
+  /*display: none;//NO ES NECESARIO, SE CONTROLA CON ng-style*/
+  border: 1px dashed rgba(255, 102, 0, 0.3);
+  background-color: lightyellow;
+  margin: 15px;
+  padding: 0 10px;
+  color: red;
+  font-size: 12px; }
+  .validacion-caja-mensajes .validacion-caja-titulo {
+    font-weight: bold; }
+  .validacion-caja-mensajes .validacion-mensaje-required {
+    color: navy; }
 
-/*# sourceMappingURL=commonStyle.css.map */
+/*# sourceMappingURL=validaciones.css.map */

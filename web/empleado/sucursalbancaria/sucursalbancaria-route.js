@@ -20,6 +20,11 @@ app.config(["$routeProvider", function ($routeProvider) {
             controller: "SucursalBancariaUpdateController"
         });
         
+        $routeProvider.when("/sucursalbancaria/update/:idSucursalBancaria/:idEntidadBancaria", {
+            templateUrl: "sucursalbancaria/sucursalbancaria-detail.html",
+            controller: "SucursalBancariaUpdateController"
+        });
+        
         $routeProvider.when("/sucursalbancaria/delete/:idSucursalBancaria", {
             templateUrl: "sucursalbancaria/sucursalbancaria-detail.html",
             controller: "SucursalBancariaDeleteController"
