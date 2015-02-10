@@ -14,7 +14,7 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
         $scope.insert = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioCliente.$invalid) {
                 $http({
                     method: "POST",
@@ -23,6 +23,7 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
                 }).success(function (data) {
                     $scope.cliente = data;
                     $scope.cliente = null;
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
@@ -67,7 +68,7 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
         $scope.update = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioCliente.$invalid) {
                 $http({
                     method: "PUT",

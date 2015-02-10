@@ -51,6 +51,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                 }).success(function (data) {
                     $scope.sucursalBancaria = data;
                     $scope.sucursalBancaria = null;
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
