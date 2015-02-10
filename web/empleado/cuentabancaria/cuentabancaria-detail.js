@@ -3,7 +3,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
         $scope.estado = {
             accion: 'insertar'
         };
-        
+
         $scope.bloqueo = {
             dniCliente: true
         };
@@ -63,24 +63,29 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
 
         //Operaciones a realizar al cambiar selección del ng-options de sucursales
         $scope.fromChangeSucursal = function (idSucursalBancaria) {
-            $http({
-                method: "GET",
-                url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria
-            }).success(function (data) {
-                $scope.sucursalBancaria = data;
-                var sucursal = $scope.sucursalBancaria;
-                var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
-                var codigoSucursal = sucursal.codigoSucursalBancaria;
-                $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ("000" + ($scope.lastIdCuenta + 1)).slice(-4);
-                $scope.bloqueo.dniCliente = false;
+            if (idSucursalBancaria === undefined) {
+                $scope.clientes = [];
+                $scope.cuentaBancaria.numeroCuentaBancaria = "";
+            } else {
+                $http({
+                    method: "GET",
+                    url: contextPath + "/api/SucursalBancaria/" + idSucursalBancaria
+                }).success(function (data) {
+                    $scope.sucursalBancaria = data;
+                    var sucursal = $scope.sucursalBancaria;
+                    var codigoEntidad = sucursal.entidadBancaria.codigoEntidadBancaria;
+                    var codigoSucursal = sucursal.codigoSucursalBancaria;
+                    $scope.cuentaBancaria.numeroCuentaBancaria = codigoEntidad + "-" + codigoSucursal + "-" + ("000" + ($scope.lastIdCuenta + 1)).slice(-4);
+                    $scope.bloqueo.dniCliente = false;
 
-                if (!$routeParams.idCliente) {
-                    $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
-                    $scope.estiloCliente = "";
-                }
-            }).error(function () {
-                alert("Error: no existe coincidencia en la base de datos");
-            });
+                    if (!$routeParams.idCliente) {
+                        $scope.findClientesBySucursal(sucursal.idSucursalBancaria);
+                        $scope.estiloCliente = "";
+                    }
+                }).error(function () {
+                    alert("Error: no existe coincidencia en la base de datos");
+                });
+            }
         };
 
 
@@ -150,12 +155,12 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             });
         };
         $scope.getLastIdCuenta();
-        
+
 
         $scope.insert = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioCuentaBancaria.$invalid) {
                 $http({
                     method: "POST",
@@ -273,12 +278,12 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
 
         };
         $scope.findAllSucursales();
-        
+
 
         $scope.update = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioCuentaBancaria.$invalid) {
                 $http({
                     method: "PUT",
