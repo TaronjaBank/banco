@@ -23,6 +23,7 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
                 }).success(function (data) {
                     $scope.cliente = data;
                     $scope.cliente = null;
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });

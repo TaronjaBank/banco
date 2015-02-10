@@ -49,6 +49,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
                     $scope.entidadBancaria = {
                         fechaCreacionEntidadBancaria: new Date()
                     };
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });

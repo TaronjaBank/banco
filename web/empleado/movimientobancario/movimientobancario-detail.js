@@ -31,6 +31,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                 }).success(function (data) {
                     $scope.movimientoBancario = data;
                     $scope.movimientoBancario = null;
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });

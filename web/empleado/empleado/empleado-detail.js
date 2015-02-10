@@ -66,6 +66,7 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 }).success(function (data) {
                     $scope.empleadoEdit = data;
                     $scope.empleadoEdit = null;
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
