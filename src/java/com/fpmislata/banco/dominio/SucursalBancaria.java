@@ -6,21 +6,22 @@ import java.io.Serializable;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SucursalBancaria implements Serializable {
 
     int idSucursalBancaria;
     
-    @NotNull
+    @NotBlank
     @Size(min=4, max=4)
     String codigoSucursalBancaria;
     
-    @NotNull
+    @NotBlank
     @Size(min=0,max=50)
     String nombreSucursalBancaria;
     
-    @NotNull
+    @NotBlank
     @Size(min=0,max=50)
     String direccionSucursalBancaria;
     

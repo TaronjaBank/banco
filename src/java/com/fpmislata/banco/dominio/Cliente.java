@@ -5,28 +5,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fpmislata.banco.common.Validaciones;
 import java.util.Set;
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
 
     int idCliente;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "(\\d{8})([a-zA-Z]{1})")
     String dniCliente;
 
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String nombreCliente;
 
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String apellido1Cliente;
 
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String apellido2Cliente;
 

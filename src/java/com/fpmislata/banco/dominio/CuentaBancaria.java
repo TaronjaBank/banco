@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.NotBlank;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CuentaBancaria {
 
     int idCuentaBancaria;
     
-    @NotNull
+    @NotBlank
     @Pattern(regexp="\\d{4}-\\d{4}-\\d{4}")
     String numeroCuentaBancaria;
     

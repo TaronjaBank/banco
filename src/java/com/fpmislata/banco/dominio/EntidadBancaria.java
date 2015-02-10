@@ -8,17 +8,18 @@ import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EntidadBancaria implements Serializable{
     
     int idEntidadBancaria;
     
-    @NotNull
+    @NotBlank
     @Size(min=4, max=4)
     String codigoEntidadBancaria;
     
-    @NotNull
+    @NotBlank
     @Size(min=0,max=50)
     String nombreEntidadBancaria;
     

@@ -6,36 +6,37 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Empleado {
 
     int idEmpleado;
     
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "(\\d{8})([a-zA-Z]{1})")
     String dniEmpleado;
     
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)        
     String nombreEmpleado;
     
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String apellido1Empleado;
     
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String apellido2Empleado;
     
     @NotNull
     SucursalBancaria sucursalBancaria;
     
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String loginEmpleado;
     
-    @NotNull
+    @NotBlank
     @Size(min = 0, max = 50)
     String passwordEmpleado;
 
