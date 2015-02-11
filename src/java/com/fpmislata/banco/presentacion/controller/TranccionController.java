@@ -12,6 +12,7 @@ import com.fpmislata.banco.dominio.PasarelaPago;
 import com.fpmislata.banco.dominio.Transaccion;
 import com.fpmislata.banco.persistencia.dao.CuentaBancariaDAO;
 import com.fpmislata.banco.persistencia.dao.MovimientoBancarioDAO;
+import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.BussinessException;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,20 +27,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Marti
  */
-
 @Controller// Para que java entienda que esto es un controlador.
 @RequestMapping("/Transaccion")
 public class TranccionController {
-    
-   @Autowired
+
+    @Autowired
     MovimientoBancarioDAO movimientoBancarioDAO;
 
     @Autowired
     JsonTransformer jsonTransformer;
-    
-     @Autowired
+
+    @Autowired
     CuentaBancariaDAO cuentaBancariaDAO;
-     
+
     @RequestMapping(
             method = RequestMethod.POST)
     public void generarTransaccion(HttpServletRequest httpServletRequest,
@@ -47,9 +47,9 @@ public class TranccionController {
             @RequestBody String jsonEntrada) {
         try {
             Transaccion transaccion = (Transaccion) jsonTransformer.fromJson(jsonEntrada, Transaccion.class);
-            CuentaBancaria cuentaBancariaOrigen =cuentaBancariaDAO.getFromNumeroCuenta(transaccion.getNumeroCuentaOrigen());
-            CuentaBancaria cuentaBancariaDestino =cuentaBancariaDAO.getFromNumeroCuenta(transaccion.getNumeroCuentaDestino());
-            PasarelaPago pasarelaPago=new PasarelaPago(transaccion);
+            CuentaBancaria cuentaBancariaOrigen = cuentaBancariaDAO.getFromNumeroCuenta(transaccion.getNumeroCuentaOrigen());
+            CuentaBancaria cuentaBancariaDestino = cuentaBancariaDAO.getFromNumeroCuenta(transaccion.getNumeroCuentaDestino());
+            PasarelaPago pasarelaPago = new PasarelaPago(transaccion);
             movimientoBancarioDAO.insert(pasarelaPago.getMovimientoBancarioDEBE(cuentaBancariaOrigen));
             movimientoBancarioDAO.insert(pasarelaPago.getMovimientoBancarioHABER(cuentaBancariaDestino));
 
@@ -57,6 +57,14 @@ public class TranccionController {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 }

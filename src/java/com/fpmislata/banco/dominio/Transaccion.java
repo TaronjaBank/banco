@@ -5,10 +5,22 @@
  */
 package com.fpmislata.banco.dominio;
 
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Transaccion {
+    
+  @NotBlank
+  @Pattern(regexp="\\d{4}-\\d{4}-\\d{4}")
   private String numeroCuentaOrigen;
+  
+  @NotBlank
+  @Pattern(regexp="\\d{4}-\\d{4}-\\d{4}")
   private String numeroCuentaDestino;
+  
   private double importe;
+  
+  @NotBlank
   private String concepto;
   
     public Transaccion() {
