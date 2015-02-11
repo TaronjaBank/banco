@@ -1,8 +1,7 @@
-<section id="tablaListado" ng-init="list()">
+<section id="tablaListado">
 
     <p id="tituloTabla">Listado Entidades Bancarias</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id entidad</div>
         <div class="celdaCabecera columnaId-Codigo">Código</div>
         <div class="celdaCabecera columnaNombre">Nombre</div>
         <div class="celdaCabecera columnaFecha">Fecha creación</div>
@@ -11,10 +10,9 @@
     <section class="filaContenido" ng-repeat="entidadBancaria in entidadesBancarias">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{entidadBancaria.idEntidadBancaria}}</div>
             <div class="celdaContenido columnaId-Codigo">{{entidadBancaria.codigoEntidadBancaria}}</div>
             <div class="celdaContenido columnaNombre">{{entidadBancaria.nombreEntidadBancaria}}</div>
-            <div class="celdaContenido ui-date columnaFecha">{{entidadBancaria.fechaCreacionEntidadBancaria | date:'dd-MM-yyyy'}}</div>
+            <div class="celdaContenido columnaFecha">{{entidadBancaria.fechaCreacionEntidadBancaria | date:'dd-MM-yyyy'}}</div>
         </div>
 
         <div class="celdaIconoTabla">

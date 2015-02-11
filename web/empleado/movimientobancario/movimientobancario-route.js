@@ -8,6 +8,11 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "movimientobancario/movimientobancario-detail.html",
             controller: "MovimientoBancarioInsertController"
         });
+        
+        $routeProvider.when('/movimientobancario/new/:idCuentaBancaria', {
+            templateUrl: "movimientobancario/movimientobancario-detail.html",
+            controller: "MovimientoBancarioInsertController"
+        });
 
         $routeProvider.when('/movimientobancario/update/:idMovimientoBancario', {
             templateUrl: "movimientobancario/movimientobancario-detail.html",

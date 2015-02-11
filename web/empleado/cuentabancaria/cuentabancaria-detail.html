@@ -3,20 +3,59 @@
     <div id="tituloDetail">Detalle Cuenta Bancaria</div>
 
     <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id Cuenta</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="cuentaBancaria.idCuentaBancaria" ng-disabled="true"/>
+
         <div class="labelDetail">Número</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.numeroCuentaBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Id Entidad Bancaria</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.idEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Id Cliente</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.idCliente" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">Nombre Sucursal</div>
+        <select class="inputDetail" ng-model="cuentaBancaria.sucursalBancaria.idSucursalBancaria" ng-style="estilo" ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'">
+            <option value="">--Elige opcion--</option>
+        </select>
+        <div class="labelDetail">DNI Cliente</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cuentaBancaria.cliente.dniCliente" ng-disabled="estado.accion === 'borrar'"/>
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cuenta</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar cuenta</span>
-    
+
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/cuentabancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+</section>
+
+<section id="tablaListado" ng-show="movimientosBancarios.length !== 0" ng-hide="estado.accion === 'insertar'">
+
+    <p id="tituloTabla">Listado Movimientos Bancarios</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
+        <div class="celdaCabecera columnaNumCuenta">Cuenta destino</div>
+        <div class="celdaCabecera columnaCantidad">Cantidad</div>
+        <div class="celdaCabecera columnaId-Codigo">Tipo</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
+            <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.idCuentaBancariaDestino}}</div>
+            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
+            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.tipoMovimiento}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/movimientobancario/update/{{movimientoBancario.idMovimientoBancario}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/movimientobancario/delete/{{movimientoBancario.idMovimientoBancario}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/movimientobancario/new/{{cuentaBancaria.idCuentaBancaria}}">Nuevo movimiento</a></span>
+    </section>
+
 </section>

@@ -27,7 +27,7 @@ body {
       float: left;
       font-size: 13px;
       text-align: center;
-      margin: 15px 10px;
+      margin: 10px 5px;
       padding: 2px 10px;
       border-radius: 4px;
       border-left: 1px solid lightgrey;
@@ -285,7 +285,7 @@ body {
             float: left;
             font-size: 13px;
             text-align: center;
-            margin: 15px 10px;
+            margin: 10px 5px;
             padding: 2px 10px;
             border-radius: 4px;
             border-left: 1px solid lightgrey;
@@ -331,62 +331,64 @@ body {
               background-color: #ff6600;
               box-shadow: none;
               opacity: .9; }
-        body #capaSuperior #seccionCentral #contenidos #tablaListado {
+        body #capaSuperior #seccionCentral #contenidos #tablaListado, body #capaSuperior #seccionCentral #contenidos .tablaListado {
           /* Tabla de listado consulta findAll */
-          margin-left: 40px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado #tituloTabla {
+          margin: 100px 0 0 60px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado #tituloTabla, body #capaSuperior #seccionCentral #contenidos #tablaListado .tituloTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado #tituloTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .tituloTabla {
             color: grey;
-            margin: 80px 0 15px;
+            margin: 80px 0 0;
             font-weight: bold;
             font-size: 18px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaId-Codigo {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaId-Codigo, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaId-Codigo {
             width: 100px;
             text-align: center; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNombre {
             width: 100px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaApellido {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNombre-Entidad-Sucursal, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNombre-Entidad-Sucursal {
+            width: 140px; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaApellido, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaApellido {
             width: 90px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNumCuenta {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaNumCuenta, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaNumCuenta {
             width: 130px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaCantidad {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaCantidad, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaCantidad {
             width: 60px;
             text-align: right; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaConcepto-Direccion {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaConcepto-Direccion, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaConcepto-Direccion {
             width: 180px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaFecha {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaFecha, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaFecha {
             width: 110px;
             text-align: center; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos, body #capaSuperior #seccionCentral #contenidos .tablaListado .bloqueDatos {
             float: left; }
-            body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos:hover {
+            body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .bloqueDatos:hover {
               cursor: pointer;
               background-color: #ffe6d2; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaCabecera {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaCabecera, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaCabecera {
             padding: 1px 10px;
             display: inline-block;
             box-shadow: 0 2px 2px grey;
             background-color: #ff6600;
             font-size: 13px;
             color: white; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaContenido {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaContenido, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaContenido {
             padding: 1px 10px;
             display: inline-block;
             border-bottom: 1px solid silver;
             font-size: 12px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla {
             padding: 2px 2px;
             display: inline-block;
             width: 20px; }
-            body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla {
+            body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla .iconoTabla {
               width: 15px;
               height: 15px; }
-              body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla:hover {
+              body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla .iconoTabla:hover {
                 cursor: pointer;
                 transform: scale(1.2);
                 transition-duration: .3s; }
         body #capaSuperior #seccionCentral #contenidos #contenedorDetail {
           width: 550px;
-          margin: 100px auto; }
+          margin: 50px 0 0 60px; }
           body #capaSuperior #seccionCentral #contenidos #contenedorDetail #tituloDetail {
             padding: 3px 10px 1px;
             margin-bottom: 10px;

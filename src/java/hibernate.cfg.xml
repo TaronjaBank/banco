@@ -11,6 +11,8 @@
     <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/hbm/EntidadBancaria.hbm.xml"/>
     <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/hbm/MovimientoBancario.hbm.xml"/>
     <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/hbm/SucursalBancaria.hbm.xml"/>
+    <mapping class="com.fpmislata.banco.dominio.SucursalBancaria"/>
+    <mapping class="com.fpmislata.banco.dominio.EntidadBancaria"/>
   </session-factory>
 </hibernate-configuration>
 <!-- 

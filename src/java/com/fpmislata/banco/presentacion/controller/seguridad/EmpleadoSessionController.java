@@ -27,24 +27,28 @@ public class EmpleadoSessionController {
     EmpleadoAuthentication empleadoAuthentication;
 
     @RequestMapping(method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+    public void get(
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse) throws IOException {
         try {
-            Integer idEmpleado;
+            String loginEmpleado;
             String jsonSalida;
             Empleado empleado;
 
             HttpSession httpSession = httpServletRequest.getSession(true);
 
             if (httpSession != null) {
+                loginEmpleado = (String) httpSession.getAttribute("loginEmpleado");
 
-                idEmpleado = (Integer) httpSession.getAttribute("idEmpleado");
-
-                empleado = empleadoDAO.get(idEmpleado);
-
-                jsonSalida = jsonTransformer.toJson(empleado);
-                httpServletResponse.getWriter().println(jsonSalida);
-                httpServletResponse.setContentType("application/json; char=UTF-8");
-                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                empleado = empleadoDAO.getFromLogin(loginEmpleado);
+                if (empleado == null) {
+                    httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                } else {
+                    jsonSalida = jsonTransformer.toJson(empleado);
+                    httpServletResponse.getWriter().println(jsonSalida);
+                    httpServletResponse.setContentType("application/json; char=UTF-8");
+                    httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                }
             } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }
@@ -71,7 +75,7 @@ public class EmpleadoSessionController {
 
             if (empleado != null) {
                 httpSession = httpServletRequest.getSession(true);
-                httpSession.setAttribute("idEmpleado", empleado.getIdEmpleado());
+                httpSession.setAttribute("loginEmpleado", empleado.getLoginEmpleado());
 
                 jsonSalida = jsonTransformer.toJson(empleado);
                 httpServletResponse.getWriter().println(jsonSalida);
@@ -92,7 +96,7 @@ public class EmpleadoSessionController {
             HttpServletResponse httpServletResponse) throws IOException {
 
         HttpSession httpSession = httpServletRequest.getSession(true);
-        httpSession.setAttribute("idEmpleado", null);
+        httpSession.setAttribute("loginEmpleado", null);
 
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
 

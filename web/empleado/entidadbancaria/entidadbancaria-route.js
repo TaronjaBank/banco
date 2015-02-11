@@ -4,6 +4,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "entidadbancaria/entidadbancaria-main.html",
             controller: "EntidadBancariaMainController"
         });
+        
         $routeProvider.when('/entidadbancaria/new', {
             templateUrl: "entidadbancaria/entidadbancaria-detail.html",
             controller: "EntidadBancariaInsertController"
@@ -13,10 +14,12 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "entidadbancaria/entidadbancaria-detail.html",
             controller: "EntidadBancariaUpdateController"
         });
+        
         $routeProvider.when('/entidadbancaria/delete/:idEntidadBancaria', {
             templateUrl: "entidadbancaria/entidadbancaria-detail.html",
             controller: "EntidadBancariaDeleteController"
         });
+        
         $routeProvider.when('/entidadbancaria/list', {
             templateUrl: "entidadbancaria/entidadbancaria-list.html",
             controller: "EntidadBancariaListController"

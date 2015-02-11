@@ -43,6 +43,9 @@
     .columnaNombre{// Columnas tipo nombre
                    width: 100px;
     }
+    .columnaNombre-Entidad-Sucursal{// Columnas tipo nombre
+                   width: 140px;
+    }
     .columnaApellido{// Columnas tipo apellido
                      width: 90px;
     }
@@ -132,7 +135,7 @@
     float: left;
     font-size: 13px;
     text-align: center;
-    margin: 15px 10px;
+    margin: 10px 5px;
     padding: 2px 10px;
 
     @include botonOut(lightgrey,grey,white,$colorCorporativo,grey);

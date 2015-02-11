@@ -12,13 +12,12 @@
         </session-timeout>
     </session-config>
     
-    
     <filter>
-        <filter-name>FilterImplSecurity</filter-name>
-        <filter-class>com.fpmislata.banco.presentacion.filter.seguridad.FilterImplSecurity</filter-class>
+        <filter-name>FilterEmpleadoImplSecurity</filter-name>
+        <filter-class>com.fpmislata.banco.presentacion.filter.seguridad.FilterEmpleadoImplSecurity</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>FilterImplSecurity</filter-name>
+        <filter-name>FilterEmpleadoImplSecurity</filter-name>
         <url-pattern>/api/*</url-pattern>
     </filter-mapping>
     
@@ -28,9 +27,8 @@
     </filter>
     <filter-mapping>
         <filter-name>FilterImplHibernate</filter-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </filter-mapping>
-    
     
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -39,7 +37,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:com/fpmislata/banco/common/json/jsonContext.xml
-            classpath:com/fpmislata/banco/persistencia/dao/daoContext.xml
+            classpath:com/fpmislata/banco/persistencia/dao/impl/hibernate/daoImplHibernateContext.xml
             classpath:com/fpmislata/banco/servicio/seguridad/securityContext.xml
         </param-value>
     </context-param>
@@ -51,7 +49,6 @@
     <listener>
         <listener-class>com.fpmislata.banco.presentacion.listener.persistencia.hibernate.ServletContextListenerImplHibernate</listener-class>
     </listener>
-    
     
     <servlet>
         <servlet-name>dispatcher</servlet-name>

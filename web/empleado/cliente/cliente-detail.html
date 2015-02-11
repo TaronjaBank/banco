@@ -1,0 +1,57 @@
+<section id="contenedorDetail">
+
+    <div id="tituloDetail">Detalle Cliente</div>
+
+    <section id="contenedorFormularioDetail">
+        <div class="labelDetail">DNI</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cliente.dniCliente" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">Nombre</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cliente.nombreCliente" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">Apellido 1º</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cliente.apellido1Cliente" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">Apellido 2º</div>
+        <input class="inputDetail" type="text" ng-style="estilo" ng-model="cliente.apellido2Cliente" ng-disabled="estado.accion === 'borrar'"/>
+    </section>
+
+    <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar cliente</span>
+    <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
+    <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar cliente</span>
+
+    <span id="botonVolverLista" class="botonBackEnd"><a href="#/cliente/list">Ir a listado</a></span>
+    <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+</section>
+
+<!-- Tabla detalle Cuenta -->
+<section id="tablaListado" ng-show="cuentasBancarias.length !== 0" ng-hide="estado.accion === 'insertar'">
+
+    <p id="tituloTabla">Listado Cuentas Bancarias</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaNumCuenta">Código</div>
+        <div class="celdaCabecera columnaCantidad">Saldo</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="cuentaBancaria in cuentasBancarias">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
+            <div class="celdaContenido columnaCantidad">{{cuentaBancaria.saldoCuentaBancaria}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/cuentabancaria/update/{{cuentaBancaria.idCuentaBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/cuentabancaria/delete/{{cuentaBancaria.idCuentaBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section id="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new/{{cuentaBancaria.idCuentaBancaria}}">Nueva cuenta</a></span>
+    </section>
+
+</section>

@@ -1,4 +1,17 @@
-app.controller("EntidadBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
+app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScope", "$location", function ($scope, $http, $rootScope, $location) {
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
         $scope.estado = {
             accion: 'insertar'
@@ -28,8 +41,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function (
     }]);
 
 
-app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", function ($scope, $http, $routeParams, $location) {
-
+app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -56,8 +68,19 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             });
         };
 
-        $scope.get();
+        var promise = $rootScope.comprobarSesion();
 
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllSucursalesByEntidad();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
         $scope.update = function () {
             $http({
@@ -72,15 +95,25 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             });
         };
 
+        $scope.findAllSucursalesByEntidad = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
+
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
     }]);
 
 app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-
         $scope.estado = {
             accion: 'borrar'
         };
 
-        $scope.estilo = $rootScope.estiloBloqueado;//Estilo para los input disabled
+        $scope.estilo = $rootScope.estiloBloqueado;
 
         $scope.entidadBancaria = {
             idEntidadBancaria: $routeParams.idEntidadBancaria
@@ -102,7 +135,19 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
             });
         };
 
-        $scope.get();
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllSucursalesByEntidad();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
         $scope.deleteData = function () {
             $http({
@@ -111,6 +156,17 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
             }).success(function () {
                 $scope.entidadBancaria = {};
                 $scope.irLista();
+            }).error(function () {
+                alert("Error: no se ha podido realizar la operación");
+            });
+        };
+
+        $scope.findAllSucursalesByEntidad = function () {
+            $http({
+                method: "GET",
+                url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria + "/SucursalBancaria"
+            }).success(function (data) {
+                $scope.sucursalesBancarias = data;
             }).error(function () {
                 alert("Error: no se ha podido realizar la operación");
             });

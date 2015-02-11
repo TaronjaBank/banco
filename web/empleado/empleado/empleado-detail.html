@@ -13,20 +13,36 @@
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido1Empleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Apellido2</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.apellido2Empleado" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Id Sucursal</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.idSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <div class="labelDetail">Entidad</div>
+        <select class="inputDetail" 
+                ng-model="empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria" 
+                ng-change="findSucursalesByEntidad(empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria)"
+                ng-style="estilo" 
+                ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
+                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+            <option value="">-- Elige opción --</option>
+        </select>
+        <div class="labelDetail">Sucursal</div>
+        <select class="inputDetail" 
+                ng-model="empleadoEdit.sucursalBancaria.idSucursalBancaria" 
+                ng-style="estilo" 
+                ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
+                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'" >
+            <option value="">-- Elige opción --</option>
+        </select>
         <div class="labelDetail">Login</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.loginEmpleado" ng-disabled="estado.accion === 'borrar'"/>
         <div class="labelDetail">Password</div>
         <input class="inputDetail" type="text" ng-style="estilo" ng-model="empleadoEdit.passwordEmpleado" ng-disabled="estado.accion === 'borrar'"/>
-    
-    
+
+
     </section>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar Empleado</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar Empleado</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar Empleado</span>
-    
+
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/empleado/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+
 </section>

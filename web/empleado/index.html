@@ -11,12 +11,13 @@
         <link href="../style/css/style.css" rel="stylesheet" type="text/css"/>
         
         <script src="../common/util/contextpath.js.jsp" type="text/javascript"></script>
-
-        <script src="../lib/js/jquery.js" type="text/javascript"></script>
-        <script src="../lib/js/jquery-ui.js" type="text/javascript"></script>
+        <!-- JS -->
+        <!-- Poner jquerymin -->
+        <script src="../lib/jquery/jquery.js" type="text/javascript"></script>
+        <script src="../lib/jquery/jquery-ui.js" type="text/javascript"></script>
         
-        <script src="../lib/angular/js/angular.js" type="text/javascript"></script>
-        <script src="../lib/angular/js/angular-route.js" type="text/javascript"></script>
+        <script src="../lib/angular/js/angular.min.js" type="text/javascript"></script>
+        <script src="../lib/angular/js/angular-route.min.js" type="text/javascript"></script>
         <script src="../lib/angular/js/ui-date/date.js" type="text/javascript"></script>
 
         <!-- Configuración Angular aplicación empleado -->
@@ -35,7 +36,13 @@
         <!-- Configuración Angular empleado/login -->
         <script src="login/login-route.js" type="text/javascript"></script>
         <script src="login/login.js" type="text/javascript"></script>
-
+        
+        <!-- Configuración Angular gestión sucursalbancaria -->
+        <script src="cliente/cliente-route.js" type="text/javascript"></script>
+        <script src="cliente/cliente-main.js" type="text/javascript"></script>
+        <script src="cliente/cliente-list.js" type="text/javascript"></script>
+        <script src="cliente/cliente-detail.js" type="text/javascript"></script>
+        
         <!-- Configuración Angular gestión sucursalbancaria -->
         <script src="sucursalbancaria/sucursalbancaria-route.js" type="text/javascript"></script>
         <script src="sucursalbancaria/sucursalbancaria-main.js" type="text/javascript"></script>
@@ -68,7 +75,7 @@
         
     </head>
 
-    <body ng-controller="IndexController"><!-- ng-controller="IndexController" -->
+    <body ng-controller="IndexController">
 
         <!-- CONTENIDO PRINCIPAL -->
         <section id="capaSuperior">
@@ -77,8 +84,8 @@
                 <section id="cabecera-Centro"></section>
                 <section id="cabecera-Login" ng-show="empleado!==null">
                     <p class="tituloLogin">Cambiar a...</p>
-                    <div id="botonClientes" class="botonHeader" ng-hide="rol==='cliente'">CLIENTE</div>
-                    <div id="botonEmpleados" class="botonHeader" ng-hide="rol==='empleado'">EMPLEADO</div>
+                    <div id="botonClientes" class="botonHeader" ng-show="empleado!==null">CLIENTE</div>
+                    <div id="botonEmpleados" class="botonHeader" ng-show="empleado===null">EMPLEADO</div>
                     <p id="cerrarSesion" class="tituloLogin" ng-click="logOut()">Cerrar sesión {{empleado.apellido1Empleado}}, {{empleado.nombreEmpleado}}</p>
                     
                 </section>
@@ -120,7 +127,7 @@
                 <nav id="menuVertical" ng-show="empleado!==null">
                     <section id="listaGestionEmpleado" class="listaMenu">
                         <div class="celdaTituloMenuV"><a href="#/main">Gestión empleado</a></div>
-                        <div class="itemMenuV"><a href="#">Clientes</a></div>
+                        <div class="itemMenuV"><a href="#/cliente/main">Clientes</a></div>
                         <div class="itemMenuV"><a href="#/cuentabancaria/main">Cuentas</a></div>
                         <div class="itemMenuV"><a href="#/movimientobancario/main">Movimientos</a></div>
                         <div class="itemMenuV"><a href="#/empleado/main">Empleados</a></div>
