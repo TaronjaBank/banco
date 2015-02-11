@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller// Para que java entienda que esto es un controlador.
 @RequestMapping("/Transaccion")
-public class TranccionController {
+public class TransaccionController {
 
     @Autowired
     MovimientoBancarioDAO movimientoBancarioDAO;
