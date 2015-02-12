@@ -53,7 +53,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         };
 
         $scope.cargarDatos = function () {
-            if ($routeParams.idSucursalBancaria) {
                 $scope.empleadoEdit = {
                     sucursalBancaria: {
                         idSucursalBancaria: parseInt($routeParams.idSucursalBancaria),
@@ -69,7 +68,6 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 };
                 $scope.estiloDisabledEntidad = $rootScope.estiloBloqueado;
                 $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
-            }
         };
 
 
@@ -97,7 +95,9 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         promise.then(function (status) {
             if (status === 200) {
                 $scope.findAllEntidades();
-                $scope.cargarDatos();
+                if ($routeParams.idSucursalBancaria) {
+                    $scope.cargarDatos();
+                }
             } else {
                 $location.path("/portada");
                 $rootScope.empleado = null;
