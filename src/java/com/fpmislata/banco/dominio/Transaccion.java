@@ -10,15 +10,17 @@ public class Transaccion {
   private String numeroCuentaDestino;
   private double importe;
   private String concepto;
+  private String apiKey;
   
     public Transaccion() {
     }
 
-    public Transaccion(String numeroCuentaOrigen, String numeroCuentaDestino, double importe, String concepto) {
+    public Transaccion(String numeroCuentaOrigen, String numeroCuentaDestino, double importe, String concepto, String apiKey) {
         this.numeroCuentaOrigen = numeroCuentaOrigen;
         this.numeroCuentaDestino = numeroCuentaDestino;
         this.importe = importe;
         this.concepto = concepto;
+        this.apiKey=apiKey;
     }
     
     
@@ -54,6 +56,14 @@ public class Transaccion {
 
     public void setNumeroCuentaDestino(String numeroCuentaDestino) {
         this.numeroCuentaDestino = numeroCuentaDestino;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 
    

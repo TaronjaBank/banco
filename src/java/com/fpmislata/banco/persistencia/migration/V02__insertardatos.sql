@@ -23,13 +23,13 @@ INSERT INTO `sucursalbancaria` (`idSucursalBancaria`, `codigoSucursalBancaria`, 
 	(7, '0007', 'Sucursal7', 'Lepe', 4),
 	(8, '0008', 'Sucursal8', 'Valencia', 4);
 
-INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cliente`, `apellido2Cliente`, `loginCliente`, `passwordCliente`) VALUES
-	(1, '00000001R', 'Marti', 'Gomez', 'Fabia', 'cliente1', 'cliente1'),
-	(2, '00000002W', 'Jona', 'Hidalgo', 'Mora', 'cliente2', 'cliente2'),
-	(3, '00000003A', 'Ivan', 'Sanchez', 'Aaaa', 'cliente3', 'cliente3'),
-	(4, '00000004G', 'Fran', 'Navarro', 'Flores', 'cliente4', 'cliente4'),
-	(5, '00000005M', 'prueba', 'prueba', 'prueba', 'b', 'b'),
-        (6, '00000000T', 'Taronja', 'Games', 'SL', 'taronja', 'taronja');
+INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cliente`, `apellido2Cliente`, `loginCliente`, `passwordCliente`, `apiKey`) VALUES
+	(1, '00000001R', 'Marti', 'Gomez', 'Fabia', 'cliente1', 'cliente1', '1111111111'),
+	(2, '00000002W', 'Jona', 'Hidalgo', 'Mora', 'cliente2', 'cliente2', '2222222222'),
+	(3, '00000003A', 'Ivan', 'Sanchez', 'Aaaa', 'cliente3', 'cliente3', '3333333333'),
+	(4, '00000004G', 'Fran', 'Navarro', 'Flores', 'cliente4', 'cliente4', '4444444444'),
+	(5, '00000005M', 'prueba', 'prueba', 'prueba', 'b', 'b', '55555555555'),
+        (6, '00000000T', 'Taronja', 'Games', 'SL', 'taronja', 'taronja', '6666666666');
 
 INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `numeroCuentaBancaria`, `idSucursalBancaria`, `idCliente`, `saldoCuentaBancaria`) VALUES
 	(1, '0002-0002-0001', 2, 6, 0.00),
@@ -63,3 +63,4 @@ ALTER TABLE `movimientoBancario` ENABLE KEYS ;
  ALTER TABLE `entidadBancaria` ENABLE KEYS ;
 ALTER TABLE `empleado` ENABLE KEYS;
  ALTER TABLE `cuentaBancaria` ENABLE KEYS ;
+

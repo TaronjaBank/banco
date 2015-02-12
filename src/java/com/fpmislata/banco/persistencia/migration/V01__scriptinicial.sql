@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `apellido2Cliente` varchar(50) DEFAULT NULL,
   `loginCliente` varchar(50) DEFAULT NULL,
   `passwordCliente` varchar(50) DEFAULT NULL,
+  `apiKey` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

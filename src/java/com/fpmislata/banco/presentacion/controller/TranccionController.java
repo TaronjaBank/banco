@@ -49,12 +49,17 @@ public class TranccionController {
             Transaccion transaccion = (Transaccion) jsonTransformer.fromJson(jsonEntrada, Transaccion.class);
             CuentaBancaria cuentaBancariaOrigen =cuentaBancariaDAO.getFromNumeroCuenta(transaccion.getNumeroCuentaOrigen());
             CuentaBancaria cuentaBancariaDestino =cuentaBancariaDAO.getFromNumeroCuenta(transaccion.getNumeroCuentaDestino());
+            if(cuentaBancariaDestino.getCliente().getApiKey().equals(transaccion.getApiKey())){
             PasarelaPago pasarelaPago=new PasarelaPago(transaccion);
             movimientoBancarioDAO.insert(pasarelaPago.getMovimientoBancarioDEBE(cuentaBancariaOrigen));
             movimientoBancarioDAO.insert(pasarelaPago.getMovimientoBancarioHABER(cuentaBancariaDestino));
-
             httpServletResponse.getWriter().println("Se ha realizado el pago");
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            }else{
+                //Aqui la va busaines exception
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.getWriter().println("La apiKey no coincide"); 
+            }
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }

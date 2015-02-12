@@ -73,6 +73,7 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 url: contextPath + "/api/Cliente/" + $scope.cliente.idCliente
             }).success(function (data) {
                 $scope.cliente = data;
+                alert(JSON.stringify($scope.cliente));
             }).error(function () {
                 alert("Error: no existe coincidencia en la base de datos");
             });

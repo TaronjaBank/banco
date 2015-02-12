@@ -15,11 +15,12 @@ public class Cliente {
     String passwordCliente;
     @JsonIgnore
     Set<CuentaBancaria> cuentasBancarias;
+    String apiKey;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String dniCliente, String nombreCliente, String apellido1Cliente, String apellido2Cliente, String loginCliente, String passwordCliente) {
+    public Cliente(int idCliente, String dniCliente, String nombreCliente, String apellido1Cliente, String apellido2Cliente, String loginCliente, String passwordCliente, String apiKey) {
         this.idCliente = idCliente;
         this.dniCliente = dniCliente;
         this.nombreCliente = nombreCliente;
@@ -27,6 +28,15 @@ public class Cliente {
         this.apellido2Cliente = apellido2Cliente;
         this.loginCliente = loginCliente;
         this.passwordCliente = passwordCliente;
+        this.apiKey=apiKey;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 
    

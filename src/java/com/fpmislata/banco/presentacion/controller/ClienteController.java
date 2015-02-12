@@ -102,7 +102,7 @@ public class ClienteController {
             httpServletResponse.getWriter().println(jsonSalida);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; char=UTF-8");
-        } catch (Exception e) {
+        } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
