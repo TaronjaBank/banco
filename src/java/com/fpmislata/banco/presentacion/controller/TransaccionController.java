@@ -56,9 +56,7 @@ public class TransaccionController {
 				httpServletResponse.getWriter().println("Se ha realizado el pago");
 				httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             }else{
-                //Aqui la va busaines exception
-                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-                httpServletResponse.getWriter().println("La apiKey no coincide"); 
+                throw new BussinessException("ApiKey","La apiKey no es Correcta");
             }
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
