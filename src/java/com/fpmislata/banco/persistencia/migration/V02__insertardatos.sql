@@ -29,7 +29,7 @@ INSERT INTO `cliente` (`idCliente`, `dniCliente`, `nombreCliente`, `apellido1Cli
 	(3, '00000003A', 'Ivan', 'Sanchez', 'Aaaa', 'cliente3', 'cliente3'),
 	(4, '00000004G', 'Fran', 'Navarro', 'Flores', 'cliente4', 'cliente4'),
 	(5, '00000005M', 'prueba', 'prueba', 'prueba', 'b', 'b'),
-        (6, '00000000T', 'Taronja', 'Games', 'SL', 'taronja', 'taronja');
+        (6, '00000000Y', 'Taronja', 'Games', 'SL', 'taronja', 'taronja');
 
 INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `numeroCuentaBancaria`, `idSucursalBancaria`, `idCliente`, `saldoCuentaBancaria`) VALUES
 	(1, '0002-0002-0001', 2, 6, 0.00),
