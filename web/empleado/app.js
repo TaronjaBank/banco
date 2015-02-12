@@ -3,7 +3,7 @@ var app = angular.module("app", ['ngRoute', 'ui.date']);
 app.run(function ($rootScope, $http, $location) {
     
     $rootScope.empleado = null;
-    $rootScope.estiloBloqueado = {'background-color':'#ffb478', 'font-weight':'bolder', 'color': 'black'};//Estilo para los input disabled
+    $rootScope.estiloBloqueado = {'background-color':'#ffb478', 'font-weight':'bold', 'color': 'brown'};//Estilo para los input disabled
     $rootScope.comprobarSesion= function() {
             $http({
                 method: "GET",

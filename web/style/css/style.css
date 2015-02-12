@@ -1,28 +1,5 @@
 @charset "UTF-8";
-/*Opci├│n cambio 03*/
-/*@mixin estiloBotonBackEnd(){
-    & a{
-        @include estiloEnlace(block,black);
-    }
-
-    display: inline-block;
-    float: left;
-    font-size: 13px;
-    text-align: center;
-    margin: 10px 5px;
-    padding: 2px 10px;
-
-    @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
-    &:hover{
-        & a{
-            color: white;
-            font-style: bolder;
-        }
-        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
-        font-style: italic;
-        transition-duration: .3s;
-    }
-}*/
+/*Original*/
 /*Opci├│n cambio 01*/
 /*@mixin estiloBotonBackEnd(){
     & a{
@@ -44,7 +21,7 @@
         }
         @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
         font-style: italic;
-        transition-duration: .3s;
+        transition-duration: .5s;
     }
 }*/
 /*Opci├│n cambio 02*/
@@ -68,10 +45,33 @@
         }
         @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,.9));
         font-style: italic;
-        transition-duration: .4s;
+        transition-duration: .5s;
     }
 }*/
-/*Original*/
+/*Opci├│n cambio 03*/
+/*@mixin estiloBotonBackEnd(){
+    & a{
+        @include estiloEnlace(block,black);
+    }
+
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 5px;
+    padding: 2px 10px;
+
+    @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
+    &:hover{
+        & a{
+            color: white;
+            font-style: bolder;
+        }
+        @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+        font-style: italic;
+        transition-duration: .5s;
+    }
+}*/
 @font-face {
   /* Adjunta en el proyecto la fuente de la pagina web */
   font-family: "Century Gothic";
@@ -126,7 +126,7 @@ body {
         box-shadow: none;
         opacity: .9;
         font-style: italic;
-        transition-duration: .3s; }
+        transition-duration: .5s; }
         body #capaSuperior .botonBackEnd:hover a {
           color: white;
           font-style: bolder; }
@@ -319,30 +319,7 @@ body {
         width: 85%;
         height: 745px;
         float: left;
-        /*Opci├│n cambio 03*/
-        /*@mixin estiloBotonBackEnd(){
-            & a{
-                @include estiloEnlace(block,black);
-            }
-        
-            display: inline-block;
-            float: left;
-            font-size: 13px;
-            text-align: center;
-            margin: 10px 5px;
-            padding: 2px 10px;
-        
-            @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
-            &:hover{
-                & a{
-                    color: white;
-                    font-style: bolder;
-                }
-                @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
-                font-style: italic;
-                transition-duration: .3s;
-            }
-        }*/
+        /*Original*/
         /*Opci├│n cambio 01*/
         /*@mixin estiloBotonBackEnd(){
             & a{
@@ -364,7 +341,7 @@ body {
                 }
                 @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
                 font-style: italic;
-                transition-duration: .3s;
+                transition-duration: .5s;
             }
         }*/
         /*Opci├│n cambio 02*/
@@ -388,10 +365,33 @@ body {
                 }
                 @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,.9));
                 font-style: italic;
-                transition-duration: .4s;
+                transition-duration: .5s;
             }
         }*/
-        /*Original*/ }
+        /*Opci├│n cambio 03*/
+        /*@mixin estiloBotonBackEnd(){
+            & a{
+                @include estiloEnlace(block,black);
+            }
+        
+            display: inline-block;
+            float: left;
+            font-size: 13px;
+            text-align: center;
+            margin: 10px 5px;
+            padding: 2px 10px;
+        
+            @include botonOut(rgba($colorCorporativo,.05),rgba($colorTransparencia,.6),black,rgba($colorCorporativo,.02),rgba($colorTransparencia,.3));
+            &:hover{
+                & a{
+                    color: white;
+                    font-style: bolder;
+                }
+                @include botonIn(black,rgba($colorCorporativo,.5),white,rgba($colorCorporativo,1));
+                font-style: italic;
+                transition-duration: .5s;
+            }
+        }*/ }
 @font-face {
   body #capaSuperior #seccionCentral #contenidos {
     /* Adjunta en el proyecto la fuente de la pagina web */
@@ -399,7 +399,7 @@ body {
     src: url("../font/gothic.ttf") format("truetype"); } }
         body #capaSuperior #seccionCentral #contenidos .validacion-caja-mensajes {
           /*display: none;//NO ES NECESARIO, SE CONTROLA CON ng-style*/
-          border: 1px solid rgba(255, 102, 0, 0.3);
+          border: 1px dashed rgba(255, 102, 0, 0.3);
           background-color: lightyellow;
           margin: 15px;
           padding: 0 10px;
@@ -490,7 +490,7 @@ body {
               box-shadow: none;
               opacity: .9;
               font-style: italic;
-              transition-duration: .3s; }
+              transition-duration: .5s; }
               body #capaSuperior #seccionCentral #contenidos #cajaLogin #botonLoguear:hover a {
                 color: white;
                 font-style: bolder; }
@@ -532,11 +532,6 @@ body {
           body #capaSuperior #seccionCentral #contenidos #tablaListado .columnaFecha, body #capaSuperior #seccionCentral #contenidos .tablaListado .columnaFecha {
             width: 110px;
             text-align: center; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos, body #capaSuperior #seccionCentral #contenidos .tablaListado .bloqueDatos {
-            float: left; }
-            body #capaSuperior #seccionCentral #contenidos #tablaListado .bloqueDatos:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .bloqueDatos:hover {
-              cursor: pointer;
-              background-color: #ffe6d2; }
           body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaCabecera, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaCabecera {
             padding: 1px 10px;
             display: inline-block;
@@ -544,23 +539,31 @@ body {
             background-color: #ff6600;
             font-size: 13px;
             color: white; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaContenido, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaContenido {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .filaContenido .bloqueDatos, body #capaSuperior #seccionCentral #contenidos .tablaListado .filaContenido .bloqueDatos {
+            float: left;
+            clear: left; }
+            body #capaSuperior #seccionCentral #contenidos #tablaListado .filaContenido .bloqueDatos:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .filaContenido .bloqueDatos:hover {
+              cursor: pointer;
+              background-color: #ffe6d2; }
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .filaContenido .celdaContenido, body #capaSuperior #seccionCentral #contenidos .tablaListado .filaContenido .celdaContenido {
             padding: 1px 10px;
             display: inline-block;
             border-bottom: 1px solid silver;
             font-size: 12px; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .filaContenido .celdaIconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .filaContenido .celdaIconoTabla {
+            float: left;
+            clear: right;
             padding: 2px 2px;
             display: inline-block;
             width: 20px; }
-            body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla .iconoTabla {
+            body #capaSuperior #seccionCentral #contenidos #tablaListado .filaContenido .celdaIconoTabla .iconoTabla, body #capaSuperior #seccionCentral #contenidos .tablaListado .filaContenido .celdaIconoTabla .iconoTabla {
               width: 15px;
               height: 15px; }
-              body #capaSuperior #seccionCentral #contenidos #tablaListado .celdaIconoTabla .iconoTabla:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .celdaIconoTabla .iconoTabla:hover {
+              body #capaSuperior #seccionCentral #contenidos #tablaListado .filaContenido .celdaIconoTabla .iconoTabla:hover, body #capaSuperior #seccionCentral #contenidos .tablaListado .filaContenido .celdaIconoTabla .iconoTabla:hover {
                 cursor: pointer;
                 transform: scale(1.2);
                 transition-duration: .3s; }
-          body #capaSuperior #seccionCentral #contenidos #tablaListado #botoneraList, body #capaSuperior #seccionCentral #contenidos .tablaListado #botoneraList {
+          body #capaSuperior #seccionCentral #contenidos #tablaListado .botoneraList, body #capaSuperior #seccionCentral #contenidos .tablaListado .botoneraList {
             clear: left; }
         body #capaSuperior #seccionCentral #contenidos #contenedorDetail {
           width: 550px;

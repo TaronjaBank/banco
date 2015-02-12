@@ -43,32 +43,32 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-cliente" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
-        <p id="validacion-caja-titulo-cliente" class="validacion-caja-titulo" ng-show="errorValidacion === true">
-           ERRORES EN CAMPOS DE FORMULARIO:
+    <div id="validacion-caja-mensajes-cliente" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioCliente.$invalid">
+        <p id="validacion-caja-titulo-cliente" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
         </p>
         
         <p id="validacion-mensaje-error-dniCliente" class="validacion-mensaje-error"
-           ng-show="formularioCliente.campoDniCliente.$error.pattern && errorValidacion === true">
+           ng-show="formularioCliente.campoDniCliente.$error.pattern">
            * Error DNI: valor incorrecto
         </p>
         <p id="validacion-mensaje-required-dniCliente" class="validacion-mensaje-required"
-           ng-show="formularioCliente.campoDniCliente.$error.required && errorValidacion === true">
+           ng-show="formularioCliente.campoDniCliente.$error.required">
            * Error DNI: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-nombreCliente" class="validacion-mensaje-required"
-           ng-show="formularioCliente.campoNombreCliente.$error.required && errorValidacion === true">
+           ng-show="formularioCliente.campoNombreCliente.$error.required">
            * Error nombre: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-apellido1Cliente" class="validacion-mensaje-required"
-           ng-show="formularioCliente.campoApellido1Cliente.$error.required && errorValidacion === true">
+           ng-show="formularioCliente.campoApellido1Cliente.$error.required">
            * Error apellido 1: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-apellido2Cliente" class="validacion-mensaje-required"
-           ng-show="formularioCliente.campoApellido2Cliente.$error.required && errorValidacion === true">
+           ng-show="formularioCliente.campoApellido2Cliente.$error.required">
            * Error apellido 2: campo requerido
         </p>
     </div>
@@ -108,7 +108,7 @@
 
     </section>
 
-    <section id="botoneraList">
+    <section class="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/cuentabancaria/new/idCliente/{{cliente.idCliente}}">Nueva cuenta</a></span>
     </section>
 

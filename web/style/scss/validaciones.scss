@@ -2,7 +2,7 @@
 
 .validacion-caja-mensajes{
     /*display: none;//NO ES NECESARIO, SE CONTROLA CON ng-style*/
-    border: 1px solid rgba($colorCorporativo,.3);
+    border: 1px dashed rgba($colorCorporativo,.3);
     background-color: lightyellow;
     margin: 15px;
     padding: 0 10px;

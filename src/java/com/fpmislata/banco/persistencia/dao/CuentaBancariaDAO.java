@@ -4,5 +4,5 @@ import com.fpmislata.banco.dominio.CuentaBancaria;
 
 public interface CuentaBancariaDAO extends GenericDAO<CuentaBancaria>{ 
     
-    CuentaBancaria getFromNumeroCuenta(String numeroCuenta);
+    CuentaBancaria getFromNumeroCuenta(String numeroCuenta) throws BussinessException;
 }

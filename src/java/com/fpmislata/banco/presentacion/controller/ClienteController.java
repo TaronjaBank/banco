@@ -4,6 +4,7 @@ import com.fpmislata.banco.common.json.JsonTransformer;
 import com.fpmislata.banco.dominio.Cliente;
 import com.fpmislata.banco.dominio.CuentaBancaria;
 import com.fpmislata.banco.persistencia.dao.ClienteDAO;
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import java.io.IOException;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,14 @@ public class ClienteController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -56,6 +65,14 @@ public class ClienteController {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -78,6 +95,14 @@ public class ClienteController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -88,8 +113,18 @@ public class ClienteController {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @PathVariable("idCliente") int idCliente) {
-        clienteDAO.delete(idCliente);
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        try {
+            clienteDAO.delete(idCliente);
+            httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        }
     }
 
     @RequestMapping(
@@ -104,6 +139,14 @@ public class ClienteController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -124,7 +167,15 @@ public class ClienteController {
                 httpServletResponse.setContentType("application/json; char=UTF-8");
             } catch (IOException ex) {
                 httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
+        }
         }
     }
 

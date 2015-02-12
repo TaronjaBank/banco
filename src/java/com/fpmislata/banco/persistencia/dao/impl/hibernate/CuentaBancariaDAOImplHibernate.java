@@ -4,6 +4,7 @@ import com.fpmislata.banco.dominio.CuentaBancaria;
 import com.fpmislata.banco.dominio.MovimientoBancario;
 import com.fpmislata.banco.dominio.TipoMovimiento;
 import com.fpmislata.banco.persistencia.dao.CuentaBancariaDAO;
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.GenericDAOImplHibernate;
 import static com.fpmislata.banco.persistencia.dao.impl.hibernate.common.GenericDAOImplHibernate.LOGGER;
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
@@ -17,11 +18,11 @@ public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<Cuen
 
     @Override
     public CuentaBancaria insert(CuentaBancaria cuentaBancaria) {
-         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
-            Set<MovimientoBancario>movimientosBancarios=new HashSet();
-            MovimientoBancario movimientoInicial=new MovimientoBancario();
+            Set<MovimientoBancario> movimientosBancarios = new HashSet();
+            MovimientoBancario movimientoInicial = new MovimientoBancario();
             movimientoInicial.setConceptoMovimientoBancario("MovimientoInicial");
             movimientoInicial.setCuentaBancaria(cuentaBancaria);
             movimientoInicial.setTipoMovimiento(TipoMovimiento.HABER);
@@ -51,28 +52,23 @@ public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<Cuen
             throw new RuntimeException(ex);
         }
     }
-    
-   
+
     @Override
-    public CuentaBancaria getFromNumeroCuenta(String numeroCuenta) {
+    public CuentaBancaria getFromNumeroCuenta(String numeroCuenta) throws BussinessException {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Query query = session.createQuery("SELECT c FROM CuentaBancaria c WHERE numeroCuentaBancaria=:numeroCuenta");
         query.setParameter("numeroCuenta", numeroCuenta);
         CuentaBancaria cuentaBancaria = (CuentaBancaria) query.uniqueResult();
-        session.getTransaction().commit();
+        if (cuentaBancaria != null) {
+            session.getTransaction().commit();
+            return cuentaBancaria;
+        } else {
 
-        return cuentaBancaria;
+            throw new BussinessException("CuentaBancaria", "La cuenta Bancaria no puede ser nula");
+
+        }
+
     }
-    }
-    
-
-
-
-
-
-
-
-
-
+}

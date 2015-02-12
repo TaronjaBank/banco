@@ -2,12 +2,12 @@
 
     <div id="tituloDetail">Detalle Movimiento Bancario</div>
 
-    <form id="contenedorFormularioDetail" name="formularioMovimiento">
+    <form id="contenedorFormularioDetail" name="formularioMovimientoBancario">
         
         <div class="labelDetail">Número cuenta</div>
         <select class="inputDetail" name="campoNumeroCuenta"
                ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" 
-               ng-style="estilo" 
+               ng-style="estiloNumeroCuenta" 
                ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias | orderBy: 'numeroCuentaBancaria'" 
                ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'"
                required>
@@ -49,36 +49,36 @@
     
     <br/><br/>
 
-    <div id="validacion-caja-mensajes-movimiento" class="validacion-caja-mensajes" ng-show="errorValidacion === true">
-        <p id="validacion-caja-titulo-movimiento" class="validacion-caja-titulo" ng-show="errorValidacion === true">
-           ERRORES EN CAMPOS DE FORMULARIO:
+    <div id="validacion-caja-mensajes-movimiento" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioMovimientoBancario.$invalid">
+        <p id="validacion-caja-titulo-movimiento" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
         </p>
         
         <p id="validacion-mensaje-error-numeroCuenta" class="validacion-mensaje-error"
-           ng-show="formularioMovimiento.campoNumeroCuenta.$error.pattern && errorValidacion === true">
+           ng-show="formularioMovimientoBancario.campoNumeroCuenta.$error.pattern">
            Error número cuenta: valor incorrecto
         </p>
         <p id="validacion-mensaje-required-numeroCuenta" class="validacion-mensaje-required"
-           ng-show="formularioMovimiento.campoNumeroCuenta.$error.required && errorValidacion === true">
+           ng-show="formularioMovimientoBancario.campoNumeroCuenta.$error.required">
            Error número cuenta: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-conceptoMovimiento" class="validacion-mensaje-required"
-           ng-show="formularioMovimiento.campoConceptoMovimiento.$error.required && errorValidacion === true">
+           ng-show="formularioMovimientoBancario.campoConceptoMovimiento.$error.required">
            Error concepto: campo requerido
         </p>
         
         <p id="validacion-mensaje-error-cantidadMovimiento" class="validacion-mensaje-error"
-           ng-show="formularioMovimiento.campoCantidadMovimiento.$error.number && errorValidacion === true">
+           ng-show="formularioMovimientoBancario.campoCantidadMovimiento.$error.number">
            Error cantidad: el valor introducido no es un número
         </p>
         <p id="validacion-mensaje-required-cantidadMovimiento" class="validacion-mensaje-required"
-           ng-show="formularioMovimiento.campoCantidadMovimiento.$error.required && errorValidacion === true">
+           ng-show="formularioMovimientoBancario.campoCantidadMovimiento.$error.required">
            Error cantidad: campo requerido
         </p>
         
         <p id="validacion-mensaje-required-tipoMovimiento" class="validacion-mensaje-required"
-           ng-show="formularioMovimiento.campoTipoMovimiento.$error.required && errorValidacion === true">
+           ng-show="formularioMovimientoBancario.campoTipoMovimiento.$error.required">
            Error tipo movimiento: campo requerido
         </p>
     </div>

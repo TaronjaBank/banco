@@ -1,14 +1,23 @@
 package com.fpmislata.banco.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MovimientoBancario {
 
     int idMovimientoBancario;
+    
+    @NotBlank
     String conceptoMovimientoBancario;
+    
     double cantidadMovimientoBancario;
+    
+    @NotNull
     TipoMovimiento tipoMovimiento;
+    
+    @NotNull
     CuentaBancaria cuentaBancaria;
     
     public MovimientoBancario() {

@@ -15,9 +15,6 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
         
         $scope.lastIdEntidad = -1;
 
-        $scope.errorValidacion = false;
-        
-
         
         $scope.getLastIdEntidad = function () {
             $http({
@@ -37,18 +34,11 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
         $scope.getLastIdEntidad();
         
         
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioEntidadBancaria.$error.required
-                    && !$scope.formularioEntidadBancaria.$error.pattern) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
-        
         $scope.insert = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioEntidadBancaria.$invalid) {
                 $http({
                     method: "POST",
                     data: $scope.entidadBancaria,
@@ -59,14 +49,10 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
                     $scope.entidadBancaria = {
                         fechaCreacionEntidadBancaria: new Date()
                     };
+                    $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
     }]);
@@ -88,8 +74,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             $location.path("/entidadbancaria/list");
         };
 
-        $scope.errorValidacion = false;
-
 
         $scope.get = function () {
             $http({
@@ -104,18 +88,12 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
         };
         $scope.get();
         
-        $scope.comprobarValidaciones = function () {
-            if (!$scope.formularioEntidadBancaria.$error.required
-                    && !$scope.formularioEntidadBancaria.$error.pattern) {
-                $scope.errorValidacion = false;
-            } else {
-                $scope.errorValidacion = true;
-            }
-            return $scope.errorValidacion;
-        };
         
         $scope.update = function () {
-            if ($scope.comprobarValidaciones() === false) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+            
+            if (!$scope.formularioEntidadBancaria.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/EntidadBancaria/" + $scope.entidadBancaria.idEntidadBancaria,
@@ -126,11 +104,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
                 });
-            } else {
-                $("#contenedorFormularioDetail input").keyup(function () {
-                    $scope.comprobarValidaciones();
-                });
-                $(".validacion-caja-mensajes").slideDown(300, "linear");
             }
         };
 
@@ -165,8 +138,6 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
         $scope.irLista = function () {
             $location.path("/entidadbancaria/list");
         };
-
-        $scope.errorValidacion = false;
 
         $scope.get = function () {
             $http({
