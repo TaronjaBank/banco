@@ -1,5 +1,5 @@
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$location", "$routeParams", "$rootScope", function ($scope, $http, $location, $routeParams, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'insertar'
         };
@@ -16,10 +16,9 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
         }
 
         $scope.sucursalBancaria = {};
-        
+
         $scope.lastIdSucursal = -1;
-        
-        
+
 
         $scope.getLastIdSucursal = function () {
             $http({
@@ -36,13 +35,12 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                 alert("Error: no se han podido listar las cuentas bancarias");
             });
         };
-        $scope.getLastIdSucursal();
 
 
         $scope.insert = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioSucursalBancaria.$invalid) {
                 $http({
                     method: "POST",
@@ -50,7 +48,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                     data: $scope.sucursalBancaria
                 }).success(function (data) {
                     $scope.sucursalBancaria = data;
-                    $scope.sucursalBancaria = null;
+                    $scope.sucursalBancaria = {};
                     $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
@@ -79,17 +77,30 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
             });
         };
 
-        $scope.findAllEntidades();
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.getLastIdSucursal();
+                $scope.findAllEntidades();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
 
     }]);
 
 app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'actualizar'
         };
-        
+
         $scope.insertdesdedetail = {
             accionDesdeEntidad: false
         };
@@ -104,7 +115,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.irLista = function () {
             $location.path("/sucursalbancaria/list");
         };
-        
+
         if ($routeParams.idEntidadBancaria) {
             $scope.estiloNombreEntidad = $rootScope.estiloBloqueado;
             $scope.insertdesdedetail.accionDesdeEntidad = true;
@@ -123,7 +134,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             });
         };
 
-        $scope.get();
+
 
         $scope.findAllCuentasBySucursal = function () {
             $http({
@@ -136,7 +147,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             });
         };
 
-        $scope.findAllCuentasBySucursal();
 
         $scope.findAllEmpleadosBySucursal = function () {
             $http({
@@ -149,7 +159,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             });
         };
 
-        $scope.findAllEmpleadosBySucursal();
 
         $scope.findAllEntidades = function () {
             $http({
@@ -165,13 +174,12 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAllEntidades();
-        
-        
+
+
         $scope.update = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioSucursalBancaria.$invalid) {
                 $http({
                     method: "PUT",
@@ -186,11 +194,27 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             }
         };
 
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllCuentasBySucursal();
+                $scope.findAllEmpleadosBySucursal();
+                $scope.findAllEntidades();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);
 
 
 app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'borrar'
         };
@@ -223,7 +247,6 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
             });
         };
 
-        $scope.get();
 
         $scope.findAllCuentasBySucursal = function () {
             $http({
@@ -236,7 +259,6 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
             });
         };
 
-        $scope.findAllCuentasBySucursal();
 
         $scope.findAllEmpleadosBySucursal = function () {
             $http({
@@ -249,7 +271,6 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
             });
         };
 
-        $scope.findAllEmpleadosBySucursal();
 
         $scope.deleteData = function () {
             $http({
@@ -262,5 +283,20 @@ app.controller("SucursalBancariaDeleteController", ["$rootScope", "$scope", "$ht
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllCuentasBySucursal();
+                $scope.findAllEmpleadosBySucursal();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
     }]);

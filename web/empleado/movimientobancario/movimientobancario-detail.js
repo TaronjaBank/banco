@@ -1,5 +1,5 @@
 app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'insertar'
         };
@@ -23,7 +23,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
         $scope.insert = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioMovimientoBancario.$invalid) {
                 $http({
                     method: "POST",
@@ -31,7 +31,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                     data: $scope.movimientoBancario
                 }).success(function (data) {
                     $scope.movimientoBancario = data;
-                    $scope.movimientoBancario = null;
+                    $scope.movimientoBancario = {};
                     $scope.mostrarValidaciones = false;
                 }).error(function () {
                     alert("Error: no se ha podido realizar la operación");
@@ -59,11 +59,25 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAll();
+
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.findAll();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);
 
 app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -90,8 +104,8 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
             });
         };
 
-        $scope.get();
-        
+
+
         $scope.tipoMovimientos = [
             {ID: '0', nombre: 'DEBE'},
             {ID: '1', nombre: 'HABER'}
@@ -101,7 +115,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
         $scope.update = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioMovimientoBancario.$invalid) {
                 $http({
                     method: "PUT",
@@ -126,12 +140,26 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAll();
+
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAll();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
     }]);
 
 app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'borrar'
         };
@@ -162,7 +190,7 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
             });
         };
 
-        $scope.get();
+
         $scope.tipoMovimientos = [
             {ID: '0', nombre: 'DEBE'},
             {ID: '1', nombre: 'HABER'}
@@ -179,6 +207,19 @@ app.controller("MovimientoBancarioDeleteController", ["$rootScope", "$scope", "$
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
 
     }]);

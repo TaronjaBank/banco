@@ -1,7 +1,4 @@
-app.controller("SucursalBancariaListController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
-        
-         $rootScope.comprobarSesion();
-       
+app.controller("SucursalBancariaListController", ["$scope", "$http", "$rootScope", "$location", function ($scope, $http, $rootScope, $location) {
 
         $scope.findAll = function () {
 
@@ -14,6 +11,19 @@ app.controller("SucursalBancariaListController", ["$scope", "$http", "$rootScope
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAll();
+
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.findAll();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
     }]);

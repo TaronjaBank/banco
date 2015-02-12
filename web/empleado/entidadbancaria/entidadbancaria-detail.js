@@ -1,6 +1,6 @@
-app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScope", function ($scope, $http, $rootScope) {
+app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScope", "$location", function ($scope, $http, $rootScope, $location) {
 
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'insertar'
         };
@@ -12,10 +12,10 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
             codigoEntidadBancaria: "",
             fechaCreacionEntidadBancaria: new Date()
         };
-        
+
         $scope.lastIdEntidad = -1;
 
-        
+
         $scope.getLastIdEntidad = function () {
             $http({
                 method: "GET",
@@ -31,13 +31,12 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
                 alert("Error: no se han podido listar las cuentas bancarias");
             });
         };
-        $scope.getLastIdEntidad();
-        
-        
+
+
         $scope.insert = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioEntidadBancaria.$invalid) {
                 $http({
                     method: "POST",
@@ -45,7 +44,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
                     url: contextPath + "/api/EntidadBancaria"
                 }).success(function (data) {
                     $scope.entidadBancaria = data;
-                    $scope.entidadBancaria = null;
+                    $scope.entidadBancaria = {};
                     $scope.entidadBancaria = {
                         fechaCreacionEntidadBancaria: new Date()
                     };
@@ -55,11 +54,25 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", "$rootScop
                 });
             }
         };
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.getLastIdEntidad();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);
 
 
 app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -86,13 +99,12 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-        $scope.get();
-        
-        
+
+
         $scope.update = function () {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
-            
+
             if (!$scope.formularioEntidadBancaria.$invalid) {
                 $http({
                     method: "PUT",
@@ -119,12 +131,25 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             });
         };
 
-        $scope.findAllSucursalesByEntidad();
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllSucursalesByEntidad();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
     }]);
 
 app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'borrar'
         };
@@ -151,7 +176,6 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
             });
         };
 
-        $scope.get();
 
         $scope.deleteData = function () {
             $http({
@@ -176,5 +200,19 @@ app.controller("EntidadBancariaDeleteController", ["$rootScope", "$scope", "$htt
             });
         };
 
-        $scope.findAllSucursalesByEntidad();
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllSucursalesByEntidad();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);

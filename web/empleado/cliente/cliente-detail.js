@@ -1,7 +1,5 @@
 app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$routeParams", "$rootScope", function ($scope, $http, $location, $routeParams, $rootScope) {
 
-        $rootScope.comprobarSesion();
-
         $scope.estado = {
             accion: 'insertar'
         };
@@ -30,12 +28,25 @@ app.controller("ClienteInsertController", ["$scope", "$http", "$location", "$rou
             }
         };
 
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);
 
 
 app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
 
-        $rootScope.comprobarSesion();
+
 
         $scope.estado = {
             accion: 'actualizar'
@@ -63,7 +74,7 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-        $scope.get();
+
 
 
         $scope.update = function () {
@@ -95,13 +106,25 @@ app.controller("ClienteUpdateController", ["$scope", "$http", "$routeParams", "$
             });
         };
 
-        $scope.findAllCuentasByCliente();
 
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllCuentasByCliente();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
     }]);
 
 
 app.controller("ClienteDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'borrar'
         };
@@ -127,7 +150,7 @@ app.controller("ClienteDeleteController", ["$rootScope", "$scope", "$http", "$ro
             });
         };
 
-        $scope.get();
+
 
         $scope.deleteData = function () {
             $http({
@@ -152,6 +175,18 @@ app.controller("ClienteDeleteController", ["$rootScope", "$scope", "$http", "$ro
             });
         };
 
-        $scope.findAllCuentasByCliente();
 
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllCuentasByCliente();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
     }]);

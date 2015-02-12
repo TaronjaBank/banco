@@ -1,5 +1,5 @@
 app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'insertar'
         };
@@ -42,7 +42,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 alert("Error: no se ha podido listar los clientes");
             });
         };
-        $scope.findClientes();
 
 
         //Comportamiento en función al parámetro de la URL
@@ -138,7 +137,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 alert("Error: no se ha podido listar las Sucursales");
             });
         };
-        $scope.findAllSucursales();
+
 
 
         $scope.getLastIdCuenta = function () {
@@ -156,7 +155,6 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                 alert("Error: no se han podido listar las cuentas bancarias");
             });
         };
-        $scope.getLastIdCuenta();
 
 
         $scope.insert = function () {
@@ -179,10 +177,25 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             }
         };
 
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.findClientes();
+                $scope.findAllSucursales();
+                $scope.getLastIdCuenta();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);
 
 app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'actualizar'
         };
@@ -213,7 +226,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-        $scope.get();
+
 
         $scope.findAllMovimientosByCuenta = function () {
             $http({
@@ -225,7 +238,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAllMovimientosByCuenta();
+
 
         var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
         $scope.findClientesBySucursal = function (idSucursalBancaria) {
@@ -279,7 +292,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
             });
 
         };
-        $scope.findAllSucursales();
+
 
 
         $scope.update = function () {
@@ -299,11 +312,26 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                 });
             }
         };
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllMovimientosByCuenta();
+                $scope.findAllSucursales();
+
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
     }]);
 
 app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
-        $rootScope.comprobarSesion();
+
         $scope.estado = {
             accion: 'borrar'
         };
@@ -340,7 +368,7 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
-        $scope.get();
+
 
         $scope.findAllMovimientosByCuenta = function () {
             $http({
@@ -352,7 +380,7 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
                 alert("Error: no se ha podido realizar la operación");
             });
         };
-        $scope.findAllMovimientosByCuenta();
+
 
         var idSucursalBancaria = parseInt($routeParams.idSucursalBancaria);
         $scope.findClientesBySucursal = function (idSucursalBancaria) {
@@ -407,7 +435,7 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
             });
 
         };
-        $scope.findAllSucursales();
+
 
         $scope.deleteData = function () {
             $http({
@@ -420,6 +448,22 @@ app.controller("CuentaBancariaDeleteController", ["$rootScope", "$scope", "$http
                 alert("Error: no se ha podido realizar la operación");
             });
         };
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.get();
+                $scope.findAllMovimientosByCuenta();
+                $scope.findAllSucursales();
+
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
 
     }]);
 
