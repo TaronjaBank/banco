@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistencia.dao.impl.hibernate.common;
+package com.fpmislata.banco.persistencia.dao;
 
 public class BussinessMessage {
     

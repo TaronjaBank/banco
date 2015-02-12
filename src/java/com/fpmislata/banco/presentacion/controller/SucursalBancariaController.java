@@ -5,7 +5,7 @@ import com.fpmislata.banco.persistencia.dao.SucursalBancariaDAO;
 import com.fpmislata.banco.common.json.JsonTransformer;
 import com.fpmislata.banco.dominio.CuentaBancaria;
 import com.fpmislata.banco.dominio.Empleado;
-import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.BussinessException;
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import java.io.IOException;
 import java.util.Set;
 import java.util.logging.Level;

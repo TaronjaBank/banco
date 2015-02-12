@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Set;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
@@ -11,6 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SucursalBancaria implements Serializable {
 
+    
     int idSucursalBancaria;
     
     @NotBlank
@@ -26,6 +28,7 @@ public class SucursalBancaria implements Serializable {
     String direccionSucursalBancaria;
     
     @NotNull
+    @Valid
     EntidadBancaria entidadBancaria;
     
     

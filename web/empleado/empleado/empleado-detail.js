@@ -1,4 +1,4 @@
-app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", "$routeParams", function ($scope, $http, $location, $rootScope, $routeParams) {
+app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$rootScope", "$routeParams", function($scope, $http, $location, $rootScope, $routeParams) {
         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'insertar'
@@ -10,23 +10,30 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         $scope.estiloDisabledEntidad = "";
         $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
 
-        $scope.irLista = function () {
+        $scope.irLista = function() {
             $location.path("/empleado/list");
         };
 
         $scope.empleadoEdit = {
-            sucursalBancaria: {
-                idSucursalBancaria: parseInt($routeParams.idSucursalBancaria),
-                entidadBancaria: {
+        }
+
+        if ($routeParams.idSucursalBancaria) {
+            $scope.empleadoEdit.sucursalBancaria = {
+                idSucursalBancaria: parseInt($routeParams.idSucursalBancaria)
+            }
+
+            if ($routeParams.idEntidadBancaria) {
+                $scope.empleadoEdit.sucursalBancaria.entidadBancaria = {
                     idEntidadBancaria: parseInt($routeParams.idEntidadBancaria)
                 }
             }
-        };
+
+        }
 
         $scope.sucursalesBancarias = [];
 
 
-        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+        $scope.findSucursalesByEntidad = function(idEntidadBancaria) {
             if (idEntidadBancaria === undefined) {
                 $scope.sucursalesBancarias = [];
                 $scope.estiloDisabledSucursal = $rootScope.estiloBloqueado;
@@ -35,13 +42,13 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                 $http({
                     method: "GET",
                     url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
-                }).success(function (data) {
+                }).success(function(data) {
                     $scope.sucursalesBancarias = data;
                     if (!$routeParams.idEntidadBancaria) {
                         $scope.estiloDisabledSucursal = "";
                     }
                     $scope.sucursalDisabled = false;
-                }).error(function () {
+                }).error(function() {
                     alert("Error: no se ha podido realizar la operación");
                 });
             }
@@ -57,41 +64,41 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
         }
 
 
-        $scope.findAllEntidades = function () {
+        $scope.findAllEntidades = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
-            }).success(function (data) {
+            }).success(function(data) {
                 $scope.entidadesBancarias = data;
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };
         $scope.findAllEntidades();
 
 
-        $scope.insert = function () {
+        $scope.insert = function() {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
 
             if (!$scope.formularioEmpleado.$invalid) {
-                $http({
-                    method: "POST",
-                    data: $scope.empleadoEdit,
-                    url: contextPath + "/api/Empleado"
-                }).success(function (data) {
-                    $scope.empleadoEdit = data;
-                    $scope.empleadoEdit = null;
-                    $scope.mostrarValidaciones = false;
-                }).error(function () {
-                    alert("Error: no se ha podido realizar la operación");
-                });
+            $http({
+                method: "POST",
+                data: $scope.empleadoEdit,
+                url: contextPath + "/api/Empleado"
+            }).success(function(data) {
+                $scope.empleadoEdit = data;
+                $scope.empleadoEdit = {};
+                $scope.mostrarValidaciones = false;
+            }).error(function() {
+                alert("Error: no se ha podido realizar la operación");
+            });
             }
         };
     }]);
 
 
-app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function ($scope, $http, $routeParams, $location, $rootScope) {
+app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "$location", "$rootScope", function($scope, $http, $routeParams, $location, $rootScope) {
         $rootScope.comprobarSesion();
 
         if ($routeParams.idSucursalBancaria) {
@@ -113,57 +120,57 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
             idEmpleado: $routeParams.idEmpleado
         };
 
-        $scope.irLista = function () {
+        $scope.irLista = function() {
             $location.path("/empleado/list");
         };
-        
+
         $scope.sucursalesBancarias = [];
 
 
-        $scope.get = function () {
+        $scope.get = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function (data) {
+            }).success(function(data) {
                 $scope.empleadoEdit = data;
                 $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
 //                alert(JSON.stringify($scope.empleadoEdit));
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
         $scope.get();
 
 
-        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+        $scope.findSucursalesByEntidad = function(idEntidadBancaria) {
             if (idEntidadBancaria === undefined) {
                 $scope.sucursalesBancarias = [];
             } else {
                 $http({
                     method: "GET",
                     url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
-                }).success(function (data) {
+                }).success(function(data) {
                     $scope.sucursalesBancarias = data;
-                }).error(function () {
+                }).error(function() {
                     alert("Error: no se ha podido realizar la operación");
                 });
             }
         };
 
-        $scope.findAllEntidades = function () {
+        $scope.findAllEntidades = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
-            }).success(function (data) {
+            }).success(function(data) {
                 $scope.entidadesBancarias = data;
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };
         $scope.findAllEntidades();
 
 
-        $scope.update = function () {
+        $scope.update = function() {
             $scope.mostrarValidaciones = true;
             $(".validacion-caja-mensajes").fadeIn(500, "linear");
 
@@ -172,10 +179,10 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                     method: "PUT",
                     url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado,
                     data: $scope.empleadoEdit
-                }).success(function () {
+                }).success(function() {
                     $scope.empleadoEdit = {};
                     $scope.irLista();
-                }).error(function () {
+                }).error(function() {
                     alert("Error: no se ha podido realizar la operación");
                 });
             }
@@ -183,7 +190,7 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
 
     }]);
 
-app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function ($rootScope, $scope, $http, $routeParams, $location) {
+app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$routeParams", "$location", function($rootScope, $scope, $http, $routeParams, $location) {
         $rootScope.comprobarSesion();
         $scope.estado = {
             accion: 'borrar'
@@ -197,58 +204,58 @@ app.controller("EmpleadoDeleteController", ["$rootScope", "$scope", "$http", "$r
             idEmpleado: $routeParams.idEmpleado
         };
 
-        $scope.irLista = function () {
+        $scope.irLista = function() {
             $location.path("/empleado/list");
         };
 
 
-        $scope.get = function () {
+        $scope.get = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function (data) {
+            }).success(function(data) {
                 $scope.empleadoEdit = data;
                 $scope.findSucursalesByEntidad($scope.empleadoEdit.sucursalBancaria.entidadBancaria.idEntidadBancaria);
 //                alert(JSON.stringify($scope.empleadoEdit));
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no existe coincidencia en la base de datos");
             });
         };
         $scope.get();
 
 
-        $scope.findSucursalesByEntidad = function (idEntidadBancaria) {
+        $scope.findSucursalesByEntidad = function(idEntidadBancaria) {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria/" + idEntidadBancaria + "/SucursalBancaria"
-            }).success(function (data) {
+            }).success(function(data) {
                 $scope.sucursalesBancarias = data;
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };
 
-        $scope.findAllEntidades = function () {
+        $scope.findAllEntidades = function() {
             $http({
                 method: "GET",
                 url: contextPath + "/api/EntidadBancaria"
-            }).success(function (data) {
+            }).success(function(data) {
                 $scope.entidadesBancarias = data;
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };
         $scope.findAllEntidades();
 
 
-        $scope.deleteData = function () {
+        $scope.deleteData = function() {
             $http({
                 method: "DELETE",
                 url: contextPath + "/api/Empleado/" + $scope.empleadoEdit.idEmpleado
-            }).success(function () {
+            }).success(function() {
                 $scope.empleadoEdit = {};
                 $scope.irLista();
-            }).error(function () {
+            }).error(function() {
                 alert("Error: no se ha podido realizar la operación");
             });
         };

@@ -46,8 +46,8 @@
         
         <div class="labelDetail">Sucursal</div>
         <select class="inputDetail" name="campoNombreSucursal" 
-               ng-model="empleadoEdit.sucursalBancaria.idSucursalBancaria" 
-               ng-options="sucursalBancaria.idSucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
+               ng-model="empleadoEdit.sucursalBancaria" 
+               ng-options="sucursalBancaria as sucursalBancaria.nombreSucursalBancaria for sucursalBancaria in sucursalesBancarias | orderBy: 'nombreSucursalBancaria'" 
                ng-disabled="sucursalDisabled || estado.accion === 'borrar' || estado.accion === 'insertarDesdeSucursal' || estado.accion === 'actualizarDesdeSucursal'" 
                ng-style="estiloDisabledSucursal"
                required>

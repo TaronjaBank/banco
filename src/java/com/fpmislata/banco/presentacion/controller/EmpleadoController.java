@@ -3,7 +3,7 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JsonTransformer;
 import com.fpmislata.banco.dominio.Empleado;
 import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
-import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.BussinessException;
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

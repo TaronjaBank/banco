@@ -1,5 +1,6 @@
 package com.fpmislata.banco.persistencia.dao.impl.hibernate.common;
 
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import com.fpmislata.banco.persistencia.dao.GenericDAO;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;

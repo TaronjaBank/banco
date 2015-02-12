@@ -4,7 +4,7 @@ import com.fpmislata.banco.dominio.CuentaBancaria;
 import com.fpmislata.banco.dominio.MovimientoBancario;
 import com.fpmislata.banco.dominio.TipoMovimiento;
 import com.fpmislata.banco.persistencia.dao.MovimientoBancarioDAO;
-import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.BussinessException;
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.GenericDAOImplHibernate;
 import static com.fpmislata.banco.persistencia.dao.impl.hibernate.common.GenericDAOImplHibernate.LOGGER;
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;

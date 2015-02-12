@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistencia.dao.impl.hibernate.common;
+package com.fpmislata.banco.persistencia.dao;
 
 import java.util.ArrayList;
 import java.util.List;
