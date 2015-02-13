@@ -35,3 +35,4 @@ app.constant('uiDateConfig', {
     showWeek: true,
     weekHeader: "Sm"
 });
+
