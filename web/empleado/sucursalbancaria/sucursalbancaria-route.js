@@ -10,7 +10,17 @@ app.config(["$routeProvider", function ($routeProvider) {
             controller: "SucursalBancariaInsertController"
         });
         
+         $routeProvider.when("/sucursalbancaria/new/:idEntidadBancaria", {
+            templateUrl: "sucursalbancaria/sucursalbancaria-detail.html",
+            controller: "SucursalBancariaInsertController"
+        });
+        
         $routeProvider.when("/sucursalbancaria/update/:idSucursalBancaria", {
+            templateUrl: "sucursalbancaria/sucursalbancaria-detail.html",
+            controller: "SucursalBancariaUpdateController"
+        });
+        
+        $routeProvider.when("/sucursalbancaria/update/:idSucursalBancaria/:idEntidadBancaria", {
             templateUrl: "sucursalbancaria/sucursalbancaria-detail.html",
             controller: "SucursalBancariaUpdateController"
         });

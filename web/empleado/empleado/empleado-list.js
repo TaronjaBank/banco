@@ -1,4 +1,4 @@
-app.controller("EmpleadoListController", ["$scope", "$http", function ($scope, $http) {
+app.controller("EmpleadoListController", ["$scope", "$http", "$rootScope", "$location", function ($scope, $http, $rootScope, $location) {
 
         $scope.findAll = function () {
             $http({
@@ -10,7 +10,21 @@ app.controller("EmpleadoListController", ["$scope", "$http", function ($scope, $
                 alert("Error: no se ha podido realizar la operación");
             });//success.Error
         };//Consultar 
-        $scope.findAll();
+
+
+        var promise = $rootScope.comprobarSesion();
+
+        promise.then(function (status) {
+            if (status === 200) {
+                $scope.findAll();
+            } else {
+                $location.path("/portada");
+                $rootScope.empleado = null;
+            }
+        }, function (error) {
+            alert("Se ha producido un error al obtener el dato:" + error);
+        });
+
     }]);
 
 

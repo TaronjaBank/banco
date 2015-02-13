@@ -1,14 +1,34 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MovimientoBancario {
 
     int idMovimientoBancario;
-    int idCuentaBancariaOrigen;
-    int idCuentaBancariaDestino;
-    double cantidadMovimientoBancario;
+    
+    @NotBlank
     String conceptoMovimientoBancario;
-
+    
+    double cantidadMovimientoBancario;
+    
+    @NotNull
+    TipoMovimiento tipoMovimiento;
+    
+    @NotNull
+    CuentaBancaria cuentaBancaria;
+    
     public MovimientoBancario() {
+    }
+
+    public MovimientoBancario(int idMovimientoBancario, String conceptoMovimientoBancario, double cantidadMovimientoBancario, TipoMovimiento tipoMovimiento, CuentaBancaria cuentaBancaria) {
+        this.idMovimientoBancario = idMovimientoBancario;
+        this.conceptoMovimientoBancario = conceptoMovimientoBancario;
+        this.cantidadMovimientoBancario = cantidadMovimientoBancario;
+        this.tipoMovimiento = tipoMovimiento;
+        this.cuentaBancaria = cuentaBancaria;
     }
 
     public int getIdMovimientoBancario() {
@@ -19,20 +39,12 @@ public class MovimientoBancario {
         this.idMovimientoBancario = idMovimientoBancario;
     }
 
-    public int getIdCuentaBancariaOrigen() {
-        return idCuentaBancariaOrigen;
+    public String getConceptoMovimientoBancario() {
+        return conceptoMovimientoBancario;
     }
 
-    public void setIdCuentaBancariaOrigen(int idCuentaBancariaOrigen) {
-        this.idCuentaBancariaOrigen = idCuentaBancariaOrigen;
-    }
-
-    public int getIdCuentaBancariaDestino() {
-        return idCuentaBancariaDestino;
-    }
-
-    public void setIdCuentaBancariaDestino(int idCuentaBancariaDestino) {
-        this.idCuentaBancariaDestino = idCuentaBancariaDestino;
+    public void setConceptoMovimientoBancario(String conceptoMovimientoBancario) {
+        this.conceptoMovimientoBancario = conceptoMovimientoBancario;
     }
 
     public double getCantidadMovimientoBancario() {
@@ -43,12 +55,22 @@ public class MovimientoBancario {
         this.cantidadMovimientoBancario = cantidadMovimientoBancario;
     }
 
-    public String getConceptoMovimientoBancario() {
-        return conceptoMovimientoBancario;
+    public TipoMovimiento getTipoMovimiento() {
+        return tipoMovimiento;
     }
 
-    public void setConceptoMovimientoBancario(String conceptoMovimientoBancario) {
-        this.conceptoMovimientoBancario = conceptoMovimientoBancario;
+    public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
+        this.tipoMovimiento = tipoMovimiento;
     }
+
+    public CuentaBancaria getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
+    }
+
+    
 
 }

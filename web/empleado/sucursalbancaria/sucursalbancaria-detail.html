@@ -2,21 +2,152 @@
 
     <div id="tituloDetail">Detalle Sucursal Bancaria</div>
 
-    <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id Sucursal</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="sucursalBancaria.idSucursalBancaria" ng-disabled="true"/>
+    <form id="contenedorFormularioDetail" name="formularioSucursalBancaria">
+        <div class="labelDetail">Código</div>
+        <input class="inputDetail" name="campoCodigoSucursal" type="text" 
+               ng-style="estiloBloqueado" 
+               ng-model="sucursalBancaria.codigoSucursalBancaria" 
+               ng-disabled="true"
+               ng-pattern="/\d{4}/"
+               placeholder="Código sucursal: formato correcto '0000'"
+               required/>
+        
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.nombreSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Dirección</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.direccionSucursalBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Id Entidad Bancaria</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="sucursalBancaria.idEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
-    </section>
+        <input class="inputDetail" name="campoNombreSucursal" type="text" 
+               ng-style="estilo" 
+               ng-model="sucursalBancaria.nombreSucursalBancaria" 
+               ng-disabled="estado.accion === 'borrar'"
+               required/>
+        
+        <div class="labelDetail">Dirección postal</div>
+        <input class="inputDetail" name="campoDireccionSucursal" type="text" 
+               ng-style="estilo" 
+               ng-model="sucursalBancaria.direccionSucursalBancaria" 
+               ng-disabled="estado.accion === 'borrar'"
+               required/>
+        
+        <div class="labelDetail">Nombre entidad</div>
+        <select class="inputDetail" name="campoNombreEntidad" 
+               ng-model="sucursalBancaria.entidadBancaria.idEntidadBancaria" 
+               ng-style="estiloNombreEntidad" 
+               ng-options="entidadBancaria.idEntidadBancaria as entidadBancaria.nombreEntidadBancaria for entidadBancaria in entidadesBancarias | orderBy: 'nombreEntidadBancaria'" 
+               ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accionDesdeEntidad === true"
+               required>
+            <option value="">-- Elige opción --</option>
+        </select>
+    </form>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar sucursal</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar sucursal</span>
-    
+
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/sucursalbancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    
+    <br/><br/>
+
+    <div id="validacion-caja-mensajes-sucursal" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioSucursalBancaria.$invalid">
+        <p id="validacion-caja-titulo-sucursal" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
+        </p>
+        
+        <p id="validacion-mensaje-error-codigoSucursal" class="validacion-mensaje-error"
+           ng-show="formularioSucursalBancaria.campoCodigoSucursal.$error.pattern">
+           Error código: formato incorrecto
+        </p>
+        <p id="validacion-mensaje-required-codigoSucursal" class="validacion-mensaje-required"
+           ng-show="formularioSucursalBancaria.campoCodigoSucursal.$error.required">
+           Error código: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-nombreSucursal" class="validacion-mensaje-required"
+           ng-show="formularioSucursalBancaria.campoNombreSucursal.$error.required">
+           Error nombre: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-direccionSucursal" class="validacion-mensaje-required"
+           ng-show="formularioSucursalBancaria.campoDireccionSucursal.$error.required">
+           Error direccion postal: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-nombreEntidad" class="validacion-mensaje-required"
+           ng-show="formularioSucursalBancaria.campoNombreEntidad.$error.required">
+           Error nombre entidad: campo requerido
+        </p>
+    </div>
+    
+</section>
+
+<!-- Detalle cuentas -->
+<section id="tablaListado-cuentas" class="tablaListado" ng-show="cuentasBancarias.length !== 0" ng-hide="estado.accion === 'insertar'">
+
+    <p id="tituloTabla-cuentas" class="tituloTabla">Listado Cuentas Bancarias</p><br/>
+    <section id="filaCabecera-cuentas">
+        <div class="celdaCabecera columnaNumCuenta">Numero</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Cliente</div>
+        <div class="celdaCabecera columnaCantidad">Saldo</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="cuentaBancaria in cuentasBancarias">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaNumCuenta">{{cuentaBancaria.numeroCuentaBancaria}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{cuentaBancaria.cliente.nombreCliente}} {{cuentaBancaria.cliente.apellido1Cliente}} {{cuentaBancaria.cliente.apellido2Cliente}}</div>
+            <div class="celdaContenido columnaCantidad">{{cuentaBancaria.saldoCuentaBancaria}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/cuentabancaria/update/{{cuentaBancaria.idCuentaBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/cuentabancaria/delete/{{cuentaBancaria.idCuentaBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section class="botoneraList">
+        <span id="botonNew-cuentas" class="botonBackEnd"><a href="#/cuentabancaria/new/idSucursalBancaria/{{sucursalBancaria.idSucursalBancaria}}">Nueva cuenta</a></span>
+    </section>
+
+</section>
+
+<!-- Detalle empleados -->
+<section id="tablaListado-empleados" class="tablaListado" ng-show="empleados.length !== 0" ng-hide="estado.accion === 'insertar'">
+
+    <p id="tituloTabla-empleados" class="tituloTabla">Listado Empleados</p><br/>
+    <section id="filaCabecera-empleados">
+        <div class="celdaCabecera columnaId-Codigo">DNI</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Nombre</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="empleado in empleados">
+
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaId-Codigo">{{empleado.dniEmpleado}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{empleado.nombreEmpleado}} {{empleado.apellido1Empleado}} {{empleado.apellido2Empleado}}</div>
+        </div>
+
+        <div class="celdaIconoTabla">
+            <a href="#/empleado/update/{{empleado.idEmpleado}}/{{sucursalBancaria.idSucursalBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/empleado/delete/{{empleado.idEmpleado}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+
+    </section>
+
+    <section class="botoneraList">
+        <span id="botonNew-empleados" class="botonBackEnd">
+            <a href="#/empleado/new/{{sucursalBancaria.idSucursalBancaria}}/{{sucursalBancaria.entidadBancaria.idEntidadBancaria}}">Nuevo empleado</a>
+        </span>
+    </section>
+
 </section>

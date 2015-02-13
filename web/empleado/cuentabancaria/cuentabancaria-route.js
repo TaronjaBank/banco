@@ -8,6 +8,14 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "cuentabancaria/cuentabancaria-detail.html",
             controller: "CuentaBancariaInsertController"
         });
+        $routeProvider.when('/cuentabancaria/new/idSucursalBancaria/:idSucursalBancaria', {
+            templateUrl: "cuentabancaria/cuentabancaria-detail.html",
+            controller: "CuentaBancariaInsertController"
+        });
+        $routeProvider.when('/cuentabancaria/new/idCliente/:idCliente', {
+            templateUrl: "cuentabancaria/cuentabancaria-detail.html",
+            controller: "CuentaBancariaInsertController"
+        });
         $routeProvider.when('/cuentabancaria/update/:idCuentaBancaria', {
             templateUrl: "cuentabancaria/cuentabancaria-detail.html",
             controller: "CuentaBancariaUpdateController"

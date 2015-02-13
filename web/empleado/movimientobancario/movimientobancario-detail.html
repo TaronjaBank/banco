@@ -2,23 +2,85 @@
 
     <div id="tituloDetail">Detalle Movimiento Bancario</div>
 
-    <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id movimiento</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="movimientoBancario.idMovimientoBancario" ng-disabled="true"/>
-        <div class="labelDetail">Id cuenta origen</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.idCuentaBancariaOrigen" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Id cuenta destino</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.idCuentaBancariaDestino" ng-disabled="estado.accion === 'borrar'"/>
-        <div class="labelDetail">Cantidad</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.cantidadMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
+    <form id="contenedorFormularioDetail" name="formularioMovimientoBancario">
+        
+        <div class="labelDetail">Número cuenta</div>
+        <select class="inputDetail" name="campoNumeroCuenta"
+               ng-model="movimientoBancario.cuentaBancaria.idCuentaBancaria" 
+               ng-style="estiloNumeroCuenta" 
+               ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentasBancarias | orderBy: 'numeroCuentaBancaria'" 
+               ng-disabled="estado.accion === 'borrar' || insertdesdedetail.accion === 'insertardesdedetail'"
+               required>
+            <option value="">-- Elige opción --</option>
+        </select>
+        
         <div class="labelDetail">Concepto</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="movimientoBancario.conceptoMovimientoBancario" ng-disabled="estado.accion === 'borrar'"/>
-    </section>
-    
+        <input class="inputDetail" name="campoConceptoMovimiento" type="text" 
+               ng-style="estilo" 
+               ng-model="movimientoBancario.conceptoMovimientoBancario" 
+               ng-disabled="estado.accion === 'borrar'"
+               required/>
+        
+        <div class="labelDetail">Cantidad</div>
+        <input class="inputDetail" name="campoCantidadMovimiento" type="number" 
+               ng-style="estilo" 
+               ng-model="movimientoBancario.cantidadMovimientoBancario" 
+               ng-disabled="estado.accion === 'borrar'"
+               required/>
+        
+        <div class="labelDetail">Tipo movimiento</div>
+        <select class="inputDetail" name="campoTipoMovimiento"
+               ng-model="movimientoBancario.tipoMovimiento" 
+               ng-style="estilo" 
+               ng-options="tipoMovimiento.nombre as tipoMovimiento.nombre for tipoMovimiento in tipoMovimientos" 
+               ng-disabled="estado.accion === 'borrar'"
+               required>
+            <option value="">--Elige opcion--</option>
+        </select>
+        
+    </form>   
+
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar movimiento</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar movimiento</span>
-    
+
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/movimientobancario/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    
+    <br/><br/>
+
+    <div id="validacion-caja-mensajes-movimiento" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioMovimientoBancario.$invalid">
+        <p id="validacion-caja-titulo-movimiento" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
+        </p>
+        
+        <p id="validacion-mensaje-error-numeroCuenta" class="validacion-mensaje-error"
+           ng-show="formularioMovimientoBancario.campoNumeroCuenta.$error.pattern">
+           Error número cuenta: valor incorrecto
+        </p>
+        <p id="validacion-mensaje-required-numeroCuenta" class="validacion-mensaje-required"
+           ng-show="formularioMovimientoBancario.campoNumeroCuenta.$error.required">
+           Error número cuenta: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-conceptoMovimiento" class="validacion-mensaje-required"
+           ng-show="formularioMovimientoBancario.campoConceptoMovimiento.$error.required">
+           Error concepto: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-error-cantidadMovimiento" class="validacion-mensaje-error"
+           ng-show="formularioMovimientoBancario.campoCantidadMovimiento.$error.number">
+           Error cantidad: el valor introducido no es un número
+        </p>
+        <p id="validacion-mensaje-required-cantidadMovimiento" class="validacion-mensaje-required"
+           ng-show="formularioMovimientoBancario.campoCantidadMovimiento.$error.required">
+           Error cantidad: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-tipoMovimiento" class="validacion-mensaje-required"
+           ng-show="formularioMovimientoBancario.campoTipoMovimiento.$error.required">
+           Error tipo movimiento: campo requerido
+        </p>
+    </div>
+
 </section>

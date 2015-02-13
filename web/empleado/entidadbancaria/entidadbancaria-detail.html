@@ -2,22 +2,96 @@
 
     <div id="tituloDetail">Detalle Entidad Bancaria</div>
 
-    <section id="contenedorFormularioDetail">
-        <div class="labelDetail">Id Entidad</div>
-        <input class="inputDetail" type="text" ng-style="estiloBloqueado" ng-model="entidadBancaria.idEntidadBancaria" ng-disabled="true"/>
+    <form id="contenedorFormularioDetail" name="formularioEntidadBancaria">
         <div class="labelDetail">Código</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.codigoEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" name="campoCodigoEntidad" type="text" 
+               ng-style="estiloBloqueado" 
+               ng-model="entidadBancaria.codigoEntidadBancaria" 
+               ng-disabled="true"
+               ng-pattern="/\d{4}/"
+               placeholder="Código entidad: formato correcto '0000'"
+               required/>
+        
         <div class="labelDetail">Nombre</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ng-model="entidadBancaria.nombreEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
+        <input class="inputDetail" name="campoNombreEntidad" type="text" 
+               ng-style="estilo" 
+               ng-model="entidadBancaria.nombreEntidadBancaria" 
+               ng-disabled="estado.accion === 'borrar'"
+               required/>
+        
         <div class="labelDetail">Fecha creación</div>
-        <input class="inputDetail" type="text" ng-style="estilo" ui-date ng-model="entidadBancaria.fechaCreacionEntidadBancaria" ng-disabled="estado.accion === 'borrar'"/>
-        <!-- ui-date-format="dd-mm-yy"  -->
-    </section>
+        <input ui-date class="inputDetail" name="campoFechaEntidad" type="text" 
+               ng-style="estilo" 
+               ng-model="entidadBancaria.fechaCreacionEntidadBancaria" 
+               ng-disabled="estado.accion === 'borrar'"
+               required/>
+    </form>
 
     <span id="botonInsertDetail" class="botonBackEnd" ng-click="insert()" ng-show="estado.accion === 'insertar'">Insertar entidad</span>
     <span id="botonUpdateDetail" class="botonBackEnd" ng-click="update()" ng-show="estado.accion === 'actualizar'">Guardar cambios</span>
     <span id="botonDeleteDetail" class="botonBackEnd" ng-click="deleteData()" ng-show="estado.accion === 'borrar'">Eliminar entidad</span>
-    
+
     <span id="botonVolverLista" class="botonBackEnd"><a href="#/entidadbancaria/list">Ir a listado</a></span>
     <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
+    
+    <br/><br/>
+
+    <div id="validacion-caja-mensajes-entidad" class="validacion-caja-mensajes" ng-show="mostrarValidaciones && formularioEntidadBancaria.$invalid">
+        <p id="validacion-caja-titulo-entidad" class="validacion-caja-titulo">
+           ERRORES DE VALIDACIÓN:
+        </p>
+        
+        <p id="validacion-mensaje-error-codigoEntidad" class="validacion-mensaje-error"
+           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.pattern">
+           Error código: formato incorrecto
+        </p>
+        <p id="validacion-mensaje-required-codigoEntidad" class="validacion-mensaje-required"
+           ng-show="formularioEntidadBancaria.campoCodigoEntidad.$error.required">
+           Error código: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-nombreEntidad" class="validacion-mensaje-required"
+           ng-show="formularioEntidadBancaria.campoNombreEntidad.$error.required">
+           Error nombre: campo requerido
+        </p>
+        
+        <p id="validacion-mensaje-required-fechaEntidad" class="validacion-mensaje-required"
+           ng-show="formularioEntidadBancaria.campoFechaEntidad.$error.required">
+           Error fecha: campo requerido
+        </p>
+        
+    </div>
+    
+</section>
+
+<!-- Tabla de Sucursales Bancarias.  -->
+<section id="tablaListado" ng-show="sucursalesBancarias.length !== 0" ng-hide="estado.accion === 'insertar'">
+
+    <p id="tituloTabla">Listado Sucursales Bancarias</p><br/>
+    <section id="filaCabecera">
+        <div class="celdaCabecera columnaNombre">Nombre</div>
+        <div class="celdaCabecera columnaConcepto-Direccion">Dirección</div>
+    </section>
+
+    <section class="filaContenido" ng-repeat="sucursalBancaria in sucursalesBancarias">
+        <div class="bloqueDatos">
+            <div class="celdaContenido columnaNombre">{{sucursalBancaria.nombreSucursalBancaria}}</div>
+            <div class="celdaContenido columnaConcepto-Direccion">{{sucursalBancaria.direccionSucursalBancaria}}</div>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/sucursalbancaria/update/{{sucursalBancaria.idSucursalBancaria}}/{{sucursalBancaria.entidadBancaria.idEntidadBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
+            </a>
+        </div>
+        <div class="celdaIconoTabla">
+            <a href="#/sucursalbancaria/delete/{{sucursalBancaria.idSucursalBancaria}}">
+                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
+            </a>
+        </div>
+    </section>
+
+    <section class="botoneraList">
+        <span id="botonNew" class="botonBackEnd"><a href="#/sucursalbancaria/new/{{entidadBancaria.idEntidadBancaria}}">Nueva sucursal</a></span>
+    </section>
+
 </section>

@@ -1,38 +1,25 @@
-<section id="tablaListado" ng-init="list()">
+<section id="tablaListado">
 
     <p id="tituloTabla">Listado Movimientos Bancarios</p><br/>
     <section id="filaCabecera">
-        <div class="celdaCabecera columnaId-Codigo">Id movimiento</div>
-        <div class="celdaCabecera columnaId-Codigo">Cuenta origen</div>
-        <div class="celdaCabecera columnaId-Codigo">Cuenta destino</div>
-        <div class="celdaCabecera columnaCantidad">Cantidad</div>
+        <div class="celdaCabecera columnaNumCuenta">Numero Cuenta</div>
         <div class="celdaCabecera columnaConcepto-Direccion">Concepto</div>
+        <div class="celdaCabecera columnaCantidad">Cantidad</div>
+        <div class="celdaCabecera columnaNombre">Tipo</div>
     </section>
 
     <section class="filaContenido" ng-repeat="movimientoBancario in movimientosBancarios">
 
         <div class="bloqueDatos">
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idMovimientoBancario}}</div>
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaOrigen}}</div>
-            <div class="celdaContenido columnaId-Codigo">{{movimientoBancario.idCuentaBancariaDestino}}</div>
-            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario}}</div>
+            <div class="celdaContenido columnaNumCuenta">{{movimientoBancario.cuentaBancaria.numeroCuentaBancaria}}</div>
             <div class="celdaContenido columnaConcepto-Direccion">{{movimientoBancario.conceptoMovimientoBancario}}</div>
-        </div>
-
-        <div class="celdaIconoTabla">
-            <a href="#/movimientobancario/update/{{movimientoBancario.idMovimientoBancario}}">
-                <img class="iconoTabla" src="../style/img/icon/editar.png" alt="IconoEditar"/>
-            </a>
-        </div>
-        <div class="celdaIconoTabla">
-            <a href="#/movimientobancario/delete/{{movimientoBancario.idMovimientoBancario}}">
-                <img class="iconoTabla" src="../style/img/icon/papelera.png" alt="IconoBorrar"/>
-            </a>
+            <div class="celdaContenido columnaCantidad">{{movimientoBancario.cantidadMovimientoBancario | number:2}} €</div>
+            <div class="celdaContenido columnaNombre">{{movimientoBancario.tipoMovimiento}}</div>
         </div>
 
     </section>
 
-    <section id="botoneraList">
+    <section class="botoneraList">
         <span id="botonNew" class="botonBackEnd"><a href="#/movimientobancario/new">Nuevo movimiento</a></span>
         <span id="botonVolverOpcionesEmpleado" class="botonBackEnd"><a href="#/main">Ir a Empleado</a></span>
     </section>

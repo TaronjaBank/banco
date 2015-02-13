@@ -3,6 +3,7 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.dominio.MovimientoBancario;
 import com.fpmislata.banco.persistencia.dao.MovimientoBancarioDAO;
 import com.fpmislata.banco.common.json.JsonTransformer;
+import com.fpmislata.banco.persistencia.dao.BussinessException;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,14 @@ public class MovimientoBancarioController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -55,6 +64,14 @@ public class MovimientoBancarioController {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -78,6 +95,14 @@ public class MovimientoBancarioController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 
@@ -88,8 +113,18 @@ public class MovimientoBancarioController {
             HttpServletRequest httpServletRequest,
             HttpServletResponse httpServletResponse,
             @PathVariable("idMovimientoBancario") int idMovimientoBancario) {
-        movimientoBancarioDAO.delete(idMovimientoBancario);
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        try {
+            movimientoBancarioDAO.delete(idMovimientoBancario);
+            httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        }
     }
 
     @RequestMapping(
@@ -104,6 +139,14 @@ public class MovimientoBancarioController {
             httpServletResponse.setContentType("application/json; char=UTF-8");
         } catch (IOException ex) {
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } catch (BussinessException bussinessException) {
+            try {
+                String jsonSalida = jsonTransformer.toJson(bussinessException.getBussinessMessageList());
+                httpServletResponse.getWriter().println(jsonSalida);
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } catch (IOException ex) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 }

@@ -1,15 +1,42 @@
 package com.fpmislata.banco.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.NotBlank;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CuentaBancaria {
 
     int idCuentaBancaria;
-    int numeroCuentaBancaria;
-    int idEntidadBancaria;
-    int idCliente;
+    
+    @NotBlank
+    @Pattern(regexp="\\d{4}-\\d{4}-\\d{4}")
+    String numeroCuentaBancaria;
+    
+    @NotNull
+    Cliente cliente;
+    
+    double saldoCuentaBancaria;
+    
+    @NotNull
+    SucursalBancaria sucursalBancaria;
+    
+    @JsonIgnore
+    Set<MovimientoBancario> movimientosBancarios;
 
     public CuentaBancaria() {
     }
-
+    
+    public CuentaBancaria(int idCuentaBancaria, String numeroCuentaBancaria, int idEntidadBancaria, Cliente cliente, SucursalBancaria sucursalBancaria) {
+        this.idCuentaBancaria = idCuentaBancaria;
+        this.numeroCuentaBancaria = numeroCuentaBancaria;
+        this.cliente = cliente;
+        this.sucursalBancaria = sucursalBancaria;
+    }
+    
     public int getIdCuentaBancaria() {
         return idCuentaBancaria;
     }
@@ -18,28 +45,44 @@ public class CuentaBancaria {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public int getNumeroCuentaBancaria() {
+    public String getNumeroCuentaBancaria() {
         return numeroCuentaBancaria;
     }
 
-    public void setNumeroCuentaBancaria(int numeroCuentaBancaria) {
+    public void setNumeroCuentaBancaria(String numeroCuentaBancaria) {
         this.numeroCuentaBancaria = numeroCuentaBancaria;
     }
 
-    public int getIdEntidadBancaria() {
-        return idEntidadBancaria;
+    public SucursalBancaria getSucursalBancaria() {
+        return sucursalBancaria;
     }
 
-    public void setIdEntidadBancaria(int idEntidadBancaria) {
-        this.idEntidadBancaria = idEntidadBancaria;
+    public void setSucursalBancaria(SucursalBancaria sucursalBancaria) {
+        this.sucursalBancaria = sucursalBancaria;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Set<MovimientoBancario> getMovimientosBancarios() {
+        return movimientosBancarios;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setMovimientosBancarios(Set<MovimientoBancario> movimientosBancarios) {
+        this.movimientosBancarios = movimientosBancarios;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public double getSaldoCuentaBancaria() {
+        return saldoCuentaBancaria;
+    }
+
+    public void setSaldoCuentaBancaria(double saldoCuentaBancaria) {
+        this.saldoCuentaBancaria = saldoCuentaBancaria;
     }
 
 }
