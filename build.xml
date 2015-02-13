@@ -34,6 +34,8 @@
             privateKeyFile="../.ssh/id_rsa"
             path="../taronjabank"
         />
+        <delete dir="../taronjabank/src"></delete>
+        <delete file="../taronjabank/pom.xml"></delete>
         <delete file="../taronjabank/webapps/ROOT.war"></delete>
         <copy file="dist/ROOT.war" todir="../taronjabank/webapps"></copy>
         
