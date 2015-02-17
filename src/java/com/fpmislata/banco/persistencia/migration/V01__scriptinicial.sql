@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `sucursalBancaria` (
   `direccionSucursalBancaria` varchar(50) DEFAULT NULL,
   `idEntidadBancaria` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSucursalBancaria`),
-  CONSTRAINT `FK_sucursalBancaria_entidadBancaria` FOREIGN KEY (`idEntidadBancaria`) REFERENCES `entidadbancaria` (`idEntidadBancaria`)
+  CONSTRAINT `FK_sucursalBancaria_entidadBancaria` FOREIGN KEY (`idEntidadBancaria`) REFERENCES `entidadBancaria` (`idEntidadBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `cuentaBancaria` (
   `saldoCuentaBancaria` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`idCuentaBancaria`),
   CONSTRAINT `FK_cuentabancaria_cliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
-  CONSTRAINT `FK_cuentabancaria_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalbancaria` (`idSucursalBancaria`)
+  CONSTRAINT `FK_cuentabancaria_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalBancaria` (`idSucursalBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `movimientoBancario` (
   `tipoMovimiento` enum('DEBE','HABER') DEFAULT NULL,
   `idCuentaBancaria` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMovimientoBancario`),
-  CONSTRAINT `FK_movimientobancario_cuentabancaria` FOREIGN KEY (`idCuentaBancaria`) REFERENCES `cuentabancaria` (`idCuentaBancaria`)
+  CONSTRAINT `FK_movimientobancario_cuentabancaria` FOREIGN KEY (`idCuentaBancaria`) REFERENCES `cuentaBancaria` (`idCuentaBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -64,5 +64,5 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   `loginEmpleado` varchar(50) DEFAULT NULL,
   `passwordEmpleado` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idEmpleado`),
-  CONSTRAINT `FK_empleado_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalbancaria` (`idSucursalBancaria`)
+  CONSTRAINT `FK_empleado_sucursalbancaria` FOREIGN KEY (`idSucursalBancaria`) REFERENCES `sucursalBancaria` (`idSucursalBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
