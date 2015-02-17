@@ -3,7 +3,7 @@ app.controller("LoginController", ['$scope', '$location', '$http', '$rootScope',
         $scope.logIn = function() {
             $http({
                 method: "POST",
-                url: contextPath + "/api/Session/Empleado",
+                url: "http://taronjabank-taronjabank.rhcloud.com/api/Session/Empleado",
                 data: $scope.credencial
             }).success(function(data) {
                 $rootScope.empleado = data;
