@@ -1,10 +1,5 @@
 
-ALTER TABLE `cliente` DISABLE KEYS ;
-ALTER TABLE `cuentaBancaria` DISABLE KEYS ;
-ALTER TABLE `empleado` DISABLE KEYS ;
-ALTER TABLE `entidadBancaria` DISABLE KEYS ;
-ALTER TABLE `movimientoBancario` DISABLE KEYS ;
-ALTER TABLE `sucursalBancaria` DISABLE KEYS ;
+
 
 
 INSERT INTO `entidadbancaria` (`idEntidadBancaria`, `codigoEntidadBancaria`, `nombreEntidadBancaria`, `fechaCreacionEntidadBancaria`) VALUES
@@ -57,10 +52,4 @@ INSERT INTO `empleado` (`idEmpleado`, `dniEmpleado`, `nombreEmpleado`, `apellido
 	(4, '00000004G', 'Fran', 'Navarro', 'Flores', 4, 'login4', 'password4');
 
 
-ALTER TABLE `sucursalBancaria` ENABLE KEYS ;
-ALTER TABLE `cliente` ENABLE KEYS ;
-ALTER TABLE `movimientoBancario` ENABLE KEYS ;
- ALTER TABLE `entidadBancaria` ENABLE KEYS ;
-ALTER TABLE `empleado` ENABLE KEYS;
- ALTER TABLE `cuentaBancaria` ENABLE KEYS ;
 
