@@ -19,21 +19,27 @@ public class MovimientoBancarioDAOImplHibernate extends GenericDAOImplHibernate<
         try {
             session.beginTransaction();
             CuentaBancaria cuentaBancaria = movimientoBancario.getCuentaBancaria();
-
-            if (movimientoBancario.getTipoMovimiento().equals(TipoMovimiento.HABER)) {
-                cuentaBancaria.setSaldoCuentaBancaria(cuentaBancaria.getSaldoCuentaBancaria() + movimientoBancario.getCantidadMovimientoBancario());
+            if (movimientoBancario.getCantidadMovimientoBancario() == null) {
+                throw new BussinessException("Movimiento Bancario", "El movimiento no tiene cantidad");
             } else {
-                if (cuentaBancaria.getSaldoCuentaBancaria() >= movimientoBancario.getCantidadMovimientoBancario()) {
-                    cuentaBancaria.setSaldoCuentaBancaria(cuentaBancaria.getSaldoCuentaBancaria() - movimientoBancario.getCantidadMovimientoBancario());
+                if(movimientoBancario.getTipoMovimiento()==null){
+                    throw new BussinessException("Movimiento Bancario", "El movimiento no tiene tipo");
+                }else{
+                if (movimientoBancario.getTipoMovimiento().equals(TipoMovimiento.HABER)) {
+                    cuentaBancaria.setSaldoCuentaBancaria(cuentaBancaria.getSaldoCuentaBancaria() + movimientoBancario.getCantidadMovimientoBancario());
                 } else {
-                    throw new BussinessException("SaldoCuenta", "El saldo de la cuenta es insuficiente");
+                    if (cuentaBancaria.getSaldoCuentaBancaria() >= movimientoBancario.getCantidadMovimientoBancario()) {
+                        cuentaBancaria.setSaldoCuentaBancaria(cuentaBancaria.getSaldoCuentaBancaria() - movimientoBancario.getCantidadMovimientoBancario());
+                    } else {
+                        throw new BussinessException("Saldo Cuenta", "El saldo de la cuenta es insuficiente");
+                    }
+                }
                 }
             }
-                session.save(movimientoBancario);
-                session.getTransaction().commit();
+            session.save(movimientoBancario);
+            session.getTransaction().commit();
 
-                return movimientoBancario;
-            
+            return movimientoBancario;
 
         } catch (javax.validation.ConstraintViolationException cve) {
             try {

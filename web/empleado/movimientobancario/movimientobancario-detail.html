@@ -26,6 +26,7 @@
                ng-style="estilo" 
                ng-model="movimientoBancario.cantidadMovimientoBancario" 
                ng-disabled="estado.accion === 'borrar'"
+               defaultValue="0"
                required/>
         
         <div class="labelDetail">Tipo movimiento</div>
@@ -81,6 +82,15 @@
            ng-show="formularioMovimientoBancario.campoTipoMovimiento.$error.required">
            Error tipo movimiento: campo requerido
         </p>
+    </div>
+    
+    <div id="validacion-servidor-caja-mensajes-cliente" class="validacion-caja-mensajes" ng-show="mostrarValidacionesServidor">
+        <p id="validacion-servidor-caja-titulo-cliente" class="validacion-caja-titulo">
+            ERRORES DE VALIDACIÓN EN SERVIDOR:
+        </p>
+        <section class="validacion-servidor-lista-errores" ng-repeat="bussinessMessage in bussinessMessageList">
+            <p class="validacion-servidor-item-error">{{bussinessMessage.fieldName}}: {{bussinessMessage.message}}</p>
+        </section>
     </div>
 
 </section>

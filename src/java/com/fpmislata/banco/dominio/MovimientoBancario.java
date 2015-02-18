@@ -12,7 +12,8 @@ public class MovimientoBancario {
     @NotBlank
     String conceptoMovimientoBancario;
     
-    double cantidadMovimientoBancario;
+    @NotNull
+    Double cantidadMovimientoBancario;
     
     @NotNull
     TipoMovimiento tipoMovimiento;
@@ -47,11 +48,11 @@ public class MovimientoBancario {
         this.conceptoMovimientoBancario = conceptoMovimientoBancario;
     }
 
-    public double getCantidadMovimientoBancario() {
+    public Double getCantidadMovimientoBancario() {
         return cantidadMovimientoBancario;
     }
 
-    public void setCantidadMovimientoBancario(double cantidadMovimientoBancario) {
+    public void setCantidadMovimientoBancario(Double cantidadMovimientoBancario) {
         this.cantidadMovimientoBancario = cantidadMovimientoBancario;
     }
 
