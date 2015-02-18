@@ -22,11 +22,6 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
 
 
         $scope.insert = function () {
-            alert($scope.movimientoBancario.tipoMovimiento);
-//            $scope.mostrarValidaciones = true;
-//            $(".validacion-caja-mensajes").fadeIn(500, "linear");
-//              
-//            if (!$scope.formularioMovimientoBancario.$invalid) {
             if($scope.movimientoBancario.tipoMovimiento===undefined){
                   $scope.movimientoBancario.tipoMovimiento=null;
               }
@@ -37,6 +32,11 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
               if($scope.movimientoBancario.conceptoMovimientoBancario===undefined){
                   $scope.movimientoBancario.conceptoMovimientoBancario=null;
               }
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+              
+            if (!$scope.formularioMovimientoBancario.$invalid) {
+            
               
                 $http({
                     method: "POST",
@@ -55,7 +55,7 @@ app.controller("MovimientoBancarioInsertController", ["$scope", "$http", "$route
                         alert("Error: no se ha podido realizar la operación");
                     }
                 });
-//            }
+            }
         };
 
         $scope.findAll = function () {
@@ -132,10 +132,10 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
 
 
         $scope.update = function () {
-//            $scope.mostrarValidaciones = true;
-//            $(".validacion-caja-mensajes").fadeIn(500, "linear");
-//
-//            if (!$scope.formularioMovimientoBancario.$invalid) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+
+            if (!$scope.formularioMovimientoBancario.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/MovimientoBancario/" + $scope.movimientoBancario.idMovimientoBancario,
@@ -152,7 +152,7 @@ app.controller("MovimientoBancarioUpdateController", ["$scope", "$http", "$route
                         alert("Error: no se ha podido realizar la operación");
                     }
                 });
-//            }
+            }
         };
 
         $scope.findAll = function () {

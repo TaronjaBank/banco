@@ -183,10 +183,10 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
 
 
         $scope.update = function () {
-//            $scope.mostrarValidaciones = true;
-//            $(".validacion-caja-mensajes").fadeIn(500, "linear");
-//
-//            if (!$scope.formularioSucursalBancaria.$invalid) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+
+            if (!$scope.formularioSucursalBancaria.$invalid) {
                 $http({
                     method: "PUT",
                     url: contextPath + "/api/SucursalBancaria/" + $scope.sucursalBancaria.idSucursalBancaria,
@@ -203,7 +203,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                         alert("Error: no se ha podido realizar la operación");
                     }
                 });
-//            }
+            }
         };
 
         var promise = $rootScope.comprobarSesion();

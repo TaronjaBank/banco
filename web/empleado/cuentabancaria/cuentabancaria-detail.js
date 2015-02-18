@@ -163,10 +163,9 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
             if(isNaN($scope.cuentaBancaria.sucursalBancaria.idSucursalBancaria)){
                 $scope.cuentaBancaria={};
             }
-//            $scope.mostrarValidaciones = true;
-//            $(".validacion-caja-mensajes").fadeIn(500, "linear");
-//
-//            if (!$scope.formularioCuentaBancaria.$invalid) {
+            $scope.mostrarValidaciones = true;
+           $(".validacion-caja-mensajes").fadeIn(500, "linear");
+           if (!$scope.formularioCuentaBancaria.$invalid) {
                 $http({
                     method: "POST",
                     data: $scope.cuentaBancaria,
@@ -185,7 +184,7 @@ app.controller("CuentaBancariaInsertController", ["$scope", "$http", "$routePara
                         alert("Error: no se ha podido realizar la operación");
                     }
                 });
-//            }
+          }
         };
 
         var promise = $rootScope.comprobarSesion();
@@ -308,10 +307,10 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
 
         $scope.update = function () {
               alert($scope.cuentaBancaria.cliente.idCliente);
-//            $scope.mostrarValidaciones = true;
-//            $(".validacion-caja-mensajes").fadeIn(500, "linear");
-//
-//            if (!$scope.formularioCuentaBancaria.$invalid) {
+            $scope.mostrarValidaciones = true;
+            $(".validacion-caja-mensajes").fadeIn(500, "linear");
+
+            if (!$scope.formularioCuentaBancaria.$invalid) {
               if($scope.cuentaBancaria.cliente.idCliente===undefined){
                  $scope.cuentaBancaria.cliente=null; 
               }
@@ -331,7 +330,7 @@ app.controller("CuentaBancariaUpdateController", ["$scope", "$http", "$routePara
                         alert("Error: no se ha podido realizar la operación");
                     }
                 });
-//            }
+            }
         };
         var promise = $rootScope.comprobarSesion();
 
