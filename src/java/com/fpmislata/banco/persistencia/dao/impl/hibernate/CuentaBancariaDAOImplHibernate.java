@@ -11,13 +11,14 @@ import com.fpmislata.banco.persistencia.dao.impl.hibernate.common.HibernateUtil;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
+import javax.validation.ConstraintViolationException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<CuentaBancaria> implements CuentaBancariaDAO {
 
     @Override
-    public CuentaBancaria insert(CuentaBancaria cuentaBancaria) {
+    public CuentaBancaria insert(CuentaBancaria cuentaBancaria) throws BussinessException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
@@ -32,7 +33,17 @@ public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<Cuen
             session.save(cuentaBancaria);
             session.getTransaction().commit();
             return cuentaBancaria;
-        } catch (RuntimeException ex) {
+        } catch (ConstraintViolationException cve) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                LOGGER.log(Level.WARNING, "Error al hacer rollback", exc);
+            }
+            throw new BussinessException(cve); 
+        
+        }catch (RuntimeException ex) {
             try {
                 if (session.getTransaction().isActive()) {
                     session.getTransaction().rollback();

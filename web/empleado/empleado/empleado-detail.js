@@ -84,8 +84,14 @@ app.controller("EmpleadoInsertController", ["$scope", "$http", "$location", "$ro
                     $scope.empleadoEdit = data;
                     $scope.empleadoEdit = {};
                     $scope.mostrarValidaciones = false;
-                }).error(function () {
-                    alert("Error: no se ha podido realizar la operación");
+                }).error(function(data, status) {
+                    if (status === 400) {
+                        $scope.bussinessMessageList = data;
+                        $scope.mostrarValidacionesServidor = true;
+                        $(".validacion-caja-mensajes").fadeIn(500, "linear");
+                    } else {
+                        alert("Error: no se ha podido realizar la operación");
+                    }
                 });
             }
         };
@@ -193,8 +199,14 @@ app.controller("EmpleadoUpdateController", ["$scope", "$http", "$routeParams", "
                 }).success(function () {
                     $scope.empleadoEdit = {};
                     $scope.irLista();
-                }).error(function () {
-                    alert("Error: no se ha podido realizar la operación");
+                }).error(function(data, status) {
+                    if (status === 400) {
+                        $scope.bussinessMessageList = data;
+                        $scope.mostrarValidacionesServidor = true;
+                        $(".validacion-caja-mensajes").fadeIn(500, "linear");
+                    } else {
+                        alert("Error: no se ha podido realizar la operación");
+                    }
                 });
             }
         };

@@ -50,8 +50,14 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$locatio
                     $scope.sucursalBancaria = data;
                     $scope.sucursalBancaria = {};
                     $scope.mostrarValidaciones = false;
-                }).error(function () {
-                    alert("Error: no se ha podido realizar la operación");
+                }).error(function(data, status) {
+                    if (status === 400) {
+                        $scope.bussinessMessageList = data;
+                        $scope.mostrarValidacionesServidor = true;
+                        $(".validacion-caja-mensajes").fadeIn(500, "linear");
+                    } else {
+                        alert("Error: no se ha podido realizar la operación");
+                    }
                 });
             }
         };
@@ -188,8 +194,14 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 }).success(function () {
                     $scope.sucursalBancaria = {};
                     $scope.irLista();
-                }).error(function () {
-                    alert("Error: no se ha podido realizar la operación");
+                }).error(function(data, status) {
+                    if (status === 400) {
+                        $scope.bussinessMessageList = data;
+                        $scope.mostrarValidacionesServidor = true;
+                        $(".validacion-caja-mensajes").fadeIn(500, "linear");
+                    } else {
+                        alert("Error: no se ha podido realizar la operación");
+                    }
                 });
             }
         };
